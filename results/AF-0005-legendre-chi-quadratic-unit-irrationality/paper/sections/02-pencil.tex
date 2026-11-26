@@ -1,0 +1,150 @@
+\section{The construction}\label{sec:pencil}
+
+This section recalls the determinants of~\Kri{} in a form that treats both signs at once, and
+proves the two facts about them that we use: they are polynomials with rational coefficients,
+and their value at $T$ is a determinant of convergent series.
+
+\subsection{The functional}\label{subsec:functional}
+
+Fix $\sigma$ and $n$ as in the introduction and let $z=z_\sigma(n)$, $y=\sigma z^2$. Since
+$z^2=\sigma-\sigma nz$,
+\begin{equation}\label{eq:one-minus-y}
+1-y=nz .
+\end{equation}
+Let $\F=\Q(z)$ and let $\conj$ be its nontrivial automorphism. The roots of $z^2+\sigma nz-\sigma$
+have product $-\sigma$, so $\conj(z)=-\sigma/z$ and $\conj(y)=1/y$; in particular $z$ and $y$
+are units of the ring of integers of $\F$. For an odd integer $t$ of either sign put
+$w(t)=zy^{(t-1)/2}$. Then $w(t)=\sigma^{(t-1)/2}z^t$, and
+\begin{equation}\label{eq:weight-rules}
+w(t+x)=y^{x/2}w(t)\quad(x\text{ even}),\qquad \conj(w(t))=-w(-t),
+\end{equation}
+the second because $-w(-t)=-zy^{-1}y^{-(t-1)/2}=-(\sigma/z)\,y^{-(t-1)/2}$. With this notation
+$T=T_\sigma(n)=\sum_{t}w(t)/t^2$, the sum being over the odd $t\ge1$.
+
+Fix an even integer $h\ge2$, put $K=h+1$, $x_j=2j-h$ for $0\le j\le h$ and
+$D(t)=\prod_{j=0}^{h}(t-x_j)$. The poles are symmetric and $K$ is odd, so $D(-t)=-D(t)$. Let
+$\Rsp$ be the space of rational functions $f=R+\sum_jc_j/(t-x_j)$ with $R\in\Q[t]$ and
+$c_j\in\Q$. For $f\in\Rsp$ put
+\[
+\Mf(f)=\sum_{t\ \mathrm{odd},\ t\ge1}w(t)\,f'(t),
+\]
+an absolutely convergent series since $0<z<1$ and the poles are even.
+
+\begin{lemma}\label{lem:evaluation}
+\begin{enumerate}[(a)]
+\item For $R\in\Q[t]$ let $G(s)=R'(2s+1)$. Then
+\begin{equation}\label{eq:mahler}
+\Mf(R)=z\sum_{b\ge0}(\Delta^bG)(0)\,\frac{y^b}{(1-y)^{b+1}},
+\end{equation}
+a finite sum, where $\Delta$ is the forward difference in $s$. Moreover
+$\Mf(t^{a+1})=(a+1)S_a(z)$ for $a\ge0$, where
+$S_a(q)=\bigl(q\frac{\mathrm d}{\mathrm dq}\bigr)^a\frac{q}{1-\sigma q^2}\in\Q(q)$.
+\item For an even integer $x$ put
+\[
+P(x)=\sum_{\substack{r\ \mathrm{odd}\\0<r<-x}}\frac{w(r)}{r^2}\ (x<0),\qquad P(0)=0,\qquad
+P(x)=-\sum_{\substack{r\ \mathrm{odd}\\-x<r<0}}\frac{w(r)}{r^2}\ (x>0).
+\]
+Then $\Mf\bigl(1/(t-x)\bigr)=-y^{x/2}\bigl(T-P(x)\bigr)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) With $t=2s+1$ we have $\Mf(R)=z\sum_{s\ge0}y^sG(s)$. Newton's formula
+$G(s)=\sum_b(\Delta^bG)(0)\binom sb$ and $\sum_{s\ge0}\binom sby^s=y^b/(1-y)^{b+1}$ give
+\eqref{eq:mahler}. For the second formula, $R'(t)=(a+1)t^a$ and $\sum_{t}\sigma^{(t-1)/2}z^t t^a=\theta^a\varphi(z)$,
+where $\theta=q\,\mathrm d/\mathrm dq$, applied termwise to $\varphi(q)=\sum_{s\ge0}\sigma^sq^{2s+1}=q/(1-\sigma q^2)$
+(for $|q|<1$).
+
+(b) $\Mf(1/(t-x))=-\sum_tw(t)/(t-x)^2$. Put $r=t-x$, an odd integer $\ge1-x$; by
+\eqref{eq:weight-rules}, $w(t)=y^{x/2}w(r)$, so the sum is $-y^{x/2}\sum_{r\ge1-x}w(r)/r^2$, and
+$\sum_{r\ge1-x}w(r)/r^2=T-P(x)$ by the definition of $P$.
+\end{proof}
+
+For an indeterminate $X$ define $L_X:\Rsp\to\F[X]$ by
+\begin{equation}\label{eq:LX}
+L_X\Bigl(R+\sum_j\frac{c_j}{t-x_j}\Bigr)=\Mf(R)-\sum_jc_j\,y^{x_j/2}\bigl(X-P(x_j)\bigr).
+\end{equation}
+By \cref{lem:evaluation}, $L_T=\Mf$. Put $\Lambda_X(g)=L_X(g/D)$ for $g\in\Q[t]$,
+$E_d=\Lambda_X(t^d)$ and
+\[
+\Delta_h(X)=\det\bigl(E_{i+j}\bigr)_{0\le i,j<h}\in\F[X].
+\]
+Every $E_d$ has degree at most $1$ in $X$, so $\deg\Delta_h\le h$, and
+\begin{equation}\label{eq:value-at-T}
+\Delta_h(T)=\det\Bigl(\sum_{t\ \mathrm{odd},\ t\ge1}w(t)\,\bigl(t^{i+j}/D\bigr)'(t)\Bigr)_{0\le i,j<h}.
+\end{equation}
+For $\sigma=+1$ this is the polynomial $\Delta_h$ of \cite[Section~2]{Krisman2026units}, and for
+$\sigma=-1$ the polynomial $\Delta_h^{\natural}$ of \cite[Section~8.2]{Krisman2026units}.
+
+\subsection{Rationality}\label{subsec:rationality}
+
+The next statement is \cite[Lemma~2.2 and Corollary~2.3]{Krisman2026units} for $\sigma=+1$ and
+\cite[Lemma~8.4]{Krisman2026units} for $\sigma=-1$. We give a proof that covers both signs.
+
+\begin{proposition}\label{prop:rationality}
+For $f\in\Rsp$ let $\tilde f(t)=f(-t)$. Then $\conj\bigl(L_X(f)\bigr)=-L_X(\tilde f)$, where
+$\conj$ acts on the coefficients. Consequently $\conj(E_d)=(-1)^dE_d$ for all $d$, and
+$\Delta_h\in\Q[X]$.
+\end{proposition}
+
+\begin{proof}
+By linearity it suffices to treat $f=1/(t-x)$ with $x$ a pole, and $f=t^{a+1}$.
+
+For $f=1/(t-x)$ we have $\tilde f=-1/(t-(-x))$, so $L_X(\tilde f)=y^{-x/2}(X-P(-x))$. On the other
+hand $\conj(y^{x/2})=y^{-x/2}$, and $\conj(P(x))=P(-x)$: for $x<0$, by \eqref{eq:weight-rules},
+\[
+\conj(P(x))=-\sum_{0<r<-x}\frac{w(-r)}{r^2}=-\sum_{x<r'<0}\frac{w(r')}{r'^2}=P(-x),
+\]
+and the case $x>0$ follows by applying $\conj$ again. Hence
+$\conj(L_X(f))=-y^{-x/2}(X-P(-x))=-L_X(\tilde f)$.
+
+For $f=t^{a+1}$ we use \cref{lem:evaluation}(a). The involution $\iota(q)=-\sigma/q$ fixes
+$\varphi(q)=q/(1-\sigma q^2)$, because
+$\varphi(-\sigma/q)=-\sigma q/(q^2-\sigma)=q/(1-\sigma q^2)$, and it anticommutes with
+$\theta=q\,\mathrm d/\mathrm dq$, that is $\theta(g\circ\iota)=-(\theta g)\circ\iota$. Hence
+$S_a\circ\iota=(-1)^aS_a$, and since $\conj(z)=\iota(z)$,
+\[
+\conj\bigl(\Mf(t^{a+1})\bigr)=(a+1)S_a(\iota(z))=(-1)^a\Mf(t^{a+1})=-\Mf\bigl((-t)^{a+1}\bigr).
+\]
+
+For the consequences, $f=t^d/D$ has $\tilde f=(-1)^{d+1}f$ since $D(-t)=-D(t)$, so
+$\conj(E_d)=(-1)^dE_d$. The matrix $(\conj(E_{i+j}))$ is obtained from $(E_{i+j})$ by multiplying
+row $i$ by $(-1)^i$ and column $j$ by $(-1)^j$, which does not change the determinant. So
+$\conj(\Delta_h)=\Delta_h$.
+\end{proof}
+
+\subsection{Valuations and the criterion}\label{subsec:criterion}
+
+For a prime $p$ and a prime $\mathfrak p$ of $\F$ above $p$ let $v_{\mathfrak p}$ be the
+valuation with $v_{\mathfrak p}(p)=1$, extended to $\F[X]$ as the Gauss valuation (the minimum
+over the coefficients); it is ultrametric and multiplicative on $\F[X]$. On $\Q[X]$ it restricts
+to the Gauss valuation $\vG p$. If $\Delta_h\ne0$ put
+\[
+n_p(h)=-\vG p(\Delta_h),\qquad F_h=\Delta_h\prod_pp^{n_p(h)} ;
+\]
+then $F_h\in\Z[X]$ is primitive, $\deg F_h\le h$, and for every real $\xi$
+\begin{equation}\label{eq:size-identity}
+\log\abs{F_h(\xi)}=\log\abs{\Delta_h(\xi)}+\sum_pn_p(h)\log p .
+\end{equation}
+By \cref{prop:rationality}, a lower bound for $v_{\mathfrak p}(\Delta_h)$ at one prime
+$\mathfrak p\mid p$ is an upper bound for $n_p(h)$. We shall use two facts. First, by
+\eqref{eq:one-minus-y} and since $z$ is a unit,
+\begin{equation}\label{eq:val-one-minus-y}
+v_{\mathfrak p}(1-y)=v_p(n)\qquad\text{for every }\mathfrak p\mid p .
+\end{equation}
+Second, if $n$ is odd, then $z^2+\sigma nz-\sigma$ reduces modulo $2$ to the irreducible
+polynomial $z^2+z+1$; so $2$ is inert in $\F$, the residue field is $\mathbb F_4$, and $z$, $y$
+and $1-y$ are $2$-adic units.
+
+\begin{proposition}[criterion]\label{prop:criterion}
+Let $\xi\in\R$, $a\in\Z$, $b\ge1$, and let $H$ be an infinite set of positive integers. Suppose
+that for every $h\in H$ there is $F_h\in\Z[X]$ with $\deg F_h\le h$ and $F_h(a/b)\ne0$, and that
+$\limsup_{h\in H}h^{-2}\log\abs{F_h(\xi)}<0$. Then $\xi\ne a/b$.
+\end{proposition}
+
+\begin{proof}
+If $\xi=a/b$, then $b^hF_h(a/b)$ is a nonzero integer, so $\log\abs{F_h(\xi)}\ge-h\log b$ for
+$h\in H$; dividing by $h^2$ contradicts the hypothesis.
+\end{proof}
+
+This is \cite[Proposition~2.4]{Krisman2026units}.

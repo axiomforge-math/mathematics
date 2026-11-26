@@ -1,0 +1,87 @@
+\section{The imported results and the arithmetic constant}\label{sec:imported}
+
+This section fixes the objects of the size estimate, states precisely the four results of~\Kri{}
+on which \cref{thm:main} depends, and adds up the arithmetic contributions. Nothing in it is
+proved here except the final addition (\cref{prop:arithmetic}); the four statements are
+hypotheses, quoted from the numbered results of the preprint that we checked against its PDF
+(Hexagon 2611.00265v1, 59 pages).
+
+\subsection{The dual energy}\label{subsec:dual}
+
+Let $\psi(x)=\frac12\int_{x-1}^{x+1}\log\abs s\diff s$ and, for $0<z<1$, $V_z(x)=x\log z-\psi(x)$. For a
+finite measure $\mu$ with compact support put $U^\mu(x)=\int\log\abs{x-s}\diff\mu(s)$ and
+$E(\mu)=\int U^\mu\diff\mu$. A measure $\mu$ is \emph{admissible} if it has a density with
+$0\le\mu\le1$, mass $1$ and support in $[0,2]$. For admissible $\mu$ and $\lambda\in\R$ put
+$F_\mu=2U^\mu+V_z$ and
+\begin{equation}\label{eq:Phi}
+\Phi_z(\mu,\lambda)=-E(\mu)+\lambda+\int_0^\infty\bigl(F_\mu(x)-\lambda\bigr)_+\diff x .
+\end{equation}
+These are the definitions of \cite[Section~5.1]{Krisman2026units}.
+
+\subsection{The four hypotheses}\label{subsec:imported}
+
+In (K1)--(K4), $\sigma\in\{+1,-1\}$, $n$ is an admissible trace, $\Delta_h$ is the polynomial of
+\cref{sec:pencil}, and $n_p(h)$ is defined whenever $\Delta_h\ne0$. The references are to~\Kri.
+
+\begin{description}
+\item[(K1) Ordinary odd primes] \cite[Theorem~3.7]{Krisman2026units}. For every $\varepsilon>0$ and all
+sufficiently large even $h$ with $\Delta_h\ne0$,
+$\sum_{p\ \mathrm{odd},\ p\nmid n}n_p(h)\log p\le(\frac43+\varepsilon)h^2$.
+\item[(K2) The prime $2$ at even trace] \cite[Proposition~4.2]{Krisman2026units}. Let $\nu=v_2(n)\ge1$. For
+every even $h\ge2$ with $\Delta_h\ne0$: $n_2(h)\le\frac{(h-2)^2}4+3h$ if $\nu=1$, and
+$n_2(h)\le(\nu-1)\frac{(h-2)^2}4-\frac{h^2}4+h\floor{\log_2h}+5h-1$ if $\nu\ge2$. Consequently
+$\limsup h^{-2}n_2(h)\le\frac{\abs{\nu-2}}4$.
+\item[(K3) Size] \cite[Theorem~5.1]{Krisman2026units}. Let $0<z\le\sqrt5-2$, let $\mu$ be admissible,
+$\lambda\in\R$ and $c_{\mathrm{cell}}\ge0$, and suppose
+\textup{(i)} $F_\mu-\lambda\le-1.13-0.94(x-4)$ on $[4,\infty)$ and
+\textup{(ii)} $F_\mu-\lambda\le c_{\mathrm{cell}}$ on $[-\tfrac1{100},0]$. Then for every even $h\ge100$,
+$\log\abs{\Delta_h(T)}\le h^2\Phi_z(\mu,\lambda)+E_{\mathrm{an}}(h)$ with $E_{\mathrm{an}}(h)=O(h\log h)$ (the implied constant depending on $z$, $\mu$, $\lambda$, $c_{\mathrm{cell}}$),
+so $\limsup h^{-2}\log\abs{\Delta_h(T)}\le\Phi_z(\mu,\lambda)$.
+\item[(K4) Nonvanishing] \cite[Lemma~6.1]{Krisman2026units}. Let $\ell\ge7$ be a prime with $\ell\nmid n$,
+$h=3\ell-1$ and $c_j=[X^j]\Delta_h$. Then $v_\ell(c_0)=-2K$ and $v_\ell(c_j)\ge-2K+2j$ for all $j$.
+Consequently $\Delta_h(a/b)\ne0$ for all $a\in\Z$, $b\ge1$ with $\ell^2\nmid b$ (indeed $v_\ell(c_j(a/b)^j)\ge-2K+2j-j=-2K+j>-2K$ for $j\ge1$).
+\end{description}
+
+What exactly is used, for each pair $(\sigma,n)$ (``prose'' means a statement of Section~8 of~\Kri{} that is not a numbered result):
+\begin{itemize}
+\item $\sigma=+1$, $n=2m$ even: (K1)--(K4) are the numbered results cited, with $\ell\nmid m\Leftrightarrow\ell\nmid n$
+for odd $\ell$.
+\item $\sigma=+1$, $n$ odd: (K2) is not used. (K1), (K3) and (K4) are used in the form of the prose statement of
+\cite[Section~8.1]{Krisman2026units} that Lemmas~3.1--3.5, Theorem~3.7, Theorem~5.1, the shift lemma and Lemma~6.1
+hold with $n$ in place of $2m$ (the properties of $z$ that they use are those listed there). The shift lemma is reproved here
+(\cref{lem:shift}), so only the other statements are borrowed.
+\item $\sigma=-1$: (K1) and (K3) (and (K2) for even $n$) are used in the form of the prose statements of
+\cite[Section~8.2]{Krisman2026units}, which transfer Theorem~3.7 (verbatim at odd $p\nmid n$), Proposition~4.2 (at even $n$)
+and Theorem~5.1 (with the bullet ``Size'' of that section) to the alternating weights; (K4) is the numbered
+\cite[Lemma~8.6]{Krisman2026units}, whose statement is that of (K4) for $\Delta_h^{\natural}$.
+\end{itemize}
+These prose statements are part of the hypotheses (K1)--(K4) for the pair $(\sigma,n)$ in the same way as the numbered results,
+and are the least firmly stated of them; we did not re-derive them.
+
+\begin{remark}
+Two corrections to descriptions of these results that circulated in the candidate material. (K4) needs
+$\ell\ge7$, $\ell\nmid n$ and $\ell^2\nmid b$ (not only $\ell\nmid b$). (K3) is stated for even $h\ge100$
+(so the set of sizes in \cref{sec:proof} is $h=3\ell-1$ with $\ell\ge37$). The hypotheses (i) and (ii) of (K3) are
+checked in \cref{app:certificates} for every certificate.
+\end{remark}
+
+\subsection{The arithmetic constant}\label{subsec:constant}
+
+For $n=2^\nu d$ with $d$ odd put
+\begin{equation}\label{eq:Cn-def}
+\Car(n)=\frac43+\frac{\log d}4+\frac{c(\nu)\log2}4,\qquad c(0)=1,\ c(\nu)=\abs{\nu-2}\ (\nu\ge1).
+\end{equation}
+
+\begin{proposition}\label{prop:arithmetic}
+Assume \textup{(K1)}, and \textup{(K2)} if $n$ is even. Then
+$\limsup h^{-2}\sum_pn_p(h)\log p\le\Car(n)$, the limsup being over even $h$ with $\Delta_h\ne0$.
+If $n$ is even then $\Car(n)\le\frac43+\frac{\log n}4$; if $n$ is odd then $\Car(n)=\frac43+\frac{\log(2n)}4$.
+\end{proposition}
+
+\begin{proof}
+Split the sum into $p\nmid 2n$, $p\mid d$ and $p=2$. The first is bounded by (K1) with $\frac43$. For
+odd $p\mid n$ with $e=v_p(n)$, \cref{thm:trace-primes} gives $\frac e4\log p$ per $h^2$, and
+$\sum_{p\mid d}\frac{v_p(d)}4\log p=\frac{\log d}4$. For $p=2$: \cref{thm:prime-two} gives $\frac14\log2$ if $n$
+is odd, and (K2) gives $\frac{\abs{\nu-2}}4\log2$ if $n$ is even. For the last claim, for even $n$ we have
+$\log d=\log n-\nu\log2$ and $\abs{\nu-2}\le\nu$ for $\nu\ge1$.
+\end{proof}

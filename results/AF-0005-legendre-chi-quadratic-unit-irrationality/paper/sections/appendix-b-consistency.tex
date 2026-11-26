@@ -1,0 +1,31 @@
+\section{Consistency checks and the exceptional sets}\label{app:consistency}
+
+\sloppy
+These computations are not part of the proofs. The scripts \path{arithmetic_checks.py} and \path{source_sets.py} use
+python-flint (exact rationals, Arb) and the generating functions of \cref{lem:evaluation}.
+
+\emph{The series identity.} The determinant entries from \eqref{eq:LX}, computed from the generating functions
+$S_a(q)$, agree with the series $\sum_t w(t)(t^{d}/D)'(t)$ to $10^{-60}$ at $(n,\sigma)=(14,+1)$, $(27,-1)$, $(7,+1)$, $(5,-1)$, $h=6$,
+and $E_d\in\Q[X]$ for even $d$, $E_d\in\sqrt{n^2+4\sigma}\,\Q[X]$ for odd $d$, as \cref{prop:rationality} predicts.
+
+\emph{\Cref{thm:trace-primes}.} The entry bound \eqref{eq:entry} holds for all $10\,340$ entries computed
+($h\le20$, eleven pairs $(n,p)$ with $e\in\{1,2,3\}$), with equality $438$ times. Exact exponents satisfy
+\eqref{eq:trace-prime-bound} for $h\le32$: for $n=27$, $p=3$ ($e=3$): $n_3=199,437,803$ at $h=16,24,32$, against
+$255,537,943$; for $n=18$, $p=3$ ($e=2$): $150,579$ at $h=16,32$, as printed in \cite[after Lemma~3.8]{Krisman2026units};
+for $n=30$, $p=3$: $101,355$ at $h=16,32$.
+
+\emph{\Cref{thm:prime-two}.} Exact values of $n_2(h)$ at $h=4,6,8,10,12,16,20,24,32$ are $10,21,32,48,67,104,156,215,352$
+for each of $n=7,25,27,33,165$ and both signs (the values $104$ and $352$ are those printed in \cite[Section~8.1]{Krisman2026units}),
+against $20,42,60,90,120,176,260,344,528$ for \eqref{eq:two-finite}. \Cref{lem:parity-minors} was checked on $4000$ random
+minors (equality $560$ times), and \cref{lem:regularisation} and the determinant bound for the regularised matrix were
+checked directly for $N=1,\dots,5$ ($1800$ checks). In total $16\,418$ exact checks passed.
+
+\emph{Imported (K2) at $\nu=1$} (consistency only): $n_2(h)\le\frac{(h-2)^2}4+3h$ for $n=14,18,30$, $h\le32$, both signs
+(for example $n_2=196$ at $h=32$ for $(14,+1)$, against $321$).
+
+\emph{The exceptional sets.} From the constants of~\Kri{} (with the shift lemma at the arithmetic constants of the preprint,
+the extra term $\frac{\log p}{4(p-1)}$ and $c(0)=2$), the recomputed sets of non-covered traces equal the printed ones: $47$ for $\chi_2$ and $57$ for $\Ti_2$
+(forty-nine odd traces fail with the shift lemma alone, the largest being $195$). Intersecting with $\{n\ \text{even}\ge14\}\cup\{n\ \mathrm{odd}\ge27\}$ gives exactly
+the $31$ and $42$ traces of \cref{tab:new}; $16$ and $15$ traces remain outside both. For every $n\le20000$ in the range of
+\cref{thm:main} the quantity $\Car(n)+\Phi_{z_0}-\frac12(t(n)-t(n_0))$ is negative, with largest value $-0.00676$
+($n=27$, $\sigma=+1$) and $-0.00538$ ($\sigma=-1$), confirming \cref{prop:all-traces} numerically.

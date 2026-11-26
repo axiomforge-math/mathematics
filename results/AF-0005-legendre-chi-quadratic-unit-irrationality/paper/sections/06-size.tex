@@ -1,0 +1,75 @@
+\section{The size estimate: shift lemma and certificates}\label{sec:size}
+
+This section supplies the numerical input of (K3). A shift lemma moves a certificate to every smaller $z$
+with a gain of $\frac12\log(z/z')$; four certificates, one for each of $n\in\{14,27\}$ and each sign,
+are then computed, and a monotonicity argument extends them to all larger traces of the same parity.
+
+\begin{lemma}[shift lemma]\label{lem:shift}
+Let $0<z'\le z\le\sqrt5-2$ and $\Lambda:=\log(z/z')\ge0$. For every admissible $\mu$ and $\lambda\in\R$,
+$\Phi_{z'}(\mu,\lambda-\Lambda)\le\Phi_z(\mu,\lambda)-\frac\Lambda2$. If $(\mu,\lambda)$ satisfies (i) at $z$ then
+$(\mu,\lambda-\Lambda)$ satisfies (i) at $z'$; if it satisfies (ii) at $z$ with $c_{\mathrm{cell}}$, then
+$(\mu,\lambda-\Lambda)$ satisfies (ii) at $z'$ with $c_{\mathrm{cell}}+1.01\Lambda$.
+\end{lemma}
+
+\begin{proof}
+This is \cite[Lemma~5.5]{Krisman2026units}; the proof is short. Since $V_{z'}(x)=V_z(x)-\Lambda x$, we have
+$F'_\mu-(\lambda-\Lambda)=(F_\mu-\lambda)-\Lambda(x-1)$. Put $a=F_\mu(x)-\lambda$. On $[0,1]$,
+$(a+\Lambda(1-x))_+\le a_++\Lambda(1-x)$, and on $[1,\infty)$, $(a-\Lambda(x-1))_+\le a_+$. Integrating,
+$\int_0^\infty(F'_\mu-\lambda+\Lambda)_+\le\int_0^\infty(F_\mu-\lambda)_++\frac\Lambda2$, and
+$\Phi_{z'}(\mu,\lambda-\Lambda)\le-E(\mu)+\lambda-\Lambda+\int(F_\mu-\lambda)_++\frac\Lambda2=\Phi_z(\mu,\lambda)-\frac\Lambda2$.
+On $[4,\infty)$ the term $-\Lambda(x-1)$ is negative, so (i) is preserved; on $[-\frac1{100},0]$ it is at most
+$\Lambda(1+\frac1{100})$.
+\end{proof}
+
+For the certificates we write $t_\sigma(n)=\log(1/z_\sigma(n))=\log\frac{n+\sqrt{n^2+4\sigma}}2$.
+
+\begin{proposition}[certificates]\label{prop:certificates}
+For each $(n,\sigma)\in\{14,27\}\times\{\pm1\}$ there is an admissible step density $\mu$ (160 equal cells of
+$[0,2]$ with heights $H_i/10^4$, $H_i\in\Z$) and a rational $\lambda$ such that, with $z=z_\sigma(n)\le\sqrt5-2$,
+\textup{(i)} and \textup{(ii)} of \textup{(K3)} hold with $c_{\mathrm{cell}}\le7.41$, and
+$\Car(n)+\Phi_z(\mu,\lambda)\le-0.005$. The values, rounded outward to six decimals, are in \cref{tab:certificates}; nine decimals are in \cref{app:certificates}.
+\end{proposition}
+
+\begin{table}[ht]
+\centering\small
+\caption{Certified comparisons, upper bounds rounded outward ($\Car(14)=1.993097\ldots$, $\Car(27)=2.330579\ldots$).}\label{tab:certificates}
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$n$ & $\sigma$ & $\lambda$ & $\Phi_z(\mu,\lambda)\le$ & $\Car(n)+\Phi\le$ & $c_{\mathrm{cell}}\le$\\
+\midrule
+$14$ & $+1$ & $-4.3044$ & $-2.004611$ & $-0.011513$ & $6.73$\\
+$14$ & $-1$ & $-4.2937$ & $-1.999368$ & $-0.006270$ & $6.72$\\
+$27$ & $+1$ & $-4.9767$ & $-2.337342$ & $-0.006763$ & $7.41$\\
+$27$ & $-1$ & $-4.9739$ & $-2.335955$ & $-0.005376$ & $7.41$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proof}
+A finite computation, described in \cref{app:certificates}: the densities and $\lambda$ are those of the supplementary
+data files (see the section on reproducibility); the quantities $E(\mu)$, $U^\mu$ and the integral in \eqref{eq:Phi} are evaluated in
+Arb ball arithmetic, the integral by an explicit upper bound on each mesh cell, and the side conditions as stated
+there. The computation was done by two separate implementations (the one that produced the candidate and one written
+for this paper); both give the same $\Car(n)+\Phi$ to $3.5\cdot10^{-7}$.
+\end{proof}
+
+\begin{proposition}\label{prop:all-traces}
+Assume the data of \cref{prop:certificates}. Let $n_0=14$ and $n\ge14$ be even, or $n_0=27$ and $n\ge27$ be odd, with
+the same $\sigma$. Put $z_0=z_\sigma(n_0)$, $z=z_\sigma(n)$, $\Lambda=t_\sigma(n)-t_\sigma(n_0)\ge0$ and let
+$(\mu,\lambda)$ be the certificate of $(n_0,\sigma)$. Then $(\mu,\lambda-\Lambda)$ satisfies the hypotheses of \textup{(K3)}
+at $z$ and
+\[
+\Car(n)+\Phi_z(\mu,\lambda-\Lambda)\le\Car(n_0)+\Phi_{z_0}(\mu,\lambda)<0 .
+\]
+\end{proposition}
+
+\begin{proof}
+Since $z_\sigma(\cdot)$ decreases, $0<z\le z_0\le\sqrt5-2$, and \cref{lem:shift} gives the hypotheses and
+$\Phi_z(\mu,\lambda-\Lambda)\le\Phi_{z_0}(\mu,\lambda)-\frac\Lambda2$. By \cref{prop:arithmetic}, for even $n$,
+$\Car(n)\le\frac43+\frac{\log n}4$, with equality at $n_0=14$; for odd $n$, $\Car(n)=\frac43+\frac{\log n}4+\frac{\log2}4$,
+the same function of $n$ at $n_0=27$. So
+$\Car(n)+\Phi_z\le\Car(n_0)+\Phi_{z_0}+[g(n)-g(n_0)]$ with $g(x)=\frac14\log x-\frac12t_\sigma(x)$,
+$t_\sigma(x)=\log\frac{x+\sqrt{x^2+4\sigma}}2$. As $t_\sigma'(x)=1/\sqrt{x^2+4\sigma}$,
+$g'(x)=\frac1{4x}-\frac1{2\sqrt{x^2+4\sigma}}<0$ for $x\ge2$, because $\sqrt{x^2+4\sigma}<2x$. Hence
+$g(n)\le g(n_0)$.
+\end{proof}

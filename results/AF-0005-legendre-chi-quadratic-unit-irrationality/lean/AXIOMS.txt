@@ -1,0 +1,53 @@
+# Output of `#print axioms` for every declaration listed in theorems.toml.
+# Toolchain: leanprover/lean4:v4.34.0-rc1; Mathlib rev: f385f9fd18abed332ebcd3df239cb357e264aceb.
+# Produced by `lake env lean` on a probe file importing the library roots.
+# Declarations: 33; lean exit status: 0.
+'AxiomForge.LegendreChi.one_le_pow_mul_abs_aeval_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_int_poly_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_tendsto_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_scaled_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_log_content_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_rat_value_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.frequently_atTop_of_eventually_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.summable_legendreChi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.summable_inverseTangentIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.inverseTangentIntegral_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_legendreChi_neg_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.inverseTangentIntegral_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.unitValue_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.unitValue_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.unitZ_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.unitZ_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.unitZ_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.inv_unitZ_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_pencilEstimates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.margin_14_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.margin_14_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.margin_27_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.margin_27_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_unitValue_14_pos_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_unitValue_14_neg_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_unitValue_27_pos_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_unitValue_27_neg_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_legendreChi_neg_unit_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_unit_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+# Summary: all declarations use only propext, Classical.choice, Quot.sound

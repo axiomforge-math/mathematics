@@ -1,0 +1,39 @@
+\section{Proof of the main theorem}\label{sec:proof}
+
+The proof combines the criterion of \cref{prop:criterion} with the three estimates: the arithmetic one
+(\cref{prop:arithmetic}), the size one (\cref{prop:all-traces}) and the nonvanishing (K4).
+
+\begin{proof}[Proof of \cref{thm:main}]
+Fix $\sigma$ and $n$ as in the theorem, assume (K1), (K3), (K4), and (K2) if $n$ is even, and suppose that
+$T=T_\sigma(n)=a/b$ with $a\in\Z$, $b\ge1$. Let $H$ be the set of $h=3\ell-1$ with $\ell\ge37$ prime, $\ell\nmid n$ and
+$\ell>b$; $H$ is an infinite set of even integers $\ge110$. By (K4), $\Delta_h(a/b)\ne0$ for $h\in H$, because
+$v_\ell(b)=0$. In particular $\Delta_h\ne0$, so $F_h\in\Z[X]$ with $\deg F_h\le h$ is defined and $F_h(a/b)\ne0$.
+
+By \eqref{eq:size-identity}, for $h\in H$,
+\[
+h^{-2}\log\abs{F_h(T)}=h^{-2}\log\abs{\Delta_h(T)}+h^{-2}\sum_pn_p(h)\log p .
+\]
+By \cref{prop:all-traces}, (K3) applies to the pair $(\mu,\lambda-\Lambda)$ and bounds the first term, in the limsup over
+$H$, by $\Phi:=\Phi_z(\mu,\lambda-\Lambda)$; by \cref{prop:arithmetic} the second term is bounded by $\Car(n)$.
+Hence
+\[
+\limsup_{h\in H}h^{-2}\log\abs{F_h(T)}\le\Car(n)+\Phi<0 .
+\]
+\Cref{prop:criterion} gives $T\ne a/b$, a contradiction. So $T$ is irrational, and so is its negative.
+\end{proof}
+
+\begin{corollary}\label{cor:new}
+Assume \textup{(K1)--(K4)} for each pair $(\sigma,n)$ with $n$ in \cref{tab:new}. Then the $31$ values of $\chi_2$
+and the $42$ values of $\Ti_2$ of \cref{tab:new} are irrational.
+\end{corollary}
+
+\begin{proof}
+Every trace in \cref{tab:new} is an even integer $\ge14$ or an odd integer $\ge27$; apply \cref{thm:main}.
+\end{proof}
+
+\begin{remark}[what is unconditional]
+Without any hypothesis, \cref{prop:rationality,thm:trace-primes,thm:prime-two,lem:shift,prop:all-traces}
+are theorems (the latter modulo the numerical data of \cref{prop:certificates}). Only the estimates of
+\cref{subsec:imported} are borrowed; none of them is reproved, and none is used in a way that differs from~\Kri{}
+except through the improved constants and the new certificates entering (K3).
+\end{remark}

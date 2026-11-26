@@ -8,6 +8,7 @@
 - [AF-0002](../results/AF-0002-trigamma-fifths-irrationality/README.md) The irrationality of $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants (preprint)
 - [AF-0003](../results/AF-0003-legendre-chi-inverse-tangent-irrationality/README.md) Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof (preprint)
 - [AF-0004](../results/AF-0004-legendre-chi-general-numerator-irrationality/README.md) Irrationality of χ₂(a/q) and Ti₂(a/q) for the numerators a = 3, 4, 5, 8 (preprint)
+- [AF-0005](../results/AF-0005-legendre-chi-quadratic-unit-irrationality/README.md) Irrationality of chi2 and Ti2 at units of real quadratic fields: further traces (preprint)
 
 ## 31A15
 
@@ -23,3 +24,4 @@
 - [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
 - [AF-0003](../results/AF-0003-legendre-chi-inverse-tangent-irrationality/README.md) Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof (preprint)
 - [AF-0004](../results/AF-0004-legendre-chi-general-numerator-irrationality/README.md) Irrationality of χ₂(a/q) and Ti₂(a/q) for the numerators a = 3, 4, 5, 8 (preprint)
+- [AF-0005](../results/AF-0005-legendre-chi-quadratic-unit-irrationality/README.md) Irrationality of chi2 and Ti2 at units of real quadratic fields: further traces (preprint)

@@ -1,0 +1,3 @@
+PASS  exit=0        50s  real-certificates
+PASS  exit=0        88s  arithmetic-checks
+PASS  exit=0        26s  source-sets

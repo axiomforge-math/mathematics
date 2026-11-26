@@ -1,0 +1,80 @@
+# Manuscript-level statements and their Lean counterparts (namespace AxiomForge.LegendreChi).
+# formal = "proved"      : unconditional Lean theorem (axioms: propext, Classical.choice, Quot.sound)
+#          "conditional" : Lean theorem taking the listed unproved hypotheses as arguments
+#          "missing"     : not formalized (the listed Lean object is where it enters as a hypothesis)
+
+[[statement]]
+manuscript = "Main theorem: chi_2 at the unit of trace 14 is irrational (assuming K1-K4 and the two new estimates, packaged as PencilEstimates)"
+lean = "AxiomForge.LegendreChi.irrational_unitValue_14_pos_of_estimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates (unitValue 1 14) Q h (-1.99310) (-2.00461)"]
+
+[[statement]]
+manuscript = "Main theorem: Ti_2 at the unit of trace 14 is irrational (conditional)"
+lean = "AxiomForge.LegendreChi.irrational_unitValue_14_neg_of_estimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates (unitValue (-1) 14) Q h (-1.99310) (-1.99936)"]
+
+[[statement]]
+manuscript = "Main theorem: chi_2 at the unit of trace 27 is irrational (conditional)"
+lean = "AxiomForge.LegendreChi.irrational_unitValue_27_pos_of_estimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates (unitValue 1 27) Q h (-2.33058) (-2.33734)"]
+
+[[statement]]
+manuscript = "Main theorem: Ti_2 at the unit of trace 27 is irrational (conditional)"
+lean = "AxiomForge.LegendreChi.irrational_unitValue_27_neg_of_estimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates (unitValue (-1) 27) Q h (-2.33058) (-2.33595)"]
+
+[[statement]]
+manuscript = "Main theorem at all other traces (even n >= 14, odd n >= 27, n in the table of new arguments)"
+lean = "AxiomForge.LegendreChi.irrational_of_pencilEstimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates xi Q h a d with d < a (generic deduction; the rates for n > 14, 27 come from the shift lemma, not formalized)"]
+
+[[statement]]
+manuscript = "Negative arguments follow by oddness"
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_unit_of_estimates"
+formal = "conditional"
+hypotheses = ["PencilEstimates (unitValue 1 n) Q h a d"]
+
+[[statement]]
+manuscript = "Definition of the unit z and the number T_sigma(n); T_1(n) = chi_2(z), T_-1(n) = Ti_2(z)"
+lean = "AxiomForge.LegendreChi.unitValue_one"
+formal = "proved"
+
+[[statement]]
+manuscript = "z in (0,1), z^2 + sigma n z - sigma = 0, 1/z - sigma z = n"
+lean = "AxiomForge.LegendreChi.unitZ_quadratic"
+formal = "proved"
+
+[[statement]]
+manuscript = "Criterion (Proposition criterion): content + decay + nonvanishing imply irrationality"
+lean = "AxiomForge.LegendreChi.irrational_of_scaled_int_poly"
+formal = "proved"
+
+[[statement]]
+manuscript = "Margins C(n) + Phi < 0 at n = 14, 27, both signs (rounded rates)"
+lean = "AxiomForge.LegendreChi.margin_27_neg"
+formal = "proved"
+
+[[statement]]
+manuscript = "Theorem trace-primes (odd primes dividing the trace)"
+lean = "PencilEstimates.content"
+formal = "missing"
+
+[[statement]]
+manuscript = "Theorem prime-two (prime 2 at odd trace)"
+lean = "PencilEstimates.content"
+formal = "missing"
+
+[[statement]]
+manuscript = "Imported (K1)-(K4) of Krisman, Hexagon 2611.00265v1"
+lean = "PencilEstimates.content, PencilEstimates.decay, PencilEstimates.nonvanishing"
+formal = "missing"
+
+[[statement]]
+manuscript = "Shift lemma and monotonicity for all traces (Proposition all-traces); Hankel polynomials Delta_h"
+lean = "-"
+formal = "missing"

@@ -1,0 +1,103 @@
+# Declarations audited by `#print axioms` (propext, Classical.choice, Quot.sound only).
+# status: proved = unconditional; conditional = takes `PencilEstimates` (unproved) as a hypothesis;
+# such a theorem is never the formalization of a main theorem.
+
+[[theorem]]
+lean = "AxiomForge.LegendreChi.one_le_pow_mul_abs_aeval_div"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_int_poly_approx"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_tendsto_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_scaled_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_log_content_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_rat_value_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.frequently_atTop_of_eventually_prime"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.summable_legendreChi"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.summable_inverseTangentIntegral"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.inverseTangentIntegral_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.inverseTangentIntegral_term"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.unitValue_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.unitValue_neg_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.unitZ_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.unitZ_lt_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.unitZ_quadratic"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.inv_unitZ_sub"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_pencilEstimates"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.margin_14_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.margin_14_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.margin_27_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.margin_27_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_unitValue_14_pos_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_unitValue_14_neg_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_unitValue_27_pos_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_unitValue_27_neg_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_unit_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_unit_of_estimates"
+status = "conditional"

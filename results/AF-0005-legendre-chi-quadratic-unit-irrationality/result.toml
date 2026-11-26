@@ -1,0 +1,54 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue).
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "AF-0005"
+slug = "legendre-chi-quadratic-unit-irrationality"
+title = "Irrationality of chi2 and Ti2 at units of real quadratic fields: further traces"
+version = "0.1.0"
+date = "2026-11-26"
+# Preprint: complete written argument, certificates reproduced, Lean development in
+# preparation. The archive does not establish the main theorem until level V4.
+status = "preprint"
+summary = "A conditional candidate proof, released as a preprint. For an integer n and a sign sigma let z = 2/(n + sqrt(n^2 + 4 sigma)), a unit of norm -sigma of a real quadratic field, and let T_sigma(n) be the value at z of Legendre's chi function chi_2 if sigma = +1 and of the inverse tangent integral Ti_2 if sigma = -1. Krisman proved, in an unrefereed preprint, that these numbers are irrational outside 47 and 57 explicit values of n, and named two improvements of his local estimates that he did not prove. We prove both (at an odd prime dividing n the denominators have no cost beyond the one forced by the valuation of n; at the prime 2, for odd n, the cost is half of the proved one). ASSUMING four results of Krisman's unrefereed preprint, which are stated explicitly and not reproved (his bound for the other odd primes, his bound at 2 for even n, his size estimate for even h >= 100 and his nonvanishing lemma for primes l >= 7 with l not dividing n and l^2 not dividing the denominator), and using four new certificates for the size estimate, T_sigma(n) is irrational for both signs, every even n >= 14 and every odd n >= 27; this covers 31 of the 47 and 42 of the 57 excluded values. The finite computations were redone by separate implementations. The work has not been independently verified, depends on the unrefereed preprint, and in Lean the main theorem is proved only conditionally."
+template_version = "1.0.0"
+msc_primary = "11J72"
+msc_secondary = ["33B30"]
+keywords = ["Legendre chi function", "inverse tangent integral", "irrationality", "units of real quadratic fields", "Hankel determinants", "p-adic valuations", "logarithmic energy"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0005-legendre-chi-quadratic-unit-irrationality"
+
+[disclosure]
+summary = "The original exploration, the candidate arguments and the original certificate programs were produced with GPT-6.2 XHigh (web version), as stated by the AxiomForge owners. The reconstruction of the argument, the corrections it contains, the check computations, the separately written implementations of the finite computations, the manuscript and the Lean development were produced with Claude Sonnet 5.5, Claude Fable 5.2 and Claude Opus 5.5 (Anthropic), used through Claude Code, under the direction of AxiomForge; a harsh AI-internal review of the material was carried out with an Anthropic model and its findings were handled in the manuscript. All checks were carried out with AI systems; no independent human review has taken place, and AI involvement is not independent certification. AxiomForge takes full responsibility for the content."
+ai_systems = ["GPT-6.2 XHigh (OpenAI), web version, as stated by the AxiomForge owners", "Claude Opus 5.5 (Anthropic), used through Claude Code", "Claude Fable 5.2 (Anthropic), used through Claude Code", "Claude Sonnet 5.5 (Anthropic), used through Claude Code"]
+
+[lean]
+package = "axiomforge-af0005"
+root = "AxiomForge.AF0005"
+toolchain = "leanprover/lean4:v4.34.0-rc1"
+mathlib = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[theorem]]
+key = "thm:main"
+statement = "ASSUMING the four results (K1)-(K4) of Krisman's unrefereed preprint (Hexagon 2611.00265v1: K1 Theorem 3.7, the bound 4/3 h^2 at the odd primes not dividing n; K2 Proposition 4.2, the bound at the prime 2 for even n; K3 Theorem 5.1, the size estimate by a dual energy, for even h >= 100; K4 Lemmas 6.1 and 8.6, the nonvanishing lemma, for primes l >= 7 with l not dividing n and l^2 not dividing b where T = a/b): let sigma be +1 or -1 and n an even integer >= 14 or an odd integer >= 27; then T_sigma(n) is irrational, where T_sigma(n) = chi_2(z) for sigma = +1 and Ti_2(z) for sigma = -1, z = 2/(n + sqrt(n^2 + 4 sigma)); the same holds at -z since chi_2 and Ti_2 are odd. The statement is conditional on (K1)-(K4) (K2 only for even n), none of which is reproved here."
+lean = ""
+lean_conditional = [
+  "AxiomForge.LegendreChi.irrational_unitValue_14_pos_of_estimates",
+  "AxiomForge.LegendreChi.irrational_unitValue_14_neg_of_estimates",
+  "AxiomForge.LegendreChi.irrational_unitValue_27_pos_of_estimates",
+  "AxiomForge.LegendreChi.irrational_unitValue_27_neg_of_estimates",
+  "AxiomForge.LegendreChi.irrational_legendreChi_neg_unit_of_estimates",
+  "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_unit_of_estimates",
+]
+
+# Evidence for every value: logs/verification.md.
+[theorem.verification]
+proof = "candidate"
+certificates = "reproduced"
+formalization = "in-preparation"
+build = "passing"
+axioms = "standard"
+statement_review = "pending"
+independent_review = "ai-internal"
+literature_review = "checked"

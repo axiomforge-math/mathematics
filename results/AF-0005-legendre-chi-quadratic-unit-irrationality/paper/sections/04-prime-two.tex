@@ -1,0 +1,137 @@
+\section{The prime 2 at odd trace}\label{sec:prime-two}
+
+This section proves the second new estimate: for odd $n$ the prime $2$ costs at most
+$\frac14\log2$ per $h^2$, half of the bound $\frac12\log2$ of \cite[Lemma~8.1]{Krisman2026units}.
+The geometric series defining $\Mf$ is first replaced by a finite weighted sum over odd sites
+(\cref{subsec:regularisation}); the Hankel matrix then factors as $VBV^{\mathsf T}$ with $B$ block
+diagonal, and a divisibility lemma for minors of $V$ with columns of one parity
+(\cref{subsec:parity}) is used twice in every Cauchy--Binet term (\cref{subsec:two-bound}).
+Throughout $n$ is odd, $\mathfrak p=2\F$ is the prime above $2$ (inert, \cref{subsec:criterion}),
+and $v$ is its valuation with $v(2)=1$; it takes values in $\Z$ on $\F$, and
+$z$, $y$, $1-y$ are $v$-units.
+
+\begin{theorem}\label{thm:prime-two}
+Let $n$ be odd and $h\ge2$ even, $\Pa(k)=\sum_{r<k}(r+v_2(r!))$ and $L_h=\floor{\log_2\max(1,h-1)}$.
+Then
+\begin{equation}\label{eq:two-finite}
+v_2^{\mathrm G}(\Delta_h)\ge\min_{0\le k\le h}\Bigl[-2hk+2\Pa(k)+2\Pa(h-k)-2(h-k)(1+L_h)\Bigr]
+\ge-\frac{h^2}4-h(4L_h+6).
+\end{equation}
+Hence $n_2(h)\le\frac{h^2}4+h(4L_h+6)$ for $\Delta_h\ne0$, and $\limsup h^{-2}n_2(h)\le\frac14$.
+\end{theorem}
+
+\subsection{A finite regularisation}\label{subsec:regularisation}
+
+For $M=2^N$ and a function $F$ put $I_M(F)=\sum_{s=0}^{M-1}\omega_sF(2s+1)$ with
+$\omega_s=zy^s/(1-y^M)$. Since $1-y^{M}\equiv(1-y)^{M}\pmod2$ is a unit, all $\omega_s$ are
+$v$-integral.
+
+\begin{lemma}\label{lem:regularisation}
+For every $R\in\Q[t]$, $v\bigl(I_M(R')-\Mf(R)\bigr)\ge N-v_2(c)$, where $c\ge1$ is any integer with
+$c\,R'(2s+1)\in\Z[s]$ as a polynomial in $s$. In particular $I_M(R')\to\Mf(R)$ as $N\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Let $G(s)=R'(2s+1)$, $Y=y^M$. Writing $s=s_0+Mk$ with $0\le s_0<M$ and using Taylor's formula,
+$G(s_0+Mk)=\sum_{j\ge0}M^jk^jG^{(j)}(s_0)/j!$ (a finite sum). With
+$\sum_{k\ge0}k^jY^k=A_j(Y)/(1-Y)^{j+1}$, $A_j\in\Z[Y]$ (Eulerian polynomials, $A_0=1$), the rational
+function identity $\sum_{s\ge0}y^sG(s)=\sum_{s_0<M}y^{s_0}\sum_jM^j\frac{G^{(j)}(s_0)}{j!}\frac{A_j(Y)}{(1-Y)^{j+1}}$
+holds for real $\abs y<1$, hence as rational functions, hence at our $y$. The term $j=0$ is $z\sum_{s_0<M}y^{s_0}G(s_0)/(1-Y)=I_M(R')$. Hence
+$\Mf(R)-I_M(R')=z\sum_{s_0<M}y^{s_0}\sum_{j\ge1}M^j\frac{G^{(j)}(s_0)}{j!}\frac{A_j(Y)}{(1-Y)^{j+1}}$.
+Since $cG^{(j)}/j!\in\Z[s]$, and $z,y,1-Y$ are units, each term has valuation at least
+$jN-v_2(c)\ge N-v_2(c)$.
+\end{proof}
+
+Define $L_{X,M}:\Rsp\to\F[X]$ like $L_X$ but with $\Mf(R)$ replaced by $I_M(R')$:
+\[
+L_{X,M}\Bigl(R+\sum_k\frac{c_k}{t-x_k}\Bigr)=I_M(R')-\sum_kc_ky^{x_k/2}\bigl(X-P(x_k)\bigr),
+\]
+and $\Lambda_{X,M}(g)=L_{X,M}(g/D)$. By \cref{lem:regularisation}, every coefficient of
+$\Lambda_{X,M}(g)$ converges to the corresponding coefficient of $\Lambda_X(g)$ as $N\to\infty$. Put
+$H_M=(\Lambda_{X,M}(t^{i+j}))_{i,j<h}$. Since $g/D=R_g+\sum_kc_k/(t-x_k)$ with $c_k=g(x_k)/D'(x_k)$,
+\begin{equation}\label{eq:LXM}
+\Lambda_{X,M}(g)=I_M\bigl((g/D)'\bigr)+\sum_{k=0}^h\frac{g(x_k)}{D'(x_k)}\,\beta_k,\quad
+\beta_k=-y^{x_k/2}\bigl(X-P(x_k)\bigr)-I_M\Bigl(\bigl(\tfrac1{t-x_k}\bigr)'\Bigr).
+\end{equation}
+
+\subsection{A divisibility lemma for minors}\label{subsec:parity}
+
+For $c\in\Z$ let $\mathrm{ev}_c$ and $\mathrm{dv}_c$ denote the columns $(c^i)_{0\le i<h}$ and
+$(ic^{i-1})_{0\le i<h}$ (value and derivative at $c$ of the monomials).
+
+\begin{lemma}\label{lem:parity-minors}
+Let $\epsilon\in\{0,1\}$, let $C$ be a list of $k$ columns, each $\mathrm{ev}_c$ or $\mathrm{dv}_c$ with
+$c\equiv\epsilon\pmod2$ (repetitions allowed), $d$ of them derivative columns, and let $I$ be any set of
+$k$ rows $i\in\{0,\dots,h-1\}$. Then the minor $\det V_{I,C}$ has $2$-adic valuation at least
+$\Pa(k)-d(1+L_h)$.
+\end{lemma}
+
+\begin{proof}
+Let $B_r(t)=\prod_{j<r}(t-\epsilon-2j)=2^rr!\binom{(t-\epsilon)/2}{r}$, monic of degree $r$ with integer
+coefficients; so $t^i=\sum_{r\le i}m_{ir}B_r(t)$ with $m_{ir}\in\Z$. By the Cauchy--Binet formula,
+$\det V_{I,C}=\sum_{R}\det(m_{I,R})\det(\mathcal B_{R,C})$ over the $k$-subsets $R$ of $\{0,\dots,h-1\}$,
+where $\mathcal B_{R,C}$ has rows $r\in R$ and entries $B_r(c)$ or $B_r'(c)$. The first factor is an
+integer. For $c\equiv\epsilon$, $B_r(c)=2^rr!\binom{(c-\epsilon)/2}r$ has valuation $\ge w_r:=r+v_2(r!)$,
+and, by the identity for $\frac{\mathrm d}{\mathrm dv}\binom vr$ used in \cref{sec:trace-primes},
+$B_r'(c)=2^{r-1}r!\sum_{l=1}^r\frac{(-1)^{l-1}}l\binom{(c-\epsilon)/2}{r-l}$ has valuation
+$\ge w_r-1-L_h$ because $v_2(l)\le\floor{\log_2(h-1)}$. Each term of $\det\mathcal B_{R,C}$ is a product of
+one entry from each row, so its valuation is at least $\sum_{r\in R}w_r-d(1+L_h)\ge\Pa(k)-d(1+L_h)$,
+because $w_r$ is strictly increasing and the $k$ smallest values are $w_0,\dots,w_{k-1}$.
+\end{proof}
+
+\begin{corollary}\label{cor:parity-full}
+Let $C$ be a list of $h$ columns consisting of $k$ columns $\mathrm{ev}_{c}$ with $c$ even and $h-k$ columns of
+the form $\mathrm{ev}_c$ or $\mathrm{dv}_c$ with $c$ odd, with $d\le h-k$ derivative columns. Then
+$v_2(\det V_C)\ge\Pa(k)+\Pa(h-k)-(h-k)(1+L_h)$.
+\end{corollary}
+
+\begin{proof}
+Expand along the $k$ even columns (Laplace): $\det V_C=\sum_{R}\pm\det V_{R,E}\det V_{R^c,O}$ over the
+$k$-subsets $R$ of rows. Apply \cref{lem:parity-minors} with $\epsilon=0,d=0$ and with $\epsilon=1$.
+\end{proof}
+
+\subsection{The bound}\label{subsec:two-bound}
+
+\begin{proof}[Proof of \cref{thm:prime-two}]
+Write $v(t)=(t^i)_{i<h}$ and $v'(t)=(it^{i-1})_{i<h}$. For $\varphi=1/D$, the Leibniz rule gives
+$(t^{i+j}\varphi)'=(t^i)'t^j\varphi+t^i(t^j)'\varphi+t^{i+j}\varphi'$; therefore, with
+$t_s=2s+1$,
+\[
+H_M=V\,\mathcal D\,V^{\mathsf T},\qquad
+\mathcal D=\operatorname{diag}\Bigl(\bigl(\omega_s\begin{psmallmatrix}\varphi'(t_s)&\varphi(t_s)\\ \varphi(t_s)&0\end{psmallmatrix}\bigr)_{s<M},\ (b_k)_{0\le k\le h}\Bigr),
+\quad b_k=\frac{\beta_k}{D'(x_k)},
+\]
+where the columns of $V$ are $\mathrm{ev}_{t_s},\mathrm{dv}_{t_s}$ ($s<M$) and $\mathrm{ev}_{x_k}$ ($0\le k\le h$).
+\emph{Integrality.} $D(t_s)=\prod_k(t_s-x_k)$ is a product of odd integers, so $\varphi(t_s)$ and
+$\varphi'(t_s)=-D'(t_s)/D(t_s)^2$ are $2$-integral, and the $2\times2$ blocks are $v$-integral. The terms
+of $\beta_k$ are integral: $y^{x_k/2}$ is a unit, $P(x_k)$ has odd denominators, and
+$I_M((1/(t-x_k))')=-\sum_s\omega_s/(t_s-x_k)^2$ with odd $t_s-x_k$. Finally
+$v_2(D'(x_k))=h+v_2(k!)+v_2((h-k)!)\le h+v_2(h!)\le2h$, so $v^{\mathrm G}(b_k)\ge-2h$.
+
+\emph{Cauchy--Binet.} $\det H_M=\sum_{S,S'}\det V_S\det\mathcal D_{S,S'}\det V_{S'}$ over pairs of $h$-sets of
+columns. As $\mathcal D$ is block diagonal, $\det\mathcal D_{S,S'}\ne0$ forces $S$ and $S'$ to contain the
+same number of columns from each block; for the scalar blocks, the same set of $k$ poles. Then
+$v^{\mathrm G}(\det\mathcal D_{S,S'})\ge-2hk$, since the $2\times2$ blocks contribute integral minors.
+The other $h-k$ columns of $S$ (and of $S'$) are at odd sites, with at most $h-k$ derivative columns.
+By \cref{cor:parity-full} each of $\det V_S,\det V_{S'}$ has valuation at least
+$\Pa(k)+\Pa(h-k)-(h-k)(1+L_h)$. Hence every summand has Gauss valuation at least
+\[
+-2hk+2\Pa(k)+2\Pa(h-k)-2(h-k)(1+L_h),
+\]
+independently of $M$. So $v_2^{\mathrm G}(\det H_M)$ is at least the minimum over $k$ in
+\eqref{eq:two-finite}. As $N\to\infty$ the entries of $H_M$ converge coefficientwise to $E_{i+j}$,
+so $\det H_M\to\Delta_h$ coefficientwise, and a lower bound on valuations passes to the limit.
+
+\emph{Asymptotics.} $\Pa(k)=k(k-1)-\sum_{r<k}s_2(r)\ge k^2-k(L_h+2)$ for $k\le h$, since
+$v_2(r!)=r-s_2(r)$ and $s_2(r)\le L_h+1$. Therefore the expression in brackets is at least
+$-2hk+2k^2+2(h-k)^2-2h(L_h+2)-2h(1+L_h)$, and
+$-2hk+2k^2+2(h-k)^2=h^2\bigl(4(x-\tfrac34)^2-\tfrac14\bigr)\ge-\tfrac{h^2}4$ with $x=k/h$.
+\end{proof}
+
+\begin{remark}
+The argument needs that $1-y$ and the weights $\omega_s$ are $2$-adic units; at even $n$ this fails
+and the estimate is not claimed there (\cref{sec:imported} uses \cite[Proposition~4.2]{Krisman2026units}
+instead). For the sizes $h=4,\dots,32$ the minimum in \eqref{eq:two-finite} is
+$20,42,60,90,120,176,260,344,528$ ($h=4,6,8,10,12,16,20,24,32$), against exact values
+$10,21,32,48,67,104,156,215,352$ (\cref{app:consistency}).
+\end{remark}

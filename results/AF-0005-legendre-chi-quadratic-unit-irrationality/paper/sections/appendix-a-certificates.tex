@@ -1,0 +1,51 @@
+\section{The size certificates}\label{app:certificates}
+
+\emph{Data.} Each certificate of \cref{prop:certificates} is a step density on $[0,2]$ with $N=160$ equal cells of
+height $H_i/10^4$ ($H_i\in\Z$, $0\le H_i\le10^4$, $\sum_iH_i=80\cdot10^4$, so that the mass is exactly $1$) and
+$\lambda=\Lambda_0/10^4$ with $\Lambda_0\in\Z$; the files \texttt{even-trace-comparison-densities.json} (keys $m,\sigma$ with
+$n=2m$) and \texttt{odd-trace-comparison-densities.json} (keys $n,\sigma$) are in the directory \texttt{data/} of this
+manuscript. Other keys of the files (traces $18,30$ and odd $21$ to $33$ and beyond) were used as cross-checks only.
+
+\emph{Computation.} The script \path{real_certificates.py} (Arb ball arithmetic, 192 bits) does the following for each pair
+and a mesh $1/L$, $L=4000$ on $[0,4]$.
+\begin{enumerate}
+\item Exact integer checks of admissibility and alignment of the mesh; certified $z\le\sqrt5-2$.
+\item $E(\mu)$ by the exact double antiderivative $g(u)=\frac{u^2\log\abs u}2-\frac{3u^2}4$ of $\log\abs u$ on each pair of
+cells.
+\item $F_\mu(x)=\sum_jc_jf(x-j/L)-tx$ with $f(u)=u\log\abs u-u$ (an antiderivative of $\log\abs u$), $t=t_\sigma(n)$ and explicit
+coefficients $c_j$ (twice the differences of the heights, together with the terms $-\frac12f(x+1)+\frac12f(x-1)$ of $\psi$), exactly. Since
+the mesh contains all points $j/L$ and $\pm1$, each term is on each mesh cell either convex or concave; on a cell every convex term is bounded above by its chord, every concave
+term by its tangent at the midpoint, giving an affine majorant of $F_\mu-\lambda$; the integral of its positive part is
+bounded above by the trapezoid rule (convexity of $(\cdot)_+$). Beyond $x=4$ nothing is integrated, see 5.
+\item Hypothesis (i) for $x\ge4$. As $\operatorname{supp}\mu\subset[0,2]$ and $\int\mu=1$, $U^\mu(x)\le\log x$, and
+$\psi(x)\ge\log(x-1)$ for $x\ge2$; so $F_\mu(x)\le2\log x-\log(x-1)-tx$ for $x\ge4$. The derivative of the right side is at most
+$\frac12-t<-0.94$ and its value at $4$ is $2\log4-\log3-4t$, which is $\le\lambda-1.13$ (certified).
+\item The integral over $[4,\infty)$ in \eqref{eq:Phi} vanishes: by 4, $F_\mu-\lambda<0$ there.
+\item Hypothesis (ii): on $[-\frac1{100},0]$, $U^\mu\le\log2.01$, $\psi\ge\psi(0)=-1$ and $x\log z\le t/100$, so
+$c_{\mathrm{cell}}=2\log2.01+1+\frac t{100}-\lambda$ is admissible (the values are in \cref{tab:certificates}).
+\item $\Phi=-E+\lambda+\int$, the sum $\Car(n)+\Phi$, certified negative.
+\end{enumerate}
+The same script computes the primal value $J(\mu)$ of each density and the diagnostic quantity $\Car(n)+J\ge$ (a lower bound
+for every dual value); it is positive at $n=10,25$.
+
+\emph{Results} (mesh $1/4000$; $\Phi$ and $\Car+\Phi$ are upper bounds, $t$ and $\Car$ are rounded; the entries are those of the second implementation).
+\begin{center}\small
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$n$ & $\sigma$ & $t_\sigma(n)$ & $\Car(n)$ & $\Phi\le$ & $\Car+\Phi\le$ \\
+\midrule
+14 & $+1$ & 2.644120761 & 1.993097666 & $-2.004611202$ & $-0.011513536$ \\
+14 & $-1$ & 2.633915794 & 1.993097666 & $-1.999368438$ & $-0.006270772$ \\
+18 & $+1$ & 2.893443986 & 2.055926273 & $-2.132297114$ & $-0.076370841$ \\
+18 & $-1$ & 2.887270950 & 2.055926273 & $-2.129145946$ & $-0.073219673$ \\
+30 & $+1$ & 3.402306645 & 2.183632679 & $-2.390470786$ & $-0.206838107$ \\
+30 & $-1$ & 3.400084414 & 2.183632679 & $-2.389346775$ & $-0.205714096$ \\
+27 & $+1$ & 3.297205794 & 2.330579345 & $-2.337342559$ & $-0.006763214$ \\
+27 & $-1$ & 3.294462293 & 2.330579345 & $-2.335955536$ & $-0.005376190$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+(Rounded to six decimals, the last column reads $-0.011514$, $-0.006271$, $-0.076371$, $-0.073220$, $-0.206838$, $-0.205714$, $-0.006763$, $-0.005376$;
+\cref{tab:certificates} rounds outward instead. Rows $18$ and $30$ are cross-checks; they are covered by \cref{prop:all-traces}.) The values computed by the
+archived exact fixed-point verifier of the candidate material (not part of this package) agree with these to
+$3.5\cdot10^{-7}$, the difference being due to a coarser majorant there.

@@ -1,0 +1,197 @@
+\section{Introduction}\label{sec:introduction}
+
+Legendre's chi function and the inverse tangent integral are
+\[
+\chi_2(x)=\sum_{s\ge0}\frac{x^{2s+1}}{(2s+1)^2},\qquad
+\Ti_2(x)=\sum_{s\ge0}\frac{(-1)^s x^{2s+1}}{(2s+1)^2}\qquad(\abs{x}\le1),
+\]
+see~\cite{Lewin1981}. For a sign $\sigma\in\{+1,-1\}$ and an integer $n$ (with $n\ge1$ if
+$\sigma=+1$ and $n\ge3$ if $\sigma=-1$) put
+\begin{equation}\label{eq:unit}
+z=z_\sigma(n)=\frac{2}{n+\sqrt{n^2+4\sigma}}\in(0,1),\qquad
+T_\sigma(n)=\sum_{s\ge0}\frac{\sigma^s z^{2s+1}}{(2s+1)^2}.
+\end{equation}
+Thus $T_+(n)=\chi_2\bigl((\sqrt{n^2+4}-n)/2\bigr)$ and $T_-(n)=\Ti_2\bigl((n-\sqrt{n^2-4})/2\bigr)$.
+The number $z$ is a root of $z^2+\sigma nz-\sigma$, hence a unit of norm $-\sigma$ of the real
+quadratic field $\Q(\sqrt{n^2+4\sigma})$, and every unit of norm $\pm1$ in $(0,1)$ of a real
+quadratic field is of this form. We call $n$ the \emph{trace}.
+
+\subsection{The result}\label{subsec:result}
+
+The paper builds on the preprint~\Kri{} of Krisman, which is not peer reviewed. Our main theorem
+uses four results of that preprint that we do not reprove. They are stated in full in
+\cref{subsec:imported} as (K1)--(K4); in brief:
+\begin{itemize}
+\item[(K1)] the bound $\tfrac43h^2$ for the logarithmic denominators at the odd primes not
+dividing $n$ \cite[Theorem~3.7]{Krisman2026units};
+\item[(K2)] for even $n$, the bound at the prime $2$ \cite[Proposition~4.2]{Krisman2026units};
+\item[(K3)] the size estimate by a dual energy \cite[Theorem~5.1]{Krisman2026units};
+\item[(K4)] the nonvanishing lemma \cite[Lemmas~6.1 and~8.6]{Krisman2026units}.
+\end{itemize}
+
+\begin{theorem}\label{thm:main}
+Let $\sigma\in\{+1,-1\}$ and let $n$ be an even integer with $n\ge14$ or an odd integer with
+$n\ge27$. Assume the statements \textup{(K1)}, \textup{(K3)} and \textup{(K4)} of
+\cref{subsec:imported} for the pair $(\sigma,n)$, and also \textup{(K2)} if $n$ is even; these
+are results of~\Kri{} which are not reproved here (\textup{(K3)} is used for even $h\ge100$ and
+\textup{(K4)} for primes $\ell\ge7$ with $\ell\nmid n$ and a denominator $b$ with $\ell^2\nmid b$). Then $T_\sigma(n)$ is irrational. In other
+words, under these assumptions,
+\[
+\chi_2\Bigl(\pm\frac{\sqrt{n^2+4}-n}{2}\Bigr)\notin\Q
+\qquad\text{and}\qquad
+\Ti_2\Bigl(\pm\frac{n-\sqrt{n^2-4}}{2}\Bigr)\notin\Q .
+\]
+\end{theorem}
+
+The statement at the negative arguments follows because both functions are odd. The proof is in
+\cref{sec:proof}. What is proved in this paper without any assumption is recorded in
+\cref{thm:trace-primes,thm:prime-two} (the two local estimates),
+\cref{lem:shift,prop:certificates,prop:all-traces} (the size comparison) and
+\cref{prop:rationality} (the construction).
+
+\subsection{Relation to Krisman's theorems}\label{subsec:background}
+
+Krisman proves in \cite[Theorems~1.1 and~1.3, Corollary~1.4]{Krisman2026units} that
+$T_+(n)\notin\Q$ for every $n\ge1$ outside the set of $47$ traces
+\begin{equation}\label{eq:excluded-chi}
+\{1,3\}\cup\{5,7,\dots,57\}\cup\{63,65,69,75,77,81,85,87,93,99,105,165\}\cup\{2,6,10,14,18,30\},
+\end{equation}
+and in \cite[Theorem~1.5]{Krisman2026units} that $T_-(n)\notin\Q$ for every $n\ge3$ outside the
+set of $57$ traces
+\begin{equation}\label{eq:excluded-ti}
+\begin{aligned}
+&\{3,5,\dots,69\}\cup\{75,77,81,85,87,91,93,95,99,105,111,117,123,135,147,165,195\}\\
+&\quad\cup\{4,6,10,14,18,30\}.
+\end{aligned}
+\end{equation}
+His preprint reports a formalisation of these three theorems in Lean; we have neither built nor
+audited it. For much larger traces stronger statements follow from criteria of David,
+Hirata-Kohno and Kawashima \cite{DHK2020Moscow,DHK2022Acta}; according to the evaluation in
+\cite[Sections~9.2 and~9.3]{Krisman2026units}, which we have not redone, they apply for traces
+beyond $4\cdot10^{6}$.
+
+The proof in~\Kri{} bounds, for each prime $p$, the exponent $n_p(h)$ of $p$ in the denominator
+of a Hankel determinant of size $h$ (\cref{sec:pencil}). Two of its bounds are not sharp, and
+\cite[Remarks~7.2 and~8.3]{Krisman2026units} say so: the data ``suggest'' that at an odd prime
+$p\mid n$ the term $\frac{\log p}{4(p-1)}$ of \cite[Lemma~3.8]{Krisman2026units} can be
+removed, and that for odd $n$ the constant $\frac12\log2$ of
+\cite[Lemma~8.1]{Krisman2026units} at the prime $2$ can be replaced by $\frac14\log2$; both
+remarks state that this is not proved. We prove both statements
+(\cref{thm:trace-primes,thm:prime-two}). We found no later version of~\Kri{} and no other source
+containing them (\cref{sec:limitations}).
+
+\Cref{thm:main} is the consequence for irrationality. Its range meets the excluded sets
+\eqref{eq:excluded-chi} and \eqref{eq:excluded-ti} in the traces of \cref{tab:new} (\cref{cor:new}); outside these
+the conclusion of \cref{thm:main} is already in~\Kri.
+
+\begin{table}[ht]
+\centering\small\sloppy
+\caption{The traces of \cref{thm:main} that are excluded in~\Kri.}\label{tab:new}
+\begin{tabular}{@{}lp{0.74\textwidth}@{}}
+\toprule
+$\chi_2$, odd $n$ (28) & $27,29,\dots,57$ and 63, 65, 69, 75, 77, 81, 85, 87, 93, 99, 105, 165\\
+$\chi_2$, even $n$ (3) & 14, 18, 30: the arguments $\sqrt{50}-7$, $\sqrt{82}-9$, $\sqrt{226}-15$\\
+\midrule
+$\Ti_2$, odd $n$ (39) & $27,29,\dots,69$ and 75, 77, 81, 85, 87, 91, 93, 95, 99, 105, 111, 117, 123, 135, 147, 165, 195\\
+$\Ti_2$, even $n$ (3) & 14, 18, 30: the arguments $7-\sqrt{48}$, $9-\sqrt{80}$, $15-\sqrt{224}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+So $31$ of the $47$ and $42$ of the $57$ excluded traces are covered. The traces covered neither
+by \cref{thm:main} nor by~\Kri{} are $n\in\{1,3,\dots,25\}\cup\{2,6,10\}$ for $\chi_2$ ($16$
+traces) and $n\in\{3,5,\dots,25\}\cup\{4,6,10\}$ for $\Ti_2$ ($15$ traces). We do not claim that
+these are out of reach of other methods.
+
+\subsection{The argument in one page}\label{subsec:one-page}
+
+Fix $\sigma$ and $n$, an even integer $h$, and the $h+1$ poles $-h,-h+2,\dots,h$. The series
+$\sum_{t}\sigma^{(t-1)/2}z^t f'(t)$ over the odd $t\ge1$, applied to the rational functions
+$f=t^{i+j}/D$ with $D(t)=\prod_j(t-x_j)$, gives a Hankel determinant $\Delta_h(T)$, where
+$\Delta_h\in\Q[X]$ has degree at most $h$ and $T=T_\sigma(n)$ (\cref{sec:pencil}). Let
+$n_p(h)=-\vG p(\Delta_h)$ be the exponent of $p$ in the denominator of $\Delta_h$, so that
+$F_h=\Delta_h\prod_pp^{n_p(h)}$ is a primitive integer polynomial. If $T=a/b$ and
+$F_h(a/b)\ne0$, then $b^hF_h(a/b)$ is a nonzero integer, so
+\[
+-h\log b\;\le\;\log\abs{F_h(T)}\;=\;\log\abs{\Delta_h(T)}+\sum_pn_p(h)\log p .
+\]
+It therefore suffices to show that the right-hand side is at most $-ch^2$ with $c>0$ along an
+infinite set of $h$ on which $F_h(a/b)\ne0$. Write $n=2^\nu d$ with $d$ odd. The four
+contributions, per $h^2$ and in the limit, are:
+\begin{itemize}
+\item odd primes $p\nmid n$: at most $\frac43$, by (K1);
+\item odd primes $p\mid n$: at most $\frac14\log d$ in total, by \cref{thm:trace-primes} (new);
+\item the prime $2$: at most $\frac14\log2$ if $n$ is odd, by \cref{thm:prime-two} (new), and at
+most $\frac{\abs{\nu-2}}4\log2$ if $n$ is even, by (K2);
+\item the size: at most $\Phi_z(\mu,\lambda)$ for any admissible pair $(\mu,\lambda)$ satisfying the side conditions (i) and (ii) of (K3), by (K3) (even $h\ge100$).
+\end{itemize}
+The arithmetic contributions add up to
+\begin{equation}\label{eq:arith-constant}
+\Car(n)=\frac43+\frac{\log d}{4}+\frac{c(\nu)\log 2}{4},\qquad c(0)=1,\quad c(\nu)=\abs{\nu-2}\ (\nu\ge1).
+\end{equation}
+For $n=14$ and $n=27$ and both signs we give explicit pairs $(\mu,\lambda)$ with
+$\Car(n)+\Phi_z(\mu,\lambda)<0$ (\cref{prop:certificates}); a shift lemma and a one-line
+monotonicity computation extend the inequality to all larger traces of the same parity
+(\cref{prop:all-traces}). The nonvanishing $F_h(a/b)\ne0$ along $h=3\ell-1$, $\ell\ge37$ prime with $\ell\nmid n$ and $\ell>b$, is
+(K4).
+
+\subsection{Status of each step}\label{subsec:step-status}
+
+\Cref{tab:status} lists every ingredient of \cref{thm:main} with its status. ``Proved here''
+means that a complete proof is written in this paper; ``imported'' means that the statement is
+taken from~\Kri{} and is an explicit hypothesis of \cref{thm:main}; ``computed'' means a finite
+computation in exact or ball arithmetic, reproduced by a second implementation written by an AI
+system (\cref{app:certificates}). No step has been checked by an independent human expert. Of the mathematical steps only the
+criterion and the final deduction, conditionally on a packaged hypothesis, are formalised (see the
+section on reproducibility); the local estimates and the size comparison are not.
+
+\begin{table}[ht]
+\centering\small
+\caption{Ingredients of \cref{thm:main} and their status.}\label{tab:status}
+\begin{tabular}{@{}p{0.39\textwidth}p{0.28\textwidth}p{0.25\textwidth}@{}}
+\toprule
+Step & Where & Status\\
+\midrule
+Construction, $\Delta_h\in\Q[X]$ & \cref{prop:rationality} & proved here (after \Kri)\\
+Criterion & \cref{prop:criterion} & proved here (standard)\\
+Odd primes $p\nmid n$ & (K1) & imported, not reproved\\
+Odd primes $p\mid n$ & \cref{thm:trace-primes} & proved here (new)\\
+Prime $2$, odd $n$ & \cref{thm:prime-two} & proved here (new)\\
+Prime $2$, even $n$ & (K2) & imported, not reproved\\
+Size estimate (even $h\ge100$) & (K3) & imported, not reproved\\
+Shift lemma & \cref{lem:shift} & proved here (after \Kri)\\
+Certificates at $n=14,27$ & \cref{prop:certificates} & computed (new); inputs to the imported (K3)\\
+All larger traces & \cref{prop:all-traces} & proved here\\
+Nonvanishing ($\ell\ge7$, $\ell\nmid n$, $\ell^2\nmid b$) & (K4) & imported, not reproved\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Organisation and notation}\label{subsec:notation}
+
+\Cref{sec:pencil} recalls the construction. \Cref{sec:trace-primes,sec:prime-two} contain the two
+new local estimates. \Cref{sec:imported} states the imported results and the arithmetic constant,
+\cref{sec:size} treats the size, \cref{sec:proof} proves \cref{thm:main} and
+\cref{sec:limitations} lists the limitations. The appendices describe the computations. The
+notation is collected in \cref{tab:notation}.
+
+\begin{table}[ht]
+\centering\small
+\caption{Notation.}\label{tab:notation}
+\begin{tabular}{@{}p{0.27\textwidth}p{0.66\textwidth}@{}}
+\toprule
+$\sigma$, $n$, $z$, $T$ & sign, trace, the unit and the number $T_\sigma(n)$ of \eqref{eq:unit}\\
+$y$, $w(t)$ & $y=\sigma z^2$, so $1-y=nz$; $w(t)=zy^{(t-1)/2}$ for odd $t\in\Z$\\
+$\F$, $\conj$ & the field $\Q(z)$ and its nontrivial automorphism, $\conj(z)=-\sigma/z$\\
+$h$, $K$, $x_j$, $D$ & even size; $K=h+1$; poles $x_j=2j-h$ ($0\le j\le h$); $D=\prod_j(t-x_j)$\\
+$\Mf$, $L_X$, $\Lambda_X$, $E_d$ & functional, its formal version, $\Lambda_X(g)=L_X(g/D)$, $E_d=\Lambda_X(t^d)$\\
+$\Delta_h$, $F_h$ & $\det(E_{i+j})_{i,j<h}\in\Q[X]$ and its primitive integer multiple\\
+$v_p$, $\vG p$, $n_p(h)$ & $p$-adic valuation, Gauss valuation, $n_p(h)=-\vG p(\Delta_h)$\\
+$s_p(m)$ & sum of the digits of $m$ in base $p$\\
+$\Pa(k)$, $L_h$ & $\sum_{r<k}(r+v_2(r!))$; $\floor{\log_2\max(1,h-1)}$\\
+$\Car(n)$ & arithmetic constant \eqref{eq:arith-constant}\\
+$\psi$, $V_z$, $U^\mu$, $E(\mu)$, $\Phi_z$ & objects of the size estimate, \cref{subsec:dual}\\
+$t_\sigma(n)$ & $\log(1/z_\sigma(n))=\log\bigl((n+\sqrt{n^2+4\sigma})/2\bigr)$\\
+\bottomrule
+\end{tabular}
+\end{table}

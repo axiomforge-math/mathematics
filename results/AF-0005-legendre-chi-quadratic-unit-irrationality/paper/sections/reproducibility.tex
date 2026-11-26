@@ -1,0 +1,39 @@
+\afbacksection{Reproducibility and formal verification}
+\sloppy
+
+\emph{Status of the result.} \Cref{thm:main} is conditional and is a preprint statement: it assumes four results of
+the unrefereed preprint~\Kri{} (\cref{subsec:imported}), and no human expert independent of the AI systems that produced it
+has reviewed the argument. Each step carries one of the labels of \cref{tab:status}. None of this is an independent
+verification.
+
+\emph{Computations.} Paths are relative to the directory of this contribution (AF-0005) in the AxiomForge archive
+(\url{https://github.com/axiomforge-math/mathematics}); every command, its output and its outcome are recorded in
+\path{logs/verification.md}. The scripts are in \path{logs/experiments/scripts/} and the step densities in
+\path{logs/experiments/certificates/} (the directory \texttt{data/} of this manuscript):
+\begin{itemize}
+\item \path{real_certificates.py} (python-flint, Arb): the certificates of \cref{prop:certificates} and
+\cref{app:certificates}, with the primal diagnostics at $n=10,25$;
+\item \path{arithmetic_checks.py} (python-flint, exact rationals): the series identity, the entry bounds of
+\cref{thm:trace-primes}, the regularisation and parity-minor checks of \cref{thm:prime-two}, the exact exponents
+$n_p(h)$ (\cref{app:consistency});
+\item \path{source_sets.py} (Arb): the exceptional sets of~\Kri{} and the list of new arguments;
+\item the two step-density files \path{even-trace-comparison-densities.json} and \path{odd-trace-comparison-densities.json}.
+\end{itemize}
+They need Python~3.11 or later with \texttt{python-flint} and \texttt{mpmath}; none imports the code that produced the
+candidate certificates. The archived exact verifiers of the candidate material were read and re-run in a scratch copy
+and reproduce their recorded logs; they are not part of this package.
+
+\emph{Formal verification.} The Lean~4 package in \path{lean/} (Lake package \texttt{axiomforge-af0005}, root module
+\texttt{AxiomForge.AF0005}, namespace \texttt{AxiomForge.LegendreChi}, toolchain \texttt{leanprover/lean4:v4.34.0-rc1}, Mathlib
+at revision \texttt{f385f9fd18abed332ebcd3df239cb357e264aceb}) contains: the definitions of $\chi_2$ and $\Ti_2$ with
+their oddness; the quadratic units $z_\sigma(n)$ with $0<z<1$, $z^2+\sigma nz-\sigma=0$ and $1/z-\sigma z=n$, and the
+identification of $T_\sigma(n)$ with $\chi_2(z)$ or $\Ti_2(z)$; the irrationality criterion (\cref{prop:criterion}) in
+several forms; and the final deduction, conditionally: the theorems whose names end in \texttt{\_of\_estimates} derive the
+irrationality at $n=14,27$ for both signs from a hypothesis \texttt{PencilEstimates} that packages (K1)--(K4) together with the
+new estimates of \cref{thm:trace-primes,thm:prime-two}, at the rates of \cref{tab:certificates}; the margins are verified by
+\texttt{norm\_num}. The Hankel polynomials $\Delta_h$ are not defined in the package, and neither the two new estimates nor
+the shift lemma and monotonicity of \cref{prop:all-traces} are formalised, so these theorems are not formalisations of
+\cref{thm:main}. The package builds with \texttt{lake exe cache get \&\& lake build}; \texttt{\#print axioms} reports only
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} for each audited declaration (\path{lean/AXIOMS.txt}),
+and the sources contain no \texttt{sorry}, \texttt{admit}, \texttt{axiom} declaration or \texttt{native\_decide}.
+No independent human review of this work has taken place.

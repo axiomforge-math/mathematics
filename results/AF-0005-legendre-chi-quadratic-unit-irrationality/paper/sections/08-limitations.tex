@@ -1,0 +1,35 @@
+\section{Limitations, priority and open points}\label{sec:limitations}
+
+\sloppy
+This section states what the paper does not claim. None of it is used in the proofs.
+
+\emph{Priority.} Checked on 26 November 2026: the preprint~\Kri{} exists in version~1 only (Hexagon lists no
+other version), and the repository named in it, \path{telaviv/chi2-quadratic-units-irrationality}, has
+as last commit one of 9 November 2026, before the deposit of version~1; its constants are those of version~1 (the
+$2$-adic constant $\frac12\log2$ at odd trace and the extra term $\frac{\log p}{4(p-1)}$ at primes dividing the trace).
+Remarks~7.2 and~8.3 of version~1 state both improvements as unproved. So neither the preprint nor its repository covers the
+traces of \cref{tab:new}. This is a statement relative to these sources and to the literature searches
+recorded with this contribution, not an absolute priority claim; the preprint is itself unrefereed.
+
+\emph{Dependence.} \cref{thm:main} is conditional on (K1)--(K4). We reproved nothing among them, with the
+corrected forms (K3) for even $h\ge100$ and (K4) for $\ell\ge7$, $\ell\nmid n$, $\ell^2\nmid b$; we did not
+build or audit the Lean development that the preprint reports, and a later correction of the preprint could
+invalidate the conclusion. The hypotheses (K1)--(K4) are used in~\Kri{} for the same pencil, but the odd-trace and
+$\Ti_2$ transfers of (K1)--(K3) are stated there in prose (\cref{subsec:imported}), and (K2) is needed only at even trace.
+
+\emph{Use of (K3) with new certificates.} The certificates of \cref{prop:certificates} were not produced in~\Kri;
+(K3) is applied to them as stated, after checking its hypotheses literally. The preprint also uses direct
+certificates at odd trace.
+
+\emph{Margins.} The smallest margin, $0.0054$ per $h^2$ (at $n=27$, $\sigma=-1$), is small compared with the
+individual terms, and the asymptotic estimates carry $O(h\log h)$ terms; no effective bound for $h$ is given.
+
+\emph{The remaining traces.} With these constants, the traces $n\le25$ odd and $n\in\{2,6,10\}$ (resp.
+$\{4,6,10\}$) remain open here. At $n=10$ and $n=25$ a lower bound shows that no comparison density can close the
+comparison with these arithmetic constants: for the primal value $J(\mu_0)$ of the density $\mu_0$
+in the data (a lower bound of every dual value, by weak duality \cite[(5.2)]{Krisman2026units}), $\Car(n)+J$ is
+$+0.0762$, $+0.0867$ ($n=10$) and $+0.0128$, $+0.0144$ ($n=25$) for $\sigma=+1,-1$. This concerns this comparison,
+not the numbers.
+
+\emph{Finite data.} The checks of \cref{app:consistency} are consistency evidence for the two estimates, which are
+proved in \cref{sec:trace-primes,sec:prime-two}; they are not part of the proofs.

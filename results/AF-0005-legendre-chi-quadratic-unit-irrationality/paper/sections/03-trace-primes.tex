@@ -1,0 +1,99 @@
+\section{Odd primes dividing the trace}\label{sec:trace-primes}
+
+This section proves the first new estimate: at an odd prime $p$ dividing the trace the
+denominators of $\Delta_h$ cost $\frac{v_p(n)}4\log p$ per $h^2$, which removes the extra term
+$\frac{\log p}{4(p-1)}$ of \cite[Lemma~3.8]{Krisman2026units}. The idea is to compute the Gram
+matrix in the binomial basis $\binom{(t+h)/2}{i}$, in which the poles become the integers
+$0,\dots,h$ and every entry has an explicit valuation, and then to apply a convexity inequality.
+Throughout, $\mathfrak p$ is a prime of $\F$ above the odd prime $p$, $v=v_{\mathfrak p}$ with
+$v(p)=1$, and $v^{\mathrm G}$ is the Gauss valuation on $\F[X]$ (\cref{subsec:criterion}).
+
+\begin{theorem}\label{thm:trace-primes}
+Let $p$ be an odd prime with $e=v_p(n)\ge1$, let $h\ge2$ be even with $\Delta_h\ne0$, put
+$K=h+1$, $L=\floor{\log_p(2h)}$ and
+\begin{equation}\label{eq:Sh}
+\nrm_h=\frac{(K!)^h}{2^{h(h-1)}\prod_{i<h}(i!)^2}.
+\end{equation}
+Then
+\begin{equation}\label{eq:trace-prime-bound}
+n_p(h)\le\frac{e\,(h-2)^2}{4}+2hL+v_p(\nrm_h),\qquad
+v_p(\nrm_h)=\frac{2h}{p-1}+O_p(h\log h).
+\end{equation}
+In particular $\limsup_{h\to\infty}h^{-2}n_p(h)\le e/4$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: the basis.} Put $u=(t+h)/2$, so that the poles $x_r$ correspond to $u=r$
+($0\le r\le h$), and $b_i(t)=\binom ui$ for $0\le i<h$. Then $b_i$ has degree $i$ and leading
+coefficient $1/(2^ii!)$; let $B$ be the lower triangular matrix with $b_i=\sum_kB_{ik}t^k$.
+Since $\Lambda_X$ is linear, the matrix $G=(K!\,\Lambda_X(b_ib_j))_{i,j<h}$ equals
+$K!\,B(E_{k+l})B^{\mathsf T}$, and
+\[
+\det G=(K!)^h(\det B)^2\Delta_h=\nrm_h\,\Delta_h .
+\]
+
+\emph{Step 2: the entries.} We claim that for $0\le i,j<h$
+\begin{equation}\label{eq:entry}
+v^{\mathrm G}\bigl(K!\,\Lambda_X(b_ib_j)\bigr)\ge-2L-e\,(i+j-K)_+ .
+\end{equation}
+The product $b_ib_j$ takes integer values at the integers $u\ge0$, so $b_ib_j=\sum_{d\le i+j}a_d\binom ud$
+with $a_d\in\Z$ (Newton's formula). Hence it suffices to show
+$v^{\mathrm G}(K!\Lambda_X(\binom ud))\ge-2L-e(d-K)_+$ for $0\le d\le i+j$. We use two facts: if $\alpha\in\Z_p$ then $\binom\alpha m\in\Z_p$ for every $m$ (the polynomial is integer
+valued on $\Z$, which is dense in $\Z_p$), and $v_p\binom dK\le\floor{\log_pd}$ for $d\ge K$ by Kummer's theorem.
+
+\emph{Case $d<K$.} The function $\binom ud/D(t)$ is proper, with residues
+$\binom rd/D'(x_r)$ at $x_r$, and $D'(x_r)=\prod_{s\ne r}2(r-s)=(-1)^{h-r}2^hr!(h-r)!$. Thus
+$K!\binom rd/D'(x_r)=\pm2^{-h}K\binom hr\binom rd$ is $p$-integral. By \eqref{eq:LX},
+$K!\Lambda_X(\binom ud)=-\sum_rc_ry^{x_r/2}(X-P(x_r))$ with $c_r$ $p$-integral; the numbers $y^{x_r/2}$
+are units, and $P(x_r)$ is a sum of at most $h$ terms $\pm w(r')/r'^2$ with $w(r')$ a unit and
+$0<r'<h$, so $v(P(x_r))\ge-2\floor{\log_ph}\ge-2L$. This gives the bound $-2L$.
+
+\emph{Case $d\ge K$.} Since $D(t)=2^KK!\binom uK$ and $\binom ud\binom dK=\binom uK\binom{u-K}{d-K}$,
+\[
+K!\,\frac{\binom ud}{D(t)}=2^{-K}\,\frac{\binom{u-K}{d-K}}{\binom dK}
+\]
+is a polynomial $R$; there are no poles, so $K!\Lambda_X(\binom ud)=\Mf(R)\in\F$, which is constant
+in $X$. If $r:=d-K=0$ then $R$ is constant and $\Mf(R)=0$. Let $r\ge1$ and $G(s)=R'(2s+1)$, a
+polynomial of degree $r-1$. By the identity
+$\frac{\mathrm d}{\mathrm dv}\binom vr=\sum_{l=1}^{r}\frac{(-1)^{l-1}}l\binom v{r-l}$ and $\mathrm dv/\mathrm dt=\frac12$,
+\[
+G(s)=2^{-K-1}\binom dK^{-1}\sum_{l=1}^r\frac{(-1)^{l-1}}l\binom{s-\frac{h+1}2}{r-l},
+\]
+because $t=2s+1$ gives $u-K=s-\frac{h+1}2$. As $p$ is odd, $\frac{h+1}2\in\Z_p$, so each binomial is
+$p$-integral. We have $v_p(l)\le\floor{\log_p(h-3)}\le L$ since $l\le r\le h-3$, and
+$v_p\binom dK\le L$ since $d\le2h-2$. So $v(G(s))\ge-2L$ for every integer $s\ge0$, hence
+$v((\Delta^bG)(0))\ge-2L$ for all $b$, and $\Delta^bG=0$ for $b\ge r$. By
+\eqref{eq:mahler}, using that $z,y$ are units and $v(1-y)=e$,
+\[
+v(\Mf(R))\ge\min_{0\le b\le r-1}\bigl(-2L-e(b+1)\bigr)=-2L-er .
+\]
+As $r=d-K$, this is the claim. Together with the first case, \eqref{eq:entry} follows
+(note that the two losses of $L$ never add to $-3L$: in the first case there is one, in the
+second two).
+
+\emph{Step 3: the determinant.} For a permutation $\pi$ of $\{0,\dots,h-1\}$ the term
+$\prod_iG_{i\pi(i)}$ has Gauss valuation at least $-2hL-e\sum_i(i+\pi(i)-K)_+$. Since
+$(a+b)_+\le a_++b_+$,
+\[
+\sum_{i<h}(i+\pi(i)-K)_+\le2\sum_{i<h}\Bigl(i-\frac K2\Bigr)_+
+=2\sum_{k=1}^{h/2-1}\frac{2k-1}2=\Bigl(\frac h2-1\Bigr)^2=\frac{(h-2)^2}4 ,
+\]
+using that $i-\frac K2>0$ means $i=\frac h2+k$ with $1\le k\le\frac h2-1$. Hence
+$v^{\mathrm G}(\det G)\ge-2hL-e(h-2)^2/4$, and
+$n_p(h)=-v^{\mathrm G}(\Delta_h)=-v^{\mathrm G}(\det G)+v_p(\nrm_h)$ gives the inequality.
+
+\emph{Step 4: the normalising factor.} By Legendre's formula $v_p(m!)=(m-s_p(m))/(p-1)$,
+\[
+v_p(\nrm_h)=\frac{hK-h(h-1)}{p-1}-\frac{h\,s_p(K)-2\sum_{i<h}s_p(i)}{p-1}
+=\frac{2h}{p-1}+O_p(h\log h),
+\]
+since $s_p(m)\le(p-1)(\log_pm+1)$. Dividing \eqref{eq:trace-prime-bound} by $h^2$ and
+letting $h\to\infty$ gives the last assertion.
+\end{proof}
+
+\begin{remark}
+Only the pencil itself, and not any result of~\Kri, is used. The proof gives no information at
+primes not dividing $n$ (for $e=0$ it gives $n_p(h)\le2hL+v_p(\nrm_h)$ for each $p$, whose sum over $p$ is
+of order $4h^2$, worse than the bound (K1)). The bound \eqref{eq:trace-prime-bound} is compared with exact
+values in \cref{app:consistency}.
+\end{remark}

@@ -1,0 +1,74 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[Legendre chi and inverse tangent values at quadratic units]%
+{\texorpdfstring{Irrationality of \titlechi{} and \titleti{} at units of real quadratic fields: further traces}%
+{Irrationality of chi2 and Ti2 at units of real quadratic fields: further traces}}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary 11J72; Secondary 33B30}
+\keywords{Legendre chi function, inverse tangent integral, irrationality, units of real quadratic
+fields, Hankel determinants, $p$-adic valuations, logarithmic energy}
+\date{26 November 2026}
+
+\afidentifier{AF-0005}
+\afversion{0.1.0}
+\afdate{26 November 2026}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0005-legendre-chi-quadratic-unit-irrationality}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afstatus{Preprint. The main theorem is conditional on four results of the unrefereed
+preprint~\Kri. Not reviewed by an independent human expert; not formally verified.}
+\afdisclosure{AI-assisted research. The candidate arguments were produced by an AI system; their
+reconstruction, the verification computations and this manuscript were produced by other AI
+systems under the direction of AxiomForge. See the AI-assisted research disclosure at the end.}
+
+\begin{document}
+
+\begin{abstract}
+For an integer $n$ and a sign $\sigma$ let $z=2/(n+\sqrt{n^2+4\sigma})$, a unit of norm
+$-\sigma$ of a real quadratic field, and let $T_\sigma(n)$ be the value at $z$ of Legendre's chi
+function $\chi_2$ if $\sigma=+1$ and of the inverse tangent integral $\Ti_2$ if $\sigma=-1$.
+Krisman proved, in an unrefereed preprint, that these numbers are irrational outside $47$ and
+$57$ explicit values of $n$, and named two improvements of his local estimates that his data
+suggested but that he did not prove. We prove both, without assumption: at an odd prime dividing $n$ the
+denominators of his Hankel determinants have no cost beyond the one forced by the valuation of
+$n$, and at the prime $2$, for odd $n$, the cost is half of the proved one. Assuming four results
+of Krisman's preprint, which we state explicitly and do not reprove (his bound for the other odd
+primes, his bound at $2$ for even $n$, used only for even $n$, his size estimate for even sizes $h\ge100$,
+and his nonvanishing lemma, for primes $\ell\ge7$ with $\ell\nmid n$ and $\ell^2\nmid b$), and using
+four new certificates for the size estimate, we deduce conditionally that $T_\sigma(n)$ is irrational for both
+signs, every even $n\ge14$ and every odd $n\ge27$. This covers $31$ of the $47$ and $42$ of the
+$57$ excluded values. The finite computations were redone by separate implementations. The work
+has not been reviewed by an independent human expert and is not formally verified.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/01-introduction}
+\input{sections/02-pencil}
+\input{sections/03-trace-primes}
+\input{sections/04-prime-two}
+\input{sections/05-imported}
+\input{sections/06-size}
+\input{sections/07-proof}
+\input{sections/08-limitations}
+
+\appendix
+\input{sections/appendix-a-certificates}
+\input{sections/appendix-b-consistency}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}
