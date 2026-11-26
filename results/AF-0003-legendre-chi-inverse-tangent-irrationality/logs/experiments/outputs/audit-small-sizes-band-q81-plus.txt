@@ -1,0 +1,2 @@
+# q=81 sigma=1 construction=band; series identity rel. error at 120 digits (n=1): not run (see check_series_identity.py)
+n=1 h=40 K=49 A=2 deg=40 v2=-2441 v2/h^2=-1.5256 vq={3: (2106, 1.3162)} log cont/h^2=-2.9776 log|T(xi)|/h^2=-3.3766 log|prim(xi)|/h^2=-0.3990 [86.5s]

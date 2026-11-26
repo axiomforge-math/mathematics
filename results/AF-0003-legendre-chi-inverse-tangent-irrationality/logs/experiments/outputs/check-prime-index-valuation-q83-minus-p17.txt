@@ -1,0 +1,2 @@
+matrices built 9.327525615692139
+q=83 sigma=-1 p=17 h=102: Delta(0) != 0: True; v_p = -300; predicted -300; time 195.2s

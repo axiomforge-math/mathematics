@@ -1,0 +1,8 @@
+n=1 h=6 K=7 A=0: failures=[] ; p=2[2] v=-40 bound=-43; p=3[Y] v=-33 bound=-48; p=5[Y] v=-12 bound=-18; p=7[macro] v=-1 bound=-2; p=17[Y] v=-6 bound=-18; p=83|q: v=12 v/(f h^2)=0.3333 [0s]
+n=2 h=12 K=14 A=0: failures=[] ; p=2[2] v=-172 bound=-180; p=3[Y] v=-121 bound=-172; p=5[Y] v=-42 bound=-73; p=7[macro] v=-9 bound=-11; p=11[macro] v=-10 bound=-11; p=13[macro] v=-4 bound=-5; p=17[Y] v=-36 bound=-49; p=83|q: v=48 v/(f h^2)=0.3333 [0s]
+n=3 h=18 K=21 A=0: failures=[] ; p=2[2] v=-405 bound=-417; p=3[Y] v=-259 bound=-332; p=5[Y] v=-85 bound=-128; p=17[Y] v=-66 bound=-92; p=19[macro] v=-7 bound=-8; p=83|q: v=108 v/(f h^2)=0.3333 [1s]
+n=4 h=24 K=28 A=0: failures=[] ; p=2[2] v=-730 bound=-748; p=3[Y] v=-433 bound=-592; p=5[Y] v=-133 bound=-196; p=13[macro] v=-24 bound=-26; p=17[Y] v=-128 bound=-148; p=23[macro] v=-16 bound=-17; p=83|q: v=192 v/(f h^2)=0.3333 [7s]
+n=5 h=30 K=35 A=0: failures=[] ; p=2[2] v=-1159 bound=-1177; p=3[Y] v=-708 bound=-864; p=5[Y] v=-190 bound=-276; p=17[Y] v=-175 bound=-216; p=29[macro] v=-19 bound=-20; p=31[macro] v=-13 bound=-14; p=83|q: v=300 v/(f h^2)=0.3333 [15s]
+n=6 h=36 K=42 A=0: failures=[] ; p=2[2] v=-1696 bound=-1722; p=3[Y] v=-981 bound=-1188; p=5[Y] v=-298 bound=-441; p=17[Y] v=-257 bound=-297; p=19[macro] v=-39 bound=-41; p=37[macro] v=-16 bound=-17; p=83|q: v=431 v/(f h^2)=0.3326 [47s]
+n=7 h=42 K=49 A=0: failures=[] ; p=2[2] v=-2328 bound=-2358; p=3[Y] v=-1360 bound=-1560; p=5[Y] v=-422 bound=-558; p=17[Y] v=-367 bound=-390; p=41[macro] v=-25 bound=-26; p=43[macro] v=-19 bound=-20; p=83|q: v=574 v/(f h^2)=0.3254 [99s]
+== failures: 0

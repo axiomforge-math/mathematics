@@ -1,0 +1,11 @@
+# q=83 sigma=1 construction=general; series identity rel. error at 120 digits (n=1): not run (see check_series_identity.py)
+n=1 h=6 K=7 A=0 deg=6 v2=-40 v2/h^2=-1.1111 vq={83: (12, 0.3333)} log cont/h^2=-1.6381 log|T(xi)|/h^2=-3.2803 log|prim(xi)|/h^2=-1.6422 [0.0s]
+n=2 h=12 K=14 A=0 deg=12 v2=-172 v2/h^2=-1.1944 vq={83: (48, 0.3333)} log cont/h^2=-2.1081 log|T(xi)|/h^2=-3.1298 log|prim(xi)|/h^2=-1.0217 [0.1s]
+n=3 h=18 K=21 A=0 deg=18 v2=-405 v2/h^2=-1.2500 vq={83: (108, 0.3333)} log cont/h^2=-2.3688 log|T(xi)|/h^2=-3.1113 log|prim(xi)|/h^2=-0.7425 [1.1s]
+n=4 h=24 K=28 A=0 deg=24 v2=-730 v2/h^2=-1.2674 vq={83: (192, 0.3333)} log cont/h^2=-2.5197 log|T(xi)|/h^2=-3.1068 log|prim(xi)|/h^2=-0.5871 [7.5s]
+n=5 h=30 K=35 A=0 deg=30 v2=-1159 v2/h^2=-1.2878 vq={83: (300, 0.3333)} log cont/h^2=-2.5757 log|T(xi)|/h^2=-3.1070 log|prim(xi)|/h^2=-0.5313 [12.3s]
+n=6 h=36 K=42 A=0 deg=36 v2=-1696 v2/h^2=-1.3086 vq={83: (431, 0.3326)} log cont/h^2=-2.6440 log|T(xi)|/h^2=-3.1097 log|prim(xi)|/h^2=-0.4656 [34.9s]
+n=7 h=42 K=49 A=0 deg=42 v2=-2328 v2/h^2=-1.3197 vq={83: (574, 0.3254)} log cont/h^2=-2.7101 log|T(xi)|/h^2=-3.1112 log|prim(xi)|/h^2=-0.4010 [94.5s]
+n=8 h=48 K=56 A=0 deg=48 v2=-3051 v2/h^2=-1.3242 vq={83: (739, 0.3207)} log cont/h^2=-2.7571 log|T(xi)|/h^2=-3.1148 log|prim(xi)|/h^2=-0.3577 [195.5s]
+n=9 h=54 K=63 A=0 deg=54 v2=-4048 v2/h^2=-1.3882 vq={83: (935, 0.3206)} log cont/h^2=-2.7828 log|T(xi)|/h^2=-3.1158 log|prim(xi)|/h^2=-0.3329 [303.9s]
+n=10 h=60 K=70 A=0 deg=60 v2=-4816 v2/h^2=-1.3378 vq={83: (1159, 0.3219)} log cont/h^2=-2.8052 log|T(xi)|/h^2=-3.1181 log|prim(xi)|/h^2=-0.3129 [514.6s]

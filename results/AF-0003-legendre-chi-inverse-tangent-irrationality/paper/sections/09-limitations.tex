@@ -1,0 +1,58 @@
+\section{Limitations: the case \texorpdfstring{$q=79$}{q = 79}}\label{sec:limitations}
+
+The argument stops at $q=81$. This section explains why, quantifies the obstruction at $q=79$ for
+the band construction, and lists what would be needed to go further; nothing in it is used in the
+proof. Its statements concern the specific estimates of this paper, not the determinants
+themselves, nor the irrationality of $\chi_2(2/79)$ or $\Ti_2(2/79)$.
+
+\emph{The general construction.} For $\Gen$ the arithmetic constant decreases only like
+$-\frac1{72}\log q$ while the analytic exponent improves like $-\frac12\log q$, so the margin
+shrinks as $q$ decreases. With the comparison density recorded for $q=81$ (mesh $1/240$, as in
+Appendix~\ref{app:decay-certificates}) the ball-arithmetic verifier gives the upper bound
+$\bconst-\aconst_-(81)\le+0.005332$ for this density. This is an upper bound for one density found
+by a numerical optimiser, not a lower bound for the method: it shows that $\Gen$ does not reach
+$q=81$ with these data, and we have not proved that no comparison density does better.
+
+\emph{The band construction at $q=79$: a limitation of these bounds.} The numbers below are
+computed in floating point or with a step density and are \emph{not certified}; the section
+describes what the estimates of this paper can and cannot give, not a property of the
+determinants. Weak duality bounds every exponent of \cref{thm:decay} from below: if $\mu$ is any
+density with compact support in $[\alpha,\infty)$, $0\le\mu\le2$ and $\int\mu=1$, then
+$E(\mu-\rho)\le0$ (the logarithmic energy of a compactly supported signed measure of total mass
+zero and finite energy is nonpositive \cite[Lemma~I.1.8]{SaffTotik1997}; both $\mu$ and $\rho$
+are bounded densities with compact support), so
+\[
+  C+E(\mu)+\int V\mu\ \le\ C-E(\rho)+\int G\mu\ \le\ \bconst(\rho,\lambda),
+\]
+using $\mu\le2$ and $G<\lambda$ on $[1,\infty)$. For the step density $\mu_{79}$ recorded in the
+supplementary data, the left-hand side at $q=79$ is $-3.358974$ (evaluated in ball arithmetic,
+which makes this number, but not the comparison below, rigorous).
+On the arithmetic side we use the upper bound
+$\int_0^{2\kappa}B\le-1.985157$ for $(\kappa,\alpha)=(49/40,1/20)$. It is obtained from
+trapezoidal sums with the class types frozen at the midpoint ($B$ is convex on each interval of
+\cref{lem:convexity}), evaluated in exact rational arithmetic, plus the contribution of
+$(0,\delta)$ under the \emph{unproved} bound $B\le1$ on $(0,\delta)$, $\delta=1/2000$. We have not
+proved $B\le1$ there (it should follow from an explicit estimate of the $O(1)$ quantities
+involved); it is plausible but unproved. With this input the arithmetic
+constant at $q=79$ is at most $-3.365088$ for $\sigma=1$ and $-3.365333$ for $\sigma=-1$ (floating
+point). The resulting gap of more than $0.006$ \emph{indicates} that, in this geometry, no choice
+of comparison density and no refinement of the numerical integration would make the estimates of
+\cref{sec:prime-two,sec:exceptional,sec:ordinary,sec:decay} prove the case $q=79$; as long as
+$B\le1$ on $(0,\delta)$ is unproved and the arithmetic inputs are floating-point values, this is
+a heuristic obstruction for these bounds, not a theorem. The three numbers were recomputed
+(Appendix~\ref{app:consistency}).
+
+\emph{What would be needed.} Since the obstruction concerns sufficient estimates, it leaves
+several possibilities open: other pole ratios or zero placements; lower bounds for the actual
+valuations that are sharper than the slot profiles, for instance through cancellation between
+residue classes; or, for $\Ti_2$, a size bound that sees the sign of $w$, which Krisman suggests
+as the remaining lever for his own construction \cite[\S12]{Krisman2026chi2}. Exploratory
+searches over positive half-integer zeros, reflected integer zeros and two-sided zero bands
+found no favourable configuration at $q=79$, but they were not exhaustive and several stopped at
+time limits; they are not evidence of impossibility.
+
+\emph{The square construction.} With $K=h$ and the parity bound of \cref{sec:prime-two} in place
+of Krisman's Lemma~11.1, the same method would close the comparison at $q=127$ but not at $q=125$,
+(unverified) according to an earlier stage of our computations, which we have not re-verified.
+This is not a literature threshold; we mention it only to indicate how much of the progress from
+$175$ to $83$ is due to the prime $2$ and how much to the ratio $K/h$.

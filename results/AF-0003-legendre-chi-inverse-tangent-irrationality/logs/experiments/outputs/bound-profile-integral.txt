@@ -1,0 +1,1 @@
+trapezoid upper on [delta, 2kappa]: -1.985656684672533  plus delta for (0,delta): -1.9851566846725328

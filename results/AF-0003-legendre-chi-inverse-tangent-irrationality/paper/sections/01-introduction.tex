@@ -1,0 +1,262 @@
+\section{Introduction}\label{sec:introduction}
+
+For $\abs{x}\le 1$ let
+\[
+  \chi_2(x)=\sum_{j\ge0}\frac{x^{2j+1}}{(2j+1)^2}=\tfrac12\bigl(\Li_2(x)-\Li_2(-x)\bigr),
+  \qquad
+  \Ti_2(x)=\sum_{j\ge0}\frac{(-1)^jx^{2j+1}}{(2j+1)^2}=\operatorname{Im}\Li_2(ix)
+\]
+be Legendre's chi function and the inverse tangent integral. This paper presents a proof of the
+following statement.
+
+\begin{theorem}\label{thm:main}
+For every odd integer $q\ge 81$ the numbers $\chi_2(2/q)$ and $\Ti_2(2/q)$ are irrational.
+Since $\chi_2$ and $\Ti_2$ are odd, the same holds for $\chi_2(-2/q)$ and $\Ti_2(-2/q)$.
+\end{theorem}
+
+\emph{Status.} The proof is a candidate. It was reconstructed and checked by an AI system from
+candidate arguments produced by another AI system (see the disclosure at the end); no
+independent human expert has reviewed it. In Lean only the final deduction is formalised, and
+only conditionally on the three estimates of \cref{thm:three-estimates}. All finite
+inequalities used in the proof have been recomputed by second implementations, also written by an
+AI system, that do not import the code that produced them (Appendices~\ref{app:certificates}
+and~\ref{app:consistency}); this checks the numbers, not the asymptotic arguments, and the two
+implementations share inputs and authorship, so it is not an independent verification. \Cref{subsec:step-status} gives the status of each
+step, and \cref{rem:scrutiny} lists the points that most need independent scrutiny.
+
+\subsection{Background}\label{subsec:background}
+
+For even $q$ one has $\chi_2(2/q)=\chi_2(1/(q/2))$ and $\Ti_2(2/q)=\Ti_2(1/(q/2))$, so the
+interest of \cref{thm:main} lies in odd $q$, where $2/q$ is not the reciprocal of an integer.
+We have not read Hata's paper~\cite{Hata1990} ourselves. According to Krisman
+\cite[\S1.2]{Krisman2026chi2}, whose reading we have not checked, Hata's linear independence
+measures for shifted polylogarithms are stated at points $1/Q$ with $Q\in\Z$, so that for odd $q$
+the relevant points $\pm4/q^2$ are not covered. The linear independence criterion of David,
+Hirata-Kohno and Kawashima~\cite{DHK2022Acta} applies to the shifted dilogarithm
+$\sum_{n\ge1}x^n/(n-\frac12)^2$ at rational points. As reported in \cite[\S1.2]{Krisman2026chi2},
+Krisman evaluates it at $x=4/q^2$ and obtains the irrationality of $\chi_2(2/q)$ for
+$q\ge 11\,795$ with the criterion as printed, and for $q\ge23\,587$ with a weaker form that he
+believes the proof supports; these specialisations are his, not those of the authors of the
+criterion. The point $x=-4/q^2$, which gives $\Ti_2(2/q)$, is also a rational point, so the same
+criterion should give a threshold of the same order for $\Ti_2(2/q)$; we have not computed it and
+have not found it stated. We did not search the classical literature on linear independence of
+$1,\Li_2(x),\Li_2(-x)$ (Nikishin, Chudnovsky, Hata, Rhin--Viola, Marcovecchio and others)
+ourselves; ``new'' below always means ``not found in the sources we read''.
+
+The closest work is Krisman's preprint~\cite{Krisman2026chi2}, which claims proofs that
+$\chi_2(1/q)\notin\Q$ for $q\ge3$, $q\ne4$, that $\Ti_2(1/q)\notin\Q$ for $q\ge5$, and that
+$\chi_2(2/q)\notin\Q$ for odd $q\ge175$; it does not treat $\Ti_2(2/q)$ for odd $q$. That
+preprint is labelled as primarily AI-generated and has not been refereed. We read version~2 and
+checked against it the statement of each numbered result cited in this paper (Lemmas~2.1, 4.2, 5.1, 5.2,
+6.4, 7.1, 11.1; Propositions~3.1, 11.2; Theorems~3.2, 4.5, 5.3, 8.1; Remark~6.7; \S1.2, \S12);
+this was done by the AI system that revised this manuscript, not by a person, and it checks
+statements, not proofs. We use none of its theorems as an input, and every estimate we need is
+proved here. Its method, a Hankel-determinant construction
+in the spirit of Zudilin's determinantal approach~\cite{Zudilin2017}, is the starting point of
+ours: Krisman takes the Hankel determinants of the functional
+$g\mapsto\sum_{t\ge1}w^t\,(g(u)\,u/D(u))'|_{u=t}$, where $D(u)=\prod_{k<h}(u+k+\frac12)$ has as
+many half-integer poles as the size $h$ of the determinant, at $w=4/q^2$. In his \S12 he
+states, numerically and assuming that $\frac{133}{60}$ is the true generic constant, that this
+construction does not reach odd $q$ below about $87$: at the prime $2$ its leading coefficient
+alone costs $\log2$ per $h^2$ \cite[Prop.~11.2]{Krisman2026chi2}, and with this cost and the
+equilibrium constant the margin is positive only for odd $q\lesssim87$. We take this as a
+reason to change the determinant rather than to sharpen the estimates for his.
+
+\subsection{The constructions}\label{subsec:constructions}
+
+Fix an odd integer $q\ge5$ (the hypothesis $q\ge5$ is a convenience; only $W<1$ is needed, that
+is $q\ge3$, and the main theorem concerns $q\ge81$) and a sign $\sigma\in\{1,-1\}$, and put
+\begin{equation}\label{eq:basic-notation}
+  y=\frac q2,\qquad w=\frac{\sigma}{y^2}=\frac{4\sigma}{q^2},\qquad W=\abs w,\qquad
+  \xi=\sum_{j\ge0}\frac{\sigma^jy^{-2j-1}}{(2j+1)^2},
+\end{equation}
+so that $\xi=\chi_2(2/q)$ for $\sigma=1$ and $\xi=\Ti_2(2/q)$ for $\sigma=-1$. For integers
+$h\ge1$, $K\ge h$ and $A\ge0$ let
+\[
+  x_k=-k-\tfrac12\ (0\le k<K),\qquad D_K(u)=\prod_{k<K}(u-x_k),\qquad
+  \varphi(u)=\frac{u\prod_{j=1}^{A}(u-j)^2}{D_K(u)}.
+\]
+In \cref{sec:pencils} we define an affine functional $\mu_X$ on the rational functions with
+simple poles at the $x_k$ such that $\mu_\xi(R)=\sum_{m\ge1}w^mR'(m)$, and the polynomial
+\[
+  T(X)=\nrm\cdot\det\bigl[\mu_X(\varphi(u)\,u^{i+j})\bigr]_{0\le i,j<h}\in\Q[X],
+  \qquad \nrm=\frac{(K!/A!^2)^h}{\prod_{i<h}i!^2},
+\]
+of degree at most $h$. We use two families of parameters $(h,K,A)$, indexed by $n\ge1$:
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+ & $(h,K,A)$ & $\kappa=K/h$ & $\alpha=A/h$ & used for\\
+\midrule
+general construction $\Gen$ & $(6n,\,7n,\,0)$ & $7/6$ & $0$ & odd $q\ge83$\\
+band construction $\Band$ & $(40n,\,49n,\,2n)$ & $49/40$ & $1/20$ & $q=81$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For $\Gen$ the only change with respect to Krisman's determinant is that there are $7n$ poles
+for $6n$ rows. For $\Band$ the weight also vanishes to order two at $u=1,\dots,A$, which removes
+the first $A$ terms of the series. We write $d=\kappa-2\alpha$, so $d=7/6$ for $\Gen$ and
+$d=9/8$ for $\Band$.
+
+\subsection{The argument in one page}\label{subsec:one-page}
+
+For a prime $p$ and a nonzero $F\in\Q[X]$ let $\vG p(F)$ be the minimum of the $p$-adic
+valuations of the coefficients of $F$. Let $\ell=\prod_pp^{-\vG p(T)}$, so that $\ell T\in\Z[X]$.
+If $\xi=a/b$ were rational, then $b^h\ell T(a/b)$ would be an integer. The proof consists in
+showing that this integer is nonzero for infinitely many $n$, while its absolute value is at
+most $\exp\bigl(h^2(\bconst-\aconst+o(1))\bigr)$ with $\bconst<\aconst$
+(\cref{prop:criterion}). This needs three estimates.
+
+\begin{theorem}\label{thm:three-estimates}
+Let $\mathcal C\in\{\Gen,\Band\}$, let $q\ge5$ be odd and $\sigma=\pm1$, and let
+$T=T_n$ be the polynomial attached to the $n$-th member of $\mathcal C$, with $h=h_n$.
+\begin{enumerate}[(i)]
+\item \emph{Arithmetic.} Along the $n$ with $T_n\ne0$,
+\[
+  \liminf\frac{1}{h^2}\sum_p\vG p(T)\log p\ \ge\ \aconst_\sigma(q):=
+  \Iprof_{\mathcal C}+c_{2,\mathcal C}\log2+\frac13\log q-\frac{(2-d)^2}4\log(q^2-4\sigma),
+\]
+with the constants $c_{2,\mathcal C}$ and $\Iprof_{\mathcal C}$ of \cref{tab:constants}.
+\item \emph{Size.} For every comparison density $\rho$ and every $\lambda$ satisfying the tail
+condition of \cref{thm:decay}, $\limsup h^{-2}\log\abs{T(\xi)}\le\bconst(\rho,\lambda)$, an
+explicit number that depends on $q$ only through $W$.
+\item \emph{Nonvanishing.} Let $r\in\Q$. If $\mathcal C=\Gen$ and $q\ge83$, or
+$\mathcal C=\Band$ and $q=81$, then $T_n(r)\ne0$ for every sufficiently large prime $n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i) is \cref{thm:arithmetic}, part~(ii) is \cref{thm:decay}, and part~(iii) is
+\cref{thm:nonvanishing} together with \cref{prop:local-dets-general,prop:local-dets-band}.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{The contributions to $\aconst_\sigma(q)$ and the comparison with $\bconst$, per
+$h^2$. The constant $\aconst_-$ is the smaller of the two arithmetic constants
+(\cref{rem:worse-sign}); $\bconst$ is the certified size exponent
+(Appendix~\ref{app:decay-certificates}). Decimals are rounded in the safe direction; the first three rows are evaluated for $\sigma=-1$ and rounded to six places.}
+\label{tab:constants}
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & $\Gen$, $q=83$ & $\Band$, $q=81$\\
+\midrule
+prime $2$ (\cref{thm:prime-two}) & \shortstack[l]{$-\frac{140}{99}\log2$\\$\approx-0.980208$} &
+  \shortstack[l]{$-\frac{1847}{1100}\log2$\\$\approx-1.163857$}\\[4pt]
+primes $p\mid q$ (\cref{prop:p-divides-q}) & \shortstack[l]{$+\frac13\log q$\\$\approx+1.472947$} &
+  \shortstack[l]{$+\frac13\log q$\\$\approx+1.464816$}\\[4pt]
+primes $p\mid q^2-4\sigma$ (\cref{prop:p-divides-Y}) &
+  \shortstack[l]{$-\frac{25}{144}\log(q^2-4\sigma)$\\$\approx-1.534420$} &
+  \shortstack[l]{$-\frac{49}{256}\log(q^2-4\sigma)$\\$\approx-1.682367$}\\[4pt]
+ordinary primes, $\Iprof_{\mathcal C}$ (\cref{thm:ordinary}) & $\ge-2.113164137$ &
+  $\ge-1.987089582$\\
+\midrule
+$\aconst_-(q)$ & $\ge-3.154846$ & $\ge-3.368498$\\
+$\bconst$ & $\le-3.161708$ & $\le-3.374176$\\
+margin $\aconst_--\bconst$ & $\ge0.006862$ & $\ge0.005678$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The estimates are obtained as follows.
+\begin{itemize}
+\item \emph{Prime $2$} (\cref{sec:prime-two}). In the coordinate $z=2u$ the poles are odd and
+the summation points even, and a Vandermonde-type minor whose nodes share a parity is divisible by
+about $2^{t^2}$; the Cauchy--Binet formula then reduces $\vG2(T)$ to a quadratic minimisation in
+the proportion $x$ of pole terms, with minimum at $x=29/33$ for $\Gen$ and $x=51/55$ for $\Band$.
+\item \emph{Primes dividing $q(q^2-4\sigma)$} (\cref{sec:exceptional}). For $p\mid q$, reflecting
+$m\mapsto-m$ makes the series $p$-adically convergent, and each level offers at most three terms
+of valuation at least $2v_p(q)m$, which gives $\frac13v_p(q)h^2$; for $p\mid q^2-4\sigma$ the only
+loss comes from the denominators $(1-w)^{b+1}$, and a convexity argument gives
+$\frac{(2-d)^2}4v_p(q^2-4\sigma)h^2$.
+\item \emph{Ordinary primes} (\cref{sec:ordinary}). For $p\asymp h$ two lower bounds, by Taylor
+jets in each residue class modulo $p$ and by global partial fractions with Vandermonde gains, are
+small minimisation problems over the residue classes; their maximum, integrated against $\log p$
+by the prime number theorem, gives $\Iprof_{\mathcal C}$; the integral is evaluated exactly (Appendix~\ref{app:profile-certificate}).
+\item \emph{Size} (\cref{sec:decay}). The determinant at $X=\xi$ is a sum over configurations of
+$h$ points on the summation sites; Vandermonde bounds and a discrete energy inequality compare it
+with an explicit step density, and the resulting number $\bconst$ is evaluated in ball arithmetic
+(Appendix~\ref{app:decay-certificates}).
+\item \emph{Nonvanishing} (\cref{sec:nonvanishing}). For $h=tp$ with $p$ prime, a basis adapted
+to the residue classes modulo $p$ makes the scaled determinant block triangular modulo $p$, with
+diagonal blocks equal, up to units, to three fixed local Hankel determinants, which are nonzero.
+\item \emph{Assembly} (\cref{sec:proofs}). The margins of \cref{tab:constants} are positive; a
+shift of $\lambda$ (\cref{prop:shift}) carries the case $q=83$ to every odd $q\ge83$. For each $q$
+the inequality to be proved is $\bconst_q<\aconst_-(q)$, where $\bconst_q\le\bconst_{83}-\frac12\log\frac q{83}$
+and $\aconst_-(q)\ge\aconst_-(83)-\frac1{72}\log\frac q{83}$; this is the whole uniformity
+argument in $q$.
+\end{itemize}
+
+\subsection{What is new and what is inherited}\label{subsec:new}
+
+The following ingredients come from Krisman's work~\cite{Krisman2026chi2}, in some cases in a
+modified form: the functional and its pole series (\cref{lem:pole-series}); the irrationality
+criterion (\cref{prop:criterion}); the reflection at primes dividing $q$ and the count of three
+terms per level (\cref{prop:p-divides-q}); the degree count at primes dividing $q^2-4\sigma$
+(\cref{prop:p-divides-Y}); the size bound by a discrete logarithmic gas compared with an explicit
+step density, and its shift to smaller $\abs w$ (\cref{sec:decay}); and the strategy of proving
+nonvanishing by reduction modulo a prime proportional to $h$ (\cref{sec:nonvanishing}). We reprove
+all of them, because the constructions differ. What is new is the following.
+\begin{enumerate}[(a)]
+\item \emph{The ratio $K/h>1$.} More poles than rows lowers the degree of the polynomial part of
+the weights. At primes dividing $q^2-4\sigma$ the loss drops from $\frac14\log(q^2-4\sigma)$ to
+$\frac{25}{144}\log(q^2-4\sigma)$ per $h^2$, which at $q=83$ saves about $0.68$ and outweighs the
+larger costs at $2$ and at the ordinary primes. With $K>h$ there is no Lagrange basis at the
+poles, so the residue-class and nonvanishing arguments are set up with Taylor jets instead.
+\item \emph{The prime $2$.} The parity argument gives the cost $\frac{140}{99}\log2$ for $\Gen$.
+For Krisman's ratio $\kappa=1$ the limit of the bound is $\frac{13}{11}\log2\approx1.18\log2$,
+which lies between his lower bound $\log2$ and his upper bound $\frac43\log2$
+\cite[Lemma~11.1, Prop.~11.2]{Krisman2026chi2}. He also reports a measured loss of about
+$1.18\log2$ per $h^2$ at $h=64$; we do not claim agreement with it (\cref{rem:two-comparison} and
+Table~\ref{tab:two-adic-square} compare the finite values in two normalisations).
+\item \emph{The ordinary primes.} The profile is valid for every $\kappa$ and with zeros in the
+numerator. At $\kappa=1$ its integral equals Krisman's generic constant (\cref{rem:profile-k1}),
+so it reorganises his class bound rather than improving it.
+\item \emph{The zero band} (only for $q=81$). It costs in the size exponent and at the prime $2$,
+but changes the balance between the remaining terms enough to reach $q=81$.
+\item \emph{Nonvanishing.} The local determinants are $6\times6$ for $\Gen$, explicit
+polynomials in $Q=\sigma q^2/4$ without roots of modulus $189$ or more, and $40\times40$ for
+$\Band$, computed exactly at $q=81$.
+\end{enumerate}
+
+\subsection{Organisation and notation}\label{subsec:notation}
+
+\Cref{sec:pencils} defines the functional, the determinants and the criterion.
+\Cref{sec:prime-two,sec:exceptional,sec:ordinary} bound the denominators, \cref{sec:decay} the
+size, and \cref{sec:nonvanishing} proves nonvanishing; \cref{sec:proofs} assembles the proof and
+records the status of each step, and \cref{sec:limitations} explains why the method stops at $81$.
+Appendix~\ref{app:certificates} describes the finite computations and
+Appendix~\ref{app:consistency} compares the estimates with exact computations at small sizes.
+\Cref{tab:notation} lists the notation used throughout.
+
+\begin{table}[ht]
+\centering
+\caption{Notation.}\label{tab:notation}
+\small
+\begin{tabular}{@{}p{0.27\textwidth}p{0.66\textwidth}@{}}
+\toprule
+$q$, $\sigma$; $y$, $w$, $W$, $\xi$ & odd integer $\ge5$, sign $\pm1$; see~\eqref{eq:basic-notation}\\
+$\tau_k$ & partial sum $\sum_{j\le k}\sigma^jy^{-2j-1}/(2j+1)^2$ of $\xi$, \eqref{eq:tau}\\
+$h$, $K$, $A$; $\kappa$, $\alpha$, $d$ & size, number of poles, length of the zero band;
+$K/h$, $A/h$, $\kappa-2\alpha$\\
+$x_k$, $D_K$, $N_A$ & $-k-\frac12$; $\prod_{k<K}(u-x_k)$; $\prod_{j=1}^A(u-j)^2$\\
+$\varphi$, $\Phi$ & $uN_A/D_K$; $(K!/A!^2)\,\varphi$, see~\eqref{eq:Phi}\\
+$\Omega_b$, $\mom$, $\mu_X$ & $w^{\max(b,1)}(1-w)^{-b-1}$; rational moment sum; the functional
+\eqref{eq:functional}\\
+$\Delta$, $\nrm$, $T$ & Hankel determinant, normaliser, $T=\nrm\Delta$, see~\eqref{eq:Delta-T}\\
+$\beta_i$, $\vvec(u)$, $\bvec(u)$ & $\binom ui$; the columns $(u^i)_{i<h}$ and $(\beta_i(u))_{i<h}$\\
+$\vG p$ & Gauss valuation of a polynomial in $X$ over $\Q_p$\\
+$\aconst_\sigma(q)$, $\bconst$, $\Iprof_{\mathcal C}$ & arithmetic constant, size exponent,
+ordinary-prime constant (\cref{tab:constants})\\
+$\psi(t)$, $\pos x$, $s_2(n)$ & $t\log\abs t-t$ with $\psi(0)=0$; $\max(x,0)$; binary digit
+sum, so $v_2(n!)=n-s_2(n)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{Conventions.} $p$ is always a prime and $v_p$ the $p$-adic valuation on $\Q_p$. The Gauss
+valuation satisfies $\vG p(FG)=\vG p(F)+\vG p(G)$ and $\vG p(F+G)\ge\min(\vG p(F),\vG p(G))$, with
+$\vG p(0)=+\infty$, and is invariant under $X\mapsto X+c$ for $c\in\Z_p$; hence the determinant of
+a matrix over $\Q_p[X]$ has Gauss valuation at least the minimum over the terms of its Leibniz
+expansion. For $u$ in any $\Q$-algebra, $\binom uk=u(u-1)\cdots(u-k+1)/k!$. The implied constants
+in $O(\cdot)$ may depend on $q$ and on the construction, but not on $n$.

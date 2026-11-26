@@ -1,0 +1,4 @@
+(s,e)=(0,0): (Q-1)^24 det = Q^9 (Q-1)^20 P(Q), deg P = 16, archived match up to scalar: True (archived powers 9,20); max |root of P| = 1.6815547; Cauchy bound = 23.1829 (< 189: True)  vs 83^2/4 = 1722.25
+(s,e)=(1,0): (Q-1)^24 det = Q^11 (Q-1)^20 P(Q), deg P = 20, archived match up to scalar: True (archived powers 11,20); max |root of P| = 1.8774097; Cauchy bound = 136.7230 (< 189: True)  vs 83^2/4 = 1722.25
+(s,e)=(1,1): (Q-1)^24 det = Q^13 (Q-1)^18 P(Q), deg P = 20, archived match up to scalar: True (archived powers 13,18); max |root of P| = 1.638203; Cauchy bound = 188.0855 (< 189: True)  vs 83^2/4 = 1722.25
+== PASS: 0 failures

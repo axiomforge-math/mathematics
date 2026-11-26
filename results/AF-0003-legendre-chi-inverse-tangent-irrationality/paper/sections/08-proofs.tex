@@ -1,0 +1,107 @@
+\section{Proof of the main theorem}\label{sec:proofs}
+
+This section combines the three estimates through the criterion of \cref{prop:criterion}: it
+collects the local bounds into the arithmetic constant (\cref{thm:arithmetic}), compares it with
+the certified size exponent for each construction (\cref{thm:general,thm:band}), and records the
+status of every step of the proof (\cref{subsec:step-status}).
+
+\begin{theorem}[arithmetic]\label{thm:arithmetic}
+Let $\mathcal C\in\{\Gen,\Band\}$, $q\ge5$ odd and $\sigma=\pm1$. Along the $n$ with $T_n\ne0$,
+$\liminf h^{-2}\sum_p\vG p(T_n)\log p\ge\aconst_\sigma(q)$, with $\aconst_\sigma(q)$ as in
+\cref{thm:three-estimates}.
+\end{theorem}
+
+\begin{proof}
+Sum \cref{thm:prime-two} (prime $2$), \cref{prop:p-divides-q} over the primes dividing $q$,
+\cref{prop:p-divides-Y} over the primes dividing $q^2-4\sigma$, and \cref{thm:ordinary}; these sets
+of primes are disjoint and the first three are finite. Note $\sum_{p\mid q}v_p(q)\log p=\log q$.
+\end{proof}
+
+
+\begin{theorem}\label{thm:general}
+For every odd $q\ge83$ and $\sigma=\pm1$, the number $\xi$ of~\eqref{eq:basic-notation} is
+irrational.
+\end{theorem}
+
+\begin{proof}
+Let $(\rho_{83},\lambda_{83})$ be the comparison data of Appendix~\ref{app:decay-certificates}. They
+satisfy the conditions of \cref{lem:tail} for $W=4/83^2$, and
+\[
+  \bconst_{83}:=\bconst(\rho_{83},\lambda_{83})\le-3.161708,\qquad
+  \aconst_-(83)\ge-3.154846 .
+\]
+For odd $q\ge83$ put $\lambda_q=\lambda_{83}-\log(q/83)$. By \cref{prop:shift},
+$\bconst(\rho_{83},\lambda_q)\le\bconst_{83}-\frac12\log(q/83)$ for $W=4/q^2$. On the arithmetic
+side, \cref{rem:worse-sign} and $(q^2+4)/(83^2+4)\le(q/83)^2$ give
+\[
+  \aconst_\sigma(q)\ge\aconst_-(q)\ge\aconst_-(83)+\Bigl(\frac13-2\cdot\frac{25}{144}\Bigr)
+  \log\frac q{83}=\aconst_-(83)-\frac1{72}\log\frac q{83}.
+\]
+Hence $\bconst(\rho_{83},\lambda_q)-\aconst_\sigma(q)\le-0.006862-\frac{35}{72}\log(q/83)<0$. By
+\cref{thm:arithmetic,thm:decay} the first two hypotheses of \cref{prop:criterion} hold for the
+family $\Gen$. By \cref{thm:nonvanishing,prop:local-dets-general}, for every $r\in\Q$ we have
+$T_p(r)\ne0$ for all large primes $p$; in particular $T_n\ne0$ for infinitely many $n$.
+\Cref{prop:criterion} gives $\xi\notin\Q$.
+\end{proof}
+
+\begin{theorem}\label{thm:band}
+For $q=81$ and $\sigma=\pm1$, the number $\xi$ is irrational.
+\end{theorem}
+
+\begin{proof}
+With the comparison data $(\rho_{81},\lambda_{81})$ of Appendix~\ref{app:decay-certificates}, which
+satisfy \cref{lem:tail} for $W=4/81^2$, we have $\bconst\le-3.374176$ and
+$\aconst_-(81)\ge-3.368498$, so $\bconst<\aconst_\sigma(81)$ for both signs. Nonvanishing follows
+from \cref{thm:nonvanishing,prop:local-dets-band}, and \cref{prop:criterion} concludes.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:main}]
+Combine \cref{thm:general,thm:band} with $\sigma=1$ ($\chi_2$) and $\sigma=-1$ ($\Ti_2$), and use
+that both functions are odd.
+\end{proof}
+
+\subsection{Status of the individual steps}\label{subsec:step-status}
+
+We use three labels. \emph{Proved}: an elementary argument, given in full, of a kind we regard
+as routine. \emph{Candidate}: an argument given here in full (or, where indicated, in outline)
+that has not yet been checked by anyone independent of the AI systems involved.
+\emph{Certified (AI-internal)}: a finite computation whose result was reproduced by a second
+implementation written without reference to the first, both by AI systems; this is not an
+independent verification. \Cref{thm:main} as a whole is a candidate.
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.44\textwidth}p{0.48\textwidth}@{}}
+\toprule
+Step & Status\\
+\midrule
+Moment sums, pole series, change of basis, criterion
+(\cref{lem:moment-sums,lem:pole-series,lem:change-of-basis,prop:criterion}) & proved; the final
+deduction is formalised in Lean, conditionally on the three estimates\\
+Prime $2$ (\cref{thm:prime-two}) & candidate (new); consistent with exact valuations for
+$h\le72$\\
+Primes dividing $q(q^2-4\sigma)$ (\cref{sec:exceptional}) & candidate (adapted from Krisman);
+consistent with exact valuations at small $h$\\
+Ordinary primes (\cref{thm:ordinary}) & candidate (new); finite bounds consistent with exact
+valuations for $h\le42$\\
+Profile integrals $\Iprof_\Gen$, $\Iprof_\Band$ & certified (AI-internal)\\
+Size bound (\cref{thm:decay}) & candidate (adapted from Krisman)\\
+Comparison data $\bconst_{83}$, $\bconst_{81}$ & certified (AI-internal)\\
+Nonvanishing mechanism (\cref{thm:nonvanishing}) & candidate (new); predicted valuation confirmed
+at $p=17,19$\\
+Local determinants (\cref{prop:local-dets-general,prop:local-dets-band}) & certified
+(AI-internal)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[points for scrutiny]\label{rem:scrutiny}
+In our judgement the steps most in need of an independent check are: (i) the comparison of the
+exact class data with the limiting profile in \cref{prop:profile} and the breakpoint argument of
+\cref{lem:convexity}, on which the use of midpoint sums as lower bounds depends; (ii) the bookkeeping of derivative columns and
+of the middle factor in the proof of \cref{thm:prime-two}, which is new and on which the constant
+$-140/99$ rests; (iii) the reduction of the local functionals in Step~5 of the proof of
+\cref{thm:nonvanishing}; (iv) the implementations of the certificates in
+Appendix~\ref{app:certificates}, which were written by AI systems. The margins (about $0.0069$ and $0.0057$
+per $h^2$) are small compared with the individual terms of \cref{tab:constants}, so an error of
+a few thousandths in any constant would invalidate the corresponding case.
+\end{remark}

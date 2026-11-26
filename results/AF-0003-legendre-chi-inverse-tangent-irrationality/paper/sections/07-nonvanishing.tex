@@ -1,0 +1,166 @@
+\section{Nonvanishing at prime indices}\label{sec:nonvanishing}
+
+This section proves that $T_n(r)\ne0$ for every rational $r$ and every large prime $n$
+(\cref{thm:nonvanishing} with \cref{prop:local-dets-general,prop:local-dets-band}), the third input
+of the criterion, used in \cref{sec:proofs}. \emph{Heuristic.} When $h$ and $K$ are fixed multiples
+of a prime $p$, every residue class modulo $p$ contains the same numbers of poles and zeros. In a
+basis of polynomials adapted to the classes, the distribution identity of \cref{sec:ordinary}
+makes the scaled matrix block triangular modulo $p$, and each diagonal block reduces to one of
+three fixed rational matrices that do not depend on $p$. If their determinants are nonzero,
+$\Delta(r)$ is a $p$-adic unit times an explicit power of $p$.
+
+Let $t\ge1$, $\gamma\ge1$ and $a_0\ge0$ be fixed integers, and for a prime $p$ consider the
+determinant with
+\[
+  h=tp,\qquad K=\gamma p,\qquad A=a_0p .
+\]
+The general construction is $(t,\gamma,a_0)=(6,7,0)$ with $n=p$, and the band construction is
+$(40,49,2)$. Put $e_0=\gamma-2a_0$ and $Q=\sigma y^2=\sigma q^2/4$, so that $w=1/Q$.
+
+\subsection{The local matrices and the statement}\label{subsec:local-matrices}
+
+For $s\in\{0,1\}$ let $\mathcal V_s$ be the $\Q$-vector space spanned by $\Q[z]$ and the
+fractions $1/(z+l+\frac12)$, $s\le l<s+\gamma$, and define $\ell_Q\colon\mathcal V_s\to\Q$ by
+\begin{equation}\label{eq:ellQ}
+  \ell_Q(g)=\sum_{r\ge0}[z^r]g'\cdot M_r(1/Q)\quad(g\in\Q[z]),\qquad
+  \ell_Q\Bigl(\frac1{z+l+\frac12}\Bigr)=4\sum_{i<l}\frac{Q^{\,l-i}}{(2i+1)^2},
+\end{equation}
+where $M_r(v)=\sum_{n\ge0}n^rv^n$ is the rational function of \cref{subsec:distribution}. For
+$(s,e)\in\{(0,0),(1,0),(1,1)\}$ let $L_{s,e}(Q)$ be the $t\times t$ matrix with entries
+\[
+  \ell_Q\Bigl(\frac{z^{i+j}(z+1)^e\prod_{i'<a_0}(z-i')^2}{\prod_{l=s}^{s+\gamma-1}(z+l+\frac12)}
+  \Bigr),\qquad 0\le i,j<t .
+\]
+Its entries are rational numbers depending on $q$, $\sigma$ and $(t,\gamma,a_0)$ only.
+
+\begin{theorem}\label{thm:nonvanishing}
+Assume that the three determinants $\det L_{s,e}(Q)$ are nonzero. Then for every $r\in\Q$ and
+every sufficiently large prime $p$ one has $\Delta(r)\ne0$, hence $T(r)\ne0$. More precisely,
+$v_p(\Delta(r))=-pt(e_0+2-t)+t$.
+\end{theorem}
+
+For $\Gen$ the valuation is $-18p+6$. We checked this prediction against exact computations of
+$\Delta(0)$ for $q=83$ at $p=17$ ($\sigma=-1$, $h=102$) and $p=19$ ($\sigma=1$, $h=114$), where
+$v_p(\Delta(0))=-300$ and $-336$ respectively (Appendix~\ref{app:consistency}).
+
+\begin{proof}[Proof of \cref{thm:nonvanishing}]
+Let $p$ be a prime not dividing $2q(q^2-4\sigma)$ or the denominator of $r$, with $p>2\gamma+1$
+(so $p^2>2K$), and not dividing the numerators and denominators of the three determinants. Then $p\nmid
+Q(Q-1)$, and the entries of the $L_{s,e}(Q)$, which are built from the numbers $(2i+1)^{-2}$,
+$i<\gamma$, differences of poles, powers of $Q$ and the moments $M_r(1/Q)$ with denominators
+powers of $Q-1$, are $p$-integral because $p>2\gamma+1$ and $p\nmid Q(Q-1)$. All but finitely
+many primes qualify. We use the
+notation of \cref{sec:ordinary}; every residue class $a\in\{1,\dots,p\}$ contains exactly
+$\gamma$ poles and $a_0$ zeros of $N_A$, namely $a,a+p,\dots,a+(a_0-1)p$.
+
+\emph{Step 1: a basis adapted to the classes.} The ideals $((u-a)^t)$, $1\le a\le p$, of
+$\Z_p[u]$ are pairwise comaximal, because $a-b$ is a unit for $a\ne b$. By the Chinese remainder
+theorem there are $f_{a,i}\in\Z_p[u]$ of degree less than $tp$, for $1\le a\le p$ and $0\le
+i<t$, with $f_{a,i}\equiv(u-a)^i\pmod{(u-a)^t}$ and $f_{a,i}\equiv0\pmod{(u-b)^t}$ for $b\ne a$.
+They form a $\Z_p$-basis of the polynomials of degree less than $h$ with $\Z_p$ coefficients, so
+their coefficient matrix $C$ has $\det C\in\Z_p^\times$, and by \cref{lem:change-of-basis} the
+Gram matrix $\mathbf G=[\mu_r(\varphi f_{a,i}f_{b,j})]$ has $\det\mathbf G=(\det C)^2\Delta(r)$.
+Write $f_{a,i}(c+pz)=p^iF_{a,i,c}(z)$; then $F_{a,i,c}\in\Z_p[z]$, $F_{a,i,a}\equiv z^i$ and,
+for $c\ne a$, $F_{a,i,c}\in p^{t-i}\Z_p[z]\subset p\Z_p[z]$.
+
+\emph{Step 2: local weights.} By~\eqref{eq:local-weight}, for $c\ne p$,
+$\varphi(c+pz)=p^{-e_0}\Psi_c(z)$ with $\Psi_c=N_c/P_c$, $N_c\in\rest{\Z_p}$ and
+\[
+  N_c\equiv\lambda_c\prod_{i'<a_0}(z-i')^2\pmod p,\qquad
+  P_c(z)=\prod_{l\in J_c}\bigl(z+l+\tfrac12\bigr),
+\]
+where, for $c\ne p$, $\lambda_c$ is the unit $c\prod_{k\notin\Pi_c}(c-x_k)^{-1}\prod_{j\notin Z_c}(c-j)^2$
+(for $c=p$ the factor $c$ is omitted: $\lambda_p=\prod_{k\notin\Pi_p}(p-x_k)^{-1}\prod_{j\notin Z_p}(p-j)^2$).
+Here $J_c=\{0,\dots,\gamma-1\}$ if $c\le\frac{p-1}2$ and $J_c=\{1,\dots,\gamma\}$ if
+$c\ge\frac{p+1}2$: indeed $x_k-c=-(2k+2c+1)/2$, and $2k+2c+1=(2l+1)p$ for $0\le k<\gamma p$ gives
+exactly these ranges of $l$, with $z_k=-l-\frac12$ \emph{exactly}. For $c=p$ the numerator
+$u=p(1+z)$ supplies one more factor $p$: $\varphi(p+pz)=p^{1-e_0}\Psi_p(z)$ with
+$N_p\equiv\lambda_p(1+z)\prod_{i'<a_0}(z-i')^2$.
+
+\emph{Step 3: the scaled matrix.} By \cref{lem:distribution},
+$\mathbf G_{(a,i),(b,j)}=\sum_cw^cp^{\,i+j-1-e_0}\ell_c(\tilde\varphi_cF_{a,i,c}F_{b,j,c})$, where
+$\tilde\varphi_c=\Psi_c$ for $c\ne p$ and $\tilde\varphi_p=p\Psi_p$. Let $\mathbf M$ be obtained from
+$\mathbf G$ by multiplying row $(a,i)$ by $p^{e_0+1-i}$, and moreover by $p^{-1}$ if $a=p$, and
+column $(b,j)$ by $p^{-j}$. Then
+\[
+  \mathbf M_{(a,i),(b,j)}=p^{-\one_{a=p}}\sum_{c=1}^pw^c\,\ell_c\bigl(\tilde\varphi_cF_{a,i,c}F_{b,j,c}\bigr),
+\]
+which is $p$-integral by \cref{lem:local-integrality}(b): for $a\ne p$ directly; for $a=p$ because
+$F_{p,i,c}\in p\Z_p[z]$ when $c\ne p$, and $\tilde\varphi_p\in p\,V_p$.
+
+\emph{Step 4: block triangularity.} Modulo $p$, $F_{a,i,c}\equiv\one_{a=c}z^i$, and $\ell_c$ is
+$\Z_p$-linear on the lattice of \cref{lem:local-integrality}(b), so a term with $c\ne a$ or $c\ne b$
+vanishes modulo $p$ unless it is divided by $p$. Hence for $a\ne p$ the row $(a,i)$ of
+$\mathbf M$ is, modulo $p$, supported in the columns $(a,j)$, with entries
+$w^a\ell_a(\Psi_az^{i+j})$. For $a=p$, the entries in columns $(p,j)$ receive from $c\ne p$ terms
+in $p^{2t-i-j-1}\Z_p\subset p\Z_p$, so they are $w^p\ell_p(\Psi_pz^{i+j})$ modulo $p$. Ordering the
+classes with $p$ last, $\mathbf M$ is block lower triangular modulo $p$, and
+\begin{equation}\label{eq:det-product}
+  \det\mathbf M\equiv\prod_{a=1}^{p}\det\bigl[w^a\ell_a(\Psi_az^{i+j})\bigr]_{i,j<t}\pmod p .
+\end{equation}
+
+\emph{Step 5: reduction of the local functionals.} We claim that for $N\in\rest{\Z_p}$,
+$\ell_a(N/P_a)\equiv\ell_Q(\bar N/P_a)\pmod p$, where $\bar N$ is the polynomial obtained by
+reducing the coefficients of $N$ and $\ell_Q$ is evaluated on a lift: choose
+$\tilde N\in\Z_{(p)}[z]$ with reduction $\bar N$; then $\ell_Q(\tilde N/P_a)\in\Z_{(p)}$ because
+$p>2\gamma+1$ and $p\nmid Q(Q-1)$, and its class modulo $p$ does not depend on the lift, since
+changing $\tilde N$ by $pg$ changes the value by $p\,\ell_Q(g/P_a)\in p\Z_{(p)}$. For the restricted-series
+part this follows from $v=w^p\equiv w=1/Q\pmod p$ and the fact that $M_r$ has denominator
+$(1-v)^{r+1}$, a unit. For a pole $k\in\Pi_a$ with $z_k=-l-\frac12$, the sum over $b\ne a$
+in~\eqref{eq:ell-pole} is divisible by $p^2$, and $p^2r\equiv0$, so
+$\ell_a(1/(z-z_k))\equiv4\sigma^ky^{2k+1}w^{-a}p^2\tau_k$. In $p^2\tau_k$ only the terms with
+$p\mid2i'+1$ survive; writing $2i'+1=(2i+1)p$, they are those with $i<l$ (because
+$2k+1=(2l+1)p-2a$ and $1\le a\le p$), and they contribute
+$\sigma^{ip+(p-1)/2}y^{-(2i+1)p}/(2i+1)^2$. Using $\sigma^p=\sigma$, $y^p\equiv y$, $w^{-a}=\sigma^a
+y^{2a}$, $y^{2k+2a+1}=y^{(2l+1)p}$ and $k+a+\frac{p-1}2=(l+1)p-1\equiv l\pmod2$, we obtain
+\[
+  \ell_a\Bigl(\frac{1}{z-z_k}\Bigr)\equiv4\sum_{i<l}\sigma^{l+i}y^{2l-2i}(2i+1)^{-2}
+  =4\sum_{i<l}\frac{Q^{\,l-i}}{(2i+1)^2}\pmod p,
+\]
+which is~\eqref{eq:ellQ}. Since the decomposition of $N/P_a$ into a restricted series and
+principal parts has integral coefficients (\cref{lem:local-integrality}(b)) and commutes with
+reduction, the claim follows.
+
+\emph{Step 6: conclusion.} By Steps 2 and 5 the $a$-th block in~\eqref{eq:det-product} is
+congruent to $w^a\lambda_a$ times $L_{s_a,e_a}(Q)$, with $s_a=\one_{a>(p-1)/2}$ and $e_a=\one_{a=p}$.
+Hence $\det\mathbf M$ is a $p$-adic unit. As $\det\mathbf M=p^{\,pt(e_0+1)-pt(t-1)-t}\det\mathbf
+G$ and $\det C$ is a unit, $v_p(\Delta(r))=-pt(e_0+2-t)+t$.
+\end{proof}
+
+Krisman's Lemma~P \cite[Thm.~8.1]{Krisman2026chi2} follows the same pattern with $h=3\ell$,
+$K=h$, the Lagrange basis at the poles and three $3\times3$ blocks. With $K>h$ there is no
+Lagrange basis at the poles, which is why we use the Taylor jets of Step~1.
+
+\subsection{The local determinants}\label{subsec:local-dets}
+
+\begin{proposition}\label{prop:local-dets-general}
+For $(t,\gamma,a_0)=(6,7,0)$ and $(s,e)=(0,0),(1,0),(1,1)$,
+\[
+  (Q-1)^{24}\det L_{s,e}(Q)=c_{s,e}\,Q^{\,a_{s,e}}(Q-1)^{b_{s,e}}\,\Pi_{s,e}(Q)
+\]
+with nonzero rationals $c_{s,e}$, $(a_{s,e},b_{s,e})=(9,20),(11,20),(13,18)$, and primitive
+integer polynomials $\Pi_{s,e}$ of degrees $16,20,20$ whose roots all have modulus less than
+$189$. In particular $\det L_{s,e}(\pm q^2/4)\ne0$ for every odd $q\ge29$.
+\end{proposition}
+
+\begin{proof}
+The entries of $(Q-1)^4L_{s,e}(Q)$ are polynomials in $Q$: the derivative of the polynomial part
+has degree at most $3$, so only $M_0,\dots,M_3$ occur, and the pole values are polynomials. The
+determinants were computed exactly, twice and independently (Appendix~\ref{app:local-certificates}): once
+symbolically in $Q$, and once by exact interpolation from $90$ rational values, with agreement.
+The bound on the roots is Cauchy's bound $1+\max_i\abs{\pi_i/\pi_{\deg}}$, evaluated exactly; it
+is less than $23.19$, $136.73$ and $188.09$ for the three polynomials. (Numerically all roots have modulus less
+than $1.88$; this is not used.) The statement for every odd $q\ge29$ uses only the Cauchy bound.
+\end{proof}
+
+\begin{proposition}\label{prop:local-dets-band}
+For $(t,\gamma,a_0)=(40,49,2)$, $q=81$ and $\sigma=\pm1$, the six rational numbers
+$\det L_{s,e}(\pm81^2/4)$ are nonzero.
+\end{proposition}
+
+\begin{proof}
+They were computed exactly in rational arithmetic (Appendix~\ref{app:local-certificates}); their
+numerators have between $7233$ and $7548$ decimal digits. As an independent check, their
+reductions modulo $191$ are $171$, $138$, $106$ for $\sigma=1$ and $47$, $24$, $90$ for
+$\sigma=-1$, in agreement with a separate computation carried out entirely modulo $191$.
+\end{proof}

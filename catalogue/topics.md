@@ -6,6 +6,7 @@
 
 - [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
 - [AF-0002](../results/AF-0002-trigamma-fifths-irrationality/README.md) The irrationality of $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants (preprint)
+- [AF-0003](../results/AF-0003-legendre-chi-inverse-tangent-irrationality/README.md) Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof (preprint)
 
 ## 31A15
 
@@ -19,3 +20,4 @@
 ## 33B30
 
 - [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
+- [AF-0003](../results/AF-0003-legendre-chi-inverse-tangent-irrationality/README.md) Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof (preprint)

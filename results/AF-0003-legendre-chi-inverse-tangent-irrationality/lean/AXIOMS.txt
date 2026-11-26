@@ -1,0 +1,49 @@
+# Output of `#print axioms` for every declaration listed in theorems.toml.
+# Toolchain: leanprover/lean4:v4.34.0-rc1; Mathlib rev: f385f9fd18abed332ebcd3df239cb357e264aceb.
+# Produced by `lake env lean` on a probe file importing the library roots.
+# Declarations: 29; lean exit status: 0.
+'AxiomForge.LegendreChi.one_le_pow_mul_abs_aeval_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_int_poly_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_tendsto_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_scaled_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_log_content_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_of_rat_value_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.frequently_atTop_of_eventually_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.summable_legendreChi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.summable_inverseTangentIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.inverseTangentIntegral_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_legendreChi_neg_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.legendreChi_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.inverseTangentIntegral_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.targetValue_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.targetValue_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.natDegree_halfHankelDet_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.decayRate_lt_contentRate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.decay_lt_content_eighty_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.primeTwoProfile_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.primeTwoProfile_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChi.irrational_targetValue_of_halfIntegerEstimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_targetValue_of_familyEstimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_legendreChi_two_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_inverseTangentIntegral_two_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_legendreChi_neg_two_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_two_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+# Summary: all declarations use only propext, Classical.choice, Quot.sound

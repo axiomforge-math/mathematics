@@ -1,0 +1,342 @@
+\section{Ordinary primes}\label{sec:ordinary}
+
+This section proves the lower bound $\Iprof_{\mathcal C}h^2$ for the contribution of the
+ordinary primes $p\nmid2q(q^2-4\sigma)$ to $\sum_p\vG p(T)\log p$ (\cref{thm:ordinary}); it is the
+largest term of $\aconst_\sigma(q)$ and is used in \cref{thm:arithmetic}. Primes $p<\delta h$ are
+handled by the crude bound of \cref{prop:uniform} and primes $p>2K$ cost nothing
+(\cref{lem:large-primes}). The work is in the range $p\asymp h$, where we bound $\vG p(T)$ by a
+small optimisation problem over the residue classes modulo $p$ (\cref{subsec:two-bounds}), pass to
+a limiting profile in $p/h$ (\cref{subsec:profile}), and integrate it against $\log p$.
+
+Throughout, $p$ is ordinary, so $w$ and $1-w$ are $p$-adic units.
+
+\begin{lemma}\label{lem:large-primes}
+If $p>2K$ is ordinary, then $\vG p(T)\ge0$.
+\end{lemma}
+
+\begin{proof}
+All factorials in $\nrm$ involve integers smaller than $p$, so $v_p(\nrm)=0$. The polynomial
+$D_K$ is monic with $p$-integral coefficients, so the quotient of $u^{i+j+1}N_A(u)$ by $D_K$ has
+$p$-integral coefficients and so has its derivative; by \cref{lem:moment-sums}(c) its moment sum
+is $p$-integral. The residues $x_k^{i+j+1}N_A(x_k)/D_K'(x_k)$ are $p$-integral because
+$D_K'(x_k)=\pm k!(K-1-k)!$, and $\tau_k$ involves only the odd numbers $2j+1<2K<p$.
+\end{proof}
+
+The interesting range is $p\asymp h$. Fix $\delta>0$. For $h$ large, every prime
+$p\ge\delta h$ satisfies $p^2>3h>2K$ (both constructions have $2K<3h$), and we assume this from
+now on. Then every difference
+$l-k$ of pole indices and every odd number below $2K$ has $p$-adic valuation at most one.
+
+\subsection{Residue classes and local functionals}\label{subsec:distribution}
+
+\emph{Heuristic.} Modulo $p$ the poles fall into residue classes. In the coordinate $u=a+pz$
+around a class $a$, the poles of that class are at distance $O(1)$ while all others are units,
+so the weight $\varphi$ has a definite $p$-adic size on each class. Splitting the series over
+the residue classes of $m$ (\cref{lem:distribution}) turns $\mu_X$ into a sum of local
+functionals, one per class, which are integral (\cref{lem:local-integrality}).
+
+
+For $a\in\{1,\dots,p\}$ let $\Pi_a=\{k<K:x_k\equiv a\pmod p\}$, $c_a=\abs{\Pi_a}$, and for
+$k\in\Pi_a$ let $z_k=(x_k-a)/p\in\Z_p$; these are pairwise incongruent modulo $p$, because
+$\abs{l-k}<K<p^2$. Let $\rest{\Z_p}$ be the ring of restricted power series
+$\sum_jg_jz^j$ with $g_j\in\Z_p$, $g_j\to0$, and $\rest{\Q_p}=\rest{\Z_p}[1/p]$. Put $v=w^p$;
+then $v\equiv w\pmod p$, so $v$ and $1-v$ are units. Let $M_r(v)=\sum_{n\ge0}n^rv^n\in\Z_p$ be
+the rational moment ($M_0=1/(1-v)$, and $M_r=\sum_{i=1}^r S(r,i)\,i!\,v^i/(1-v)^{i+1}$ with
+Stirling numbers $S(r,i)$), and define the continuous linear map
+\[
+  \mathsf M_v\colon\rest{\Q_p}\to\Q_p,\qquad \mathsf M_v\Bigl(\sum_jg_jz^j\Bigr)=\sum_jg_jM_j(v),
+\]
+which maps $\rest{\Z_p}$ into $\Z_p$. Let $V_a=\rest{\Q_p}\oplus\bigoplus_{k\in\Pi_a}\Q_p\cdot
+(z-z_k)^{-1}$ and define $\ell_a\colon V_a\to\Q_p[X]$ by $\ell_a(G)=\mathsf M_v(G')$ for
+$G\in\rest{\Q_p}$ and, for $k\in\Pi_a$,
+\begin{equation}\label{eq:ell-pole}
+  \ell_a\Bigl(\frac1{z-z_k}\Bigr)=\frac{p^2}{w^a}\Bigl[\mu_X\Bigl(\frac1{u-x_k}\Bigr)
+  -\sum_{\substack{b=1\\b\ne a}}^{p}\frac{w^b}{p}\,
+  \mathsf M_v\Bigl(\frac{\mathrm d}{\mathrm dz}\,\frac{1}{b+pz-x_k}\Bigr)\Bigr].
+\end{equation}
+For $R\in\Rsp$ let $R_a(z)=R(a+pz)$. If $R$ is a polynomial, $R_a\in\Q_p[z]$; if
+$R=1/(u-x_k)$ then $R_a=p^{-1}(z-z_k)^{-1}$ for $k\in\Pi_a$, and otherwise $a-x_k$ is a unit and
+$R_a\in\rest{\Z_p}$. Thus $R_a\in V_a$.
+
+\begin{lemma}[distribution identity]\label{lem:distribution}
+For every $R\in\Rsp$, $\displaystyle\mu_X(R)=\sum_{a=1}^{p}\frac{w^a}{p}\,\ell_a(R_a)$.
+\end{lemma}
+
+\begin{proof}
+For a polynomial $g$ one has $\sum_{m\ge1}g(m)w^m=\sum_{a=1}^pw^a\sum_{n\ge0}g(a+pn)w^{pn}$ in
+$\Q[[w]]$; both sides are rational functions of $w$, so the identity holds at our $w$, in
+$\Q_p$. Apply it to $g=R'$ for a polynomial $R$, using $(R_a)'(z)=pR'(a+pz)$. For
+$R=1/(u-x_k)$ with $k\in\Pi_{a_0}$ the identity is equivalent to the definition~\eqref{eq:ell-pole}
+of $\ell_{a_0}(1/(z-z_k))$.
+\end{proof}
+
+\begin{lemma}[integrality]\label{lem:local-integrality}
+Let $a\in\{1,\dots,p\}$ and $P_a(z)=\prod_{k\in\Pi_a}(z-z_k)$.
+\begin{enumerate}[(a)]
+\item For $k\in\Pi_a$, $\ell_a(1/(z-z_k))\in\Z_p[X]$.
+\item If $N\in\rest{\Z_p}$, then $G=N/P_a\in V_a$ and $\ell_a(G)\in\Z_p[X]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) In $p^2\mu_X(1/(u-x_k))=-4\sigma^ky^{2k+1}(p^2X-p^2\tau_k)$ the number $p^2\tau_k$ is
+$p$-integral, since $v_p(2j+1)\le1$ for $2j+1<2K$. In the sum over $b\ne a$,
+$p^{-1}\frac{\mathrm d}{\mathrm dz}(b+pz-x_k)^{-1}=-(b+pz-x_k)^{-2}$ lies in $\rest{\Z_p}$.
+(b) Division of $z^j$ by the monic polynomial $P_a\in\Z_p[z]$ has integral quotient and
+remainder, so $N=QP_a+N_0$ with $Q\in\rest{\Z_p}$ and $N_0\in\Z_p[z]$ of degree less than $c_a$.
+Then $G=Q+\sum_{k\in\Pi_a}\frac{N_0(z_k)}{P_a'(z_k)}\frac1{z-z_k}$, and $P_a'(z_k)$ is a unit
+because the $z_k$ are pairwise incongruent. Apply~(a).
+\end{proof}
+
+\emph{Local weights.} Let $Z_a=\{1\le j\le A:j\equiv a\pmod p\}$ and $n_a=\abs{Z_a}$. For $k\notin\Pi_a$ the factor
+$a+pz-x_k$ is a unit of $\rest{\Z_p}$, and for $j\notin Z_a$ so is $a+pz-j$. Hence
+\begin{equation}\label{eq:local-weight}
+  \varphi(a+pz)=p^{\,2n_a-c_a}\,\frac{N_a(z)}{P_a(z)},\qquad
+  N_a(z)=(a+pz)\prod_{j\in Z_a}\Bigl(z-\frac{j-a}p\Bigr)^2\,E_a(z),
+\end{equation}
+with $E_a\in\rest{\Z_p}^\times$, so $N_a\in\rest{\Z_p}$. We call
+$\omega_a=2n_a-c_a-1$ the \emph{base cost} of the class $a$.
+
+\subsection{Two lower bounds}\label{subsec:two-bounds}
+
+\begin{proposition}[jet bound]\label{prop:jet}
+$\vG p(\Delta)\ge\mathcal J_p$, where $\mathcal J_p$ is the minimum of
+$\sum_a\sum_{j<t_a}(\omega_a+2j)$ over all $(t_a)_{a}$ with $t_a\ge0$ and $\sum_at_a=h$.
+\end{proposition}
+
+\begin{proof}
+For polynomials $f$, $g$ of degree less than $h$ write $f(a+pz)=\sum_{i<h}f^{(a)}_ip^iz^i$; for
+$f=u^r$ the Taylor coefficients $f^{(a)}_i=\binom ri a^{r-i}$ are integers. By
+\cref{lem:distribution} and~\eqref{eq:local-weight},
+\[
+  \mu_X(\varphi u^ru^s)=\sum_{a=1}^p\sum_{i,j<h}(u^r)^{(a)}_i(u^s)^{(a)}_j\,\Lambda^{(a)}_{ij},
+  \qquad
+  \Lambda^{(a)}_{ij}=w^ap^{\,i+j-1+2n_a-c_a}\,\ell_a\Bigl(\frac{N_a(z)z^{i+j}}{P_a(z)}\Bigr),
+\]
+and $\vG p(\Lambda^{(a)}_{ij})\ge i+j+\omega_a$ by \cref{lem:local-integrality}(b). So the matrix of
+$\Delta$ is $\mathbf J^{\mathsf T}\Lambda\mathbf J$ with $\mathbf J$ integral (rows indexed by
+pairs $(a,i)$) and $\Lambda=\diag(\Lambda^{(a)})$ block diagonal. In~\eqref{eq:cauchy-binet} a
+nonzero term selects $t_a$ rows and $t_a$ columns in each block, with distinct orders $i$ and
+distinct orders $j$; each term of the Leibniz expansion of such a minor has valuation at least
+$t_a\omega_a+2\binom{t_a}2=\sum_{j<t_a}(\omega_a+2j)$.
+\end{proof}
+
+Let $\epsilon_a=1$ if $\Pi_a$ contains an index $k$ with $2k+1<p$, and $\epsilon_a=0$
+otherwise. Two elements of $\Pi_a$ differ by a multiple of $p$, so at most one index of $\Pi_a$
+is below $(p-1)/2$, and it is the smallest one.
+
+\begin{proposition}[pole bound]\label{prop:raw}
+$\vG p(\Delta)\ge\mathcal R_p$, where $\mathcal R_p$ is the minimum of
+$\sum_a\bigl[\sum_{j<t_a}(\omega_a+2j)+2\epsilon_a\one_{t_a=c_a}\bigr]$ over all $(t_a)$ with
+$0\le t_a\le c_a$ and $\sum_at_a\le h$.
+\end{proposition}
+
+\begin{proof}
+Write $\varphi u^s=Q_s+\sum_kx_k^s\rho_k/(u-x_k)$, $\rho_k=x_kN_A(x_k)/D_K'(x_k)$. The quotient
+$Q_s$ of $u^{s+1}N_A$ by the monic $D_K\in\Z_p[u]$ is integral, so the matrix $\mathbf P=
+[\mu_X(Q_{i+j})]$ is integral, and the matrix of $\Delta$ is
+$\mathbf P+\sum_k\gamma_k\vvec(x_k)\vvec(x_k)^{\mathsf T}$ with
+$\gamma_k=\rho_k\mu_X(1/(u-x_k))$. For $k\in\Pi_a$: $v_p(N_A(x_k))\ge2n_a$; exactly $c_a-1$
+factors $l-k$ of $D_K'(x_k)$ are divisible by $p$, each exactly once; and $\mu_X(1/(u-x_k))$ has
+Gauss valuation at least $-2$, and at least $0$ if $2k+1<p$. Hence
+$\vG p(\gamma_k)\ge\omega_a+2\cdot\one_{2k+1<p}$.
+
+Write the matrix as $[I_h\mid V]\diag(\mathbf P,\Gamma)[I_h\mid V]^{\mathsf T}$ with
+$V=[\vvec(x_k)]_k$ and $\Gamma=\diag(\gamma_k)$. A nonzero term of~\eqref{eq:cauchy-binet}
+selects the same set $\mathcal K$ of poles on both sides, $\abs{\mathcal K}\le h$, and some columns of
+$I_h$. Its middle factor has valuation at least $\sum_{k\in\mathcal K}\vG p(\gamma_k)$. Each outer
+factor is, up to sign, a minor of $V$ with columns $\mathcal K$; as a polynomial in the nodes it is
+alternating with integer coefficients, hence divisible by $\prod_{k<l\in\mathcal K}(x_l-x_k)$, and
+the $t_a=\abs{\mathcal K\cap\Pi_a}$ nodes of each class contribute valuation $\binom{t_a}{2}$. If
+$t_a=c_a$, the index with $2k+1<p$, when it exists, is selected.
+\end{proof}
+
+The normalising factor contributes, by Legendre's formula and $p^2>3h>2K>h$,
+\begin{equation}\label{eq:vp-S}
+  v_p(\nrm)=h\Bigl(\floor{\tfrac Kp}-2\floor{\tfrac Ap}\Bigr)-2\sum_{i<h}\floor{\tfrac ip}
+  =h\Bigl(\floor{\tfrac Kp}-2\floor{\tfrac Ap}-2Q_p+\tfrac phQ_p(Q_p+1)\Bigr),
+\end{equation}
+with $Q_p=\floor{h/p}$. Hence, for ordinary $p\ge\delta h$ and $h$ large,
+\begin{equation}\label{eq:vp-T-combined}
+  \vG p(T)\ \ge\ \max\bigl(-2h,\ v_p(\nrm)+\max(\mathcal J_p,\mathcal R_p)\bigr).
+\end{equation}
+
+\subsection{The profile}\label{subsec:profile}
+
+\emph{Heuristic.} For $p=xh$ the residue classes come in a bounded number of types, according to
+the numbers of poles and zeros they contain and to whether their first pole is improved, and the
+number of classes of each type is $h$ times the length of an interval. The minima
+$\mathcal J_p$ and $\mathcal R_p$ are then $h$ times the values of two filling problems whose
+capacities are these lengths. We use the filling problems in their dual form, which makes both the
+comparison with $\mathcal J_p$, $\mathcal R_p$ and the convexity in $x$ immediate.
+
+\begin{lemma}[filling problems]\label{lem:filling}
+Let $(e_i)_{i\in I}$ be real costs with capacities $m_i\ge0$, finitely many below any given
+bound, and let $M>0$. For every selection $0\le y_i\le m_i$ with $\sum_iy_i=M$ and every
+$\lambda\in\R$,
+\[
+  \sum_iy_ie_i\ \ge\ \lambda M-\sum_im_i\pos{\lambda-e_i},
+\]
+and the same holds for $\sum_iy_i\le M$ if $\lambda\le0$. Assume $\sum_im_i\ge M$. Equality holds for the
+greedy selection of mass $M$ (cheapest costs first) with $\lambda$ its largest cost; in the second
+case, for the greedy selection restricted to the negative costs (of mass $\min(M,\sum_{e_i<0}m_i)$)
+with $\lambda$ the minimum of its largest cost and $0$.
+\end{lemma}
+
+\begin{proof}
+$\sum_iy_ie_i=\lambda\sum_iy_i-\sum_iy_i(\lambda-e_i)$ and
+$y_i(\lambda-e_i)\le m_i\pos{\lambda-e_i}$; if $\sum y_i\le M$ and $\lambda\le0$, then
+$\lambda\sum_iy_i\ge\lambda M$. For the greedy selection of mass $M$ every $i$ with $e_i<\lambda$ is used
+fully and every $i$ with $e_i>\lambda$ not at all, so both inequalities are equalities. In the
+second case, if the negative costs have total capacity at least $M$, the greedy selection of mass
+$M$ uses only negative costs and $\lambda\le0$ is its largest cost, so the first case applies;
+otherwise take $y_i=m_i$ for $e_i<0$ and $y_i=0$ otherwise, and $\lambda=0$: both sides equal
+$\sum_{e_i<0}m_ie_i$.
+\end{proof}
+
+\emph{The model.} Let $\kappa=K/h$ and $\alpha=A/h$ be fixed, and let $x>0$. Put
+$c_0=\floor{\kappa/x}$, $r_\kappa=\kappa-c_0x$, $n_0=\floor{\alpha/x}$, $r_\alpha=\alpha-n_0x$, and
+for $t\in[0,x)$
+\begin{gather*}
+  c(t)=c_0+\one_{t<r_\kappa},\qquad n(t)=n_0+\one_{((x/2-t)\bmod x)<r_\alpha},\\
+  \epsilon(t)=\one_{t<x/2}\,\one_{c(t)>0},\qquad \omega(t)=2n(t)-c(t)-1.
+\end{gather*}
+Here $t$ stands for $k_0/h$, where $k_0$ is the least pole index in a class (see the proof of
+\cref{prop:profile}). For $\lambda\in\R$ put
+\[
+  F_\lambda(\omega)=\sum_{j\ge0}\pos{\lambda-\omega-2j},\qquad
+  \widetilde F_\lambda(\omega,c,\epsilon)=\sum_{0\le j<c}\pos{\lambda-\omega-2j-2\epsilon\one_{j=c-1}},
+\]
+and define
+\begin{align*}
+  J(x)&=\sup_{\lambda\in\R}\Bigl[\lambda-\int_0^xF_\lambda(\omega(t))\diff t\Bigr],\\
+  R(x)&=\sup_{\lambda\le0}\Bigl[\lambda-\int_0^x\widetilde F_\lambda\bigl(\omega(t),c(t),
+  \epsilon(t)\bigr)\diff t\Bigr],\\
+  N(x)&=\floor{\kappa/x}-2\floor{\alpha/x}-2\floor{1/x}+x\floor{1/x}\bigl(\floor{1/x}+1\bigr),\\
+  B(x)&=\max\bigl(-2,\ N(x)+\max(J(x),R(x))\bigr).
+\end{align*}
+The slots of the model take finitely many cost values $\omega(t)+2j$ below any bound, since
+$\omega$ takes finitely many values; grouping the slots by cost value turns the continuous problems
+into problems of the form of \cref{lem:filling}, with capacities the total length of $t$ with the
+given cost. By \cref{lem:filling}, $J(x)$ is the least cost of filling mass $1$ with capacity $\diff t$ at each
+cost $\omega(t)+2j$ (the \emph{jet slots}), and $R(x)$ the least cost of filling mass at most $1$
+with capacity $\diff t$ at each cost $\omega(t)+2j+2\epsilon(t)\one_{j=c(t)-1}$, $j<c(t)$ (the
+\emph{pole slots}); this primal form is the one evaluated in Appendix~\ref{app:profile-certificate}.
+
+\begin{proposition}\label{prop:profile}
+For every $\delta>0$ there is $C_\delta$ such that for all large $h$ in the construction and all
+ordinary primes $\delta h\le p\le2K$, $\vG p(T)\ge h\,B(p/h)-C_\delta$.
+\end{proposition}
+
+\begin{proof}
+Let $x=p/h\in[\delta,2\kappa]$. By~\eqref{eq:vp-S}, $v_p(\nrm)=hN(x)$ exactly, so
+by~\eqref{eq:vp-T-combined} it suffices to show that the minima $\mathcal J_p$ and $\mathcal R_p$
+of \cref{prop:jet,prop:raw} satisfy $\mathcal J_p\ge hJ(x)-C_\delta$ and
+$\mathcal R_p\ge hR(x)-C_\delta$.
+
+\emph{Exact class data.} For $0\le k_0<p$ let $x_{k_0}=-k_0-\frac12$ (a pole only if $k_0<K$).
+These $p$ points lie in distinct classes modulo $p$, so the classes are indexed by $k_0$; the class
+of $k_0$ contains the poles $x_k$ with $k\equiv k_0\pmod p$, $k<K$. Since $K/p=\kappa/x$ and
+$K-p\floor{K/p}=hr_\kappa$, their number is $c(k_0/h)$ (for $K<p\le2K$ one has $c_0=0$,
+$r_\kappa=\kappa$ and the classes with $k_0\ge K$ contain no pole, in accordance with
+$c(t)=0$ for $t\ge r_\kappa$). Its first pole has
+$2k_0+1<p$ if and only if $k_0\le(p-3)/2$, which agrees with $\one_{k_0/h<x/2}$ except for
+$k_0=(p-1)/2$. Its zeros are the $j\in[1,A]$ with $j\equiv x_{k_0}\equiv\frac{p-1}2-k_0$; if
+$\varrho\in\{1,\dots,p\}$ denotes this residue, their number is $n_0+\one_{\varrho\le hr_\alpha}$,
+while $h\bigl((x/2-k_0/h)\bmod x\bigr)$ equals $\varrho+\frac12$ for $\varrho<p$ and $\frac12$ for
+$\varrho=p$. Since $\varrho$ and $hr_\alpha$ are integers, the two indicators agree unless
+$\varrho=hr_\alpha$ or $\varrho=p$. Altogether, at most three classes have data
+$(c_a,n_a,\epsilon_a)$ different from $(c,n,\epsilon)(k_0/h)$.
+
+\emph{Counting.} The model data are constant on each of the at most four intervals (open, closed or
+half-open) into which the three interior points $x/2$, $r_\kappa$ and $(x/2-r_\alpha)\bmod x$ cut
+$[0,x)$ (the set where $n(t)=n_0+1$ is $(s,x/2]$ cyclically, closed on the right), and an interval
+of length $v-u$ contains between $h(v-u)-1$ and $h(v-u)+1$ of the points $k_0/h$; this gives an error of at most
+$1$ per piece. Hence, for every $\lambda$,
+\[
+  \sum_aF_\lambda(\omega_a)\le h\int_0^xF_\lambda(\omega(t))\diff t+8\max_\omega F_\lambda(\omega),
+\]
+the maximum over $\omega\in[-c_0-2,\,2n_0+1]$, the range of all base costs; similarly for
+$\widetilde F_\lambda$.
+
+\emph{Comparison.} $\mathcal J_p$ is the least sum of $h$ elements of the multiset
+$\{\omega_a+2j\}$, so \cref{lem:filling} gives $\mathcal J_p\ge h\lambda-\sum_aF_\lambda(\omega_a)$
+for every $\lambda$. The supremum defining $J(x)$ is attained at the largest cost $\lambda^*$ used
+by the greedy filling; as the levels $j<\lceil1/x\rceil$ have total capacity at least $1$,
+$\lambda^*\le2n_0+1+2\lceil1/x\rceil$. With $\lambda=\lambda^*$ we obtain $\mathcal J_p\ge
+hJ(x)-8\max_\omega F_{\lambda^*}(\omega)$, and $F_{\lambda^*}(\omega)\le(\lambda^*+c_0+4)^2/4$ is
+bounded in terms of $\delta$, because $c_0\le\kappa/\delta$, $n_0\le\alpha/\delta$ and
+$1/x\le1/\delta$. In the same way $\mathcal R_p$ is the least sum of at most $h$ elements of the
+multiset of pole slots, and \cref{lem:filling} applies with $\lambda\le0$. The supremum over
+$\lambda\le0$ defining $R(x)$ is attained, since the bracket is concave and piecewise affine in
+$\lambda$ with slope $1$ for $\lambda<\min\omega-2$ (all terms vanish there), so a maximiser
+$\lambda^*\le0$ exists. For $\lambda\le0$ and $\omega\ge-c_0-2$ each of the at most $c_0+1$
+terms of $\widetilde F_\lambda$ is at most $c_0+2$, hence
+$\widetilde F_\lambda\le(c_0+1)(c_0+2)$, and $\mathcal R_p\ge hR(x)-8(c_0+1)(c_0+2)$.
+\end{proof}
+
+\begin{lemma}[piecewise convexity]\label{lem:convexity}
+Let $\mathfrak B$ be the set of points $1/j$, $\kappa/j$, $2\kappa/j$, $\alpha/j$, $2\alpha/j$,
+$2(\kappa+\alpha)/j$, $j\ge1$ (only the first three if $\alpha=0$). On every open interval of
+$(0,\infty)\setminus\mathfrak B$ the function $B$ is convex. Consequently
+$\int_a^bB\ge(b-a)B(\frac{a+b}2)$ for consecutive points $a<b$ of $\mathfrak B\cup\{\delta\}$.
+\end{lemma}
+
+\begin{proof}
+Let $U$ be an open interval disjoint from $\mathfrak B$. The integers $\floor{1/x}$, $c_0$, $n_0$
+change only at the points $1/j$, $\kappa/j$, $\alpha/j$, so they are constant on $U$; hence $N$ is
+affine on $U$, and $x/2$, $x$ and $r_\kappa=\kappa-c_0x$ are affine. The point
+$s=(x/2-r_\alpha)\bmod x$ equals $x/2-r_\alpha$ or $x/2-r_\alpha+x$ according as
+$r_\alpha\le x/2$ or not, and $r_\alpha=x/2$ means $x=2\alpha/(2n_0+1)\in\mathfrak B$, so $s$ is
+affine on $U$ too. Two of the cut points $0$, $x/2$, $r_\kappa$, $s$, $x$ coincide only if
+$r_\kappa=0$ ($x=\kappa/c_0$), $r_\kappa=x/2$ ($x=2\kappa/(2c_0+1)$), $s=0$ ($r_\alpha=x/2$),
+$s=x/2$ ($r_\alpha=0$, $x=\alpha/n_0$) or $s=r_\kappa$ (then $\kappa+\alpha\in x/2+x\Z$, so
+$x=2(\kappa+\alpha)/(2m+1)$); the remaining coincidences ($r_\kappa=x$, $s=x$, $x/2=0$) are
+impossible. All these values lie in $\mathfrak B$, so on $U$ the cut points keep their order, the
+model data $(c,n,\epsilon)$ are constant on each piece, and the lengths of the pieces are affine
+in $x$. For fixed $\lambda$ the functions $x\mapsto\lambda-\int_0^xF_\lambda(\omega(t))\diff t$
+and $x\mapsto\lambda-\int_0^x\widetilde F_\lambda\diff t$ are therefore affine on $U$, so $J$ and $R$, as
+suprema of affine functions, are convex. They are finite: $R\le0$ and
+$J\le2n_0+1+2\lceil1/x\rceil$. Hence $B$ is convex and bounded on $U$. A convex function on $(a,b)$ lies above
+its supporting line at $\frac{a+b}2$, which gives the integral inequality.
+\end{proof}
+
+\subsection{The ordinary contribution}\label{subsec:ordinary-contribution}
+
+\begin{theorem}\label{thm:ordinary}
+For every $\delta>0$,
+\[
+  \liminf_{h\to\infty}\frac1{h^2}\sum_{p\ \mathrm{ordinary}}\vG p(T)\log p\ \ge\
+  \int_\delta^{2\kappa}B(x)\diff x-2\delta .
+\]
+With $\delta=1/2000$ the right-hand side is at least $\Iprof_\Gen=-2.113164137$ for
+$(\kappa,\alpha)=(7/6,0)$ and at least $\Iprof_\Band=-1.987089582$ for $(49/40,1/20)$.
+\end{theorem}
+
+\begin{proof}
+Split the ordinary primes into $p<\delta h$, $\delta h\le p\le2K$ and $p>2K$. The last range
+contributes a nonnegative amount by \cref{lem:large-primes}. For the first, by
+\cref{prop:uniform},
+\[
+  \sum_{p<\delta h}2hL_p\log p\le2h\,\theta(\delta h)+2h\sqrt{3h}\log(3h)=2\delta h^2+o(h^2),
+\]
+because $L_p=1$ for $\sqrt{3h}<p<\delta h$, with $\theta(x)=\sum_{p\le x}\log p\sim x$. In the middle
+range, \cref{prop:profile} and $\sum_{p\le2K}\log p=O(h)$ reduce the claim to
+$\sum_{\delta h\le p\le2K}B(p/h)\log p\ge h\int_\delta^{2\kappa}B-o(h)$. The function $B$ is bounded
+on $[\delta,2\kappa]$ and continuous outside the finite set $\mathfrak B\cap[\delta,2\kappa]$,
+hence Riemann integrable; approximating it from below by step functions and using
+$\theta(\beta h)-\theta(\beta'h)=(\beta-\beta')h+o(h)$ for fixed $\beta'<\beta$ (the prime number
+theorem) gives the claim. The finitely many excluded primes do not affect the limit. The numerical
+values are lower bounds for the midpoint sums of \cref{lem:convexity} over the
+$5999$ (respectively $11798$) intervals cut out by $\mathfrak B$ in $[\delta,2\kappa]$, computed
+exactly in rational arithmetic (Appendix~\ref{app:profile-certificate}).
+\end{proof}
+
+\begin{remark}\label{rem:profile-k1}
+For $(\kappa,\alpha)=(1,0)$ the same computation gives $\int_\delta^2B-2\delta=-1.7169166\ldots
+=\frac12-\frac{133}{60}-\frac\delta2$. Since $\log\nrm=\frac12h^2+O(h\log h)$ when $\kappa=1$,
+this is Krisman's generic constant $\frac{133}{60}$ \cite[Thm.~4.5]{Krisman2026chi2} up to the
+cut-off: at $\kappa=1$ the profile reproduces his class bound, and the gain for $\Gen$ does not
+come from a sharper estimate at ordinary primes. What the profile adds is that it is defined for
+every $\kappa$ and $\alpha$.
+\end{remark}

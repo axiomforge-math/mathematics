@@ -1,0 +1,52 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue).
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "AF-0003"
+slug = "legendre-chi-inverse-tangent-irrationality"
+title = "Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof"
+version = "0.1.0"
+date = "2026-11-26"
+# Preprint: complete written argument, certificates reproduced, Lean development in
+# preparation. The archive does not establish the main theorem until level V4.
+status = "preprint"
+summary = "A candidate proof, released as a preprint, that chi_2(2/q) and Ti_2(2/q) are irrational for every odd integer q >= 81, and hence also at -2/q (chi_2 is Legendre's chi function, Ti_2 the inverse tangent integral). The best previously claimed range, in an unrefereed and primarily AI-generated preprint, is odd q >= 175 for chi_2(2/q); the criterion of David, Hirata-Kohno and Kawashima applies at -4/q^2 as well and should give a threshold of the same order for Ti_2(2/q), which we have not computed and have not found stated. The approximations are Hankel determinants of a moment functional with poles at the negative half-integers, with 7/6 times as many poles as rows and, for q = 81, a band of double zeros on the positive axis. The proof needs a parity-separated bound at the prime 2, a residue-class profile for the ordinary primes and a nonvanishing argument at prime indices; its finite inequalities (margins at least 0.006862 per h^2 for q >= 83 and 0.005678 for q = 81) have been reproduced by separately written checkers. The argument has not been independently verified; in Lean the main theorem is proved only conditionally on the estimates."
+template_version = "1.0.0"
+msc_primary = "11J72"
+msc_secondary = ["33B30"]
+keywords = ["Legendre chi function", "inverse tangent integral", "irrationality", "Hankel determinants", "Pade-type approximation", "p-adic valuations", "logarithmic energy"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0003-legendre-chi-inverse-tangent-irrationality"
+
+[disclosure]
+summary = "The original exploration, the candidate arguments and the original certificate programs were produced with GPT-6.2 XHigh (web version), as stated by the AxiomForge owners. The reconstruction of the argument, the corrections it contains, the audit computations, the separately written checkers, the manuscript, the Lean development and the first packaging of this contribution were produced with Claude Opus 5.5 (Anthropic), used through Claude Code, under the direction of AxiomForge. A harsh AI-internal adversarial review (Claude Fable 5.2) found no critical error; all major findings were fixed, in a revision made with Claude Sonnet 5.5, which also made the final checks and packaging. All checks were carried out with AI systems; no independent human review has taken place, and AI involvement is not independent certification. AxiomForge takes full responsibility for the content."
+ai_systems = ["GPT-6.2 XHigh (OpenAI), web version, as stated by the AxiomForge owners", "Claude Opus 5.5 (Anthropic), used through Claude Code", "Claude Fable 5.2 (Anthropic), used through Claude Code", "Claude Sonnet 5.5 (Anthropic), used through Claude Code"]
+
+[lean]
+package = "axiomforge-af0003"
+root = "AxiomForge.AF0003"
+toolchain = "leanprover/lean4:v4.34.0-rc1"
+mathlib = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[theorem]]
+key = "thm:main"
+statement = "For every odd integer q >= 81 the numbers chi_2(2/q) and Ti_2(2/q) are irrational, where chi_2(x) = sum_{j>=0} x^{2j+1}/(2j+1)^2 and Ti_2(x) = sum_{j>=0} (-1)^j x^{2j+1}/(2j+1)^2; since both are odd, the same holds for chi_2(-2/q) and Ti_2(-2/q)."
+lean = ""
+lean_conditional = [
+  "AxiomForge.LegendreChi.irrational_legendreChi_two_div_of_estimates",
+  "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_two_div_of_estimates",
+  "AxiomForge.LegendreChi.irrational_legendreChi_neg_two_div_of_estimates",
+  "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_two_div_of_estimates",
+]
+
+# Evidence for every value: logs/verification.md.
+[theorem.verification]
+proof = "candidate"
+certificates = "reproduced"
+formalization = "in-preparation"
+build = "passing"
+axioms = "standard"
+statement_review = "pending"
+independent_review = "ai-internal"
+literature_review = "checked"

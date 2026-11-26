@@ -1,0 +1,2 @@
+n=1 h=40 K=49 A=2: failures=[] ; p=2[2] v=-2441 bound=-2462; p=3|q: v=2106 v/(f h^2)=0.3291; p=5[Y] v=-378 bound=-546; p=13[Y] v=-344 bound=-386; p=41[macro] v=-25 bound=-26; p=101[Y] v=-306 bound=-386 [80s]
+== failures: 0

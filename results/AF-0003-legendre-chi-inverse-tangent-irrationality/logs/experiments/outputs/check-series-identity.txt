@@ -1,0 +1,5 @@
+q=83 sigma=1 general n=1: max relative error 5.8009e-1469
+q=83 sigma=-1 general n=1: max relative error 4.7865e-1469
+q=81 sigma=1 band n=1: max relative error 6.7675e-1247
+q=81 sigma=-1 band n=1: max relative error 5.8228e-1245
+== PASS

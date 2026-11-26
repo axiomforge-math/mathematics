@@ -1,0 +1,20 @@
+name = "axiomforge-af0003"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["AxiomForge.AF0003"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+# The Mathlib copyright-header convention does not apply outside the Mathlib repository.
+weak.linter.style.header = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[lean_lib]]
+name = "AxiomForge.AF0003"

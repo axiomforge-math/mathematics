@@ -1,0 +1,112 @@
+\section{Consistency checks at small sizes}\label{app:consistency}
+
+The checks below compare the statements of the paper with exact computations of $T$ for small
+$h$. They cannot confirm asymptotic statements, whose error terms are of the same size as the
+differences observed, but they would have exposed errors in the finite forms of the bounds.
+The polynomials $T$ were computed exactly by an implementation of the definitions in
+\cref{sec:pencils} (interpolation of $\det[\mu_X(\varphi u^{i+j})]$ at $h+1$ rational points).
+
+\subsection{The pole series}
+\Cref{lem:pole-series} was tested on several entries $\mu_\xi(\varphi u^s)$ with the series
+$\sum_mw^m(\varphi u^s)'(m)$ summed directly, with exact rational derivatives. For $\Gen$ at
+$q=83$ and $\Band$ at $q=81$, $n=1$, both signs, the relative discrepancy is below $10^{-1240}$ at
+$1500$ decimal digits (an earlier audit at $400$ digits found $10^{-60}$ and $10^{-145}$). For
+$\Band$ the two parts of the affine entries are of size up to $10^{156}$ and cancel almost
+completely at $X=\xi$; a first test at $120$ digits reported a spurious mismatch for this reason.
+
+\subsection{The prime 2}
+\Cref{tab:two-adic} compares $\vG2(T)$ with the finite bound of \cref{thm:prime-two} for $\Gen$ at
+$q=83$ ($\vG2(T)$ is the same for both signs at these sizes).
+
+\begin{table}[ht]
+\centering
+\caption{Exact $\vG2(T)$ for $\Gen$, $q=83$, against the finite bound of \cref{thm:prime-two}
+and the leading term $-\frac{140}{99}h^2$. Last line: $\Band$, $q=81$, against
+$-\frac{1847}{1100}h^2$.}\label{tab:two-adic}
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+$h$ & $\vG2(T)$ & finite bound & leading term & $\vG2(T)/h^2$\\
+\midrule
+6 & $-40$ & $-43$ & $-50.9$ & $-1.111$\\
+12 & $-172$ & $-180$ & $-203.6$ & $-1.194$\\
+18 & $-405$ & $-417$ & $-458.2$ & $-1.250$\\
+24 & $-730$ & $-748$ & $-814.5$ & $-1.267$\\
+30 & $-1159$ & $-1177$ & $-1272.7$ & $-1.288$\\
+36 & $-1696$ & $-1722$ & $-1832.7$ & $-1.309$\\
+42 & $-2328$ & $-2358$ & $-2494.5$ & $-1.320$\\
+48 & $-3051$ & $-3083$ & $-3258.2$ & $-1.324$\\
+54 & $-4048$ & $-4080$ & $-4123.6$ & $-1.388$\\
+60 & $-4816$ & $-4854$ & $-5090.9$ & $-1.338$\\
+66 & $-5917$ & $-5966$ & $-6160.0$ & $-1.358$\\
+72 & $-6998$ & $-7054$ & $-7330.9$ & $-1.350$\\
+\midrule
+40 ($\Band$) & $-2441$ & $-2462$ & $-2686.5$ & $-1.526$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ratios are not monotone, and all lie above $-140/99\approx-1.4141$. The entry at $h=54$ is an
+outlier ($-1.388$, against $-1.324$ and $-1.338$ at $h=48,60$); it was recomputed on
+26 November 2026 and gives the same value $-4048$. The finite bound shows the same dip
+($-4080$), so it is a feature of the bound and not an error in the exact value; $h=54$ is the
+size with $K=63=111111_2$, the largest binary digit sum of the $K$ in the table, which may explain the dip
+through the low-order terms of \cref{thm:prime-two}; we have not isolated the mechanism.
+
+For Krisman's determinant ($K=h$, $A=0$, $q=83$, $\sigma=1$) \cref{tab:two-adic-square} gives the
+exact values in two normalisations: the un-normalised $\Delta=\det[\mu_X(\varphi u^{i+j})]$ and
+$T=S\Delta$ with the normaliser $S$ of this paper, against the finite bound of
+\cref{thm:prime-two} (valid for $T$).
+
+\begin{table}[ht]
+\centering
+\caption{Exact $2$-adic Gauss valuations for $K=h$, $A=0$, $q=83$, $\sigma=1$; the limit of the
+bound is $-\frac{13}{11}h^2$, that is $-1.1818h^2$. The columns with $/h^2$ show minus the
+valuation divided by $h^2$.}\label{tab:two-adic-square}
+\begin{tabular}{@{}rrrrrrr@{}}
+\toprule
+$h$ & $\vG2(\Delta)$ & $\vG2(T)$ & bound for $T$ & $-\vG2(\Delta)/h^2$ & $-\vG2(T)/h^2$ & $-$bound$/h^2$\\
+\midrule
+8 & $-66$ & $-42$ & $-48$ & $1.0312$ & $0.6562$ & $0.7500$\\
+16 & $-287$ & $-223$ & $-236$ & $1.1211$ & $0.8711$ & $0.9219$\\
+24 & $-663$ & $-583$ & $-604$ & $1.1510$ & $1.0122$ & $1.0486$\\
+32 & $-1188$ & $-1028$ & $-1053$ & $1.1602$ & $1.0039$ & $1.0283$\\
+40 & $-1882$ & $-1722$ & $-1760$ & $1.1763$ & $1.0762$ & $1.1000$\\
+48 & $-2700$ & $-2492$ & $-2538$ & $1.1719$ & $1.0816$ & $1.1016$\\
+56 & $-3685$ & $-3485$ & $-3533$ & $1.1751$ & $1.1113$ & $1.1266$\\
+64 & $-4816$ & $-4432$ & $-4484$ & $1.1758$ & $1.0820$ & $1.0947$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Odd primes}
+For $\Gen$ at $q=83$ and $h=6,12,\dots,42$, both signs, and for $\Band$ at $q=81$ and $h=40$, both
+signs, every prime $p\le\max(4h,2K+2)+q$ was tested against the finite form of the relevant
+bound: \cref{prop:p-divides-Y} for $p\mid q^2-4\sigma$, \cref{lem:large-primes} for $p>2K$,
+\eqref{eq:vp-T-combined} with the exact class counts for $p^2>2K$, and \cref{prop:uniform}
+otherwise. No bound failed. Typical margins: for $h=42$ the ordinary primes $p=41$ and $p=43$
+have $\vG p(T)=-25$ and $-19$ against bounds $-26$ and $-20$; for $q^2-4=6885=3^4\cdot5\cdot17$ the
+primes $3,5,17$ have $\vG p(T)=-1360,-422,-367$ against $-1560,-558,-390$. For $p=83$ one has
+$\vG{83}(T)=h^2/3$ exactly for $h\le30$ and then slightly less ($0.3326h^2$ at $h=36$, $0.3206h^2$
+at $h=54$, $0.3219h^2$ at $h=60$), as allowed by the term $-O(h\log h)$ in
+\cref{prop:p-divides-q}. For $\Band$, $\vG3(T)=2106$ at $h=40$, against the leading term
+$\frac43h^2=2133.3$.
+
+\subsection{Nonvanishing}
+For $\Gen$ at $q=83$, \cref{thm:nonvanishing} predicts $v_p(\Delta(0))=-18p+6$ for every
+admissible prime $p$ with $h=6p$. Exact computation of $\Delta(0)$ gives $v_{17}(\Delta(0))=-300$
+for $\sigma=-1$, $h=102$ (note $17\mid83^2-4$, so $p=17$ is excluded for $\sigma=1$), and
+$v_{19}(\Delta(0))=-336$ for $\sigma=1$, $h=114$, as predicted. These are checks of the whole
+mechanism of \cref{sec:nonvanishing}, including the reduction of the local functionals.
+
+\subsection{Size}
+The audit also computed $h^{-2}\log\abs{T(\xi)}$ in ball arithmetic. For $\Gen$ at $q=83$ it is
+$-3.130$, $-3.111$, $-3.107$, $-3.107$, $-3.110$, $-3.111$, $-3.115$, $-3.116$ for
+$h=12,\dots,54$ ($\sigma=1$), above the asymptotic bound $\bconst_{83}\le-3.1617$ by amounts
+compatible with an error $O(\log h/h)$; for $\Band$ at $h=40$ it is $-3.377$ ($\sigma=1$) and
+$-3.379$ ($\sigma=-1$), against $\bconst\le-3.3742$.
+
+\subsection{The case \texorpdfstring{$q=79$}{q = 79}}
+In floating point we recomputed the three numbers of \cref{sec:limitations}: the value
+$-3.358974$ of $C+E(\mu_{79})+\int V\mu_{79}$, the trapezoidal bound $-1.985157$ for the profile
+integral, and the resulting upper bounds $-3.365088$ and $-3.365333$ for the arithmetic
+constant at $q=79$.

@@ -1,0 +1,95 @@
+\section{The finite computations}\label{app:certificates}
+
+Three kinds of finite computations enter the proof. Each was first carried out by the code that
+accompanies the candidate arguments, and then recomputed by a second implementation written
+from the definitions in this paper (the programs listed in the section on reproducibility). Both implementations were written by
+AI systems; agreement between them is what we call \emph{certified (AI-internal)}.
+
+\subsection{The profile integrals}\label{app:profile-certificate}
+
+For $(\kappa,\alpha)$ and $\delta=1/2000$, the breakpoints $\mathfrak B\cap[\delta,2\kappa]$ of
+\cref{lem:convexity}, together with $\delta$ and $2\kappa$, cut $[\delta,2\kappa]$ into $5999$
+intervals for $(7/6,0)$ and $11798$ intervals for $(49/40,1/20)$. At the midpoint $x$ of each
+interval the class types, their capacities and $N(x)$ are rational, and $J(x)$, $R(x)$ are
+values of finite linear programmes with rational data. The first implementation fills the
+cheapest slots greedily after pre-filling the jet levels below $\floor{1/x}-2$ (respectively
+$\floor{1/x}-4$), which is legitimate because every slot of those levels is cheaper than every
+slot at level $\floor{1/x}-1$ or above, and the levels below $\floor{1/x}-1$ have total capacity
+less than one. The second implementation does not pre-fill: it finds by bisection the least
+integer cost $c^*$ such that the slots of cost at most $c^*$ have capacity at least one, using the
+closed form $\sum_{\text{class}}\mathrm{cap}\cdot\#\{j:\omega+2j\le c\}$, and fills up to $c^*$.
+All arithmetic is exact. Both give
+\[
+  \sum_{\text{intervals}}(b-a)\,B\bigl(\tfrac{a+b}2\bigr)-2\delta=
+  \begin{cases}-2.11316413653\ldots&(\kappa,\alpha)=(7/6,0),\\
+  -1.98708958191\ldots&(\kappa,\alpha)=(49/40,1/20),\\
+  -1.71691666666\ldots&(\kappa,\alpha)=(1,0),\end{cases}
+\]
+in agreement to all digits; the stated constants $\Iprof_\Gen=-2113164137\cdot10^{-9}$ and
+$\Iprof_\Band=-993544791\cdot(5\cdot10^{8})^{-1}$ are rational numbers below the exact sums. As a
+measure of the slack in the midpoint rule, the trapezoidal upper bound of \cref{sec:limitations}
+for $(49/40,1/20)$ is $-1.985157$, which exceeds the midpoint sum by $0.0019$.
+
+\subsection{The comparison densities}\label{app:decay-certificates}
+
+The densities $\rho_{83}$ and $\rho_{81}$ are step functions on the mesh $1/240$ with cell masses
+$m_i/10^7$, $m_i\in\Z_{\ge0}$, $\sum m_i=10^7$, stored in the supplementary files
+\path{certificates/general-construction-comparison-density.json} and
+\path{certificates/band-construction-comparison-density.json} together with
+$\lambda_{83}=-7.1118866$ and $\lambda_{81}=-7.6105436$. The density $\rho_{83}$ equals the cap $2$
+on $[0,0.4)$ and decreases to $0$ on $[0.4,155/240]$; $\rho_{81}$ vanishes on $[0,1/20)$, equals
+$2$ on $[1/20,106/240)$ and decreases on $[106/240,1]$. They were found by numerical optimisation;
+only their stored values matter.
+
+The quantities in $\bconst(\rho,\lambda)$ are evaluated as follows.
+\begin{itemize}
+\item $E(\rho)$ is a finite sum over pairs of cells of
+$\iint_{\text{cell}\times\text{cell}}\log\abs{x-y}=g(d+s)+g(d-s)-2g(d)$, with $s=1/240$, $d$ the
+difference of the left endpoints, and $g(t)=\frac12t^2\log\abs t-\frac34t^2$.
+\item $G$ is a finite sum of terms $c_j\psi(x-a_j)$ with rational $c_j$ and $a_j$ on the grid
+$\frac1{24000}\Z$, plus $x\log W$. On each grid cell of length $\ell=1/24000$, $G$ is at most the
+larger of its endpoint values plus $\sum_j\abs{c_j}\epsilon_j$, where $\epsilon_j$ bounds the
+deviation of $\psi(x-a_j)$ from its chord: $\ell^2/(8\,\mathrm{dist})$ if $a_j$ is at distance
+$\mathrm{dist}\ge\ell$ from the cell, and $\ell/e$ if $a_j$ is an endpoint (because
+$\abs{t\log(t/\ell)}\le\ell/e$ on $[0,\ell]$).
+\item The integral $2\int(G-\lambda)_+$ is bounded by $2\ell$ times the sum of the positive parts
+of these cell bounds minus $\lambda$, and the tail conditions of \cref{lem:tail} are checked
+directly: $(\tau_0,\tau_1)=(-0.6076,-6.111)$ for $q=83$ and $(-0.0847,-6.027)$ for $q=81$.
+\end{itemize}
+The first implementation uses fixed-point logarithms with denominator $2^{100}$ and explicit error
+budgets; the second uses ball arithmetic (Arb, $160$ bits) for every logarithm. They give, with all decimals rounded in the safe direction,
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+ & $E(\rho)$ & $\bconst\le$ & $\aconst_-\ge$ & $\bconst-\aconst_-\le$\\
+\midrule
+$q=83$, $\Gen$ & $-2.121571081$ & $-3.161708963$ & $-3.154845833$ & $-0.006863130$\\
+$q=81$, $\Band$ & $-2.113189373$ & $-3.374176117$ & $-3.368497052$ & $-0.005679065$\\
+\bottomrule
+\end{tabular}
+\end{center}
+(second implementation; the first gives upper bounds for $\bconst$ larger by less than
+$10^{-8}$, because it uses the cruder constant $\ell/2$ in place of $\ell/e$). The arithmetic
+constant $\aconst_-$ uses the rational lower bounds $\Iprof$ of Appendix~\ref{app:profile-certificate}. A
+third, floating-point evaluation with a midpoint rule on $48000$ points gives
+$\bconst\approx-3.16191$ and $-3.37435$, slightly below the certified upper bounds, as it should.
+
+\subsection{The local determinants}\label{app:local-certificates}
+
+For $\Gen$ the entries of $(Q-1)^4L_{s,e}(Q)$ are polynomials in $Q$ with rational
+coefficients. The first implementation computes the three determinants symbolically. The second
+evaluates $(Q-1)^{24}\det L_{s,e}(Q)$ exactly at the $90$ integers $Q=2,\dots,91$, interpolates,
+checks the interpolant at three further rational points (among them $Q=-83^2/4$), removes the
+factors $Q$ and $Q-1$, and compares with the first: the integer polynomials $\Pi_{s,e}$ agree up
+to a rational factor, with the same exponents $(a_{s,e},b_{s,e})$. The leading-term domination
+$\sum_{i\ge1}\abs{\pi_{\deg-i}/\pi_{\deg}}R^{-i}<1$ at $R=83^2/4$, which is a second, separate proof of
+nonvanishing for $\abs Q\ge R$ (hence for every $q\ge83$; either this or the Cauchy bound of
+\cref{prop:local-dets-general} suffices for the proof), holds with left-hand sides $0.0022$, $0.0054$ and $0.0043$.
+
+For $\Band$ at $q=81$ the $40\times40$ matrices have rational entries computed from the definition
+\eqref{eq:ellQ}: polynomial division by the $49$ local poles, exact residues, and the moments
+$M_r(1/Q)$ for $r\le34$. Their determinants are nonzero rational numbers; their reductions
+modulo $191$ (a prime not dividing any denominator involved, since all the odd numbers and pole
+differences occurring are smaller than $191$ and $Q$, $Q-1$ are units) are as stated in
+\cref{prop:local-dets-band}, and coincide with the values obtained by the first implementation,
+which works modulo $191$ throughout.

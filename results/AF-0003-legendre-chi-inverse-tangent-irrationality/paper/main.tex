@@ -1,0 +1,79 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[Irrationality of Legendre chi and inverse tangent values]%
+{\texorpdfstring{Irrationality of \titlechi{} and \titleti{} for odd \titleq:\\ a candidate proof}%
+{Irrationality of chi2(2/q) and Ti2(2/q) for odd q >= 81: a candidate proof}}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math/mathematics}
+\subjclass[2020]{Primary 11J72; Secondary 33B30}
+\keywords{Legendre chi function, inverse tangent integral, irrationality, Hankel determinants,
+Pad\'e-type approximation, $p$-adic valuations, logarithmic energy}
+\date{26 November 2026}
+
+\afidentifier{AF-0003}
+\afversion{0.1.0}
+\afdate{26 November 2026}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0003-legendre-chi-inverse-tangent-irrationality}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afstatus{Preprint (candidate proof). Not reviewed by an independent human expert; the main theorems are
+not formally verified.}
+\afdisclosure{AI-assisted research. The candidate arguments were produced by an AI system; their
+reconstruction, the audit computations and this manuscript were produced by another AI system
+under the direction of AxiomForge. See the AI-assisted research disclosure at the end.}
+
+\begin{document}
+
+\begin{abstract}
+Let $\chi_2(x)=\sum_{j\ge0}x^{2j+1}/(2j+1)^2$ be Legendre's chi function and
+$\Ti_2(x)=\sum_{j\ge0}(-1)^jx^{2j+1}/(2j+1)^2$ the inverse tangent integral. We present a
+candidate proof that $\chi_2(2/q)$ and $\Ti_2(2/q)$ are irrational for every odd integer
+$q\ge 81$, and hence also at $-2/q$. The best previously claimed range, in an unrefereed and
+primarily AI-generated preprint of Krisman, is odd $q\ge 175$ for $\chi_2(2/q)$. The criterion of
+David, Hirata-Kohno and Kawashima applies at $x=-4/q^2$ as well as at $x=4/q^2$ and should give a
+threshold of the same order for $\Ti_2(2/q)$; we have not computed it and have not found it
+stated. The rational approximations are Hankel determinants of a
+moment functional with poles at the negative half-integers, as in Krisman's work, with two
+changes: the number of poles exceeds the size of the determinant in the ratio $7/6$, and for
+$q=81$ a band of double zeros is placed on the positive axis. The proof needs three estimates
+that are new in this setting: a bound at the prime $2$ that separates the interpolation nodes by
+parity, a residue-class profile for the ordinary primes valid for any ratio of poles to rows,
+and a nonvanishing argument at prime indices that reduces the determinant to three fixed local
+Hankel determinants. The finite inequalities on which the argument rests have been recomputed
+by second implementations, also written by an AI system, that do not import the code that
+produced them. The argument has not been checked
+by an independent human expert and its main theorems are not formally verified, so the result
+should be read as a candidate.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/01-introduction}
+\input{sections/02-pencils}
+\input{sections/03-prime-two}
+\input{sections/04-exceptional-primes}
+\input{sections/05-ordinary-primes}
+\input{sections/06-archimedean-decay}
+\input{sections/07-nonvanishing}
+\input{sections/08-proofs}
+\input{sections/09-limitations}
+
+\appendix
+\input{sections/appendix-a-certificates}
+\input{sections/appendix-b-consistency}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

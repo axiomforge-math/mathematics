@@ -1,0 +1,10 @@
+h, v2(S), v2G(Delta), v2G(T), finite bound for T, -v2G(Delta)/h^2, -v2G(T)/h^2, -bound/h^2
+h=8 v2(S)=24 v2G(Delta)=-66 v2G(T)=-42 bound=-48 lossDelta=1.0312 lossT=0.6562 lossBound=0.7500 ok [0s]
+h=16 v2(S)=64 v2G(Delta)=-287 v2G(T)=-223 bound=-236 lossDelta=1.1211 lossT=0.8711 lossBound=0.9219 ok [0s]
+h=24 v2(S)=80 v2G(Delta)=-663 v2G(T)=-583 bound=-604 lossDelta=1.1510 lossT=1.0122 lossBound=1.0486 ok [1s]
+h=32 v2(S)=160 v2G(Delta)=-1188 v2G(T)=-1028 bound=-1053 lossDelta=1.1602 lossT=1.0039 lossBound=1.0283 ok [4s]
+h=40 v2(S)=160 v2G(Delta)=-1882 v2G(T)=-1722 bound=-1760 lossDelta=1.1763 lossT=1.0762 lossBound=1.1000 ok [13s]
+h=48 v2(S)=208 v2G(Delta)=-2700 v2G(T)=-2492 bound=-2538 lossDelta=1.1719 lossT=1.0816 lossBound=1.1016 ok [43s]
+h=56 v2(S)=200 v2G(Delta)=-3685 v2G(T)=-3485 bound=-3533 lossDelta=1.1751 lossT=1.1113 lossBound=1.1266 ok [133s]
+h=64 v2(S)=384 v2G(Delta)=-4816 v2G(T)=-4432 bound=-4484 lossDelta=1.1758 lossT=1.0820 lossBound=1.0947 ok [236s]
+== failures: 0

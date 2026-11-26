@@ -1,0 +1,23 @@
+# Template version 1.0.0. Keep version and date in step with result.toml.
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below. It is a preprint: the main theorem is not established by the archive until level V4."
+title: "Irrationality of χ₂(2/q) and Ti₂(2/q) for odd q ≥ 81: a candidate proof"
+abstract: "A candidate proof, released as a preprint, that chi_2(2/q) and Ti_2(2/q) are irrational for every odd integer q >= 81, and hence also at -2/q (chi_2 is Legendre's chi function, Ti_2 the inverse tangent integral). The best previously claimed range, in an unrefereed and primarily AI-generated preprint, is odd q >= 175 for chi_2(2/q); no explicit range for Ti_2(2/q) is known to us. The approximations are Hankel determinants of a moment functional with poles at the negative half-integers, with 7/6 times as many poles as rows and, for q = 81, a band of double zeros on the positive axis. The proof needs a parity-separated bound at the prime 2, a residue-class profile for the ordinary primes and a nonvanishing argument at prime indices; its finite inequalities (margins at least 0.006862 per h^2 for q >= 83 and 0.005678 for q = 81) have been reproduced by separately written checkers. The argument has not been independently verified; in Lean the main theorem is proved only conditionally on the estimates. AI-assisted research: GPT-6.2 XHigh (web version) and Claude Opus 5.5 (Anthropic); see logs/ai-contributions.md."
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+version: "0.1.0"
+date-released: "2026-11-26"
+identifiers:
+  - type: other
+    value: "AF-0003"
+    description: "AxiomForge result identifier"
+url: "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0003-legendre-chi-inverse-tangent-irrationality"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - "Legendre chi function"
+  - "inverse tangent integral"
+  - "irrationality"
+  - "Hankel determinants"
+  - "preprint"

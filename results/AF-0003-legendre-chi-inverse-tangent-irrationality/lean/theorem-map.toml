@@ -1,0 +1,85 @@
+# Manuscript-level statements and their Lean counterparts (namespace AxiomForge.LegendreChi).
+# formal = "proved"      : unconditional Lean theorem (axioms: propext, Classical.choice, Quot.sound)
+#          "conditional" : Lean theorem taking the listed unproved hypotheses as arguments
+#          "missing"     : not formalized (the listed Lean object is where it enters as a hypothesis)
+
+[[statement]]
+manuscript = "Main theorem: chi_2(2/q) is irrational for every odd q >= 81"
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_two_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates 1 q"]
+
+[[statement]]
+manuscript = "Main theorem: Ti_2(2/q) is irrational for every odd q >= 81"
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_two_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates (-1) q"]
+
+[[statement]]
+manuscript = "Main theorem: chi_2(-2/q) is irrational for every odd q >= 81"
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_two_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates 1 q"]
+
+[[statement]]
+manuscript = "Main theorem: Ti_2(-2/q) is irrational for every odd q >= 81"
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_two_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates (-1) q"]
+
+[[statement]]
+manuscript = "Integer contradiction: content + decay + prime-index nonvanishing imply irrationality"
+lean = "AxiomForge.LegendreChi.irrational_targetValue_of_halfIntegerEstimates"
+formal = "proved"
+
+[[statement]]
+manuscript = "Negative arguments follow by oddness"
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_iff"
+formal = "proved"
+
+[[statement]]
+manuscript = "xi = sum_j sigma^j y^(-2j-1)/(2j+1)^2 equals chi_2(2/q) (sigma = 1) and Ti_2(2/q) (sigma = -1), y = q/2"
+lean = "AxiomForge.LegendreChi.targetValue_one"
+formal = "proved"
+
+[[statement]]
+manuscript = "deg T(X) <= h"
+lean = "AxiomForge.LegendreChi.natDegree_halfHankelDet_le"
+formal = "proved"
+
+[[statement]]
+manuscript = "Uniform comparison for q >= 83: real bound minus arithmetic bound <= B_83 - A_83 - (35/72) log(q/83) < 0"
+lean = "AxiomForge.LegendreChi.decayRate_lt_contentRate"
+formal = "proved"
+note = "with the rounded rates -3.1549 - log(q/83)/72 and -3.1617 - log(q/83)/2"
+
+[[statement]]
+manuscript = "Comparison at q = 81: B_81 - A_-(81) < -5/1000"
+lean = "AxiomForge.LegendreChi.decay_lt_content_eighty_one"
+formal = "proved"
+note = "with the rounded rates -3.3685 and -3.3741"
+
+[[statement]]
+manuscript = "Prime 2 at q = 81: min of f(x) = 2(d-1) - 4 kappa x + 3x^2 + (5/2)(1-x)^2 + 6 alpha (1-x) is -1847/1100 at x = 51/55"
+lean = "AxiomForge.LegendreChi.primeTwoProfile_ge"
+formal = "proved"
+
+[[statement]]
+manuscript = "Arithmetic estimate: liminf h^-2 sum_p v_p^G(T) log p >= A_sigma(q)"
+lean = "AxiomForge.LegendreChi.HalfIntegerEstimates.content"
+formal = "missing"
+
+[[statement]]
+manuscript = "Archimedean estimate: limsup h^-2 log |T(xi)| <= B_q"
+lean = "AxiomForge.LegendreChi.HalfIntegerEstimates.decay"
+formal = "missing"
+
+[[statement]]
+manuscript = "Prime-index nonvanishing T_p(X_0) != 0 for fixed rational X_0 and large primes p"
+lean = "AxiomForge.LegendreChi.HalfIntegerEstimates.nonvanishing"
+formal = "missing"
+
+[[statement]]
+manuscript = "Series identity mu_xi(R) = sum_{m>=1} w^m R'(m)"
+lean = ""
+formal = "missing"

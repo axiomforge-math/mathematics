@@ -1,0 +1,97 @@
+# Declarations audited by `#print axioms` (every one must use only propext, Classical.choice,
+# Quot.sound). `status`: "proved" = unconditional theorem; "conditional" = the statement takes
+# the unproved candidate estimates as an explicit hypothesis (name ends in `_of_estimates` or
+# `_of_<hypothesis>`); such a theorem is never the formalization of a main theorem.
+
+# --- Irrationality criterion (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.LegendreChi.one_le_pow_mul_abs_aeval_div"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_int_poly_approx"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_tendsto_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_scaled_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_log_content_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_of_rat_value_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.frequently_atTop_of_eventually_prime"
+status = "proved"
+
+# --- Definitions, statement fidelity and finite certificates (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.LegendreChi.summable_legendreChi"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.summable_inverseTangentIntegral"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.inverseTangentIntegral_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.legendreChi_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.inverseTangentIntegral_term"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.targetValue_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.targetValue_neg_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.natDegree_halfHankelDet_le"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.decayRate_lt_contentRate"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.decay_lt_content_eighty_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.primeTwoProfile_ge"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.primeTwoProfile_min"
+status = "proved"
+
+# --- Final deduction and the target statements (conditional) ---
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_targetValue_of_halfIntegerEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_targetValue_of_familyEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_two_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_two_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_legendreChi_neg_two_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChi.irrational_inverseTangentIntegral_neg_two_div_of_estimates"
+status = "conditional"

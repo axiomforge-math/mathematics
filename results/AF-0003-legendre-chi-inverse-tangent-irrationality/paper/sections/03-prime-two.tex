@@ -1,0 +1,186 @@
+\section{The prime 2}\label{sec:prime-two}
+
+This section proves the lower bound for $\vG2(T)$ that gives the term $c_{2,\mathcal C}\log2$
+of $\aconst_\sigma(q)$ (\cref{thm:prime-two}); it is used in \cref{thm:arithmetic}. The prime $2$
+needs its own argument because $v_2(y)=-1$: the poles $x_k$ are not $2$-adically integral. In the
+coordinate $z=2u$ they become the odd integers $z_k=-2k-1$, while the summation points become the
+even integers $2m$, and the gain comes from treating the two parities separately.
+
+\subsection{The rescaled determinant and its \texorpdfstring{$2$}{2}-adic expansion}\label{subsec:rescaled}
+
+Put $P_K(z)=\prod_{k<K}(z-z_k)$, $N^{(2)}(z)=\prod_{j=1}^A(z-2j)^2$ and $F(z)=zN^{(2)}(z)/P_K(z)$.
+Since $D_K(u)=2^{-K}P_K(2u)$ and $N_A(u)=2^{-2A}N^{(2)}(2u)$,
+\begin{equation}\label{eq:phi-F}
+  \varphi(u)=2^{K-1-2A}F(2u).
+\end{equation}
+On the space spanned by $\Q[z]$ and the fractions $1/(z-z_k)$ define the affine functional
+\[
+  \nu_X(G)=\mom\bigl(m\mapsto G'(2m)\bigr)\ (G\in\Q[z]),\qquad
+  \nu_X\Bigl(\frac1{z-z_k}\Bigr)=-\sigma^ky^{2k+1}(X-\tau_k).
+\]
+If $R(u)=G(2u)$ then $R'(m)=2G'(2m)$, and $1/(u-x_k)=2/(2u-z_k)$; comparing
+with~\eqref{eq:functional} gives $\mu_X(R)=2\nu_X(G)$ on both kinds of generators. With
+$H(X)=[\nu_X(Fz^{i+j})]_{0\le i,j<h}$ and~\eqref{eq:phi-F}, the $(i,j)$ entry of the matrix
+defining $\Delta$ is $2^{K-2A-i-j}H_{ij}$, hence
+\begin{equation}\label{eq:Delta-H}
+  \Delta(X)=2^{(K-2A)h-h(h-1)}\det H(X).
+\end{equation}
+
+The series $\xi_2=\sum_{j\ge0}\sigma^jy^{-2j-1}/(2j+1)^2$ converges in $\Z_2$, because the $j$-th
+term has valuation $2j+1$. Repeating the computation in the proof of \cref{lem:pole-series} in
+$\Q_2$, where $\sum_mw^m(\cdots)$ converges because $v_2(w)=2$, gives
+\[
+  \sum_{m\ge1}w^m\frac{\mathrm d}{\mathrm dz}\Bigl(\frac1{z-z_k}\Bigr)\Big|_{z=2m}
+  =-\sigma^ky^{2k+1}(\xi_2-\tau_k).
+\]
+Hence $\nu_X(1/(z-z_k))=\sum_mw^m(\cdots)-\sigma^ky^{2k+1}(X-\xi_2)$. Writing
+$Fz^s=Q_s+\sum_kr_kz_k^s/(z-z_k)$ with $Q_s$ a polynomial and $r_k=\Res_{z=z_k}F$, and using
+\cref{lem:moment-sums}(a) $2$-adically for $Q_s$, we obtain the identity in $\Q_2[X]$
+\begin{multline}\label{eq:H-two-adic}
+  H(X)=\sum_{m\ge1}w^m\bigl[\vvec(2m)\ \vvec'(2m)\bigr]
+  \begin{pmatrix}F'(2m)&F(2m)\\F(2m)&0\end{pmatrix}
+  \bigl[\vvec(2m)\ \vvec'(2m)\bigr]^{\mathsf T}\\
+  +(X-\xi_2)\sum_{k<K}\gamma_k\,\vvec(z_k)\vvec(z_k)^{\mathsf T},
+\end{multline}
+with $\gamma_k=-\sigma^ky^{2k+1}r_k$ and the series converging entrywise in $\Q_2[X]$ for the
+Gauss norm. The even sites $2m$ with $1\le m\le A$ contribute nothing, since $F$ and $F'$
+vanish there.
+
+The weights have the following valuations. Since $z_k-z_l=2(l-k)$ and $z_k-2j$ is odd,
+\begin{equation}\label{eq:gamma-two}
+  v_2(\gamma_k)=-(2k+1)-(K-1)-v_2(k!)-v_2((K-1-k)!)\ \ge\ -2k-2K+1 .
+\end{equation}
+(The inequality holds because $v_2(k!)+v_2((K-1-k)!)\le v_2((K-1)!)\le K-2$, which gives even
+$-2k-2K+2$; we keep the weaker form, which is all that is used below.)
+For $m>A$ the integer $P_K(2m)$ is odd and
+$N^{(2)}(2m)=2^{2A}\bigl(A!\binom{m-1}A\bigr)^2$, so
+\[
+  v_2(F(2m))\ge1+2A+2v_2(A!)\ge 4A-2\floor{\log_2(A+1)}-1 ,
+\]
+because $v_2(A!)=A-s_2(A)$ and $s_2(A)\le\floor{\log_2(A+1)}$ (the true bound is
+$4A+1-2\floor{\log_2(A+1)}$; we keep the weaker form).
+The logarithmic derivative $F'/F=1/z+\sum_j2/(z-2j)-\sum_k1/(z-z_k)$ has valuation at least
+$-1-\floor{\log_2m}$ at $z=2m$. Consequently
+\begin{equation}\label{eq:nu-m}
+  \nu_m:=\min\bigl(v_2F(2m),\,v_2F'(2m)\bigr)\ \ge\ 4A-2\floor{\log_2(A+1)}-2-\floor{\log_2 m}
+  \qquad(m>A),
+\end{equation}
+and $\nu_m\ge0$ when $A=0$, because then $F(2m)$ and $F'(2m)$ are $2$-integral.
+
+\subsection{Minors with nodes of one parity}\label{subsec:parity-minors}
+
+For $t\ge0$ put
+\[
+  \Pa(t)=\sum_{j<t}\bigl(j+v_2(j!)\bigr)=t(t-1)-\sum_{j<t}s_2(j)=t^2+O(t\log(t+2)).
+\]
+
+\begin{lemma}[parity minors]\label{lem:parity-minors}
+Let $h\ge2$, $L=\floor{\log_2(h-1)}$, $\varepsilon\in\{0,1\}$, and let $J\subset\{0,\dots,h-1\}$
+have $t$ elements. Consider a $t\times t$ matrix whose rows are indexed by $J$ and whose columns
+are of the form $(\zeta^i)_{i\in J}$ or $(i\zeta^{i-1})_{i\in J}$ with
+$\zeta\in\varepsilon+2\Z$, and let $r$ be the number of columns of the second kind. Then its
+determinant has $2$-adic valuation at least $\Pa(t)-r(1+L)$.
+\end{lemma}
+
+\begin{proof}
+Let $B_j(z)=\prod_{i<j}(z-\varepsilon-2i)$, a monic polynomial in $\Z[z]$ of degree $j$. Then
+$z^i=\sum_{j\le i}c_{ij}B_j(z)$ with $c_{ij}\in\Z$ and $c_{ii}=1$. For $\zeta=2s+\varepsilon$,
+$s\in\Z$, we have $B_j(\zeta)=2^jj!\binom sj$, which is divisible by $2^{j+v_2(j!)}$. For the
+derivative, the identity $\frac{\mathrm d}{\mathrm ds}\binom sj=\sum_{l=1}^{j}
+\frac{(-1)^{l-1}}{l}\binom s{j-l}$ (compare coefficients of $T^j$ in
+$\partial_s(1+T)^s=\log(1+T)(1+T)^s$) gives $B_j'(\zeta)=2^{j-1}j!\,\partial_s\binom sj$, of
+valuation at least $j+v_2(j!)-1-\floor{\log_2j}$. By the Cauchy--Binet formula for the product
+of the $t\times h$ matrix $(c_{ij})_{i\in J,\,j<h}$ and the $h\times t$ matrix of the values
+$B_j(\zeta)$ or $B'_j(\zeta)$, the determinant is an integral combination of minors with rows
+$j_1<\dots<j_t$ of the latter matrix. Since $j\mapsto j+v_2(j!)$ is increasing and
+$j_r\ge r-1$, each such minor has valuation at least $\sum_{i<t}(i+v_2(i!))-r(1+L)$.
+\end{proof}
+
+\begin{corollary}\label{cor:parity-laplace}
+Let $\mathsf E$ be an $h\times h$ matrix whose columns are $P$ columns $\vvec(\zeta)$ with $\zeta$ odd
+and $h-P$ columns $\vvec(\zeta)$ or $\vvec'(\zeta)$ with $\zeta$ even, $r$ of them derivatives.
+Then $v_2(\det\mathsf E)\ge\Pa(P)+\Pa(h-P)-r(1+L)$.
+\end{corollary}
+
+\begin{proof}
+Laplace expansion along the odd columns writes $\det\mathsf E$ as a signed sum, over $P$-element sets
+$J$ of rows, of products of a $P\times P$ minor with odd nodes and rows $J$ and an
+$(h-P)\times(h-P)$ minor with even nodes and the complementary rows. Apply
+\cref{lem:parity-minors} to both.
+\end{proof}
+
+For nodes of mixed parity the corresponding bound would be the valuation of a Vandermonde
+determinant of $t$ consecutive integers, about $t^2/2$; the separation by parity doubles it,
+and this is where the constant of \cref{thm:prime-two} comes from.
+
+\subsection{The bound at the prime 2}\label{subsec:two-bound}
+
+\begin{theorem}\label{thm:prime-two}
+Let $q$ be odd, $\sigma=\pm1$, and $K\ge h\ge2$, $A\ge0$. Let $\lambda_0\le\lambda_1\le\cdots\le\lambda_{K-1}$ be the exact valuations $v_2(\gamma_k)$, $k<K$, of~\eqref{eq:gamma-two} in increasing order, and $\epsilon_1\le\epsilon_2\le\cdots$ the numbers $2m+\nu_m$, $m>A$, each listed twice, in increasing order. Then
+\begin{multline*}
+  \vG2(T)\ \ge\ v_2(\nrm)+(K-2A)h-h(h-1)\\
+  +\min_{0\le P\le h}\Bigl[2\Pa(P)+2\Pa(h-P)-(h-P)(1+L)+\sum_{i<P}\lambda_i
+  +\sum_{i=1}^{h-P}\epsilon_i\Bigr].
+\end{multline*} If $K=\kappa h$ and $A=\alpha h$ with $\kappa\ge1$,
+$0\le\alpha$ and $d=\kappa-2\alpha>0$ fixed, then
+\begin{gather}
+  \vG2(T)\ \ge\ h^2\min_{0\le x\le1}f(x)-O(h\log h),\label{eq:two-asymptotic}\\
+  f(x)=2(d-1)-4\kappa x+3x^2+\tfrac52(1-x)^2+6\alpha(1-x).\notag
+\end{gather}
+For $\Gen$ the minimum is $-140/99$, attained at $x=29/33$; for $\Band$ it is $-1847/1100$,
+attained at $x=51/55$.
+\end{theorem}
+
+\begin{proof}
+By~\eqref{eq:Delta-H}, $\vG2(T)=v_2(\nrm)+(K-2A)h-h(h-1)+\vG2(\det H)$. Truncate the sum over
+$m$ in~\eqref{eq:H-two-adic} at $m\le M$; the truncated matrices converge to $H$ in the Gauss
+norm, so it suffices to bound the determinant of each truncation uniformly in $M$. Write the
+truncation as $\mathsf E\mathsf B\mathsf E^{\mathsf T}$, where the columns of $\mathsf E$ are the slots $\vvec(2m)$,
+$\vvec'(2m)$ ($A<m\le M$) and $\vvec(z_k)$ ($k<K$), and $\mathsf B$ is block diagonal with the $2\times2$
+blocks $w^m\bigl(\begin{smallmatrix}F'&F\\F&0\end{smallmatrix}\bigr)(2m)$ and the $1\times1$
+blocks $(X-\xi_2)\gamma_k$. By~\eqref{eq:cauchy-binet}, $\det H$ is a sum of terms indexed by
+pairs $(S,S')$ of sets of $h$ slots that select the same poles and the same number $n_m\in\{1,2\}$
+of slots at each selected site $2m$.
+
+Fix such a term with $P$ poles and $e=h-P$ even slots. The middle factor has Gauss valuation at
+least $\sum_{k\in S}v_2(\gamma_k)+\sum_m n_m(2m+\nu_m)$, since a $1\times1$ minor of the block at
+$2m$ is $w^mF'(2m)$ or $w^mF(2m)$ and the $2\times2$ minor is $-w^{2m}F(2m)^2$; and
+$\vG2(X-\xi_2)=0$. This is at least $\sum_{i<P}\lambda_i+\sum_{i\le e}\epsilon_i$. The
+derivative--derivative entry of each block vanishes, so a site carrying one slot on each side
+contributes at most one derivative column to the two outer factors together, and a site carrying
+two slots contributes two; the total number of derivative columns on both sides is therefore at
+most $e$. By \cref{cor:parity-laplace} the two outer factors together have valuation at least
+$2\Pa(P)+2\Pa(e)-e(1+L)$. This proves the first inequality.
+
+For the asymptotic form, $v_2(n!)=n-s_2(n)$ gives $v_2(\nrm)=(K-2A)h-h^2+O(h\log h)$ and
+$\Pa(t)=t^2+O(h\log h)$ for $t\le h$. The $P$ smallest of the lower
+bounds~\eqref{eq:gamma-two} are those with $k=K-1,\dots,K-P$, whose sum is $-4KP+P^2+2P$. For
+the even slots, \eqref{eq:nu-m} and $\floor{\log_2m}\le\log_2(2h)+m/h$ give
+$2m+\nu_m\ge(2-1/h)m+4A-O(\log h)$; since each site carries at most two slots and the sites
+start at $A+1$, the $e$ smallest values sum to at least
+$(2-1/h)\sum_{i=1}^{e}(A+\lceil i/2\rceil)+4Ae-O(h\log h)=6Ae+e^2/2-O(h\log h)$. Collecting
+terms with $P=xh$, $e=(1-x)h$ gives~\eqref{eq:two-asymptotic}. Finally
+$f'(x)=11x-4\kappa-5-6\alpha$ vanishes at $x=(4\kappa+5+6\alpha)/11$, which is $29/33$ for
+$(\kappa,\alpha)=(7/6,0)$ and $51/55$ for $(49/40,1/20)$; substituting gives the two values.
+\end{proof}
+
+\begin{remark}\label{rem:two-comparison}
+For $(\kappa,\alpha)=(1,0)$, Krisman's determinant, \eqref{eq:two-asymptotic} gives
+$-\frac{13}{11}h^2$ at $x=9/11$. Krisman proves the bound $-\frac43h^2$
+\cite[Lemma~11.1]{Krisman2026chi2}, shows that $-h^2+h$ is attained by the leading coefficient
+\cite[Prop.~11.2]{Krisman2026chi2}, and reports a measured $2$-adic loss of about $1.18\log2$ per $h^2$ at $h=64$, in a
+normalisation we cannot identify from his text. In ours, the exact values for $q=83$,
+$\sigma=1$, $K=h$, $A=0$ are given in \cref{tab:two-adic-square}: the loss of the un-normalised
+determinant $\Delta=\det[\mu_X(\varphi u^{i+j})]$ is $1.1758$ per $h^2$ at $h=64$, and that of
+the normalised polynomial $T$ of this paper is between $1.00$ and $1.11$ for $24\le h\le64$,
+against $\frac{13}{11}\approx1.18$ for the limit of the bound. These are different quantities
+and the finite bound is still far from its limit at these sizes, so we draw no conclusion from the
+proximity of $1.1758$ to $1.18$. The terms with $P=h$ are the only ones that contribute to the
+leading coefficient in $X$, and $f(1)=1-2\kappa-4\alpha$ equals $-1$ at $(\kappa,\alpha)=(1,0)$,
+in accordance with his Proposition~11.2. The minimum
+of $f$ is attained at an interior $x$, that is, by coefficients of lower degree in $X$. For
+$\Gen$ at $q=83$ and $h=6,12,\dots,72$, the finite bound of \cref{thm:prime-two} lies below the
+exact value of $\vG2(T)$ by between $3$ and $56$ (\cref{tab:two-adic}); the ratios
+$\vG2(T)/h^2$ are not monotone in $h$ and all exceed $-140/99$. This is consistency evidence
+only.
+\end{remark}

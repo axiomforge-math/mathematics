@@ -1,0 +1,71 @@
+\afbacksection{Reproducibility and formal verification}
+\sloppy
+
+\emph{Status of the result.} \Cref{thm:main} is a candidate. No human expert independent of the
+AI systems that produced it has reviewed the argument. Each step carries one of the labels of
+\cref{subsec:step-status}: \emph{proved} (routine elementary arguments), \emph{candidate}
+(argued in this paper, not yet independently verified) or \emph{certified (AI-internal)} (a finite
+computation reproduced by a second implementation, both written by AI systems). None of this is
+an independent verification.
+
+\emph{Computations.} Paths are relative to the directory of this contribution (AF-0003) in the
+archive \url{https://github.com/axiomforge-math/mathematics}. The programs are in
+\path{logs/experiments/scripts/}, the step densities and integer polynomials in
+\path{logs/experiments/certificates/}, the recorded outputs in \path{logs/experiments/outputs/},
+and every command with its outcome in \path{logs/verification.md}. The programs need Python~3.11
+or later with \texttt{python-flint}~0.9.0 and \texttt{mpmath}~1.3.0
+(\path{logs/experiments/requirements.txt}); from \path{logs/experiments/scripts/} the command
+\texttt{python3 run\_checks.py all} runs all of them (the largest sizes take about half an hour
+each). The programs of the form \path{verify_*.py} and \path{check_*.py} are the second
+implementations, written from the definitions in this paper; none of them imports the code that
+produced the candidate certificates. The data files are:
+\begin{itemize}
+\item \path{certificates/general-construction-comparison-density.json},
+\item \path{certificates/band-construction-comparison-density.json},
+\item \path{certificates/general-construction-local-polynomials.json}.
+\end{itemize}
+The programs and what they check:
+\begin{itemize}
+\item \path{verify_profile_integrals.py}: the profile integrals of \cref{thm:ordinary} and
+\cref{rem:profile-k1} (exact rational arithmetic);
+\item \path{verify_comparison_bounds.py}: the rigorous bounds for $\bconst$ and $\aconst_-$ of
+Appendix~\ref{app:decay-certificates} (Arb ball arithmetic), including the tail conditions of
+\cref{lem:tail};
+\item \path{verify_local_determinants.py} and \path{compute_local_blocks.py}: the local
+determinants of \cref{prop:local-dets-general,prop:local-dets-band};
+\item the consistency checks of Appendix~\ref{app:consistency}: \path{check_finite_bounds.py},
+\path{check_prime_index_valuation.py}, \path{check_series_identity.py},
+\path{audit_small_sizes.py}, and \path{compute_two_adic_valuations.py} (the values of $\vG2(T)$
+for $h\le72$ in \cref{tab:two-adic}); the exact pencils are implemented in
+\path{define_half_integer_pencils.py}, the values for $K=h$, $A=0$ of
+\cref{tab:two-adic-square} are obtained with the same implementation for $(h,K,A)=(h,h,0)$;
+\item for \cref{sec:limitations}: \path{bound_profile_integral.py} and
+\path{estimate_comparison_bounds.py} (numbers that are not certified).
+\end{itemize}
+The programs that first produced the certificates were also re-executed during the internal audit
+and reproduce their logs; they are not part of the package. All of this was carried out by AI
+systems.
+
+\emph{Formal verification.} The Lean~4 package in \path{lean/} (Lake package
+\texttt{axiomforge-af0003}, root module \texttt{AxiomForge.AF0003}, namespace
+\texttt{AxiomForge.LegendreChi}) is pinned by \path{lean/lean-toolchain}
+(\texttt{leanprover/lean4:v4.34.0-rc1}) and \path{lean/lakefile.toml} (Mathlib at the exact commit
+recorded there). The \emph{main theorems are not formalised}: they are proved only conditionally,
+as \path{AxiomForge.LegendreChi.irrational_legendreChi_two_div_of_estimates} and
+\path{AxiomForge.LegendreChi.irrational_inverseTangentIntegral_two_div_of_estimates} (and
+their versions for $-2/q$), which derive the irrationality for odd $q\ge81$ from a hypothesis that
+packages the arithmetic estimate, the size estimate and the nonvanishing at prime indices, with
+rounded rates. That hypothesis is exactly the unproved content of
+\cref{sec:prime-two,sec:exceptional,sec:ordinary,sec:decay,sec:nonvanishing}; the Lean theorems
+are therefore not formalisations of \cref{thm:main}. Unconditionally the package proves the
+oddness of $\chi_2$ and $\Ti_2$ and the transfer between $x$ and $-x$, the irrationality
+criterion in several forms, the definitions and degree bound of the polynomials $T_n$, the minimum
+$-1847/1100$ of the prime-$2$ profile for the band construction, and the margin inequality
+\texttt{decayRate\_lt\_contentRate} for the rounded rates. The formalisation of the three
+estimates is in preparation. According to \path{logs/verification.md}, the package was built with
+\texttt{lake exe cache get \&\& lake build} on 25 November 2026 by the AI system that wrote it,
+and \texttt{\#print axioms} reported only \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound} for each of the $29$ declarations of \path{lean/theorems.toml}
+(\path{lean/AXIOMS.txt}); the sources contain no \texttt{sorry}, \texttt{admit}, \texttt{axiom}
+declaration or \texttt{native\_decide}. We did not rerun the build for this revision of the
+manuscript. No independent human review of this work has taken place.

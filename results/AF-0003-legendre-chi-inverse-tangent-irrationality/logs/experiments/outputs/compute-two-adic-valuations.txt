@@ -1,0 +1,14 @@
+h, v2(T), finite bound, leading term -(140/99)h^2, v2/h^2
+h=6 v2=-40 bound=-43 leading=-50.9 v2/h^2=-1.111 [0s]
+h=12 v2=-172 bound=-180 leading=-203.6 v2/h^2=-1.194 [0s]
+h=18 v2=-405 bound=-417 leading=-458.2 v2/h^2=-1.250 [1s]
+h=24 v2=-730 bound=-748 leading=-814.5 v2/h^2=-1.267 [7s]
+h=30 v2=-1159 bound=-1177 leading=-1272.7 v2/h^2=-1.288 [13s]
+h=36 v2=-1696 bound=-1722 leading=-1832.7 v2/h^2=-1.309 [35s]
+h=42 v2=-2328 bound=-2358 leading=-2494.5 v2/h^2=-1.320 [89s]
+h=48 v2=-3051 bound=-3083 leading=-3258.2 v2/h^2=-1.324 [203s]
+h=54 v2=-4048 bound=-4080 leading=-4123.6 v2/h^2=-1.388 [294s]
+h=60 v2=-4816 bound=-4854 leading=-5090.9 v2/h^2=-1.338 [511s]
+h=66 v2=-5917 bound=-5966 leading=-6160.0 v2/h^2=-1.358 [592s]
+h=72 v2=-6998 bound=-7054 leading=-7330.9 v2/h^2=-1.350 [769s]
+== failures: 0
