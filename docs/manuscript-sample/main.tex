@@ -1,0 +1,46 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[A specimen of the series]{A specimen of the AxiomForge manuscript series: Fourier's proof of the irrationality of Euler's number}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary 11J72; Secondary 00A05}
+\keywords{irrationality, typographic specimen, manuscript template}
+\date{25 November 2026}
+
+\afidentifier{specimen (not a numbered contribution)}
+\afversion{1.0.0}
+\afdate{25 November 2026}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/docs/manuscript-sample}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afdisclosure{This specimen was prepared with the assistance of an AI system (Claude Opus 5.5). A detailed AI-assisted research disclosure appears at the end.}
+
+\begin{document}
+
+\begin{abstract}
+This document is a typographic specimen of the AxiomForge manuscript series. It presents Fourier's classical proof that $e$ is irrational in the format used for every contribution: a title page with publication metadata, a table of contents on its own page, the mathematical development, appendices, and the back matter on reproducibility and AI-assisted research.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/introduction}
+\input{sections/proof}
+
+\appendix
+\input{sections/appendix-series}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

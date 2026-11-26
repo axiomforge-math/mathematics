@@ -1,0 +1,68 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue). Replace every <<...>> token.
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "<<AF-NNNN>>"                       # AF-NNNN; the directory is named "<id>-<slug>"
+slug = "<<SLUG>>"                        # <subject>-<property>, lower-case kebab-case
+title = "<<TITLE>>"                      # must appear verbatim in the manuscript
+version = "<<VERSION>>"                  # MAJOR.MINOR.PATCH (docs/publication-policy.md);
+                                         # a preprint is 0.MINOR.PATCH, 1.0.0 = first V4 publication
+date = "<<YYYY-MM-DD>>"                  # date of this version
+# status: "published" = level V4, every theorem passes the publication gate below;
+#         "preprint"  = complete written argument, Lean development possibly in preparation
+#                       (preprint gate below; page 1 of the PDF must say "Preprint");
+#                       its main theorems are not established by the archive until V4;
+#         "withdrawn" = see docs/publication-policy.md. A published result never returns
+#                       to "preprint".
+status = "published"                     # published | preprint | withdrawn
+# withdrawal = "<<YYYY-MM-DD REASON>>"  # only when status = "withdrawn"
+summary = "<<ONE-PARAGRAPH SUMMARY>>"
+template_version = "1.0.0"               # version of templates/ copied at creation
+msc_primary = "<<MSC PRIMARY>>"          # e.g. "11J72"; a classification, not a heading
+msc_secondary = ["<<MSC SECONDARY>>"]    # same codes as \subjclass[2020] in the manuscript
+keywords = ["<<KEYWORD>>"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/<<AF-NNNN>>-<<SLUG>>"
+
+[disclosure]
+summary = "<<ONE-PARAGRAPH AI DISCLOSURE>>"          # docs/ai-disclosure-policy.md
+ai_systems = ["<<PROVIDER MODEL VERSION INTERFACE>>"]
+
+[lean]
+package = "axiomforge-af<<NNNN>>"
+root = "AxiomForge.AF<<NNNN>>"
+toolchain = "<<LEAN TOOLCHAIN>>"         # contents of lean/lean-toolchain
+mathlib = "<<MATHLIB REV>>"              # full commit hash pinned in lean/lakefile.toml
+
+# One [[theorem]] block per main theorem.
+[[theorem]]
+key = "<<THEOREM LABEL>>"                # the \label of the theorem in the manuscript, e.g. thm:main
+statement = "<<STATEMENT>>"              # plain-text statement as in the manuscript
+lean = "<<LEAN NAME>>"                   # fully qualified Lean declaration, unique; may be ""
+                                         # only in a preprint whose formalization is not complete
+# lean_conditional = ["<<NS.MAIN_OF_HYPOTHESES>>"]
+#   optional: Lean declarations proving the theorem from explicitly stated hypotheses,
+#   named "..._of_<hypotheses>"; `afm lean` builds them and audits their axioms. They
+#   never count as the formalization of the theorem and are never accepted as `lean`.
+
+# Record only what was actually done. Start from the values below and upgrade each one
+# with its evidence. Publication gates (status = "published"):
+#   proof = complete; certificates in {not-applicable, reproduced, formally-checked};
+#   formalization = complete; build = passing; axioms = standard;
+#   statement_review = checked; literature_review = checked.
+#   independent_review is not a gate: pending | ai-internal | human, as it actually is.
+# Preprint gates (status = "preprint"):
+#   proof in {candidate, complete}; certificates in {not-applicable, reproduced,
+#   formally-checked}; formalization in {in-preparation, statement-only, partial, complete};
+#   build = passing and axioms = standard whenever `lean` or `lean_conditional` names a
+#   declaration to audit; statement_review in {pending, checked}; literature_review = checked.
+[theorem.verification]
+proof = "candidate"                      # none | sketch | candidate | complete
+certificates = "pending"                 # not-applicable | pending | reproduced | formally-checked
+formalization = "none"                   # none | in-preparation | statement-only | partial | complete
+build = "not-run"                        # not-run | failing | passing
+axioms = "not-run"                       # not-run | failing | standard
+statement_review = "pending"             # pending | checked
+independent_review = "pending"           # pending | ai-internal | human
+literature_review = "pending"            # pending | checked

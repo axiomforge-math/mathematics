@@ -1,0 +1,152 @@
+name: archive
+
+# Checks every contribution and the generated catalogue, and runs the archive-tool tests.
+# Contributions that change in a push or pull request are also built (Lean package with its
+# axiom audit, manuscript with its layout checks) in a second, conditional job.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: archive-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Metadata, catalogue and tool tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install "pytest>=8"
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
+
+      - name: Check every contribution
+        run: python3 scripts/afm.py check
+
+      - name: Catalogue is up to date
+        run: python3 scripts/afm.py catalogue --check
+
+      - name: Archive-tool tests
+        # Tests marked `lean` or `latex` skip themselves here (no toolchains installed);
+        # they run in the `tool-integration` job below.
+        run: python3 -m pytest -q tests
+
+  changes:
+    name: Detect changed contributions
+    runs-on: ubuntu-latest
+    outputs:
+      results: ${{ steps.list.outputs.results }}
+      tool: ${{ steps.list.outputs.tool }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: list
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          base="$PUSH_BEFORE"
+          if [ "$EVENT" = "pull_request" ]; then base="$PR_BASE"; fi
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] \
+             || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            files=$(git ls-files)            # no usable base (first push, manual run): everything
+          else
+            files=$(git diff --name-only "$base" "$HEAD")
+          fi
+          results=$(printf '%s\n' "$files" | sed -n 's|^results/\([^/]*\)/.*|\1|p' \
+                    | grep -E '^AF-[0-9]{4}-[a-z0-9]+(-[a-z0-9]+)*$' | sort -u \
+                    | while read -r d; do [ -d "results/$d" ] && echo "$d"; done || true)
+          json=$(printf '%s\n' "$results" | python3 -c \
+                 'import json, sys; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          echo "results=$json" >> "$GITHUB_OUTPUT"
+          if printf '%s\n' "$files" | grep -qE '^(scripts/|tests/|templates/paper/)'; then
+            echo "tool=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "tool=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    name: Build ${{ matrix.result }}
+    needs: [check, changes]
+    if: needs.changes.outputs.results != '' && needs.changes.outputs.results != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        result: ${{ fromJSON(needs.changes.outputs.results) }}
+    env:
+      RESULT: ${{ matrix.result }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install TeX Live and poppler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra lmodern poppler-utils
+
+      - name: Install elan (the toolchain is read from lean/lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Lean build and axiom audit
+        run: python3 scripts/afm.py lean "$RESULT"
+
+      - name: Manuscript build and layout
+        run: python3 scripts/afm.py paper "$RESULT"
+
+  tool-integration:
+    name: Archive-tool integration tests (Lean, LaTeX)
+    needs: [check, changes]
+    if: needs.changes.outputs.tool == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install TeX Live, poppler and pytest
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra lmodern poppler-utils
+          python3 -m pip install "pytest>=8"
+
+      - name: Install elan and the toolchain used by the tests
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:v4.34.0-rc1
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Lean and LaTeX tests
+        run: python3 -m pytest -q tests -m "lean or latex"

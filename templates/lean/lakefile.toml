@@ -1,0 +1,22 @@
+# Lake package of one contribution. Replace NNNN by the four digits of the identifier
+# (file names, module names and the `name` below) when copying this template.
+name = "axiomforge-afNNNN"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["AxiomForge.AFNNNN"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+# The Mathlib copyright-header convention does not apply outside the Mathlib repository.
+weak.linter.style.header = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[lean_lib]]
+name = "AxiomForge.AFNNNN"

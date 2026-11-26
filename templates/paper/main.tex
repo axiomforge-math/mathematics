@@ -1,0 +1,46 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[<<SHORT TITLE>>]{<<TITLE>>}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary <<MSC PRIMARY>>; Secondary <<MSC SECONDARY>>}
+\keywords{<<KEYWORDS>>}
+\date{<<DATE>>}
+
+\afidentifier{<<AF-NNNN>>}
+\afversion{<<VERSION>>}
+\afdate{<<DATE>>}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/<<DIRECTORY>>}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afdisclosure{<<SHORT AI DISCLOSURE>>}
+
+\begin{document}
+
+\begin{abstract}
+<<ABSTRACT>>
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/introduction}
+% \input{sections/...}
+
+% \appendix
+% \input{sections/appendix-...}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

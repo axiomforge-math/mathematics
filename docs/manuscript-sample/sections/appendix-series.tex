@@ -1,0 +1,9 @@
+\section{The tail of the exponential series}\label{app:series}
+
+\begin{proof}[Proof of \cref{lem:tail}]
+Every term is positive. For $k>n$ we have $k!/n!\ge(n+1)^{k-n}$, hence
+\[
+  \sum_{k>n}\frac{n!}{k!}\le\sum_{j\ge1}\frac{1}{(n+1)^{j}}=\frac1n ,
+\]
+with strict inequality because $k!/n!>(n+1)^{k-n}$ as soon as $k\ge n+2$.
+\end{proof}

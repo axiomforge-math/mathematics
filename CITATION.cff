@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  To cite a specific result, use the CITATION.cff file in its directory under results/.
+  To cite the archive as a whole, use the metadata below.
+title: "AxiomForge Mathematics"
+abstract: >-
+  An archive of self-contained mathematical contributions, each with a conventional
+  manuscript, a Lean 4 formalization verified against a pinned Mathlib, and a disclosure
+  of the role of AI systems in the research.
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+url: "https://github.com/axiomforge-math/mathematics"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - mathematics
+  - formal verification
+  - Lean 4
+  - Mathlib
+  - AI-assisted research

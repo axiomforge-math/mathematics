@@ -1,0 +1,42 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local installations, caches and build outputs
+/.local/
+/.cache/
+/.venv/
+.lake/
+/build/
+/dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# LaTeX intermediate files (final PDFs are tracked deliberately)
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.xdv
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+*~
+
+# property-based testing cache
+.hypothesis/

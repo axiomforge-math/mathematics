@@ -1,0 +1,29 @@
+# NNN · <<SHORT TITLE>>
+
+<!-- Copy to attempts/NNN-<short-title>.md (NNN = 001, 002, ...). Delete this comment. -->
+
+| | |
+|---|---|
+| Dates | <<YYYY-MM-DD>> to <<YYYY-MM-DD>> |
+| Outcome | <<SUCCEEDED OR FAILED OR SUPERSEDED OR PARTIAL>> |
+| Leads to | <<MANUSCRIPT SECTION OR LATER ATTEMPT OR NONE>> |
+
+## Goal
+
+<<WHAT THE ATTEMPT TRIED TO ESTABLISH STATED PRECISELY>>
+
+## Method
+
+<<CONSTRUCTION ARGUMENT OR COMPUTATION>>
+
+## Result
+
+<<WHAT WAS ESTABLISHED WITH ITS STATUS PROVED CANDIDATE NUMERICAL EVIDENCE REFUTED>>
+
+## Why it failed or what it taught
+
+<<THE PRECISE OBSTRUCTION OR THE INSIGHT IF ANY>>
+
+## Evidence
+
+<<FILES IN EXPERIMENTS MANUSCRIPT LABELS>>

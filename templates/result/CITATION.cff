@@ -1,0 +1,20 @@
+# Template version 1.0.0. Replace every <<...>> token; keep version and date in step
+# with result.toml.
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below."
+title: "<<TITLE>>"
+abstract: "<<ONE-PARAGRAPH SUMMARY>>"
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+version: "<<VERSION>>"
+date-released: "<<YYYY-MM-DD>>"
+identifiers:
+  - type: other
+    value: "<<AF-NNNN>>"
+    description: "AxiomForge result identifier"
+url: "https://github.com/axiomforge-math/mathematics/tree/main/results/<<AF-NNNN>>-<<SLUG>>"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - "<<KEYWORD>>"

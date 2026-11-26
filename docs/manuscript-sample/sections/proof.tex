@@ -1,0 +1,25 @@
+\section{Proof of the theorem}\label{sec:proof}
+
+This section deduces \cref{thm:main} from a bound on the tails of the exponential
+series.
+
+\begin{lemma}\label{lem:tail}
+For every integer $n\ge1$,
+\begin{equation}\label{eq:tail}
+  0<\sum_{k>n}\frac{n!}{k!}<\frac1n .
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof of \cref{thm:main}]
+Suppose that $e=a/b$ with positive integers $a$ and $b$, and let $n\ge b$. Then
+\[
+  N=n!\Bigl(e-\sum_{k=0}^{n}\frac1{k!}\Bigr)=\frac{n!\,a}{b}-\sum_{k=0}^{n}\frac{n!}{k!}
+\]
+is an integer, because $b$ divides $n!$ and $k!$ divides $n!$ for $k\le n$. By
+\eqref{eq:tail}, $0<N<1/n\le1$, which is impossible for an integer.
+\end{proof}
+
+\begin{remark}
+The same scheme, with integers produced by more elaborate constructions, underlies the
+proofs of the irrationality of $\zeta(2)$ and $\zeta(3)$; see \cite{beukers1979note}.
+\end{remark}
