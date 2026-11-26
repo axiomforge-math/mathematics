@@ -1,0 +1,75 @@
+\section{Archimedean decay II: a contour version for negative arguments}\label{sec:contour}
+
+For $\lambda<0$ the terms of the series in \cref{lem:series} alternate in sign. Taking absolute values term by term, as in \cref{sec:positive-bound}, discards this cancellation. We keep the sign by writing the series as a contour integral before estimating, as is done in \cite[Sections~6.1 and~6.3]{Litsey2026Li2} with polygonal contours through $0$ (``bent frames''); the contour used here consists of two rays from the point $\frac12$. The result, \cref{prop:negative-bound}, is the analogue of \cref{prop:positive-bound} for $\lambda\in\{-2/9,-2/7\}$ and is used in \cref{sec:proof-arch}. The statements are candidates in the sense of \cref{sec:intro-status}.
+
+Throughout this section $\lambda=-e^{-t}$ with $t=\log(b/2)$, and $c=e^{\mathrm i\varphi}$ with $0<\varphi<\pi/2$; we take $c=(4+3\mathrm i)/5$ for $\lambda=-2/9$ and $c=(21+20\mathrm i)/29$ for $\lambda=-2/7$. Let $\Gamma$ be the path that runs along the ray $\{\frac12+cy:y\ge0\}$ from infinity to $\frac12$ and then along the ray $\{\frac12+\bar cy:y\ge0\}$ from $\frac12$ to infinity, and put
+\[
+k(z)=\frac{\pi\,e^{-tz}}{\sin\pi z},\qquad T=t\cos\varphi+\pi\sin\varphi .
+\]
+
+\begin{lemma}\label{lem:kernel-bound}
+There is a constant $C_0$ such that $|k(z)|+|k'(z)|\le C_0\,e^{-t\real z-\pi|\imag z|}$ for all $z\in\Gamma$.
+\end{lemma}
+
+\begin{proof}
+We have $k'=-k\,(t+\pi\cot\pi z)$ and $|e^{-tz}|=e^{-t\real z}$. If $|\imag z|\ge1$, then $|\sin\pi z|\ge\sinh(\pi|\imag z|)\ge\frac12(1-e^{-2\pi})e^{\pi|\imag z|}$ and $|\cot\pi z|\le\coth\pi$. The part of $\Gamma$ with $|\imag z|\le1$ is compact and meets the real axis only at $\frac12$, so $\sin\pi z$ does not vanish on it and $k,k'$ are bounded there.
+\end{proof}
+
+\begin{lemma}[contour representation]\label{lem:contour}
+For every $R\in\cR$,
+\[
+\Lambda_\xi(R)=-\frac1{2\pi\mathrm i}\int_\Gamma k'(z)\,zR(z)\dd z ,
+\]
+the integral being absolutely convergent.
+\end{lemma}
+
+\begin{proof}
+Put $g=(zR)'$, a rational function whose poles lie at negative integers. For $N\ge1$ let $\Delta_N$ be the triangle with vertices $\frac12$ and $N+\frac12\pm\mathrm iN\tan\varphi$. Its positively oriented boundary consists of the segment of the lower ray from $\frac12$ outwards, the vertical segment $\real z=N+\frac12$ upwards, and the segment of the upper ray back to $\frac12$. Inside $\Delta_N$ the only poles of $kg$ are the integers $1,\dots,N$, where $k$ has residue $e^{-tm}\cos(\pi m)^{-1}=\lambda^m$. By the residue theorem
+\[
+\sum_{m=1}^N\lambda^mg(m)=\frac1{2\pi\mathrm i}\oint_{\partial\Delta_N}k(z)g(z)\dd z .
+\]
+On the vertical side, $|\sin\pi z|=\cosh(\pi\imag z)\ge1$, so $|k(z)|\le\pi e^{-t(N+1/2)}$, while $|g(z)|$ grows at most polynomially in $N$ and the side has length $O(N)$; its contribution tends to $0$. By \cref{lem:kernel-bound} the integrals along the rays converge absolutely as $N\to\infty$, and with \cref{lem:series} we obtain $\Lambda_\xi(R)=(2\pi\mathrm i)^{-1}\int_\Gamma k\,(zR)'\dd z$. Integrating by parts along the single path $\Gamma$, the boundary terms at its two ends vanish because $k(z)zR(z)\to0$ exponentially, which gives the stated formula.
+\end{proof}
+
+\begin{lemma}[the weight on the contour]\label{lem:weight-negative}
+For $y\ge0$ let
+\begin{align*}
+V_-(y)&=3\int_0^a\log|cy+s|\dd s-\int_0^\kappa\log|cy+s|\dd s-Ty\\
+&=\real\bigl[3(cy+a)\log(cy+a)-2cy\log(cy)-(cy+\kappa)\log(cy+\kappa)\bigr]+d-Ty,
+\end{align*}
+with the principal branch and $0\log0=0$. There is $C_1$ such that for all $n$, all $y\ge0$ and $z=\frac12+hv$ with $v\in\{cy,\bar cy\}$,
+\[
+\log\bigl|zW_n(z)k'(z)\bigr|\le-dh\log h+hV_-(y)+C_1\log(h+hy).
+\]
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:kernel-bound}, $\log|k'(z)|\le\log C_0-t\real z-\pi|\imag z|\le\log C_0-hTy$, and $\log|z|\le\log(1+hy)$. Since $\real z>0$, the function $s\mapsto|z+s|$ is increasing on $[0,\infty)$, so as in \cref{lem:weight-positive}
+\[
+3\log|D_A(z)|-\log|D_K(z)|\le3\int_1^{A+1}\log|z+s|\dd s-\int_0^K\log|z+s|\dd s .
+\]
+For $s>0$ the number $w=hv+s$ has $\real w\ge s$, hence $|w|\le|w+\frac12|\le|w|(1+\frac1{2s})$, that is $\log|hv+s|\le\log|z+s|\le\log|hv+s|+\log(1+\frac1{2s})$. Using the upper bound in the first integral and the lower bound in the second, and $\int_1^{A+1}\log(1+\frac1{2s})\dd s=O(\log h)$, we may replace $z$ by $hv$ at the cost $O(\log h)$. Replacing $\int_1^{A+1}$ by $\int_0^A$ costs at most $3\log(h|v|+A+1)+3$. Finally $\int_0^{\mu h}\log|hv+s|\dd s=\mu h\log h+h\int_0^\mu\log|v+s'|\dd s'$ and $|\bar cy+s'|=|cy+s'|$. The closed form follows from $\int_0^\mu\log|v+s|\dd s=\real\bigl[(v+\mu)\log(v+\mu)-v\log v\bigr]-\mu$.
+\end{proof}
+
+\begin{proposition}[comparison bound, negative arguments]\label{prop:negative-bound}
+Let $\lambda\in\{-2/9,-2/7\}$ and let $\sigma$ be a comparison measure supported on the two rays $\{cy:y\ge0\}$ and $\{\bar cy:y\ge0\}$ and invariant under complex conjugation. Write $U_-(y)=U_\sigma(cy)=U_\sigma(\bar cy)$ and $E=E(\sigma)$. Then
+\[
+\limsup_{n\to\infty}\frac{\log|\Qt_n(\xi)|}{h^2}\ \le\ \Cst-E+\sup_{y\ge0}\bigl(V_-(y)+2U_-(y)\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:contour}, $\Lambda_\xi(W_nx^s)=\int_\Gamma z^s\dd\nu(z)$ for the complex measure $\dd\nu=-(2\pi\mathrm i)^{-1}k'(z)zW_n(z)\dd z$ on $\Gamma$, all of whose moments converge absolutely. \Cref{lem:heine} and Fubini's theorem give
+\[
+Q_n(\xi)=\frac1{h!}\int_{\Gamma^h}\prod_{i<j}(z_j-z_i)^2\prod_i\dd\nu(z_i).
+\]
+Parametrize $z_i=\frac12+hv_i$ with $v_i\in\{cy_i,\bar cy_i\}$, $y_i\ge0$, so that $|\dd z_i|=h\dd y_i$ and $\prod_{i\ne j}|z_i-z_j|=h^{h(h-1)}\prod_{i\ne j}|v_i-v_j|$. Outside a null set the $v_i$ are distinct, and \cref{lem:energy-comparison} gives $\sum_{i\ne j}\log|v_i-v_j|\le-h^2E+2h\sum_iU_-(y_i)+O(h\log h)$; here $n_c=h$ and $m_\sigma=2$, and $U_\sigma(v_i)=U_-(y_i)$ whichever of the two rays carries $v_i$, because $\sigma$ is invariant under complex conjugation. This is why a single supremum over $y\ge0$ controls both rays. Let $\theta$ be the supremum in the statement; it is finite because $V_-(y)=-Ty+O(\log(2+y))$ and $U_-(y)=O(\log(2+y))$, and for the same reason there are $Y$ and $c_1>0$ with $V_-+2U_-\le\theta-c_1(y-Y)_+$. With \cref{lem:weight-negative} the integrand is bounded by
+\[
+\exp\Bigl((1-d)h^2\log h-h^2E+h^2\theta+O(h\log h)\Bigr)\prod_i(h+hy_i)^{C_1}e^{-hc_1(y_i-Y)_+},
+\]
+and each of the $h$ integrations over $\Gamma$ contributes a factor $O(h^{C_1+2})$. Hence $\log|Q_n(\xi)|\le(1-d)h^2\log h+h^2(\theta-E)+O(h\log h)$, and \cref{lem:stirling} completes the proof.
+\end{proof}
+
+\begin{remark}
+The choice of the rays is a compromise. A steeper ray increases the decay rate $T$ of the kernel but moves the points away from the real axis, where the weight $W_n$ and the energy are less favourable. The directions $c$ used here have rational real and imaginary parts, which keeps the certificates in exact rational arithmetic; any direction with a valid certificate would do. We have not compared the resulting bounds with those of the term-by-term method of \cref{sec:positive-bound} applied to $|\lambda|$.
+\end{remark}

@@ -1,0 +1,67 @@
+{
+  "E": "[-1.3538434110361088121 +/- 1.17e-21]",
+  "Cstar": "[2.5190483997269076651 +/- 9.9e-23]",
+  "T": "[3.0882175095748952018 +/- 2.39e-20]",
+  "sup_upper": "[-4.3945152043067877000 +/- 1.32e-20]",
+  "sup_lower": "[-4.3946487518408387735 +/- 4.22e-20]",
+  "rhs_upper": "[-0.52162339354377122279 +/- 1.87e-21]",
+  "theta_ms": "[-4.3683007518408387735 +/- 4.22e-20]",
+  "rhs_ms": "[-0.49540894107782229626 +/- 9.07e-22]",
+  "err_ms": "6587/250000",
+  "J": "2356/625",
+  "rhs_upper_rational": "-762353443734323576385289192046166655777244375057/1461501637330902918203684832716283019655932542976",
+  "mesh": 6000,
+  "checks": [
+    {
+      "name": "-2/9: |c| = 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/9: Re c > 0 and Re eta > 0 (convexity of the beta=0 terms)",
+      "ok": true,
+      "detail": "eta = 7/25 + 24/25 i"
+    },
+    {
+      "name": "-2/9: comparison measure is a probability measure",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "-2/9: density nonnegative",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/9: E inside the reported enclosure (-1.353843411037, -1.353843411035)",
+      "ok": true,
+      "detail": "[-1.353843411036109 +/- 1.88e-16]"
+    },
+    {
+      "name": "-2/9: support within [0,Y]",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/9: tail majorant at Y=2 below our sup bound",
+      "ok": true,
+      "detail": "[-4.600756845 +/- 2.78e-11]"
+    },
+    {
+      "name": "-2/9: tail majorant decreasing: (3a+2)/Y < T",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/9: certified RHS < claimed -0.490000",
+      "ok": true,
+      "detail": "-0.521623393543771"
+    },
+    {
+      "name": "-2/9: manuscript-method theta reproduces reported -4.368300751840826 to 1e-9",
+      "ok": true,
+      "detail": "-4.36830075184084"
+    }
+  ],
+  "all_passed": true
+}

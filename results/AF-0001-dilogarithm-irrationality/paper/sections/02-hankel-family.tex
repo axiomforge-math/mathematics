@@ -1,0 +1,103 @@
+\section{The affine functional and the Hankel family}\label{sec:functional}
+
+This section defines the functional $\Lambda_X$ and the determinants $Q_n$, $\Qt_n$, and proves the three facts about them that the rest of the paper uses: the series identity at $X=\xi$ (\cref{lem:series}, used in \cref{sec:energy,sec:contour}), the expression of $\Qt_n$ as a Gram determinant in the binomial basis (\cref{lem:normalization}), and the integrality of its entries (\cref{lem:integral-valued}, used in \cref{sec:exceptional}). All statements here are elementary.
+
+\subsection{Moments and the functional}\label{sec:moments}
+For a rational number $q$ with $|q|<1$ and an integer $k\ge0$ put
+\[
+M_k(q)=\sum_{u\ge1}q^uu^k,\qquad \tau_l(q)=\sum_{u=1}^{l}\frac{q^u}{u^2}\quad(l\ge0),
+\]
+so that $\tau_0=0$. Since $\sum_{u\ge0}\binom uj q^u=q^j(1-q)^{-j-1}$ and $x^k=\sum_{j}{k\brace j}j!\binom xj$, where ${k\brace j}$ are the Stirling numbers of the second kind,
+\begin{equation}\label{eq:moments}
+M_0(q)=\frac{q}{1-q},\qquad M_k(q)=\sum_{j=1}^k{k\brace j}\,j!\,\frac{q^j}{(1-q)^{j+1}}\quad(k\ge1).
+\end{equation}
+For a polynomial $g$ we write $G_q(g)=\sum_{u\ge1}q^ug(u)$; by \eqref{eq:moments} it is a rational number. When $q=\lambda$ we drop the subscript and write $G=G_\lambda$.
+
+Let $\cR$ be the $\Q$-vector space of rational functions $R\in\Q(x)$ whose poles are simple and lie in $\{-1,-2,\dots\}$. Every $R\in\cR$ has a unique partial fraction decomposition $R=q+\sum_{l\ge1}c_l\,(x+l)^{-1}$ with $q\in\Q[x]$ and finitely many nonzero $c_l\in\Q$. We call $q$ the polynomial part of $R$ and $c_l$ its residue at $-l$.
+
+\begin{definition}\label{def:functional}
+The functional $\Lambda_X\colon\cR\to\Q[X]$ is the $\Q$-linear map with
+\[
+\Lambda_X(x^k)=(k+1)M_k(\lambda)\quad(k\ge0),\qquad \Lambda_X\Bigl(\frac1{x+l}\Bigr)=l\lambda^{-l}\bigl(X-\tau_l(\lambda)\bigr)\quad(l\ge1).
+\]
+\end{definition}
+
+Equivalently, for $R=q+\sum_lc_l(x+l)^{-1}$,
+\begin{equation}\label{eq:functional-explicit}
+\Lambda_X(R)=G\bigl((xq)'\bigr)+\sum_{l}l\,c_l\,\lambda^{-l}\bigl(X-\tau_l(\lambda)\bigr),
+\end{equation}
+since $(x\cdot x^k)'=(k+1)x^k$. The value of $\Lambda_X(R)$ is an affine polynomial in $X$.
+
+\begin{lemma}[series identity]\label{lem:series}
+For every $R\in\cR$ the series $\sum_{x\ge1}\lambda^x(xR(x))'$ converges absolutely, and
+\[
+\Lambda_\xi(R)=\sum_{x\ge1}\lambda^x\bigl(xR(x)\bigr)',\qquad \xi=\Li_2(\lambda).
+\]
+\end{lemma}
+
+\begin{proof}
+The derivative $(xR(x))'$ is a rational function without poles at the positive integers, so it is bounded by a polynomial in $x$ there, while $|\lambda|^x$ decays geometrically; this gives absolute convergence. By linearity it suffices to treat $R=x^k$ and $R=(x+l)^{-1}$. In the first case $(xR)'=(k+1)x^k$ and the identity is the definition of $M_k$. In the second case $(x/(x+l))'=l/(x+l)^2$, and the substitution $m=x+l$ gives
+\[
+\sum_{x\ge1}\lambda^x\frac{l}{(x+l)^2}=l\lambda^{-l}\sum_{m>l}\frac{\lambda^m}{m^2}=l\lambda^{-l}\bigl(\xi-\tau_l(\lambda)\bigr). \qedhere
+\]
+\end{proof}
+
+\subsection{The determinants}\label{sec:determinants}
+With the notation of \cref{sec:intro-construction} define
+\begin{equation}\label{eq:Qn}
+Q_n(X)=\det_{0\le i,j<h}\Lambda_X\bigl(W_nx^{i+j}\bigr),\qquad \Qt_n(X)=\frac{S_n^{\,h}}{F_n}\,Q_n(X).
+\end{equation}
+Since $W_nx^s\in\cR$ for every $s\ge0$, the entries are affine polynomials in $X$, and expanding the determinant over permutations shows $\deg Q_n\le h$.
+
+\begin{lemma}[binomial normalization]\label{lem:normalization}
+Put $R_{ij}=S_nW_nb_ib_j$ for $0\le i,j<h$. Then the polynomial $\Qt_n$ of \eqref{eq:Qn} equals $\det_{0\le i,j<h}\Lambda_X(R_{ij})$.
+\end{lemma}
+
+\begin{proof}
+Write $b_i=\sum_{j<h}T_{ij}x^j$. The matrix $T$ is lower triangular with $T_{ii}=1/i!$, so $\det T=\prod_{i<h}(i!)^{-1}$. By bilinearity $[\Lambda_X(S_nW_nb_ib_j)]=S_n\,T\,[\Lambda_X(W_nx^{i+j})]\,T^{\mathsf T}$, whose determinant is $S_n^h(\det T)^2Q_n=\Qt_n$.
+\end{proof}
+
+The binomial form of the Gram matrix is the one in which the arithmetic is transparent. Put
+\begin{equation}\label{eq:N-L}
+N=2h+3A,\qquad L_p=\lfloor\log N/\log p\rfloor\quad(p\text{ prime}).
+\end{equation}
+The numerator of $R_{ij}$ has degree $3A+i+j<N$, and $p^{L_p}\le N<p^{L_p+1}$.
+
+\begin{lemma}[integrality of the binomial entries]\label{lem:integral-valued}
+Let $0\le i,j<h$ and write $R_{ij}=q_{ij}+\sum_{l=1}^Kc^{(ij)}_l(x+l)^{-1}$.
+\begin{enumerate}[(a)]
+\item $c^{(ij)}_l=\gamma_l\,b_i(-l)\,b_j(-l)$ with $\gamma_l=(-1)^{l-1}K\binom{K-1}{l-1}\binom{A-l}{A}^3\in\Z$, and $\gamma_l=0$ for $l\le A$.
+\item $q_{ij}=\sum_{K\le k\le N}\beta_k\binom{x}{k-K}\binom kK^{-1}$ with $\beta_k\in\Z$; in particular $\deg q_{ij}\le i+j+3A-K$, and $q_{ij}=0$ if $i+j+3A<K$.
+\item For every prime $p$, every $t\in\Z$ and every $s\ge0$, the coefficient of $y^s$ in $q_{ij}(t+y)$ has valuation at least $-(s+1)L_p$, and the coefficient of $y^s$ in $b_i(t+y)$ has valuation at least $-sL_p$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $D_A(x)=A!\binom{x+A}{A}$ and $D_K(x)=K!\binom{x+K}{K}$, we have $R_{ij}=K!\,\beta(x)/D_K(x)$ with $\beta=\binom{x+A}A^3b_ib_j$, an integer-valued polynomial of degree $3A+i+j$.
+
+(a) The residue of $K!\beta/D_K$ at $-l$ is $K!\beta(-l)/\prod_{m\ne l}(m-l)=(-1)^{l-1}K\binom{K-1}{l-1}\beta(-l)$, and $\binom{-l+A}{A}$ vanishes for $1\le l\le A$.
+
+(b) Expand $\beta=\sum_k\beta_k\binom{x+K}{k}$ with $\beta_k\in\Z$ (an integer-valued polynomial has integral coefficients in the basis $\binom{x+K}k$). For $k<K$ the quotient $\binom{x+K}k/\binom{x+K}K$ is a proper rational function. For $k\ge K$ one checks $\binom{x+K}k/\binom{x+K}K=\binom{x}{k-K}/\binom kK$. Hence the polynomial part of $K!\beta/D_K$ is as stated.
+
+(c) By Kummer's theorem $v_p\binom kK$ is the number of carries in the addition of $K$ and $k-K$ in base $p$, which is at most $\lfloor\log k/\log p\rfloor\le L_p$ for $k\le N$. Hence $p^{L_p}q_{ij}$ takes values in $\Zp$ at all integers, and it has degree at most $N$. The claims now follow from \cref{lem:integer-valued-coefficients} applied to $p^{L_p}q_{ij}$ and to $b_i$.
+\end{proof}
+
+\begin{lemma}[Newton interpolation]\label{lem:newton}
+Let $p$ be a prime and $\phi\ge0$ an integer with $v_p(\lambda/(1-\lambda))\ge-\phi$ and $v_p(1/(1-\lambda))\ge-\phi$. Then for every polynomial $g$ of degree at most $D$,
+\[
+v_p\bigl(G(g)\bigr)\ \ge\ \min_{0\le u\le D}v_p\bigl(g(u)\bigr)-(D+1)\phi .
+\]
+\end{lemma}
+
+\begin{proof}
+Write $g=\sum_{k\le D}\Delta^kg(0)\,b_k$ with $\Delta^kg(0)=\sum_{u\le k}(-1)^{k-u}\binom ku g(u)$. Then $G(b_0)=\lambda/(1-\lambda)$ and $G(b_k)=(\lambda/(1-\lambda))^k(1-\lambda)^{-1}$ for $k\ge1$, both of valuation at least $-(k+1)\phi$.
+\end{proof}
+
+For the four arguments one may take $\phi=0$ at every prime except $\pP$, where one may take $\phi=f$ (\cref{tab:parameters}). Indeed $\lambda/(1-\lambda)=2\epsilon/(b-2\epsilon)$ and $1/(1-\lambda)=b/(b-2\epsilon)$, and $b-2\epsilon=\pP^f$.
+
+\subsection{Content}\label{sec:content}
+Let $F\in\Q[X]$ be nonzero, choose an integer $D\ge1$ with $DF\in\Z[X]$, and let $g\ge1$ be the greatest common divisor of the coefficients of $DF$. The number $\cont(F)=g/D$ does not depend on $D$, and $F/\cont(F)$ is a primitive polynomial with integer coefficients. For every prime $p$ one has $v_p(\cont F)=\vg p(F)$, so that
+\begin{equation}\label{eq:content-sum}
+\log\cont(F)=\sum_p\vg p(F)\log p ,
+\end{equation}
+a finite sum. The Gauss valuation satisfies $\vg p(F+F')\ge\min(\vg p(F),\vg p(F'))$ and $\vg p(FF')=\vg p(F)+\vg p(F')$. In particular, if every entry of an $h\times h$ matrix with entries in $\Q[X]$ in row $i$ and column $j$ has Gauss valuation at least $\mu_i+\mu'_j$, then its determinant has Gauss valuation at least $\sum_i(\mu_i+\mu'_i)$. The arithmetic estimates below are lower bounds for $\vg p(\Qt_n)$; they hold for all $n$, trivially when $\Qt_n=0$.

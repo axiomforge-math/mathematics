@@ -1,0 +1,4 @@
+2/11: 479 intervals; every dual value equals the previous greedy value exactly; lower bound 4.505934466249617
+2/9: 999 intervals; every dual value equals the previous greedy value exactly; lower bound -0.885055234371268
+-2/9: 1749 intervals; every dual value equals the previous greedy value exactly; lower bound 0.1673093809271055
+-2/7: 1799 intervals; every dual value equals the previous greedy value exactly; lower bound 0.07694503668343355

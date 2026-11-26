@@ -1,0 +1,8 @@
+Local blocks: 1677163510311484581/15488000 16417954848664067036722569/524733440
+Ordinary lower bound: 0.16730938092710554
+Full arithmetic lower bound: -0.3830881724156618
+Energy interval: -1.353843411036699 -1.3538434110355189
+Theta upper: -4.368300751840826 interpolation error: 0.026348
+Analytic upper bound: -0.4954089410772183
+Margin: 0.11232076866155646
+All finite exact negative-argument certificates passed.

@@ -1,0 +1,56 @@
+\section{Technical lemmas}\label{app:technical}
+
+This appendix proves five general lemmas used in the body: a coefficient bound for integer-valued polynomials (used in \cref{lem:integral-valued}), a valuation bound for determinants of sums of rank-one matrices (used in \cref{sec:exceptional}), the divisibility of alternating polynomials by the Vandermonde product (used in \cref{prop:pole}), and two facts on linear programs with capacities (used in \cref{sec:profile,sec:cert-profile}).
+
+\begin{lemma}[coefficients of integer-valued polynomials]\label{lem:integer-valued-coefficients}
+Let $p$ be a prime, $N\ge1$, $L=\lfloor\log N/\log p\rfloor$, and let $g\in\Q[y]$ have degree at most $N$ and take values in $\Zp$ at all integers. Then for every $t\in\Z$ and $s\ge0$ the coefficient of $y^s$ in $g(t+y)$ has valuation at least $-sL$.
+\end{lemma}
+
+\begin{proof}
+Newton's formula gives $g(t+y)=\sum_{k\le N}\Delta^kg(t)\binom yk$ with $\Delta^kg(t)\in\Zp$. For $k\ge1$,
+\[
+\binom yk=\frac{(-1)^{k-1}y}{k}\prod_{m=1}^{k-1}\Bigl(1-\frac ym\Bigr),
+\]
+so the coefficient of $y^s$ in $\binom yk$ is a sum of products of $s$ factors $\pm1/m$ with $m\le k\le N$, each of valuation at least $-L$.
+\end{proof}
+
+\begin{lemma}[slot lemma]\label{lem:slots}
+Let $p$ be a prime and let $\mathsf M=\sum_{\varsigma\in\mathsf S}\mathbf u_\varsigma\mathbf w_\varsigma^{\mathsf T}$ be a finite sum of rank-one $h\times h$ matrices with $\mathbf u_\varsigma,\mathbf w_\varsigma\in\Q[X]^h$. Let $\omega_\varsigma\le\min_i\vg p(u_{\varsigma,i})+\min_j\vg p(w_{\varsigma,j})$. Then $\vg p(\det\mathsf M)\ge\min\sum_{\varsigma\in\mathsf S'}\omega_\varsigma$, the minimum over subsets $\mathsf S'\subset\mathsf S$ with $h$ elements.
+\end{lemma}
+
+\begin{proof}
+$\mathsf M=\mathsf U\mathsf W^{\mathsf T}$ with $\mathsf U=[\mathbf u_\varsigma]$ and $\mathsf W=[\mathbf w_\varsigma]$, and by the Cauchy--Binet formula $\det\mathsf M=\sum_{\mathsf S'}\det\mathsf U_{\bullet\mathsf S'}\det\mathsf W_{\bullet\mathsf S'}$. Each term of the permutation expansion of $\det\mathsf U_{\bullet\mathsf S'}$ contains exactly one entry of each column, so $\vg p(\det\mathsf U_{\bullet\mathsf S'})\ge\sum_{\varsigma\in\mathsf S'}\min_i\vg p(u_{\varsigma,i})$, and similarly for $\mathsf W$.
+\end{proof}
+
+\begin{lemma}[alternating polynomials]\label{lem:alternating}
+Let $p$ be an odd prime and $\Phi\in\Zp[z_1,\dots,z_k]$ alternating, that is, changing sign under each transposition of two variables. Then $\Phi$ is divisible by $\prod_{i<j}(z_i-z_j)$ in $\Zp[z_1,\dots,z_k]$.
+\end{lemma}
+
+\begin{proof}
+Fix $i<j$. Division by the monic polynomial $z_i-z_j$ in the variable $z_i$ gives $\Phi=(z_i-z_j)\Psi+\Phi|_{z_i=z_j}$. The transposition of $z_i$ and $z_j$ fixes $\Phi|_{z_i=z_j}$ and changes the sign of $\Phi$, so $2\Phi|_{z_i=z_j}=0$, and $\Phi|_{z_i=z_j}=0$ because $2$ is a unit. Thus each $z_i-z_j$ divides $\Phi$. These are pairwise non-associate prime elements of the factorial ring $\Zp[z_1,\dots,z_k]$, so their product divides $\Phi$.
+\end{proof}
+
+\begin{lemma}[linear programs with capacities]\label{lem:lp-lipschitz}
+Let $w_1,\dots,w_r$ be real numbers with $|w_k|\le W$, and for capacities $c\in[0,\infty)^r$ put
+\begin{align*}
+F(c)&=\min\Bigl\{\sum_kw_ky_k:\ 0\le y_k\le c_k,\ \sum_ky_k=m\Bigr\},\\
+F^-(c)&=\min\Bigl\{\sum_kw_ky_k:\ 0\le y_k\le c_k,\ \sum_ky_k\le m\Bigr\}.
+\end{align*}
+If $\sum c_k\ge m$ and $\sum c'_k\ge m$, then $|F(c)-F(c')|\le2W\|c-c'\|_1$; and always $|F^-(c)-F^-(c')|\le W\|c-c'\|_1$. Both minima are attained by filling the slots in order of increasing weight (for $F^-$, only slots of negative weight).
+\end{lemma}
+
+\begin{proof}
+Let $y$ be optimal for $c$ and put $y'_k=\min(y_k,c'_k)$. Then $\sum_k(y_k-y'_k)\le\|c-c'\|_1$. For $F^-$, $y'$ is feasible for $c'$ and costs at most $W\|c-c'\|_1$ more. For $F$, refill the deficit using the spare capacity of $c'$, which exists because $\sum c'_k\ge m$, at a further cost at most $W\|c-c'\|_1$. Exchange the roles of $c$ and $c'$. For the greedy description, let $y$ be feasible and suppose that $y_k>0$ while $y_j<c_j$ for some $j$ with $w_j<w_k$; moving the mass $\min(y_k,c_j-y_j)$ from $k$ to $j$ keeps $y$ feasible and does not increase the cost. Repeating this for the slots in order of increasing weight transforms any optimal solution, without increasing its cost, into the one that fills the slots in that order until the total $m$ is reached. For $F^-$, mass on a slot of nonnegative weight can be removed without increasing the cost, and the same argument applies to the slots of negative weight. If the capacities and $m$ are integers, the greedy solution is integral.
+\end{proof}
+
+\begin{lemma}[weak duality with one price]\label{lem:weak-duality}
+With the notation of \cref{lem:lp-lipschitz}, for every $t\in\R$ and every $y$ with $0\le y_k\le c_k$ and $\sum y_k=m$,
+\[
+\sum_kw_ky_k\ \ge\ mt+\sum_kc_k\min(0,w_k-t).
+\]
+The same holds if only $\sum y_k\le m$ is assumed, provided $t\le0$.
+\end{lemma}
+
+\begin{proof}
+$\sum_kw_ky_k=t\sum_ky_k+\sum_k(w_k-t)y_k$ and $(w_k-t)y_k\ge c_k\min(0,w_k-t)$. If $\sum y_k\le m$ and $t\le0$, then $t\sum_ky_k\ge tm$.
+\end{proof}

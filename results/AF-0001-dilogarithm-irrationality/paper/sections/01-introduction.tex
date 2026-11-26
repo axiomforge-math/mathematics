@@ -1,0 +1,212 @@
+\section{Introduction}\label{sec:introduction}
+
+For $|z|\le 1$ let $\Li_2(z)=\sum_{k\ge1}z^k/k^2$ be the dilogarithm. This paper presents a proof of the following statement. The proof is a candidate: it has not been independently verified, and its status is described precisely in \cref{sec:intro-status}.
+
+\begin{theorem}\label{thm:main}
+The numbers $\Li_2(2/11)$, $\Li_2(2/9)$, $\Li_2(-2/9)$ and $\Li_2(-2/7)$ are irrational.
+\end{theorem}
+
+\subsection{Context}\label{sec:intro-context}
+Irrationality of the dilogarithm at rational points $r/s$ is classical for $|s|$ large compared with $|r|$. Hata proved irrationality and linear independence results for values $\Li_2(1/q)$ \cite{Hata1990,Hata1993}, and the permutation group method of Rhin and Viola \cite{RhinViola2005,RhinViola2019} and the work of Viola and Zudilin \cite{ViolaZudilin2018} extended these results to other rational arguments, with explicit thresholds on the denominator. For numerator $2$, the method of \cite{RhinViola2005} gives the irrationality of $\Li_2(2/s)$ for $s\ge51$, as stated in \cite[Section~1]{TanZhang2026} and \cite[Section~1.2]{Litsey2026Li2}; we have not checked this threshold in the original, and we know of no refereed result for the denominators $7$, $9$ and $11$ considered here.
+
+In 2026 a different construction was introduced in Tang's Lean development for $\Li_2(1/2)$ \cite{TangLi2Half}: normalized Hankel determinants of an affine moment functional, an instance of the determinantal approach to irrationality \cite{Zudilin2017}. Tang's development is Lean code without a paper; we know its construction through the written account in \cite[Sections~2 and~9]{Litsey2026Li2}. The method was extended, in unrefereed and largely AI-assisted work, by Liu \cite{LiuLi2Rational}, whose Lean development states the irrationality of $\Li_2(2/k)$ for $k\ge13$ and of $\Li_2(-2/k)$ for $k\ge16$, and it is used for small numerators by Tan and Zhang \cite{TanZhang2026}, whose Table~1 gives the ranges $q\ge12$ and $q\ge16$ for $\Li_2(2/q)$ and $\Li_2(-2/q)$. Prellberg \cite{Prellberg2026} treated the arguments $-1/4$, $1/5$ and $-1/3$ by the Rhin--Viola and Viola--Zudilin constructions. Litsey's preprint \cite{Litsey2026Li2} proves irrationality measures with Tang's determinants; its Corollary~1.3 covers $\Li_2(2/b)$ for every odd $b\ge13$ and $\Li_2(-2/b)$ for every odd $b\ge11$, its Section~1.1 states that its main theorem gives no measure for $\Li_2(2/b)$ with $b\in\{5,7,9,11\}$ or for $\Li_2(-2/b)$ with $b\in\{5,7,9\}$, and its Remark~8.1 records that the margin of that construction is at most $0$ at $2/11$ and at $-2/9$. We read these five sources on 26 November 2026; none of them is refereed. We know of no source, refereed or not, that proves the irrationality of any of the four numbers in \cref{thm:main}; this is a statement about what we found, not a proof of absence.
+
+The four numbers come in two pairs linked by Landen's identity, and the following weaker statement is elementary.
+
+\begin{proposition}\label{prop:landen}
+At least one of $\Li_2(2/11)$, $\Li_2(-2/9)$ is irrational, and at least one of $\Li_2(2/9)$, $\Li_2(-2/7)$ is irrational.
+\end{proposition}
+
+\begin{proof}
+For real $z<1/2$ Landen's identity reads
+\begin{equation}\label{eq:landen}
+\Li_2(z)+\Li_2\Bigl(\frac{z}{z-1}\Bigr)=-\tfrac12\log^2(1-z).
+\end{equation}
+Indeed both sides vanish at $z=0$, and with $w=z/(z-1)$ one has $1-w=(1-z)^{-1}$ and $w'=-(z-1)^{-2}$, so the derivative of the left side is
+$-z^{-1}\log(1-z)-\log(1-z)\,(z(z-1))^{-1}=\log(1-z)/(1-z)$, which is the derivative of the right side. For $z=2/11$ and $z=2/9$ we have $z/(z-1)=-2/9$ and $-2/7$, and \eqref{eq:landen} gives
+\[
+\Li_2\bigl(\tfrac2{11}\bigr)+\Li_2\bigl(-\tfrac29\bigr)=-\tfrac12\log^2\tfrac9{11},\qquad
+\Li_2\bigl(\tfrac29\bigr)+\Li_2\bigl(-\tfrac27\bigr)=-\tfrac12\log^2\tfrac79 .
+\]
+By the Hermite--Lindemann theorem $\log r$ is transcendental for every rational $r>0$, $r\ne1$; hence so is $\log^2 r$, and the right-hand sides are irrational.
+\end{proof}
+
+\Cref{prop:landen} cannot be sharpened by this route, and \cref{thm:main} is a statement about the individual values. The four arguments are exactly the two Landen pairs $(z,z/(z-1))$ for $z\in\{2/11,2/9\}$.
+
+\subsection{Relation to earlier work}\label{sec:intro-sources}
+The method of this paper is that of Tang and Litsey, applied to a larger family of weights, and we make no claim of novelty for its techniques. The following ingredients are taken from \cite{Litsey2026Li2}, where they are attributed in part to Tang \cite{TangLi2Half}; section numbers are those of \cite{Litsey2026Li2}.
+\begin{itemize}
+\item The functional $\Lambda_X$, the Hankel determinants, their normalization and Heine's formula (Section~2). Tang's family is the case $(H,B,C)=(2,1,4)$ of \cref{sec:intro-construction}.
+\item The arithmetic at the primes dividing $b$ and $b-2\epsilon$ and at the other primes: the bound through integer-valued polynomials with the parameter $f$ (Lemma~4.2 and Theorem~4.1), the reflection formula and the pole slots at a prime dividing $b$ (Lemma~9.9 and Proposition~9.8), the determinant lemmas (Lemmas~9.4 and~9.5), the residue classes modulo $p$ with the local exponents $3a_\sigma-c_\sigma-1+\ind_{\sigma=0}$ and the resulting bounds at the primes $p\le n$ and $n<p\le4n$ (Propositions~9.11, 9.12 and~9.15), and the integration of the resulting profile with the prime number theorem (Proposition~4.3 and Sections~9.10--9.11). Our \cref{sec:exceptional,sec:ordinary,sec:profile} adapt these arguments to general $(H,B,C)$; the jet bound and the pole bound of \cref{prop:jet,prop:pole} are our formulation, for general parameters, of the method of Sections~9.8 and~9.9, and the proof of the local integrality through finite geometric averages (\cref{prop:distribution,lem:local-integrality}) differs from the proof given there.
+\item Nonvanishing through residue classes modulo a prime and local Hankel determinants of a local functional (Section~5, where they are called type constants). There the prime runs through a band depending on $n$; here we take the index $n$ itself prime, which leaves only two local determinants (\cref{sec:nonvanishing}).
+\item The analytic bound: Heine's formula for a functional with jets, with at most two variables at a site (Lemma~6.2), the comparison with the energy of a measure, and the bound with a level $\theta$ and the penalty $2\int(\cdot-\theta)_+$ (Theorem~6.1); for negative arguments, the replacement of the sum over the integers by a contour integral along a bent contour (Section~6.3). Our \cref{prop:positive-bound} has the form of Theorem~6.1 for the lattice; in \cref{sec:contour} the contour consists of two rays from $\frac12$, and the energy inequality (\cref{lem:energy-comparison}) is proved differently.
+\end{itemize}
+What is specific to this paper is the choice of the parameters $(H,B,C)$ of \cref{tab:parameters}, in particular the family without zeros for $2/9$, the statements for general parameters, the reduction at prime indices, the comparison measures and the finite computations of \cref{app:certificates}. We have compared our statements with \cite{Litsey2026Li2} only at the level of this list, not line by line, and we have not read Tang's or Liu's Lean code.
+
+\subsection{The construction}\label{sec:intro-construction}
+Fix one of the four arguments $\lambda$, write $\xi=\Li_2(\lambda)$, and let $(H,B,C)$ be the triple of integers attached to $\lambda$ in \cref{tab:parameters}. For $n\ge1$ put
+\[
+h=Hn,\qquad A=Bn,\qquad K=Cn,\qquad D_m(x)=\prod_{j=1}^m(x+j),\qquad W_n(x)=\frac{D_A(x)^3}{D_K(x)} .
+\]
+The weight $W_n$ has double zeros at $-1,\dots,-A$ and simple poles at $-A-1,\dots,-K$. Let $\Lambda_X$ be the $\Q[X]$-valued linear functional on rational functions with at most simple poles at negative integers defined in \cref{def:functional}; its value at $X=\xi$ is
+\[
+\Lambda_\xi(R)=\sum_{x\ge1}\lambda^x\bigl(xR(x)\bigr)' .
+\]
+The object of study is the polynomial
+\begin{equation}\label{eq:intro-Q}
+\Qt_n(X)=\frac{S_n^{\,h}}{F_n}\det_{0\le i,j<h}\Lambda_X\bigl(W_n(x)\,x^{i+j}\bigr),\qquad S_n=\frac{K!}{(A!)^3},\quad F_n=\prod_{i=0}^{h-1}(i!)^2,
+\end{equation}
+which has rational coefficients and degree at most $h$. Tang's family, as described in \cite[Section~2]{Litsey2026Li2}, is the case $(H,B,C)=(2,1,4)$. The families used here are larger: the dimension $h$ and the pole range $K$ grow faster than the numerator length $A$, and for $\lambda=2/9$ the weight has no zeros at all.
+
+\begin{table}[ht]
+\centering
+\caption{Parameters. Here $\lambda=2\epsilon/b$ with $\epsilon=\pm1$; $\pP$ is the prime dividing the numerator $b-2\epsilon$ of $1-\lambda$, with $f=v_{\pP}(b-2\epsilon)$, and $\pQ$ is the prime dividing $b$, with $e=v_{\pQ}(b)$. The normalized parameters are $a=B/H$, $\kappa=C/H$ and $d=\kappa-3a$.}
+\label{tab:parameters}
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+$\lambda$ & $(H,B,C)$ & $a$ & $\kappa$ & $d$ & $\pP$ & $f$ & $\pQ$ & $e$ & $t=\log(b/2)$\\
+\midrule
+$2/11$ & $(4,1,6)$ & $1/4$ & $3/2$ & $3/4$ & $3$ & $2$ & $11$ & $1$ & $\log(11/2)$\\
+$2/9$ & $(8,0,9)$ & $0$ & $9/8$ & $9/8$ & $7$ & $1$ & $3$ & $2$ & $\log(9/2)$\\
+$-2/9$ & $(4,1,7)$ & $1/4$ & $7/4$ & $1$ & $11$ & $1$ & $3$ & $2$ & $\log(9/2)$\\
+$-2/7$ & $(5,1,8)$ & $1/5$ & $8/5$ & $1$ & $3$ & $2$ & $7$ & $1$ & $\log(7/2)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The argument in one page}\label{sec:one-page}
+For a nonzero $F\in\Q[X]$ let $\cont(F)>0$ be the rational number for which $F/\cont(F)$ is a primitive polynomial in $\Z[X]$ (\cref{sec:content}). The proof rests on the following elementary criterion.
+
+\begin{lemma}[irrationality criterion]\label{lem:criterion}
+Let $x\in\R$, let $(F_k)_{k\ge1}$ be polynomials in $\Q[X]$ with $\deg F_k\le h_k$, where $h_k\to\infty$, and let $\rho>\rho'$ be real numbers. Assume that for every $r\in\Q$ one has $F_k(r)\ne0$ for all large $k$ (in particular $F_k\ne0$ for large $k$), and that for every $\eta>0$ and all large $k$
+\[
+\log\cont(F_k)\ge(\rho-\eta)h_k^2\qquad\text{and}\qquad\log|F_k(x)|\le(\rho'+\eta)h_k^2 .
+\]
+Then $x$ is irrational.
+\end{lemma}
+
+\begin{proof}
+Suppose $x=u/v$ with $u\in\Z$, $v\in\Z_{\ge1}$, and take $\eta=\frac13(\rho-\rho')$. For large $k$ the polynomial $P_k=F_k/\cont(F_k)\in\Z[X]$ satisfies $P_k(u/v)\ne0$, so $v^{h_k}P_k(u/v)$ is a nonzero integer and $0\le h_k\log v+\log|F_k(x)|-\log\cont(F_k)\le h_k\log v-\eta h_k^2$, which is negative for large $k$.
+\end{proof}
+
+We apply \cref{lem:criterion} to $x=\xi$ and $F_k=\Qt_{p_k}$, where $p_k$ is the $k$th prime and $h_k=Hp_k$. Its three hypotheses are the following theorems, in which $\rar(\lambda)$ and $\ran(\lambda)$ are the constants of \cref{tab:rates}.
+
+\begin{theorem}[arithmetic estimate]\label{thm:arith}
+$\displaystyle\liminf_{n\to\infty,\ \Qt_n\ne0}\ h^{-2}\log\cont(\Qt_n)\ \ge\ \rar(\lambda)$.
+\end{theorem}
+
+\begin{theorem}[archimedean estimate]\label{thm:arch}
+$\displaystyle\limsup_{n\to\infty}\ h^{-2}\log|\Qt_n(\xi)|\ \le\ \ran(\lambda)$, with the convention $\log0=-\infty$.
+\end{theorem}
+
+\begin{theorem}[nonvanishing at prime indices]\label{thm:nonvanishing}
+For every $r\in\Q$ there is $p_0(r)$ such that $\Qt_p(r)\ne0$ for every prime $p\ge p_0(r)$.
+\end{theorem}
+
+\begin{table}[ht]
+\centering
+\caption{Thresholds and computed bounds, normalized by $h^2$. The thresholds $\rar$ and $\ran$ are the rational numbers used in \cref{thm:arith,thm:arch}. What is checked in exact arithmetic is a set of finite inequalities: that the computed lower bound for $I_\delta+\eps_{\mathrm{exc}}$ (\cref{tab:profile}) exceeds $\rar$, and that the computed upper bound for the comparison-measure functional (\cref{tab:analytic}) is below $\ran$; that these quantities bound the asymptotic rates is the content of the candidate proofs. The column $\rar-\ran$ is the margin that enters \cref{lem:criterion}; ``computed'' is the difference of the two computed bounds; ``recomputed'' is the margin obtained for the same comparison measures by the AI-internal recomputation, with exact profile integrals and finer cell enclosures (\cref{sec:margins}). Computed lower bounds are rounded down, upper bounds up, and margins to the nearest digit. For $\lambda=2/11$ the certificates work in the scale $n^2=h^2/16$ (\cref{rem:211-scale}). For $\lambda=2/9$ the margin is thin, and the exact data for $n\le11$ lie above $\ran$: this case has no numerical corroboration (\cref{sec:margins}).}
+\label{tab:rates}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & & lower bound & & upper bound & & \multicolumn{2}{c}{margin of the bounds}\\
+\cmidrule(l){7-8}
+$\lambda$ & $\rar$ & computed & $\ran$ & computed & $\rar-\ran$ & computed & recomputed\\
+\midrule
+$2/11$ & $-2169/8000$ & $-0.2710651$ & $-49/160$ & $-0.3071494$ & $0.035125$ & $0.036084$ & $0.0678$\\
+$2/9$ & $-133/100$ & $-1.3245275$ & $-134/100$ & $-1.3436316$ & $0.010000$ & $0.019104$ & $0.019379$\\
+$-2/9$ & $-2/5$ & $-0.3830882$ & $-49/100$ & $-0.4954089$ & $0.090000$ & $0.112321$ & $0.13978$\\
+$-2/7$ & $-521323/10^6$ & $-0.5213227$ & $-526078/10^6$ & $-0.5260781$ & $0.004755$ & $0.0047556$ & $0.02969$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Since $\rar>\ran$ in each case, \cref{lem:criterion,thm:arith,thm:arch,thm:nonvanishing} prove \cref{thm:main} (\cref{sec:proof-main}). The three estimates are independent of one another, and each is obtained as follows. Both $\log\cont(\Qt_n)$ and $\log|\Qt_n(\xi)|$ are of order $h^2$ only because of the factor $S_n^h/F_n$ in \eqref{eq:intro-Q}: its logarithm is $(d-1)h^2\log h+\Cst h^2+O(h\log h)$ (\cref{lem:stirling}), which cancels the term $(1-d)h^2\log h$ of $\log|Q_n(\xi)|$ in the archimedean estimate, and its $p$-adic valuation is the term $h\mathsf N(p/h)$ of the arithmetic profile (\cref{def:profile}).
+
+\emph{Arithmetic (\cref{sec:exceptional,sec:ordinary,sec:profile}).} In the binomial basis, $\Qt_n$ is a Gram determinant whose entries have integral residues (\cref{lem:normalization,lem:integral-valued}), and $\log\cont(\Qt_n)=\sum_p\vg p(\Qt_n)\log p$ is bounded prime by prime: at the three exceptional primes of \cref{tab:parameters} directly (\cref{sec:exceptional}); at an ordinary prime $p$ with $\sqrt K<p\le K$ by distributing $\Lambda_X$ over the residue classes modulo $p$ and expanding the determinant by Cauchy--Binet (\cref{prop:jet,prop:pole}). For $p\ge\delta h$, with a fixed small cut-off $\delta>0$, the resulting bounds are $h$ times a function of $p/h$, up to a bounded error (\cref{prop:profile-uniform}); the prime number theorem integrates them (\cref{thm:arith-general}), the ordinary primes below $\delta h$ are bounded crudely at the cost $-2\delta$ in the rate, and the integral is bounded below by an exact computation (\cref{prop:profile-certificate}).
+
+\emph{Archimedean (\cref{sec:energy,sec:contour}).} Heine's formula writes $Q_n(\xi)$ as an average of a squared Vandermonde determinant against a product weight, over $h$-tuples of positive integers for $\lambda>0$ and, after a residue identity that keeps the alternating sign, over $h$-tuples of points on two rays for $\lambda<0$ (\cref{lem:contour}); a regularized logarithmic-energy inequality against an explicit comparison measure bounds this average (\cref{prop:positive-bound,prop:negative-bound,tab:analytic}). For $\lambda>0$ the functional involves a derivative, and a positive integer can carry at most two of the $h$ variables (\cref{lem:multiplicity}); this occupancy constraint is what limits the gain, and it enters the bound as the penalty $2\int(\mathsf W-\theta)_+$ of \cref{prop:positive-bound}.
+
+\emph{Nonvanishing (\cref{sec:nonvanishing}).} At a prime index $n=p$, in a basis adapted to the Chinese remainder theorem modulo $p$, the scaled Gram matrix at a rational point is block triangular modulo $p$, with diagonal blocks equal up to units to two fixed $H\times H$ Hankel matrices whose determinants are nonzero rational numbers (\cref{thm:nonvanishing-general,tab:local-dets}).
+
+Besides elementary facts (Legendre's and Kummer's formulas, Stirling's formula, Newton interpolation, the Cauchy--Binet formula, Schur's product theorem, Fubini's theorem), the proof of \cref{thm:main} uses two external theorems, the prime number theorem in the form $\sum_{p\le y}\log p\sim y$ and the residue theorem, and three kinds of finite computations in exact rational arithmetic: four lower bounds for profile integrals, eight local determinants and four upper bounds for comparison-measure functionals (\cref{app:certificates}). The Hermite--Lindemann theorem is used only in \cref{prop:landen}.
+
+\emph{The case $\lambda=2/9$.} The four cases are not equally robust. For $2/11$, $-2/9$ and $-2/7$ the exact values of $h^{-2}\log|\Qt_n(\xi)|$ computed for small $n$ lie below $\ran$, and the recomputed margins are between $0.03$ and $0.14$. For $2/9$ the computed bounds are $-1.3245$ and $-1.3436$, against rates of size $1.3$: the margin is $0.019$ per $h^2$, and $0.010$ between the thresholds. The finite data do not corroborate the upper bound: at $n=11$ the value $h^{-2}\log|\Qt_n(\xi)|=-1.2886$ is still above $\ran$ and above $\rar$ (\cref{tab:numerics}), and the comparison measure is nearly optimal for the bound of \cref{prop:positive-bound}, so the certificate cannot be improved much (\cref{sec:margins}). The case $2/9$ therefore rests on the written proofs alone, and an unnoticed loss of $0.02\,h^2$ in any step of \cref{sec:exceptional,sec:ordinary,sec:profile,sec:energy} would invalidate it.
+
+\subsection{Status of the argument}\label{sec:intro-status}
+The proof is a candidate. The choice of the families, the arguments and the certificates were first produced by an AI system, as three separate candidate manuscripts, on the basis of the method described in \cref{sec:intro-sources}; this paper reconstructs them as one argument, corrects them where necessary, and states each step with its hypotheses. \Cref{tab:status} records the status of each step in three categories:
+\begin{itemize}
+\item \emph{proved}: an elementary argument, given in full, of a kind we regard as standard;
+\item \emph{certified}: a finite inequality or identity checked by a computation in exact rational arithmetic, reproduced by the original programs and confirmed by an AI-internal recomputation from the definitions, which is not an independent or human check; the word applies to the finite statement only, not to the asymptotic rate deduced from it;
+\item \emph{candidate}: a complete proof is given here, but it has not been independently verified.
+\end{itemize}
+The candidate steps were checked only in the following limited sense. A separate exact implementation of the construction, written from the definitions, confirms for all four values and for $n$ up to $11$--$19$ that $Q_n\ne0$, that the series identity of \cref{lem:series} holds to forty digits, and that every exact valuation bound of \cref{sec:exceptional,sec:ordinary} holds at every prime (\cref{app:numerics}). This audit found one error in the source argument: there, the pole bound fails by exactly one unit, because the pole $l=p$ of the zero residue class gains only $+1$ rather than $+2$; \cref{prop:pole,rem:zero-class} state the corrected bound, and the jet bound is unaffected. All checks were carried out with AI systems; none of them is an independent verification.
+
+\begin{table}[ht]
+\centering
+\caption{Status of the steps of the proof.}
+\label{tab:status}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.44\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
+\toprule
+Step & Where & Status\\
+\midrule
+Landen pairs & \cref{prop:landen} & proved\\
+Irrationality criterion & \cref{lem:criterion} & proved; formalized\\
+Series identity, binomial normalization, degree bound & \cref{lem:series,lem:normalization} & proved\\
+Exceptional primes and uniform bounds & \cref{sec:exceptional} & candidate; finite bounds checked on exact data\\
+Distribution over residue classes, local integrality, jet and pole bounds & \cref{sec:ordinary} & candidate; jet and corrected pole bounds checked on exact data\\
+Uniform profile and prime number theorem summation & \cref{prop:profile-uniform,thm:arith-general} & candidate; the comparison of the discrete and limiting profiles checked on exact class counts\\
+Lower bounds for the profile integrals & \cref{prop:profile-certificate} & certified\\
+Nonvanishing reduction at prime indices & \cref{thm:nonvanishing-general} & candidate\\
+Local determinants & \cref{prop:local-dets} & certified\\
+Heine formula, multiplicity bound, energy comparison & \cref{sec:energy} & candidate\\
+Contour representation and bound for $\lambda<0$ & \cref{sec:contour} & candidate\\
+Upper bounds for the comparison-measure functionals & \cref{tab:analytic} & certified\\
+Final deduction & \cref{sec:proof-main} & proved; formalized conditionally\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No independent human review of the general arguments and no independent external check of the certificates have taken place. The Lean development formalizes the definitions and the general irrationality criterion, and proves the four main theorems only conditionally, from hypotheses that bundle \cref{thm:arith,thm:arch,thm:nonvanishing}; these three estimates are not formalized. The margins of \cref{tab:rates} are small for $\lambda=2/9$ and $\lambda=-2/7$. For $-2/7$ this reflects generous error bounds in the certificate, and the recomputation gives a margin of $0.02969$; for $2/9$ the margin is intrinsically small and is not supported by the finite data (\cref{sec:one-page,sec:margins}). The manuscript was revised after an adversarial review by a further AI system, which found no false step but several gaps and imprecisions; that review is an AI review and not an independent one. \Cref{sec:open} lists the points that we regard as open or as deserving particular scrutiny.
+
+\subsection{Organization, notation and conventions}\label{sec:conventions}
+\Cref{sec:functional} defines the functional and the determinants; \cref{sec:exceptional,sec:ordinary,sec:profile} prove \cref{thm:arith}; \cref{sec:nonvanishing} proves \cref{thm:nonvanishing}; \cref{sec:energy,sec:contour} prove the comparison bounds behind \cref{thm:arch}; \cref{sec:proof} assembles the proof and discusses margins and open points. \Cref{app:certificates} describes the certificates, \cref{app:technical} collects technical lemmas, and \cref{app:numerics} reports numerical evidence for small $n$.
+
+$v_p$ is the $p$-adic valuation with $v_p(p)=1$, and $\Zp$ is the ring of rational numbers with denominator prime to $p$. For $F\in\Q[X]$, $\vg p(F)$ is the minimum of the valuations of its coefficients, with $\vg p(0)=+\infty$. We write $(y)_+=\max(y,0)$, $\ind_{\mathsf{S}}$ for the indicator of a statement $\mathsf S$, $b_i(x)=\binom xi$, and $\lfloor\cdot\rfloor$ for the integer part; logarithms are natural. Throughout, $\lambda$ is one of the four arguments, and all quantities attached to the construction depend on $\lambda$ and $n$ even when this is not indicated. \Cref{tab:notation} lists the principal symbols and where they are defined. A few letters have, besides the global meaning of \cref{tab:notation}, a local meaning that is stated where it is used: $q$ (a generic rational argument in \cref{sec:moments}, the polynomial part of a rational function, and the integers $q_s$, $q_{ij}$), $c$ (residues $c_l$, class counts $c_\sigma$, the constant $c_R$, and the ray direction of \cref{sec:contour}), $B$ and $D$ (the parameter $B$ and the products $D_m$, but also the denominators $B(u)$, $D(u)$ of \cref{lem:local-integrality}, the functional $D_v$ and index sets $D$), $T$ (the averages $T_{M,v}$, a triangular matrix in \cref{lem:normalization}, and the decay rate of \cref{sec:contour}), $N$ (the integer $2h+3A$, and a truncation index in \cref{lem:contour,app:certificates}), $t$ ($\log(b/2)$, and an integer or a price in \cref{lem:integral-valued,lem:weak-duality}), $e$ (the exponent of \cref{tab:parameters}, the basis $e_{\sigma,i}$ and the exponent $e_0$ of \cref{sec:nonvanishing}), and the constants $C_0$, $C_1$, $c_1$, $Y$, which are local to the statement in which they occur.
+
+\begin{table}[ht]
+\centering
+\caption{Notation.}
+\small
+\label{tab:notation}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.44\textwidth}>{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
+\toprule
+Symbol & Meaning & Defined in\\
+\midrule
+$\lambda=2\epsilon/b$, $\xi$, $t$ & argument, $\xi=\Li_2(\lambda)$, $t=\log(b/2)$ & \cref{tab:parameters}\\
+$H,B,C$; $h,A,K$ & parameters; $h=Hn$, $A=Bn$, $K=Cn$ & \cref{sec:intro-construction}\\
+$a,\kappa,d$ & $B/H$, $C/H$, $\kappa-3a$ & \cref{tab:parameters}\\
+$\pP,f$; $\pQ,e$; $\Ex$ & exceptional primes and exponents; $\Ex=\{2,\pP,\pQ\}$ & \cref{tab:parameters}\\
+$D_m$, $W_n$, $S_n$, $F_n$ & rising product, weight, normalizing factors & \eqref{eq:intro-Q}\\
+$M_k$, $\tau_l$, $G_q$, $G$ & geometric moments, partial sums of $\Li_2$, geometric sums & \cref{sec:moments}\\
+$\cR$, $\Lambda_X$ & admissible rational functions, the functional & \cref{def:functional}\\
+$Q_n$, $\Qt_n$, $R_{ij}$ & determinant, normalized determinant, binomial entries & \cref{sec:determinants}\\
+$N$, $L_p$ & $2h+3A$, $\lfloor\log N/\log p\rfloor$ & \eqref{eq:N-L}\\
+$\cont$, $\vg p$ & content, Gauss valuation & \cref{sec:content}\\
+$\lambda_p$; $a_\sigma,c_\sigma,w_\sigma$ & $\lambda^p$; class counts modulo an ordinary prime & \cref{sec:ordinary}\\
+$T_{M,v}$, $T_{M,v,Y}$, $Y_\mu$, $\Theta_\sigma$ & finite averages, regularization, class terms & \cref{sec:finite-averages,sec:distribution}\\
+$\cJ_p$, $\cP_p$ & jet and pole bounds & \cref{prop:jet,prop:pole}\\
+$J,R,\mathsf N,\mathsf B$, $I_\delta$ & profile and its integral & \cref{def:profile,thm:arith-general}\\
+$\eps_{\mathrm{exc}}$ & exceptional rate & \cref{cor:exceptional}\\
+$\cV$, $w_0,w_1$, $\mathsf H_0,\mathsf H_1$ & local functional, weights, Hankel matrices & \cref{sec:local-functional}\\
+$U_\sigma$, $E(\sigma)$ & potential and energy of a comparison measure & \cref{sec:energy-inequality}\\
+$\Cst$ & normalization constant & \cref{lem:stirling}\\
+$V$, $\mathsf W$; $V_-$, $c$, $T$, $k$, $\Gamma$ & external fields; ray direction, decay, kernel, contour & \cref{sec:positive-bound,sec:contour}\\
+$\rar,\ran$ & thresholds for the two rates & \cref{tab:rates}\\
+\bottomrule
+\end{tabular}
+\end{table}

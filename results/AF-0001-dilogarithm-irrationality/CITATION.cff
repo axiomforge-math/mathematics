@@ -1,0 +1,23 @@
+# Template version 1.0.0. Keep version and date in step with result.toml.
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below. It is a preprint: the main theorem is not established by the archive until level V4."
+title: "Enlarged Hankel determinants and the irrationality of Li_2(2/11), Li_2(2/9), Li_2(-2/9) and Li_2(-2/7)"
+abstract: "A candidate proof, released as a preprint, that the four numbers Li_2(2/11), Li_2(2/9), Li_2(-2/9) and Li_2(-2/7) are irrational, by normalised Hankel determinants of an affine moment functional and three estimates (content, archimedean decay, nonvanishing at prime indices) whose finite parts are certified by reproduced computations. The general arguments have not been independently verified; the Lean formalization is in preparation. AI-assisted research: GPT-6.2 XHigh (web version) and Claude Opus 5.5 (Anthropic); see logs/ai-contributions.md."
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+version: "0.1.0"
+date-released: "2026-11-26"
+identifiers:
+  - type: other
+    value: "AF-0001"
+    description: "AxiomForge result identifier"
+url: "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0001-dilogarithm-irrationality"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - "dilogarithm"
+  - "irrationality"
+  - "Hankel determinants"
+  - "logarithmic energy"
+  - "preprint"

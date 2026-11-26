@@ -1,0 +1,18 @@
+# case -2/9: kind=negative  mesh 1/6000  prec=160
+[PASS] -2/9: |c| = 1
+[PASS] -2/9: Re c > 0 and Re eta > 0 (convexity of the beta=0 terms) :: eta = 7/25 + 24/25 i
+[PASS] -2/9: comparison measure is a probability measure :: 1
+[PASS] -2/9: density nonnegative
+  E = [-1.3538434110361088121 +/- 1.17e-21]  (same-ray [-0.430966189459 +/- 8.89e-14], cross-ray [-0.245955516059 +/- 1.44e-13])
+[PASS] -2/9: E inside the reported enclosure (-1.353843411037, -1.353843411035) :: [-1.353843411036109 +/- 1.88e-16]
+  [our bound] sup_[0,2] (V_-+2U_-) <= -4.39451520430679  near y = 0.0000  (mesh 1/6000, 24.0s)
+  sup is >= -4.39464875184084 (value at a mesh point)
+[PASS] -2/9: support within [0,Y]
+[PASS] -2/9: tail majorant at Y=2 below our sup bound :: [-4.600756845 +/- 2.78e-11]
+[PASS] -2/9: tail majorant decreasing: (3a+2)/Y < T
+  C_* = [2.519048399726908 +/- 3.35e-16], T = [3.088217509574895 +/- 2.02e-16]
+  [our bound] RHS = C_* - E + sup <= -0.521623393543771
+[PASS] -2/9: certified RHS < claimed -0.490000 :: -0.521623393543771
+  [manuscript method] J = 2356/625, error (6+4J)s/2 = 0.02634800, theta <= -4.36830075184084, RHS <= -0.495408941077822
+[PASS] -2/9: manuscript-method theta reproduces reported -4.368300751840826 to 1e-9 :: -4.36830075184084
+== energy certificate -2/9: 10 passed, 0 failed ==

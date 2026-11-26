@@ -1,0 +1,52 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue).
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "AF-0001"
+slug = "dilogarithm-irrationality"
+title = "Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7)"
+version = "0.1.0"
+date = "2026-11-26"
+# Preprint: complete written argument, certificates reproduced, Lean development in
+# preparation. The archive does not establish the main theorem until level V4.
+status = "preprint"
+summary = "A candidate proof, released as a preprint, that the four numbers Li_2(2/11), Li_2(2/9), Li_2(-2/9) and Li_2(-2/7) are irrational. These values lie below the ranges covered by the published and the recent preprint literature; elementary arguments (Landen's identity) only show that each of the pairs {Li_2(2/11), Li_2(-2/9)} and {Li_2(2/9), Li_2(-2/7)} contains an irrational number. The proof uses normalised Hankel determinants of an affine moment functional attached to the weight D_{Bn}(x)^3/D_{Cn}(x), of dimension Hn, and three estimates for the resulting integer polynomials: a lower bound for their content (prime by prime, integrated with the prime number theorem), an upper bound for their value at the dilogarithm (Heine's formula and logarithmic energy, on the real axis or on two rays), and nonvanishing at prime indices (reduction to explicit local Hankel determinants). The finite computations are certified in exact rational and ball arithmetic and have been reproduced. The general arguments have not been independently verified; in Lean the main theorem is proved only conditionally on the three estimates."
+template_version = "1.0.0"
+msc_primary = "11J72"
+msc_secondary = ["33B30", "31A15"]
+keywords = ["dilogarithm", "irrationality", "Hankel determinants", "Heine's formula", "logarithmic energy", "prime number theorem", "Landen's identity"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0001-dilogarithm-irrationality"
+
+[disclosure]
+summary = "The original exploration, the constructions, the candidate proofs and the original certificate programs were produced with GPT-6.2 XHigh (web version), as stated by the AxiomForge owners. The reconstruction of the argument as one paper, the corrections it contains (in particular the zero-class correction of the pole bound), the audit computations, the separately written recomputation of the certificates, the manuscript, the Lean development and the first packaging of this contribution were produced with Claude Opus 5.5 (Anthropic), used through Claude Code, under the direction of AxiomForge. A harsh AI-internal adversarial review (Claude Fable 5.2) found no critical error; all major findings were fixed, in a revision made with Claude Fable 5.2, and the final checks and packaging were done with Claude Sonnet 5.5. All checks were carried out with AI systems; no independent human review has taken place, and AI involvement is not independent certification. AxiomForge takes full responsibility for the content."
+ai_systems = ["GPT-6.2 XHigh (OpenAI), web version, as stated by the AxiomForge owners", "Claude Opus 5.5 (Anthropic), used through Claude Code", "Claude Fable 5.2 (Anthropic), used through Claude Code", "Claude Sonnet 5.5 (Anthropic), used through Claude Code"]
+
+[lean]
+package = "axiomforge-af0001"
+root = "AxiomForge.AF0001"
+toolchain = "leanprover/lean4:v4.34.0-rc1"
+mathlib = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[theorem]]
+key = "thm:main"
+statement = "The numbers Li_2(2/11), Li_2(2/9), Li_2(-2/9) and Li_2(-2/7) are irrational, where Li_2(z) = sum_{k>=1} z^k/k^2 for |z| <= 1."
+lean = ""
+lean_conditional = [
+  "AxiomForge.Dilogarithm.irrational_dilog_two_elevenths_of_estimates",
+  "AxiomForge.Dilogarithm.irrational_dilog_two_ninths_of_estimates",
+  "AxiomForge.Dilogarithm.irrational_dilog_neg_two_ninths_of_estimates",
+  "AxiomForge.Dilogarithm.irrational_dilog_neg_two_sevenths_of_estimates",
+]
+
+# Evidence for every value: logs/verification.md.
+[theorem.verification]
+proof = "candidate"
+certificates = "reproduced"
+formalization = "in-preparation"
+build = "passing"
+axioms = "standard"
+statement_review = "pending"
+independent_review = "ai-internal"
+literature_review = "checked"

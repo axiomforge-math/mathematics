@@ -1,0 +1,176 @@
+\section{Arithmetic II: ordinary primes and residue classes}\label{sec:ordinary}
+
+This section proves the two local lower bounds for $\vg p(Q_n)$ at an ordinary prime $p>\sqrt K$, the jet bound (\cref{prop:jet}) and the pole bound (\cref{prop:pole}). They are the main source of the arithmetic gain, and \cref{sec:profile} integrates them over the primes $\delta h\le p\le K$; the ordinary primes $p\le\sqrt K$ are covered only by the uniform bound of \cref{prop:generic}. Note that the bounds of this section are stated for the determinant $Q_n$ itself, whereas those of \cref{sec:exceptional} are stated for $\Qt_n=(S_n^h/F_n)Q_n$; the valuation of the factor $S_n^h/F_n$ is added in \cref{prop:profile-uniform}. The same distribution over residue classes is used again in \cref{sec:nonvanishing}. The statements are candidates in the sense of \cref{sec:intro-status}.
+
+The method is that of \cite[Sections~9.8 and~9.9]{Litsey2026Li2}, where it is attributed to Tang: the residue classes modulo $p$, the counts $a_\sigma$, $c_\sigma$ and the exponent $\nu_\sigma$ of \cref{lem:local-integrality} appear there for Tang's family, with a bound for the entries (Proposition~9.12 there) and a determinant lemma for point masses at congruent nodes (Lemma~9.5 there); the bound for the primes $n<p\le4n$ (Proposition~9.15 there) already contains the shift by one unit for the poles divisible by $p$. \Cref{prop:jet,prop:pole} state the outcome for general parameters as sums over slot multisets. Our proof of the local integrality, through finite geometric averages and an affine change of the indeterminate, is different from the proof in \cite{Litsey2026Li2}; we have not compared the two in detail.
+
+Throughout this section $p$ is an ordinary prime with $K<p^2$, and $n$ is arbitrary. Then $p\ge3$, and $\lambda$, $1-\lambda$ are $p$-adic units. Put $\lambda_p=\lambda^p$. By Fermat's theorem $\lambda_p\equiv\lambda\pmod p$, so $\lambda_p$ and $1-\lambda_p$ are also units; more generally $\lambda_p^M\equiv\lambda\pmod p$ for every power $M$ of $p$. For $0\le\sigma<p$ let
+\[
+a_\sigma=\#\{1\le l\le A:\ l\equiv\sigma\ (\mathrm{mod}\ p)\},\qquad c_\sigma=\#\{1\le l\le K:\ l\equiv\sigma\ (\mathrm{mod}\ p)\},
+\]
+and $w_\sigma=3a_\sigma-c_\sigma-1$.
+The idea is to split the sum $\sum_{x\ge1}\lambda^x f(x)$ according to the class of $-x$ modulo $p$, writing $x=pu-\sigma$ with $u\ge1$ and $0\le\sigma<p$. On each class the weight $W_n$ is, up to a $p$-adic unit, the power $p^{3a_\sigma-c_\sigma}$ times a rational function in $u$ with small poles; this is the source of the valuations $w_\sigma$. Since $\lambda^x$ is not $p$-adically continuous in $x$, we work with finite normalized geometric sums, and we transport the indeterminate $X$ by an affine change of variable.
+
+\subsection{Finite geometric averages}\label{sec:finite-averages}
+For a rational number $v$ with $0<|v|<1$, an integer $M\ge1$ and a function $f$ defined on the positive integers put
+\[
+T_{M,v}(f)=\frac1{1-v^M}\sum_{u=1}^Mv^uf(u).
+\]
+
+\begin{lemma}\label{lem:finite-moments}
+Let $v$ be a rational number with $0<|v|<1$ such that $v$ and $1-v$ are $p$-adic units, let $\mu\ge1$ and $M=p^\mu$. Then $1-v^M$ is a unit, and:
+\begin{enumerate}[(a)]
+\item if $f$ takes values in $\Zp$ at the positive integers, then $T_{M,v}(f)\in\Zp$;
+\item if $g\in\Zp[u]$, then $G_v(g)\in\Zp$ and $T_{M,v}(g)\equiv G_v(g)\pmod{p^\mu}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have $v^M\equiv v\pmod p$, so $1-v^M$ is a unit, and (a) follows. For (b), $G_v(g)=\sum_k\Delta^kg(0)\,G_v(b_k)$ with $\Delta^kg(0)\in\Zp$ and $G_v(b_k)\in\Zp$ by the formulas in the proof of \cref{lem:newton}. Splitting the convergent series $G_v(g)$ at $u=M$ gives $\sum_{u=1}^Mv^ug(u)=G_v(g)-v^MG_v(g(u+M))$, whence
+\[
+T_{M,v}(g)-G_v(g)=\frac{v^M}{1-v^M}\bigl(G_v(g)-G_v(g(u+M))\bigr).
+\]
+By Taylor's formula $g(u+M)-g(u)=\sum_{k\ge1}M^k\,g^{(k)}(u)/k!$, and $g^{(k)}/k!\in\Zp[u]$; so $g(u+M)-g(u)\in p^\mu\Zp[u]$ and the difference is divisible by $p^\mu$.
+\end{proof}
+
+The functional $\Lambda_X$ acts on derivatives $f=(xR)'$, which are sums of a polynomial and of double poles $(x+l)^{-2}$. We regularize the double poles with an affine parameter. A \emph{function with designated double poles} is a function $f$ on the positive integers together with a decomposition $f=\varphi+\sum_{k\in S}d_k(u+k)^{-2}$, where $S\subset\Z_{\ge0}$ is finite, $d_k\in\Q$ and $\varphi$ is a function on the positive integers. For such $f$, a rational $v$ with $0<|v|<1$ and an indeterminate $Y$ put
+\[
+D_v(f)=\sum_{k\in S}d_kv^{-k},\qquad T_{M,v,Y}(f)=T_{M,v}(f)+D_v(f)\bigl(Y-T_{M,v}(u^{-2})\bigr)\in\Q[Y].
+\]
+This is linear in $f$ (with the designations added). Its point is that the dependence on $Y$ is concentrated in the designated poles, which are treated exactly as $\Lambda_X$ treats the poles of $(xR)'$.
+
+\begin{lemma}[regularized double poles]\label{lem:pole-regularization}
+Let $v$ be a rational number with $0<|v|<1$ and $M\ge1$. For $k\ge0$, with the single designated pole $(u+k)^{-2}$,
+\[
+T_{M,v,Y}\bigl((u+k)^{-2}\bigr)=v^{-k}\bigl(Y-\tau_k(v)\bigr)+\eta_{M,k}(v),
+\]
+where
+\[
+\eta_{M,k}(v)=\frac{v^{M-k}}{1-v^M}\sum_{j=1}^kv^j\Bigl(\frac1{(M+j)^2}-\frac1{j^2}\Bigr).
+\]
+If moreover $v$ and $1-v$ are $p$-adic units, $M=p^\mu$, and $\mu>v_p(j)$ for all $j\le k$, then $v_p(\eta_{M,k}(v))\ge \mu-3\max_{j\le k}v_p(j)$. In particular $v_p(\eta_{M,k}(v))\ge \mu$ if $k<p$.
+\end{lemma}
+
+\begin{proof}
+Reindexing, $\sum_{u=1}^Mv^u(u+k)^{-2}=v^{-k}\bigl(\sum_{m=1}^Mv^mm^{-2}-\tau_k(v)+\sum_{j=1}^kv^{M+j}(M+j)^{-2}\bigr)$. Divide by $1-v^M$ and add $v^{-k}(Y-T_{M,v}(u^{-2}))$; the terms $T_{M,v}(u^{-2})$ cancel, and $-v^{-k}\tau_k(1-v^M)^{-1}=-v^{-k}\tau_k-v^{M-k}\tau_k(1-v^M)^{-1}$ produces the formula. For the valuation, $(M+j)^{-2}-j^{-2}=-M(M+2j)(M+j)^{-2}j^{-2}$, and $v_p(M+j)=v_p(M+2j)=v_p(j)$ when $\mu>v_p(j)$, since $p$ is odd.
+\end{proof}
+
+\subsection{Distribution over residue classes}\label{sec:distribution}
+Let $R\in\cR$ have its poles in $\{-1,\dots,-K\}$ and put $f=(xR)'$, with designated double poles at all $-l$ ($1\le l\le K$). For $0\le\sigma<p$ let $f_\sigma(u)=f(pu-\sigma)$ ($u\ge1$). A pole $(x+l)^{-2}$ of $f$ with $l\equiv\sigma\pmod p$ becomes $p^{-2}(u+k)^{-2}$ with $k=(l-\sigma)/p$; since $l\le K<p^2$ we have $0\le k<p$. We designate exactly these poles in $f_\sigma$; the others, $(pu+l-\sigma)^{-2}$ with $p\nmid l-\sigma$, are part of the regular term and take values in $\Zp$ at integers. For $\mu\ge1$ put $M=p^\mu$ and
+\[
+L^*_\mu=\sum_{\sigma=1}^{p-1}\lambda^{-\sigma}\,T_{M,\lambda_p}\bigl((pu-\sigma)^{-2}\bigr),\qquad Y_\mu=p^2\bigl(X-L^*_\mu\bigr).
+\]
+By \cref{lem:finite-moments}(a), $L^*_\mu\in\Zp$, so both coefficients of the affine polynomial $Y_\mu$ lie in $p^2\Zp$; in particular $\vg p(Y_\mu)\ge2$, and $Y_\mu\equiv0\pmod{p^2}$ after specializing $X$ to any $r\in\Zp$.
+
+\begin{proposition}[distribution]\label{prop:distribution}
+With this notation there is a constant $c_R$, independent of $\mu$, such that
+\[
+\vg p\Bigl(\Lambda_X(R)-\sum_{\sigma=0}^{p-1}\lambda^{-\sigma}\,T_{M,\lambda_p,Y_\mu}(f_\sigma)\Bigr)\ \ge\ \mu-c_R .
+\]
+\end{proposition}
+
+\begin{proof}
+We first prove the exact identity
+\begin{equation}\label{eq:distribution-exact}
+T_{pM,\lambda,X}(f)=\sum_{\sigma=0}^{p-1}\lambda^{-\sigma}\,T_{M,\lambda_p,Y_\mu}(f_\sigma).
+\end{equation}
+The map $(u,\sigma)\mapsto pu-\sigma$ is a bijection from $\{1,\dots,M\}\times\{0,\dots,p-1\}$ onto $\{1,\dots,pM\}$, and $\lambda^{pu-\sigma}=\lambda^{-\sigma}\lambda_p^u$, $1-\lambda^{pM}=1-\lambda_p^M$. Hence $T_{pM,\lambda}(\varphi)=\sum_\sigma\lambda^{-\sigma}T_{M,\lambda_p}(\varphi(pu-\sigma))$ for every function $\varphi$; applied to $f$ and to $x^{-2}$ this gives
+\[
+T_{pM,\lambda}(f)=\sum_\sigma\lambda^{-\sigma}T_{M,\lambda_p}(f_\sigma),\qquad T_{pM,\lambda}(x^{-2})=p^{-2}T_{M,\lambda_p}(u^{-2})+L^*_\mu .
+\]
+If $f$ has the designated pole $d_l(x+l)^{-2}$, then $f_\sigma$ has the designated pole $p^{-2}d_l(u+k)^{-2}$ for $\sigma\equiv l$, so $D_{\lambda_p}(f_\sigma)=p^{-2}\sum_{l\equiv\sigma}d_l\lambda^{-(l-\sigma)}$ and $\sum_\sigma\lambda^{-\sigma}D_{\lambda_p}(f_\sigma)=p^{-2}D_\lambda(f)$. Therefore the right side of \eqref{eq:distribution-exact} equals
+\[
+T_{pM,\lambda}(f)+p^{-2}D_\lambda(f)\bigl(Y_\mu-T_{M,\lambda_p}(u^{-2})\bigr)=T_{pM,\lambda}(f)+D_\lambda(f)\bigl(X-L^*_\mu-p^{-2}T_{M,\lambda_p}(u^{-2})\bigr),
+\]
+which is $T_{pM,\lambda,X}(f)$.
+
+It remains to compare $T_{pM,\lambda,X}(f)$ with $\Lambda_X(R)$. Write $R=q_R+\sum_lc_l(x+l)^{-1}$, so that $f=(xq_R)'+\sum_l lc_l(x+l)^{-2}$. By linearity and \cref{lem:pole-regularization} with $v=\lambda$,
+\[
+T_{pM,\lambda,X}(f)=T_{pM,\lambda}\bigl((xq_R)'\bigr)+\sum_llc_l\bigl(\lambda^{-l}(X-\tau_l(\lambda))+\eta_{pM,l}(\lambda)\bigr).
+\]
+Comparing with \eqref{eq:functional-explicit}, the difference from $\Lambda_X(R)$ is $T_{pM,\lambda}(g)-G(g)$ with $g=(xq_R)'$, plus $\sum_llc_l\eta_{pM,l}(\lambda)$. Choose $c\ge0$ with $p^cg\in\Zp[x]$ and $p^cc_l\in\Zp$; by \cref{lem:finite-moments}(b) and \cref{lem:pole-regularization} (where $v_p(j)\le1$ for $j\le K<p^2$) the difference has valuation at least $\mu+1-c-3$.
+\end{proof}
+
+We apply this to $R=W_nE\,E'$ with polynomials $E,E'$. Since $f(pu-\sigma)=p^{-1}\frac{\mathrm d}{\mathrm du}\bigl[(pu-\sigma)R(pu-\sigma)\bigr]$, it is natural to define, for $0\le\sigma<p$ and $\Phi\in\Zp[u]$,
+\begin{equation}\label{eq:class-term}
+\Theta_\sigma(\Phi)=\frac{\lambda^{-\sigma}}{p}\,T_{M,\lambda_p,Y_\mu}\Bigl(\frac{\mathrm d}{\mathrm du}\bigl[(pu-\sigma)W_n(pu-\sigma)\,\Phi(u)\bigr]\Bigr),
+\end{equation}
+with the designated poles described above (the dependence on $\mu$ is suppressed). \Cref{prop:distribution} says that $\Lambda_X(W_nEE')\equiv\sum_\sigma\Theta_\sigma\bigl(E(pu-\sigma)E'(pu-\sigma)\bigr)$ modulo $p^{\mu-c}$, coefficientwise in $X$, with $c$ independent of $\mu$.
+
+\subsection{Local integrality}\label{sec:local-integrality}
+For $\Phi\in\Zp[u]$ let $o(\Phi)$ be the minimum valuation of its coefficients.
+
+\begin{lemma}[local integrality]\label{lem:local-integrality}
+For $0\le\sigma<p$, $\mu\ge1$ and $\Phi\in\Zp[u]$,
+\[
+\vg p\bigl(\Theta_\sigma(\Phi)\bigr)\ \ge\ \nu_\sigma+o(\Phi),\qquad \nu_\sigma=3a_\sigma-c_\sigma-1+\ind_{\sigma=0}.
+\]
+\end{lemma}
+
+\begin{proof}
+For $1\le a\le K$, the factor $pu-\sigma+a$ equals $p(u+k)$ with $k=(a-\sigma)/p\in\{0,\dots,p-1\}$ when $a\equiv\sigma$, and is a polynomial in $u$ with unit constant term and all other coefficients divisible by $p$ otherwise. Collecting the factors of $W_n$, and the extra factor $pu$ when $\sigma=0$,
+\[
+(pu-\sigma)W_n(pu-\sigma)\Phi(u)=p^{3a_\sigma-c_\sigma+\ind_{\sigma=0}}\ \frac{\Phi_1(u)}{B(u)\,D(u)},
+\]
+where $B(u)=\prod_{k\in S}(u+k)$ is a product of distinct monic factors with $S\subset\{0,\dots,p-1\}$ (the local poles of $W_n$ that remain after cancellation with the local zeros; since $A\le K$ by \eqref{eq:parameter-conditions}, every local zero $l\le A$ is also a local pole, so the cancellation leaves a polynomial numerator), $D\in\Zp[u]$ is the product of the non-local denominator factors, so $D\equiv D(0)\not\equiv0\pmod p$ coefficientwise, and $\Phi_1\in\Zp[u]$ with $o(\Phi_1)\ge o(\Phi)$. In particular $D(u)\in\Zp^\times$ for every integer $u$.
+
+For $k\in S$ the residue of $\Phi_1/(BD)$ at $-k$ is $\varrho_k=\Phi_1(-k)/\bigl(D(-k)\prod_{k'\in S\setminus\{k\}}(k'-k)\bigr)$, of valuation at least $o(\Phi)$, because $0<|k'-k|<p$. The polynomial $\Phi_1-D\sum_k\varrho_k\prod_{k'\ne k}(u+k')$ vanishes at every $-k$, $k\in S$, hence is divisible by the monic polynomial $B$ in $\Zp[u]$:
+\[
+\frac{\Phi_1}{BD}=\sum_{k\in S}\frac{\varrho_k}{u+k}+\frac{\Phi_0}{D},\qquad \Phi_0\in\Zp[u],\ o(\Phi_0)\ge o(\Phi).
+\]
+Differentiating, the function in \eqref{eq:class-term} is $p^{3a_\sigma-c_\sigma+\ind_{\sigma=0}}$ times $-\sum_k\varrho_k(u+k)^{-2}+(\Phi_0'D-\Phi_0D')D^{-2}$, and the designated poles are exactly the $(u+k)^{-2}$, $k\in S$. The regular part takes values of valuation at least $o(\Phi)$ at the integers, so its average $T_{M,\lambda_p}$ does too by \cref{lem:finite-moments}(a). Each designated pole contributes $-\varrho_k\bigl(\lambda_p^{-k}(Y_\mu-\tau_k(\lambda_p))+\eta_{M,k}(\lambda_p)\bigr)$ by \cref{lem:pole-regularization}; here $k<p$, so $\tau_k(\lambda_p)\in\Zp$ and $v_p(\eta_{M,k}(\lambda_p))\ge \mu\ge1$, and $\vg p(Y_\mu)\ge0$. Dividing by $p$ gives the claim.
+\end{proof}
+
+\subsection{The jet bound}\label{sec:jet-bound}
+For a finite or infinite multiset $\cS$ of integers, bounded below, and $m\ge0$, let $\Sigma_m(\cS)$ be the sum of the $m$ smallest elements of $\cS$, and $\Sigma^-_m(\cS)$ the sum of the negative elements among them.
+
+\begin{proposition}[jet bound]\label{prop:jet}
+Let $\cS^{\mathrm{jet}}_p$ be the multiset $\{w_\sigma+2j:\ 0\le\sigma<p,\ j\ge0\}$. Then $\vg p(Q_n)\ge\cJ_p:=\Sigma_h(\cS^{\mathrm{jet}}_p)$.
+\end{proposition}
+
+\begin{proof}
+Write $\mathsf M=[\Lambda_X(W_nx^{i+j})]_{i,j<h}$, so that $Q_n=\det\mathsf M$. Expanding $(pu-\sigma)^i=\sum_{s\le i}\binom is p^s(-\sigma)^{i-s}u^s$ and using \cref{prop:distribution} and the linearity of $\Theta_\sigma$, we get $\mathsf M\equiv\mathcal A\,\mathcal H\,\mathcal A^{\mathsf T}$ modulo $p^{\mu-c}$, coefficientwise, where
+\begin{itemize}
+\item $\mathcal A$ is the $h\times ph$ matrix with entries $\mathcal A_{i,(\sigma,s)}=\binom is p^s(-\sigma)^{i-s}$ ($0\le\sigma<p$, $0\le s<h$), whose column $(\sigma,s)$ has valuation at least $s$;
+\item $\mathcal H$ is block diagonal with blocks $\mathcal H^{(\sigma)}=[\Theta_\sigma(u^{s+s'})]_{s,s'<h}$, whose entries have Gauss valuation at least $\nu_\sigma\ge w_\sigma$ by \cref{lem:local-integrality}.
+\end{itemize}
+By the Cauchy--Binet formula applied twice,
+\[
+\det(\mathcal A\mathcal H\mathcal A^{\mathsf T})=\sum_{I,J}\det\mathcal A_{\bullet I}\,\det\mathcal H_{IJ}\,\det\mathcal A_{\bullet J},
+\]
+the sum running over pairs of $h$-element sets $I,J$ of column indices. Since $\mathcal H$ is block diagonal, $\det\mathcal H_{IJ}=0$ unless $I$ and $J$ meet every block $\sigma$ in the same number $m_\sigma$ of indices, and then $\vg p(\det\mathcal H_{IJ})\ge\sum_\sigma m_\sigma w_\sigma$. Hence the term $(I,J)$ has Gauss valuation at least
+\[
+\sum_{(\sigma,s)\in I}\bigl(s+\tfrac12w_\sigma\bigr)+\sum_{(\sigma,s)\in J}\bigl(s+\tfrac12w_\sigma\bigr)\ \ge\ 2\min_{|I|=h}\sum_{(\sigma,s)\in I}\bigl(s+\tfrac12w_\sigma\bigr)\ \ge\ \Sigma_h(\cS^{\mathrm{jet}}_p).
+\]
+All entries of $\mathcal A\mathcal H\mathcal A^{\mathsf T}$ have Gauss valuation at least $\min_\sigma w_\sigma\ge-K-1$, independently of $\mu$. Therefore $\vg p(\det\mathsf M-\det\mathcal A\mathcal H\mathcal A^{\mathsf T})\ge \mu-c-(h-1)(K+1)$, and letting $\mu\to\infty$ proves the claim.
+\end{proof}
+
+\subsection{The pole bound}\label{sec:pole-bound}
+The jet bound ignores the fact that the local poles of a class are evaluated at distinct points $l$. The second bound uses this through Vandermonde factors.
+
+\begin{proposition}[pole bound]\label{prop:pole}
+Assume moreover $p\le K$. Let $\cS^{\mathrm{pole}}_p$ be the multiset consisting of
+\begin{align*}
+&w_\sigma+2j+2\cdot\ind_{a_\sigma=0,\ j=c_\sigma-a_\sigma-1}&&(1\le\sigma<p,\ 0\le j<c_\sigma-a_\sigma),\\
+&w_0+1+2j&&(0\le j<c_0-a_0).
+\end{align*}
+Then $\vg p(Q_n)\ge\cP_p:=\Sigma^-_h(\cS^{\mathrm{pole}}_p)$.
+\end{proposition}
+
+\begin{proof}
+The polynomial part $\Pi_s$ of $W_nx^s$ has integer coefficients, since $D_K$ is monic, so $\Lambda_X(\Pi_s)=G((x\Pi_s)')\in\Zp$, where $G=G_\lambda$ is the geometric sum of \cref{sec:moments}. Let $\mathsf M=[\Lambda_X(W_nx^{i+j})]_{i,j<h}$ as in the proof of \cref{prop:jet}. The residue of $W_nx^s$ at $-l$, $A<l\le K$, is $\rho_l(-l)^s$ with $\rho_l=D_A(-l)^3/\prod_{m\ne l}(m-l)$. As $0<|a-l|,|m-l|<p^2$, each factor has valuation $1$ or $0$ according as it is divisible by $p$ or not, so $v_p(\rho_l)=3a_\sigma-(c_\sigma-1)=w_\sigma+2$ for $l\equiv\sigma$. Thus
+\[
+\mathsf M=\widehat\Pi+\sum_{l=A+1}^Ks_l\,\mathbf v_l\mathbf v_l^{\mathsf T},\qquad \widehat\Pi\in\Zp^{h\times h},\quad \mathbf v_l=\bigl((-l)^i\bigr)_{i<h},\quad s_l=l\rho_l\lambda^{-l}\bigl(X-\tau_l(\lambda)\bigr).
+\]
+We have $v_p(\tau_l(\lambda))\ge0$ if $l<p$ and $\ge-2$ if $p\le l<p^2$. Hence $\vg p(s_l)\ge w_\sigma+1$ if $\sigma=0$ (then $p\mid l$ and $l\ge p$), $\vg p(s_l)\ge w_\sigma+2$ if $l=\sigma\ne0$, and $\vg p(s_l)\ge w_\sigma$ otherwise. For $\sigma\ne0$, the pole $l=\sigma$ occurs exactly when $a_\sigma=0$: if $l=\sigma$ is a pole then $\sigma>A$, so no integer in $[1,A]$ is congruent to $\sigma$ and $a_\sigma=0$; conversely, if $a_\sigma=0$ then $\sigma>A$, and $\sigma<p\le K$ by the hypothesis $p\le K$, so $l=\sigma$ is a pole of the class. This is the only place where $p\le K$ is used.
+
+Write $\mathsf M=[\widehat\Pi\,|\,V]\cdot\bigl[\begin{smallmatrix}I_h\\ SV^{\mathsf T}\end{smallmatrix}\bigr]$ with $V=[\mathbf v_l]_l$ and $S=\mathrm{diag}(s_l)$, and expand by Cauchy--Binet. Up to sign, the term indexed by a set $\mathsf L$ of poles and a set $I\subset\{0,\dots,h-1\}$ with $|I|+|\mathsf L|=h$ is
+\[
+\Bigl(\prod_{l\in\mathsf L}s_l\Bigr)\,\det\bigl[\widehat\Pi_{\bullet I}\,|\,V_{\bullet\mathsf L}\bigr]\,\det V_{I^c,\mathsf L}.
+\]
+Both determinants are values at the points $l\in\mathsf L$ of polynomials with $\Zp$-coefficients in variables $z_l$ that are alternating in these variables; by \cref{lem:alternating} each is divisible by $\prod_{l<l'}(z_l-z_{l'})$. Two poles in the same class differ by a multiple of $p$, so if $\mathsf L$ contains $k_\sigma$ poles of class $\sigma$, the two determinants together have valuation at least $\sum_\sigma k_\sigma(k_\sigma-1)$. For each class, $\sum_{l\in\mathsf L_\sigma}\vg p(s_l)+k_\sigma(k_\sigma-1)$ is at least the sum of the first $k_\sigma$ elements of the class-$\sigma$ part of $\cS^{\mathrm{pole}}_p$: for $\sigma=0$ because $k(k-1)=\sum_{j<k}2j$; for $\sigma\ne0$ for the same reason and because, when $a_\sigma=0$ and all $c_\sigma-a_\sigma$ poles of the class are selected, the pole $l=\sigma$ is among them and contributes the extra $2$. Within each class these elements are nondecreasing in $j$. The total is therefore at least the sum of a selection of at most $h$ elements of $\cS^{\mathrm{pole}}_p$, which is at least $\Sigma^-_h(\cS^{\mathrm{pole}}_p)$.
+\end{proof}
+
+\begin{remark}\label{rem:zero-class}
+In the source of this argument the zero class was given the same slots as the nonzero classes. That version can fail by one unit: when $a_0=0$ and $c_0=1$, the only pole $l=p$ of the zero class has $\vg p(s_l)\ge w_0+1$, not $w_0+2$, and the exact computations of \cref{app:numerics} exhibit primes where the actual valuation of $Q_n$ lies exactly one unit below that version. The zero-class slots $w_0+1+2j$ of \cref{prop:pole} are correct, and the bound in this form holds at every prime and every $n$ tested. Since $\sum_{j<k}(w_0+1+2j)\ge\sum_{j<k}(w_0+2j)+2\cdot\ind_{k=c_0-a_0,\ a_0=0}-2$ for every $k$, \cref{prop:pole} implies the source version with a correction $-2$, which is the form in which the source bound is valid. Since only one class is affected, the change is $O(1)$ per prime and does not affect any asymptotic rate.
+\end{remark}

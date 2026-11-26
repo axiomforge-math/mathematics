@@ -1,0 +1,215 @@
+{
+  "2/11": {
+    "exceptional": "[-8.8370400119880257994 +/- 3.01e-20]",
+    "rate_exact_profile": "[-4.3311055457384094869 +/- 3.85e-20]",
+    "rate_lower_rational": "-62688469981047121515323821232079419640245971267462116344991470456578969926919/14474011154664524427946373126085988481658748083205070504932198000989141204992",
+    "analytic_upper_ours": "-494645018846026118967980238094791192871925269221/91343852333181432387730302044767688728495783936",
+    "margin_ours": "[1.08409215188 +/- 2.35e-12]",
+    "margin_original_chain": "[0.583286287907 +/- 2.51e-13]",
+    "analytic_upper_mesh6000": "-989290632842334198287838239574434634043132922611/182687704666362864775460604089535377456991567872",
+    "margin_mesh6000": "[1.08409540962 +/- 4.44e-12]"
+  },
+  "2/9": {
+    "exceptional": "[-0.43947225609488115023 +/- 4.00e-21]",
+    "rate_exact_profile": "[-1.3245274904661491663 +/- 4.27e-20]",
+    "rate_lower_rational": "-76684902686667410263889930468590538530090806359577828755912298492193360739133/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+    "analytic_upper_ours": "-245514738176055613083260586466104195063291127121/182687704666362864775460604089535377456991567872",
+    "margin_ours": "[0.0193765156870 +/- 3.94e-14]",
+    "margin_original_chain": "[0.0191041870699 +/- 4.32e-14]",
+    "analytic_upper_mesh6000": "-245515197530773074801160538089270801073769596661/182687704666362864775460604089535377456991567872",
+    "margin_mesh6000": "[0.0193790301131 +/- 4.44e-14]"
+  },
+  "-2/9": {
+    "exceptional": "[-0.55039755334276619662 +/- 4.33e-21]",
+    "rate_exact_profile": "[-0.38183853171958577677 +/- 3.51e-21]",
+    "rate_lower_rational": "-88427762678240133840589088659562865368082555064301701707255782033027484753469/231584178474632390847141970017375815706539969331281128078915168015826259279872",
+    "analytic_upper_ours": "-761961175438197806745110909977309940636363168977/1461501637330902918203684832716283019655932542976",
+    "margin_ours": "[0.139516460964 +/- 3.40e-13]",
+    "margin_original_chain": "[0.112320768662 +/- 1.62e-13]",
+    "analytic_upper_mesh6000": "-762353443734323576385289192046166655777244375057/1461501637330902918203684832716283019655932542976",
+    "margin_mesh6000": "[0.139784861824 +/- 1.86e-13]"
+  },
+  "-2/7": {
+    "exceptional": "[-0.59826765496304647418 +/- 4.62e-21]",
+    "rate_exact_profile": "[-0.52015887671686111704 +/- 2.09e-21]",
+    "rate_lower_rational": "-60230283070380935903420617338921102559736187428205870085957105127165505375907/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "analytic_upper_ours": "-803248541757275220955025173099500920255920394249/1461501637330902918203684832716283019655932542976",
+    "margin_ours": "[0.0294460783787 +/- 4.43e-14]",
+    "margin_original_chain": "[0.00475557882124 +/- 1.44e-15]",
+    "analytic_upper_mesh6000": "-803602842131305915154261867796509127619145719793/1461501637330902918203684832716283019655932542976",
+    "margin_mesh6000": "[0.0296885005320 +/- 4.98e-15]"
+  },
+  "checks": [
+    {
+      "name": "2/11: exceptional prime table consistent with lambda",
+      "ok": true,
+      "detail": "P=3 (f=2), G=11 (e=1)"
+    },
+    {
+      "name": "2/11: leading coefficients match the finite sums (O(1/u) error)",
+      "ok": true,
+      "detail": "2:16  3:-25/2  11:+20/3"
+    },
+    {
+      "name": "2/11: n-scale bound 9/2 - 16log2 - (25/4)log9 + (20/3)log11 > -4.338",
+      "ok": true,
+      "detail": "[-4.3370400119880 +/- 2.59e-14]"
+    },
+    {
+      "name": "2/11: closed form equals the general exceptional formula",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/11: arithmetic rate with the exact profile > -4.338000",
+      "ok": true,
+      "detail": "[-4.3311055457384 +/- 9.49e-15]"
+    },
+    {
+      "name": "2/11: original chain: rate with the midpoint profile > -4.338000",
+      "ok": true,
+      "detail": "[-4.3311055457384 +/- 9.49e-15]"
+    },
+    {
+      "name": "2/11: FINAL arithmetic rate > analytic rate (our certified bounds)",
+      "ok": true,
+      "detail": "margin [1.0840922 +/- 4.82e-8]"
+    },
+    {
+      "name": "2/11: original chain certified: midpoint rate > recomputed original analytic bound",
+      "ok": true,
+      "detail": "[0.5832862879 +/- 7.26e-12]"
+    },
+    {
+      "name": "2/11: FINAL arithmetic rate > analytic rate (mesh 1/6000)",
+      "ok": true,
+      "detail": "margin [1.0840954 +/- 9.63e-9]"
+    },
+    {
+      "name": "2/11: FINAL with the thresholds of Table 2 (-4.338000 > -4.900000)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/9: exceptional prime table consistent with lambda",
+      "ok": true,
+      "detail": "P=7 (f=1), G=3 (e=2)"
+    },
+    {
+      "name": "2/9: leading coefficients match the finite sums (O(1/u) error)",
+      "ok": true,
+      "detail": "2:5/8  7:-49/256  3:+1/3"
+    },
+    {
+      "name": "2/9: arithmetic rate with the exact profile > -1.330000",
+      "ok": true,
+      "detail": "[-1.3245274904661 +/- 4.92e-14]"
+    },
+    {
+      "name": "2/9: original chain: rate with the midpoint profile > -1.330000",
+      "ok": true,
+      "detail": "[-1.3245274904661 +/- 4.92e-14]"
+    },
+    {
+      "name": "2/9: FINAL arithmetic rate > analytic rate (our certified bounds)",
+      "ok": true,
+      "detail": "margin [0.019376516 +/- 3.13e-10]"
+    },
+    {
+      "name": "2/9: original chain certified: midpoint rate > recomputed original analytic bound",
+      "ok": true,
+      "detail": "[0.01910418707 +/- 5.71e-14]"
+    },
+    {
+      "name": "2/9: FINAL arithmetic rate > analytic rate (mesh 1/6000)",
+      "ok": true,
+      "detail": "margin [0.019379030 +/- 1.14e-10]"
+    },
+    {
+      "name": "2/9: FINAL with the thresholds of Table 2 (-1.330000 > -1.340000)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/9: exceptional prime table consistent with lambda",
+      "ok": true,
+      "detail": "P=11 (f=1), G=3 (e=2)"
+    },
+    {
+      "name": "-2/9: leading coefficients match the finite sums (O(1/u) error)",
+      "ok": true,
+      "detail": "2:5/4  11:-1/4  3:+5/6"
+    },
+    {
+      "name": "-2/9: arithmetic rate with the exact profile > -0.400000",
+      "ok": true,
+      "detail": "[-0.38183853171959 +/- 4.23e-15]"
+    },
+    {
+      "name": "-2/9: original chain: rate with the midpoint profile > -0.400000",
+      "ok": true,
+      "detail": "[-0.38308817241566 +/- 6.59e-16]"
+    },
+    {
+      "name": "-2/9: FINAL arithmetic rate > analytic rate (our certified bounds)",
+      "ok": true,
+      "detail": "margin [0.13951646 +/- 9.65e-10]"
+    },
+    {
+      "name": "-2/9: original chain certified: midpoint rate > recomputed original analytic bound",
+      "ok": true,
+      "detail": "[0.1123207687 +/- 3.79e-11]"
+    },
+    {
+      "name": "-2/9: FINAL arithmetic rate > analytic rate (mesh 1/6000)",
+      "ok": true,
+      "detail": "margin [0.13978486 +/- 1.83e-9]"
+    },
+    {
+      "name": "-2/9: FINAL with the thresholds of Table 2 (-0.400000 > -0.490000)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "-2/7: exceptional prime table consistent with lambda",
+      "ok": true,
+      "detail": "P=3 (f=2), G=7 (e=1)"
+    },
+    {
+      "name": "-2/7: leading coefficients match the finite sums (O(1/u) error)",
+      "ok": true,
+      "detail": "2:11/10  3:-1/2  7:+11/30"
+    },
+    {
+      "name": "-2/7: arithmetic rate with the exact profile > -0.521323",
+      "ok": true,
+      "detail": "[-0.52015887671686 +/- 1.12e-15]"
+    },
+    {
+      "name": "-2/7: original chain: rate with the midpoint profile > -0.521323",
+      "ok": true,
+      "detail": "[-0.52132261827961 +/- 2.92e-15]"
+    },
+    {
+      "name": "-2/7: FINAL arithmetic rate > analytic rate (our certified bounds)",
+      "ok": true,
+      "detail": "margin [0.029446078 +/- 3.79e-10]"
+    },
+    {
+      "name": "-2/7: original chain certified: midpoint rate > recomputed original analytic bound",
+      "ok": true,
+      "detail": "[0.004755578821 +/- 2.39e-13]"
+    },
+    {
+      "name": "-2/7: FINAL arithmetic rate > analytic rate (mesh 1/6000)",
+      "ok": true,
+      "detail": "margin [0.029688501 +/- 4.69e-10]"
+    },
+    {
+      "name": "-2/7: FINAL with the thresholds of Table 2 (-0.521323 > -0.526078)",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,9 @@
+Ordinary-prime rate lower bound: 4.505934466249617
+Total arithmetic rate lower bound: -4.337040011988044
+Local determinants: 17828022563089333969/1224440064 12598972834814973210048467/2295825120
+Comparison measure energy: 4.461578804879389
+Total variation upper bound: 100.1697364771351
+Penalty integral upper bound: 0.6028347438398415
+Analytic growth upper bound: -4.9143918336446015
+Positive certified margin: 0.5773518216565576
+All exact rational assertions passed.

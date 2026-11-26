@@ -1,0 +1,14 @@
+# case 2/11: kind=positive  mesh 1/6000  prec=160
+[PASS] 2/11: comparison measure has mass m=4 :: mass=4
+[PASS] 2/11: density nonnegative
+[PASS] 2/11: C_u equals 24 log 6 - 16 log 4 + 12
+  E = [4.4615788048799434396 +/- 2.02e-20]
+[PASS] 2/11: E agrees with reported 4.4615788049 to 1e-9
+[PASS] 2/11: support [0,17/2] inside [0,Y=]12
+[PASS] 2/11: tail majorant V(Y)+2m log Y < theta at Y=12 :: [-9.20915020460 +/- 1.41e-13] vs theta=-8.62
+[PASS] 2/11: tail majorant decreasing on [Y,inf): (3a+2m)/Y - t < 0 :: [-0.7880814256 +/- 2.83e-11]
+  [our bound] int_0^Y (W-theta)_+ <= 0.352430182981012   (mesh 1/6000, 22.1s)
+  [our bound] RHS = C_u - E + m theta + 2 int(W-theta)_+ <= -5.41520095536285
+[PASS] 2/11: certified RHS < claimed -4.9000 :: -5.41520095536285
+  [manuscript method] TV <= 100.1697365, midpoint sum = 0.3524104026, penalty <= 0.6028347438, RHS <= -4.91439183365
+== energy certificate 2/11: 8 passed, 0 failed ==

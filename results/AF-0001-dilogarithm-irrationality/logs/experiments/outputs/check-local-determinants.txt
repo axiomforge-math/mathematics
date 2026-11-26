@@ -1,0 +1,8 @@
+TwoEleven nonzero: exact LU identity, both triangles, unit lower diagonal, determinant 17828022563089333969/1224440064 verified
+TwoEleven zero: exact LU identity, both triangles, unit lower diagonal, determinant 12598972834814973210048467/2295825120 verified
+TwoNine nonzero: exact LU identity, both triangles, unit lower diagonal, determinant 3951366107675153857566158184061855291890957151/50404062960731160576000000000000 verified
+TwoNine zero: exact LU identity, both triangles, unit lower diagonal, determinant 75748065809620696385810762379349631101207641762772048941/23344937339644196864000000000000 verified
+MinusTwoNine nonzero: exact LU identity, both triangles, unit lower diagonal, determinant 1677163510311484581/15488000 verified
+MinusTwoNine zero: exact LU identity, both triangles, unit lower diagonal, determinant 16417954848664067036722569/524733440 verified
+MinusTwoSeven nonzero: exact LU identity, both triangles, unit lower diagonal, determinant 14067971871496713969085291850153/1057916215296000000 verified
+MinusTwoSeven zero: exact LU identity, both triangles, unit lower diagonal, determinant 17800469908791563702231968746821382359/495898225920000000 verified

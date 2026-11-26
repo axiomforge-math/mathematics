@@ -1,0 +1,114 @@
+\section{Arithmetic I: uniform bounds and the exceptional primes}\label{sec:exceptional}
+
+This section bounds $\vg p(\Qt_n)$ from below at the three exceptional primes, and at all other primes by a crude uniform bound. The exceptional primes contribute a fixed multiple of $h^2$ to $\log\cont(\Qt_n)$ (\cref{cor:exceptional}); the crude bound is used for the small primes $p<\delta h$ and the large primes $p>K$ in the proof of \cref{thm:arith-general}. The statements are candidates in the sense of \cref{sec:intro-status}; their finite forms were checked on exact data (\cref{app:numerics}). The arguments are those of \cite[Sections~4.1 and 9.1--9.7]{Litsey2026Li2} for Tang's family, adapted to general parameters $(H,B,C)$: \cref{prop:P} corresponds to Lemma~4.2 there, and \cref{lem:reflection,prop:Q} to Lemma~9.9 and Proposition~9.8.
+
+Let $\Ex=\{2,\pP,\pQ\}$ be the set of exceptional primes of \cref{tab:parameters}. A prime $p\notin\Ex$ is called ordinary; for such $p$ both $\lambda$ and $1-\lambda$ are $p$-adic units. All statements of this section hold for every $n\ge1$. We use the parameter conditions
+\begin{equation}\label{eq:parameter-conditions}
+h\le K,\qquad K-A\ge h,\qquad 0\le d\le 2,
+\end{equation}
+which hold for the four triples of \cref{tab:parameters}.
+
+\begin{proposition}[ordinary primes, uniform bound]\label{prop:generic}
+Let $p$ be an ordinary prime and $L_p$ as in \eqref{eq:N-L}. Then $\vg p(\Qt_n)\ge-2hL_p$. If moreover $p>K$, then $\vg p(\Qt_n)\ge0$.
+\end{proposition}
+
+\begin{proof}
+We bound the entries $\Lambda_X(R_{ij})$ of the matrix of \cref{lem:normalization}, written as in \eqref{eq:functional-explicit}. By \cref{lem:integral-valued}(c) with $s=0,1$, the polynomial $(xq_{ij})'=q_{ij}+xq_{ij}'$ takes values of valuation at least $-2L_p$ at all integers; by \cref{lem:newton} with $\phi=0$, $v_p(G((xq_{ij})'))\ge-2L_p$. The residues $c^{(ij)}_l$ are integers, $\lambda^{-l}$ is a unit, and $v_p(\tau_l(\lambda))\ge-2\lfloor\log l/\log p\rfloor\ge-2L_p$ because $l\le K\le N$. Every entry therefore has Gauss valuation at least $-2L_p$, and the determinant at least $-2hL_p$.
+
+Suppose $p>K$. Since $h\le K<p$ by \eqref{eq:parameter-conditions}, the polynomials $b_i$ ($i<h$) have coefficients in $\Zp$, and so has the numerator $K!\binom{x+A}A^3b_ib_j$ of $R_{ij}$. Division by the monic polynomial $D_K$ preserves this, so $q_{ij}\in\Zp[x]$, and $G((xq_{ij})')\in\Zp$ by \eqref{eq:moments}, the denominators there being powers of $1-\lambda$. Each $\tau_l$ with $l\le K<p$ lies in $\Zp$. All entries are $p$-integral, and $\vg p(\Qt_n)\ge0$.
+\end{proof}
+
+\begin{proposition}[the prime $2$]\label{prop:two}
+$\vg2(\Qt_n)\ \ge\ -\sum_{k=0}^{h-1}(K-k)-2hL_2\ =\ -\bigl(\kappa-\tfrac12\bigr)h^2-\tfrac h2-2hL_2 .$
+\end{proposition}
+
+\begin{proof}
+At $p=2$ we may take $\phi=0$ in \cref{lem:newton}, and each $\tau_l(\lambda)$ is $2$-integral because $v_2(\lambda^k/k^2)=k-2v_2(k)\ge0$. By \cref{lem:integral-valued}(a), the matrix of \cref{lem:normalization} is
+\[
+\Pi+\sum_{l=A+1}^{K}s_l\,\mathbf v_l\mathbf v_l^{\mathsf T},\qquad \Pi_{ij}=G\bigl((xq_{ij})'\bigr),\quad \mathbf v_l=\bigl(b_i(-l)\bigr)_{i<h}\in\Z^h,\quad s_l=l\gamma_l\lambda^{-l}\bigl(X-\tau_l(\lambda)\bigr),
+\]
+with $v_2(\Pi_{ij})\ge-2L_2$ as in \cref{prop:generic} and $\vg2(s_l)\ge-l$. Write $\Pi=\sum_{j<h}\Pi_{\bullet j}\mathbf e_j^{\mathsf T}$, where $\Pi_{\bullet j}$ is the $j$th column. The matrix is then a sum of rank-one terms of two kinds: $\Pi_{\bullet j}\mathbf e_j^{\mathsf T}$, of weight at least $-2L_2$, and $(s_l\mathbf v_l)\mathbf v_l^{\mathsf T}$, of weight at least $-l$. By the slot lemma (\cref{lem:slots}) the determinant has Gauss valuation at least the minimum, over $h$ distinct terms, of the sum of their weights. Since $K-A\ge h$ by \eqref{eq:parameter-conditions}, this minimum is at least $-\sum_{k<h}(K-k)-2hL_2$.
+\end{proof}
+
+\begin{proposition}[the prime $\pP$]\label{prop:P}
+$\vg\pP(\Qt_n)\ \ge\ -2hL_{\pP}-f\sum_{i=0}^{h-1}\bigl(2i+3A-K+1\bigr)_+\ \ge\ -\tfrac f4(2-d)^2h^2-O(h\log h).$
+\end{proposition}
+
+\begin{proof}
+At $\pP$ the argument $\lambda$ is a unit, so the pole terms are bounded as in \cref{prop:generic}. In \cref{lem:newton} we take $\phi=f$, and $\deg(xq_{ij})'\le\deg q_{ij}\le i+j+3A-K$ by \cref{lem:integral-valued}(b). Hence, with $\psi(m)=(m+3A-K+1)_+$, every entry satisfies $\vg\pP(\Lambda_X(R_{ij}))\ge-2L_{\pP}-f\psi(i+j)$ (if $q_{ij}=0$ the polynomial part contributes nothing). Expanding over permutations $\pi$,
+\[
+\vg\pP(\Qt_n)\ge-2hL_{\pP}-f\max_\pi\sum_{i<h}\psi\bigl(i+\pi(i)\bigr)\ge-2hL_{\pP}-f\sum_{i<h}\psi(2i),
+\]
+because $\psi$ is convex and $\psi(i+j)\le\frac12(\psi(2i)+\psi(2j))$. Finally $\sum_{i<h}(2i-dh+1)_+=\frac14(2-d)^2h^2+O(h)$ because $0\le d\le2$ by \eqref{eq:parameter-conditions}, and $L_{\pP}=O(\log h)$.
+\end{proof}
+
+The prime $\pQ$ divides the denominator of $\lambda$, so the factors $\lambda^{-l}$ in \cref{def:functional} are divisible by large powers of $\pQ$; but so are the denominators of $\tau_l(\lambda)$. The following identity separates the two effects.
+
+\begin{lemma}[reflection formula]\label{lem:reflection}
+Let $R\in\cR$ have polynomial part $q$ and poles in $\{-1,\dots,-K\}$, and for $1\le m\le K$ write its Laurent expansion at $-m$ as
+\[
+R(x)=\frac{c_m}{x+m}+r_{m,0}+r_{m,1}(x+m)+O\bigl((x+m)^2\bigr).
+\]
+Put $C_K=\sum_{k=1}^K\lambda^{-k}k^{-2}$ and $g=(xq)'$. Then
+\begin{equation}\label{eq:reflection}
+\Lambda_X(R)=-R(0)+\sum_{m=1}^K\lambda^{-m}\bigl(mc_m(X+C_K)-r_{m,0}+mr_{m,1}\bigr)+\cT(R),
+\end{equation}
+where
+\[
+\cT(R)=\lambda^{-K-1}G\bigl(g(x-K-1)\bigr)-\sum_{l=1}^Klc_l\sum_{k=K-l+1}^K\frac{\lambda^{-l-k}}{k^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+For every polynomial $g$, shifting the summation index in the convergent series defining $G(g(x-K-1))$ gives
+\begin{equation}\label{eq:shift}
+G(g)=-\sum_{m=0}^K\lambda^{-m}g(-m)+\lambda^{-K-1}G\bigl(g(x-K-1)\bigr).
+\end{equation}
+Since $xR=xq+\sum_lc_l-\sum_l lc_l(x+l)^{-1}$, we have $g=(xR)'-\sum_llc_l(x+l)^{-2}$. Comparing Laurent expansions at $-m$ gives
+\[
+g(-m)=r_{m,0}-mr_{m,1}-\sum_{l\ne m}\frac{lc_l}{(l-m)^2}\quad(1\le m\le K),\qquad g(0)=R(0)-\sum_l\frac{c_l}l .
+\]
+Insert these values into \eqref{eq:shift} and add the pole terms $\sum_llc_l\lambda^{-l}(X-\tau_l(\lambda))$ of \eqref{eq:functional-explicit}. For fixed $l$, the terms $m<l$ of the double sum $\sum_m\lambda^{-m}\sum_{l\ne m}lc_l(l-m)^{-2}$ equal $lc_l\sum_{k=1}^{l-1}\lambda^{k-l}k^{-2}$; together with $-lc_l\lambda^{-l}\tau_l(\lambda)=-lc_l\sum_{k=1}^{l}\lambda^{k-l}k^{-2}$ they leave $-c_l/l$, which cancels the corresponding term of $-g(0)$. The terms $m>l$ equal $lc_l\lambda^{-l}\sum_{k=1}^{K-l}\lambda^{-k}k^{-2}=lc_l\lambda^{-l}\bigl(C_K-\sum_{k=K-l+1}^K\lambda^{-k}k^{-2}\bigr)$. Collecting terms gives \eqref{eq:reflection}.
+\end{proof}
+
+\begin{proposition}[the prime $\pQ$]\label{prop:Q}
+$\vg\pQ(\Qt_n)\ \ge\ e\sum_{k=0}^{h-2}\Bigl(A+1+\Bigl\lfloor\frac k3\Bigr\rfloor\Bigr)-2hL_{\pQ}\ =\ e\bigl(a+\tfrac16\bigr)h^2-O(h\log h).$
+\end{proposition}
+
+\begin{proof}
+Write $v=v_{\pQ}$ and $L=L_{\pQ}$. We have $v(\lambda^{-1})=e$, $v(\lambda/(1-\lambda))=0$ and $v(1/(1-\lambda))=e$, so $\phi=0$ in \cref{lem:newton}. The constant $C_K$ is $\pQ$-integral, because $ek-2v(k)\ge0$ for $k\ge1$.
+
+Apply \cref{lem:reflection} to $R=R_{ij}$. First, $R_{ij}(0)=S_nW_n(0)b_i(0)b_j(0)=\ind_{i=j=0}$. Second, for $m\le A$ the function $R_{ij}$ vanishes to order two at $-m$, so $c_m=r_{m,0}=r_{m,1}=0$. Third, for $A<m\le K$ write $S_nW_n(x)=\chi_m(y)/y$ with $y=x+m$; here
+\[
+\chi_m(y)=K!\prod_{a=1}^A\Bigl(\frac{a-m+y}{a}\Bigr)^3\prod_{\substack{1\le l\le K\\ l\ne m}}(l-m+y)^{-1},
+\]
+so $\chi_m(0)=\gamma_m\in\Z$, and since $|a-m|,|l-m|\le K\le N$, every coefficient satisfies $v([y^u]\chi_m)\ge-uL$. Let $\beta^{(m)}_{i,s}=[y^s]b_i(y-m)$, of valuation at least $-sL$ by \cref{lem:integral-valued}(c). Then $c_m$, $r_{m,0}$, $r_{m,1}$ are the coefficients of $y^0,y^1,y^2$ in $\chi_m(y)b_i(y-m)b_j(y-m)$, and
+\[
+mc_m(X+C_K)-r_{m,0}+mr_{m,1}=\sum_{s+s'\le2}\beta^{(m)}_{i,s}\beta^{(m)}_{j,s'}\,\Omega^{(m)}_{s+s'},
+\]
+with $\Omega^{(m)}_0=m\chi_{m,0}(X+C_K)-\chi_{m,1}+m\chi_{m,2}$, $\Omega^{(m)}_1=-\chi_{m,0}+m\chi_{m,1}$, $\Omega^{(m)}_2=m\chi_{m,0}$, and $\chi_{m,u}=[y^u]\chi_m$. Thus $\vg{}(\Omega^{(m)}_{u})\ge-(2-u)L$. Finally, the tail $\cT(R_{ij})$ has valuation at least $e(K+1)-2L$: its first term because $v(G(g(x-K-1)))\ge-2L$ as in \cref{prop:generic}, its second because $v(\lambda^{-l-k}k^{-2})\ge e(l+k)-2L$ with $l+k\ge K+1$.
+
+The matrix $[\Lambda_X(R_{ij})]$ is therefore the sum of the following rank-one terms:
+\begin{itemize}
+\item one constant term $-\mathbf e_0\mathbf e_0^{\mathsf T}$, of weight $0$;
+\item for $A<m\le K$ and $s\in\{0,1,2\}$, the term $\mathbf u_{m,s}\mathbf w_{m,s}^{\mathsf T}$ with $\mathbf u_{m,s}=(\beta^{(m)}_{i,s})_i$ and $\mathbf w_{m,s}=(\lambda^{-m}\sum_{s'\le2-s}\Omega^{(m)}_{s+s'}\beta^{(m)}_{j,s'})_j$, of weight at least $-sL+em-(2-s)L=em-2L$;
+\item for $i<h$, the term $\mathbf e_i\,\cT_{i\bullet}$ formed with the $i$th row of the tail matrix, of weight at least $e(K+1)-2L$.
+\end{itemize}
+By the slot lemma (\cref{lem:slots}), $\vg\pQ(\Qt_n)$ is at least the minimal total weight of $h$ distinct terms. Ordering the non-constant terms by weight, the $k$th of them ($k=0,1,\dots,h-1$) has weight at least $e(A+1+\lfloor k/3\rfloor)-2L$, since there are three terms for each $m$ and $K-A\ge h$. A choice of $h$ terms that contains the constant term has total weight at least $e\sum_{k\le h-2}(A+1+\lfloor k/3\rfloor)-2(h-1)L$. A choice of $h$ non-constant terms has total weight at least $e\sum_{k\le h-1}(A+1+\lfloor k/3\rfloor)-2hL$, which exceeds the stated bound by $e(A+1+\lfloor(h-1)/3\rfloor)\ge0$. In both cases the total is at least the stated bound; the constant term cannot simply be assumed to be selected, because for $A=0$ the smallest non-constant weights $e-2L$ are negative. The asymptotic form follows from $\sum_{k\le h-2}\lfloor k/3\rfloor=h^2/6+O(h)$.
+\end{proof}
+
+\begin{corollary}\label{cor:exceptional}
+As $n\to\infty$,
+\[
+\sum_{p\in\Ex}\vg p(\Qt_n)\log p\ \ge\ \eps_{\mathrm{exc}}h^2-O(h\log h),
+\]
+where
+\[
+\eps_{\mathrm{exc}}=-\bigl(\kappa-\tfrac12\bigr)\log2-\tfrac f4(2-d)^2\log\pP+e\bigl(a+\tfrac16\bigr)\log\pQ .
+\]
+Numerically $\eps_{\mathrm{exc}}=-0.552315$, $-0.439472$, $-0.550398$ and $-0.598268$ for $\lambda=2/11$, $2/9$, $-2/9$ and $-2/7$ respectively (rounded to six decimals).
+\end{corollary}
+
+\begin{proof}
+Combine \cref{prop:two,prop:P,prop:Q}.
+\end{proof}

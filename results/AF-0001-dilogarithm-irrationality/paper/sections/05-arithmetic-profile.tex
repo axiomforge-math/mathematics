@@ -1,0 +1,133 @@
+\section{Arithmetic III: the limiting profile and the prime number theorem}\label{sec:profile}
+
+This section turns the local bounds of \cref{sec:ordinary} into the arithmetic estimate \cref{thm:arith}. For primes $p$ of size comparable with $h$, the class counts $a_\sigma$, $c_\sigma$ and the valuation of the normalization $S_n^h/F_n$ depend, up to bounded errors, only on $x=p/h$ (\cref{prop:profile-uniform}); the prime number theorem then integrates the resulting profile (\cref{thm:arith-general}), and a finite computation evaluates the integral (\cref{prop:profile-certificate}). The first two steps are candidates and the third is certified, in the sense of \cref{sec:intro-status}. A profile of this kind, integrated with the prime number theorem, is used for Tang's family in \cite[Proposition~4.3 and Section~9.10]{Litsey2026Li2}.
+
+\subsection{The profile}\label{sec:profile-definition}
+For $0<x\le\kappa$ and $s\in\{a,\kappa,1\}$ put $q_s=\lfloor s/x\rfloor$ and $r_s=s-q_sx\in[0,x)$; when $a=0$ we have $q_a=r_a=0$. For $0<u<x$ define
+\[
+\alpha(u)=q_a+\ind_{u<r_a},\qquad \gamma(u)=q_\kappa+\ind_{u<r_\kappa},\qquad \omega(u)=3\alpha(u)-\gamma(u)-1 .
+\]
+The interval $(0,x)$ is the union of at most three intervals, cut at $r_a$ and $r_\kappa$, on which the pair $(\alpha,\gamma)$ is constant. Call the pairs that occur the \emph{types} at $x$, and let $\ell_\tau(x)>0$ be the total length of the set where the type is $\tau=(\alpha_\tau,\gamma_\tau)$; write $\omega_\tau=3\alpha_\tau-\gamma_\tau-1$.
+
+\begin{definition}\label{def:profile}
+The \emph{jet slots} at $x$ are the pairs $(\tau,j)$, $j\ge0$, with weight $\omega_\tau+2j$ and capacity $\ell_\tau(x)$. The \emph{pole slots} are the pairs $(\tau,j)$ with $0\le j<\gamma_\tau-\alpha_\tau$, weight $\omega_\tau+2j+2\cdot\ind_{\alpha_\tau=0,\ j=\gamma_\tau-\alpha_\tau-1}$ and capacity $\ell_\tau(x)$. Let
+\begin{align*}
+J(x)&=\min\Bigl\{\textstyle\sum\mathrm{weight}\cdot y\ :\ 0\le y\le\mathrm{capacity},\ \sum y=1\Bigr\}\quad\text{(jet slots)},\\
+R(x)&=\min\Bigl\{\textstyle\sum\mathrm{weight}\cdot y\ :\ 0\le y\le\mathrm{capacity},\ \sum y\le1\Bigr\}\quad\text{(pole slots)},\\
+\mathsf N(x)&=q_\kappa-3q_a-2\Bigl(\frac{x\,q_1(q_1-1)}2+q_1r_1\Bigr),\qquad \mathsf B(x)=\mathsf N(x)+\max\bigl(J(x),R(x)\bigr).
+\end{align*}
+\end{definition}
+
+Only jet slots with $j\le q_1+2$ can carry mass in an optimal solution: each level has total capacity $\sum_\tau\ell_\tau(x)=x$, so the levels $j\le q_1$ have total capacity $(q_1+1)x>1$; the weights $\omega_\tau$ at a given $x$ differ by at most $4$, so every slot of a level $j\ge q_1+3$ is strictly more expensive than every slot of the levels $j\le q_1$, and mass placed on it can be moved to a cheaper slot with spare capacity. Hence $J(x)$ is the minimum of a linear program with finitely many slots, and both minima are attained by filling the cheapest slots first (\cref{lem:lp-lipschitz}).
+
+\begin{lemma}\label{lem:profile-regular}
+Let $0<\delta<\kappa$. On $[\delta,\kappa]$ the function $\mathsf B$ is bounded, and it is continuous outside the finite set of points $s/j$ with $s\in\{a,\kappa,1,\kappa-a\}$ and $j\in\Z_{\ge1}$. On each interval between consecutive such points the weights are constant and the capacities are affine functions of $x$.
+\end{lemma}
+
+\begin{proof}
+Between consecutive points of the set the integers $q_a,q_\kappa,q_1$ are constant, and so is the order of $r_a$ and $r_\kappa$, since $r_\kappa-r_a=(\kappa-a)-(q_\kappa-q_a)x$ vanishes only at $x=(\kappa-a)/(q_\kappa-q_a)$. Hence the types and weights are constant and the lengths $\ell_\tau$ are affine; the finite set of jet slots with $j\le q_1+2$ is constant as well. The minimum of a linear program with finitely many slots and fixed costs is Lipschitz in the capacities (\cref{lem:lp-lipschitz}), so $J$ and $R$ are continuous there; $\mathsf N$ is affine there. Boundedness follows from $q_\kappa\le\kappa/\delta$.
+\end{proof}
+
+\subsection{Uniform approximation}\label{sec:uniform}
+
+\begin{proposition}\label{prop:profile-uniform}
+Let $0<\delta<\kappa$, and put $C_\delta=\kappa/\delta$. For every $n$ with $h>\kappa/\delta^2$ and every ordinary prime $p$ with $\delta h\le p\le K$,
+\[
+\vg p(\Qt_n)\ \ge\ h\,\mathsf B(p/h)-C_\delta .
+\]
+More precisely $\cJ_p=h\,J(p/h)$ and $\cP_p\ge h\,R(p/h)-C_\delta$. We write $n_\delta$ for the least $n$ with $h>\kappa/\delta^2$.
+\end{proposition}
+
+\begin{proof}
+Since $h>\kappa/\delta^2$ we have $p^2\ge\delta^2h^2>\kappa h=K$, so \cref{prop:jet,prop:pole} apply. Put $x=p/h\in[\delta,\kappa]$, and note that $a/x=A/p$ and $\kappa/x=K/p$.
+
+\emph{Normalization.} Since $h\le K<p^2$, Legendre's formula gives $v_p(m!)=\lfloor m/p\rfloor$ for $m\le K$. Hence $v_p(S_n)=\lfloor K/p\rfloor-3\lfloor A/p\rfloor=q_\kappa-3q_a$, and $\sum_{i<h}v_p(i!)=\sum_{i<h}\lfloor i/p\rfloor=p\,q_1(q_1-1)/2+q_1(h-q_1p)$, with $q_1=\lfloor h/p\rfloor$. Therefore $v_p(S_n^h/F_n)=h\,\mathsf N(x)$ exactly.
+
+\emph{Class counts.} The numbers $hr_a=A-q_ap$ and $hr_\kappa=K-q_\kappa p$ are integers in $[0,p-1]$. For $1\le\sigma<p$ we have $a_\sigma=q_a+\ind_{\sigma\le hr_a}$ and $c_\sigma=q_\kappa+\ind_{\sigma\le hr_\kappa}$, and for the zero class $a_0=q_a$ and $c_0=q_\kappa$. Cut the interval $(0,x]$ into the $p$ intervals $\mathcal I_\sigma=((\sigma-1)/h,\sigma/h]$, $1\le\sigma\le p$. Since $r_a$ and $r_\kappa$ are multiples of $1/h$, the pair $(\alpha,\gamma)$ is constant on the interior of each $\mathcal I_\sigma$: for $\sigma<p$ it equals $(a_\sigma,c_\sigma)$, and on $\mathcal I_p$, which lies to the right of $r_a$ and $r_\kappa$, it equals $(q_a,q_\kappa)=(a_0,c_0)$. Say that a class $\sigma$ has type $\tau$ if $(a_\sigma,c_\sigma)=\tau$, and let $N_\tau$ be the number of classes $0\le\sigma<p$ of type $\tau$. Matching the class $\sigma\ge1$ with $\mathcal I_\sigma$ and the zero class with $\mathcal I_p$, we obtain
+\begin{equation}\label{eq:class-counts}
+N_\tau=h\,\ell_\tau(x)\qquad\text{for every type }\tau,
+\end{equation}
+with no error term. In particular the zero class has the type $\tau_0=(q_a,q_\kappa)$, which occurs at $x$.
+
+\emph{The jet bound.} A class of type $\tau$ has $w_\sigma=\omega_\tau$. By \eqref{eq:class-counts} the multiset $\cS^{\mathrm{jet}}_p$ contains the weight $\omega_\tau+2j$ of the jet slot $(\tau,j)$ exactly $h\ell_\tau(x)$ times, and nothing else. The sum of its $h$ smallest elements is therefore
+\[
+\cJ_p=\min\Bigl\{\textstyle\sum_{\tau,j}(\omega_\tau+2j)\,Y_{\tau,j}\ :\ Y_{\tau,j}\in\Z,\ 0\le Y_{\tau,j}\le h\ell_\tau(x),\ \sum_{\tau,j}Y_{\tau,j}=h\Bigr\}.
+\]
+Each class contributes exactly one element to each level $j$, so the number of elements of level $j$ and type $\tau$ is $N_\tau=h\ell_\tau(x)$; the discrete capacities are thus the exact capacities of \cref{def:profile} multiplied by $h$, with no perturbation. The argument after \cref{def:profile} therefore applies verbatim to the discrete program (the levels $j\le q_1$ hold $(q_1+1)p>h$ elements and the weights at a given $p$ differ by at most $4$), so only the finitely many slots with $j\le q_1+2$ matter, here and in the program defining $J(x)$. The same holds for the zero class, whose type $\tau_0$ occurs at $x$ by \eqref{eq:class-counts}, whatever $a_0$ and $c_0$ are; in particular no estimate of the difference between the class counts and the capacities is needed, and the constant $C_\delta=\kappa/\delta$ of \cref{prop:profile-uniform} depends only on $\delta$ and the triple $(H,B,C)$, which is what \cref{thm:arith-general} uses. For this finite program the minimum over real $Y_{\tau,j}$ is attained by filling the slots in order of increasing weight (\cref{lem:lp-lipschitz}); as the capacities $h\ell_\tau(x)$ and the total $h$ are integers, this optimal solution is integral, so the integrality constraint can be dropped. The substitution $Y=hy$ then turns the program into $h$ times the program defining $J(x)$, and $\cJ_p=hJ(x)$.
+
+\emph{The pole bound.} For a finite multiset $\cS$ of integers, $\Sigma^-_h(\cS)$ is the minimum of the sums of the sub-multisets of $\cS$ with at most $h$ elements. Let $\cS'$ be obtained from $\cS^{\mathrm{pole}}_p$ by replacing the $m_0=c_0-a_0=q_\kappa-q_a$ elements $w_0+1+2j$ of the zero class by the elements $w_0+2j+2\cdot\ind_{a_0=0,\ j=m_0-1}$ ($0\le j<m_0$) that a nonzero class of the same type $\tau_0$ would contribute. Each of these elements changes by $+1$ or $-1$, so $\Sigma^-_h(\cS^{\mathrm{pole}}_p)\ge\Sigma^-_h(\cS')-m_0$. By \eqref{eq:class-counts}, $\cS'$ contains the weight of the pole slot $(\tau,j)$ exactly $h\ell_\tau(x)$ times, and the argument given for the jet bound, with $\sum Y\le h$ in place of $\sum Y=h$, shows $\Sigma^-_h(\cS')=hR(x)$. Since $m_0\le q_\kappa\le\kappa/x\le\kappa/\delta$, we get $\cP_p\ge hR(x)-C_\delta$.
+
+\emph{Conclusion.} Combining with \cref{prop:jet,prop:pole},
+\[
+\vg p(\Qt_n)=v_p(S_n^h/F_n)+\vg p(Q_n)\ge h\mathsf N(x)+\max(\cJ_p,\cP_p)\ge h\mathsf B(x)-C_\delta. \qedhere
+\]
+\end{proof}
+
+The identity $\cJ_p=hJ(p/h)$ and the inequality $|\cP_p-hR(p/h)|\le q_\kappa-q_a$ were also checked directly, from the definitions of the class counts and of \cref{def:profile}, for the four triples, for $n\le30$ and $n\in\{47,64,101\}$, and for all ordinary primes $\sqrt K<p\le K$ ($3875$ cases, exact rational arithmetic).
+
+\subsection{Summation over primes}\label{sec:pnt}
+
+\begin{lemma}\label{lem:pnt}
+Let $0<\delta<\kappa$ and let $\phi$ be a bounded function on $[\delta,\kappa]$, continuous outside a finite set. Then
+\[
+\lim_{h\to\infty}\frac1h\sum_{\delta h\le p\le\kappa h}\phi(p/h)\log p=\int_\delta^\kappa\phi(x)\dd x .
+\]
+\end{lemma}
+
+\begin{proof}
+By the prime number theorem, $\vartheta(y)=\sum_{p\le y}\log p=y+o(y)$. For the indicator of an interval $[\alpha,\beta]\subset[\delta,\kappa]$ the sum equals $(\vartheta(\beta h)-\vartheta(\alpha h)+O(\log h))/h\to\beta-\alpha$, so the claim holds for step functions. A function as in the statement is Riemann integrable, hence squeezed between step functions with integrals arbitrarily close to its own; since the weights $\log p/h$ are nonnegative, the claim follows.
+\end{proof}
+
+\begin{theorem}[arithmetic estimate, general form]\label{thm:arith-general}
+For every $\delta\in(0,\kappa)$,
+\[
+\liminf_{n\to\infty}\frac1{h^2}\sum_p\vg p(\Qt_n)\log p\ \ge\ I_\delta+\eps_{\mathrm{exc}},\qquad I_\delta=\int_\delta^\kappa\mathsf B(x)\dd x-2\delta,
+\]
+with $\eps_{\mathrm{exc}}$ as in \cref{cor:exceptional}. For the indices with $\Qt_n\ne0$ the sum is $\log\cont(\Qt_n)$ by \eqref{eq:content-sum}; for the other indices every $\vg p(\Qt_n)$ is $+\infty$. Hence the lower limit of $h^{-2}\log\cont(\Qt_n)$ along the indices with $\Qt_n\ne0$ is at least $I_\delta+\eps_{\mathrm{exc}}$.
+\end{theorem}
+
+\begin{proof}
+Fix $\delta$ and let $n\ge n_\delta$ be large; in particular $\delta h>\max(\Ex)$ and $\delta h>\sqrt N$. The bounds below hold for every such $n$, with $\vg p(\Qt_n)=+\infty$ allowed. Split the primes into four sets.
+\begin{enumerate}[(i)]
+\item $p\in\Ex$: by \cref{cor:exceptional} these contribute at least $\eps_{\mathrm{exc}}h^2-O(h\log h)$.
+\item Ordinary $p<\delta h$: by \cref{prop:generic} the contribution is at least $-2h\sum_{p<\delta h}L_p\log p$. For $p\le\sqrt N$ we use $L_p\log p\le\log N$, and for $\sqrt N<p<\delta h$ we have $L_p=1$. The total is at least $-2h\bigl(\pi(\sqrt N)\log N+\vartheta(\delta h)\bigr)=-2\delta h^2-o(h^2)$.
+\item Ordinary $p$ with $\delta h\le p\le K$: by \cref{prop:profile-uniform,lem:profile-regular,lem:pnt} the contribution is at least $h\sum_{\delta h\le p\le\kappa h}\mathsf B(p/h)\log p-C_\delta\vartheta(K)=h^2\int_\delta^\kappa\mathsf B-o(h^2)$. Here every prime of the range is ordinary because $\delta h>\max(\Ex)$, and $C_\delta\vartheta(K)=O(h)$ because $C_\delta=\kappa/\delta$ does not depend on $p$ or $n$.
+\item Ordinary $p>K$: the contribution is nonnegative by \cref{prop:generic}.
+\end{enumerate}
+Adding the four contributions and dividing by $h^2$ proves the theorem.
+\end{proof}
+
+\subsection{The certified integrals}\label{sec:profile-values}
+The integral $I_\delta$ is bounded below by a finite computation. By \cref{lem:profile-regular}, on each subinterval of the partition of $[\delta,\kappa]$ by the points $s/j$ the weights are fixed and the capacities affine. The minimum of a linear program is a convex function of its capacities, so $J$ and $R$, and hence $\mathsf B$, are convex on each subinterval (\cref{lem:profile-convex}); by Jensen's inequality the midpoint rule therefore gives a lower bound for the integral over each subinterval. The certificate evaluates $\mathsf B$ exactly at the midpoints (\cref{sec:cert-profile}). The resulting rational lower bounds are recorded in \cref{tab:profile}.
+
+\begin{proposition}[profile certificate]\label{prop:profile-certificate}
+With $\delta$ as in \cref{tab:profile}, $I_\delta$ exceeds the value in the third column of that table.
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:profile-convex}, $I_\delta+2\delta\ge\sum_{\mathcal I}|\mathcal I|\,\mathsf B(x_{\mathcal I})$, the sum running over the subintervals of the partition of \cref{sec:cert-profile}. Each midpoint value $\mathsf B(x_{\mathcal I})$ is a rational number computed exactly from \cref{def:profile} by filling the cheapest slots first; the finite sum is evaluated in exact rational arithmetic and compared with the values of \cref{tab:profile}. The step is certified in the sense of \cref{sec:intro-status}: it was reproduced by the original programs and confirmed, with the exact value of $I_\delta$, by a separate recomputation.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{The certified lower bounds for $I_\delta=\int_\delta^\kappa\mathsf B-2\delta$ (normalized by $h^2$), and the resulting arithmetic rates $I_\delta+\eps_{\mathrm{exc}}$. Decimals are rounded down. For $\lambda=2/11$ the certificate is computed in the scale $y=p/n=4x$, where it reads $\int_{1/40}^6\mathsf B_n(y)\dd y-\frac8{40}>\frac92$ with $\mathsf B_n(y)=4\mathsf B(y/4)$; this is the bound $I_{1/160}>9/32$.}
+\label{tab:profile}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$\lambda$ & $\delta$ & lower bound for $I_\delta$ & $\eps_{\mathrm{exc}}$ & $I_\delta+\eps_{\mathrm{exc}}$\\
+\midrule
+$2/11$ & $1/160$ & $0.2816209$ & $-0.5523150$ & $-0.2706941$\\
+$2/9$ & $1/500$ & $-0.8850553$ & $-0.4394723$ & $-1.3245276$\\
+$-2/9$ & $1/500$ & $0.1673093$ & $-0.5503976$ & $-0.3830883$\\
+$-2/7$ & $1/500$ & $0.0769450$ & $-0.5982677$ & $-0.5213227$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proof}[Proof of \cref{thm:arith}]
+By \cref{thm:arith-general,prop:profile-certificate}, $\liminf h^{-2}\log\cont(\Qt_n)\ge I_\delta+\eps_{\mathrm{exc}}$, and the certificates verify, with outward-rounded rational enclosures of the logarithms in $\eps_{\mathrm{exc}}$, that $I_\delta+\eps_{\mathrm{exc}}>\rar(\lambda)$ for the thresholds of \cref{tab:rates}. (For $\lambda=2/11$ the certificate uses the weaker bound $I_\delta>9/32$, which gives $-0.271065>-2169/8000$.)
+\end{proof}
+
+\begin{remark}\label{rem:profile-float}
+The AI-internal recomputation described in the section on reproducibility evaluates $I_\delta$ exactly, as a rational number: in the $n$-scale of $2/11$, $\int_{1/40}^6\mathsf B_n-\frac15=4.5059344662496163\ldots$, and $I_\delta=-0.8850552343712680\ldots$, $0.1685590216\ldots$ and $0.0781087782\ldots$ for $2/9$, $-2/9$ and $-2/7$. For $2/11$ and $2/9$ the function $\mathsf B$ is affine on every subinterval, so the midpoint values of \cref{tab:profile} are exact there; for $-2/9$ and $-2/7$ the midpoint values are lower bounds, by convexity, and they are conservative by about $0.0012$. A midpoint rule whose nodes are not aligned with the partition of \cref{sec:cert-profile} is not a one-sided bound and is not used.
+\end{remark}

@@ -1,0 +1,125 @@
+# Declarations audited by `#print axioms` (every one must use only propext, Classical.choice,
+# Quot.sound). `status`: "proved" = unconditional theorem; "conditional" = the statement takes
+# the unproved candidate estimates as an explicit hypothesis (name ends in `_of_estimates` or
+# `_of_hankelEstimates`); such a theorem is never the formalization of a main theorem.
+
+# --- Irrationality criterion (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.one_le_pow_mul_abs_aeval_div"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_of_int_poly_approx"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_of_tendsto_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_of_scaled_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_of_log_content_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_of_rat_value_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.frequently_atTop_of_eventually_prime"
+status = "proved"
+
+# --- Definitions and statement fidelity (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.hasSum_pow_div_sq"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.dilog_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.dilog_add_dilog_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.dilog_neg_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.dilog_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.dilog_neg_of_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.natDegree_normalizedHankelDet_le"
+status = "proved"
+
+# --- Local Gram determinants (kernel-checked finite certificates) ---
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramOne"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramOne_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramZero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramZero_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramOne"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramOne_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramZero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramZero_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramOne"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramOne_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramZero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramZero_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramOne"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramOne_ne_zero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramZero"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramZero_ne_zero"
+status = "proved"
+
+# --- Final logarithmic comparisons of the arithmetic certificates (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.content_rate_two_elevenths_gt"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.content_rate_neg_two_sevenths_gt"
+status = "proved"
+
+# --- Final deduction and the four target statements (conditional) ---
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_dilog_of_hankelEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_dilog_two_elevenths_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_dilog_two_ninths_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_dilog_neg_two_ninths_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Dilogarithm.irrational_dilog_neg_two_sevenths_of_estimates"
+status = "conditional"

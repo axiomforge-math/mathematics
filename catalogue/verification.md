@@ -2,4 +2,6 @@
 
 # Verification status
 
-No contribution has been released yet.
+| Result | Status | Theorem | Lean declaration | Proof | Formalization | Axioms | Independent review |
+|---|---|---|---|---|---|---|---|
+| AF-0001 | preprint | The numbers Li_2(2/11), Li_2(2/9), Li_2(-2/9) and Li_2(-2/7) are irrational, where Li_2(z) = sum_{k>=1} z^k/k^2 for \|z\| <= 1. | in preparation; conditional: `AxiomForge.Dilogarithm.irrational_dilog_two_elevenths_of_estimates`, `AxiomForge.Dilogarithm.irrational_dilog_two_ninths_of_estimates`, `AxiomForge.Dilogarithm.irrational_dilog_neg_two_ninths_of_estimates`, `AxiomForge.Dilogarithm.irrational_dilog_neg_two_sevenths_of_estimates` | candidate | in-preparation | standard | ai-internal |

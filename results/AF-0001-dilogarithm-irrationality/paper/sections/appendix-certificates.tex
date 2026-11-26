@@ -1,0 +1,66 @@
+\section{The certificates}\label{app:certificates}
+
+This appendix describes the finite computations used in \cref{prop:profile-certificate,prop:local-dets} and in the proof of \cref{thm:arch}, and proves the error estimates on which they rely; these computations are the certified steps of \cref{tab:status}. All assertions are checked in exact rational arithmetic; decimal values are for orientation only.
+
+\subsection{Rational enclosures of logarithms and arctangents}\label{sec:cert-intervals}
+For a rational $z\in[1,2]$ put $r=(z-1)/(z+1)\in[0,\frac13]$. Since $\log z=2\operatorname{artanh}r$,
+\[
+2\sum_{k=0}^{19}\frac{r^{2k+1}}{2k+1}\ \le\ \log z\ \le\ 2\sum_{k=0}^{19}\frac{r^{2k+1}}{2k+1}+\frac{2r^{41}}{41(1-r^2)},
+\]
+the remainder being bounded by a geometric series. A positive rational number is reduced to $[1,2]$ by a power of $2$, using the same enclosure for $\log2$, and the endpoints are rounded outwards to multiples of $10^{-15}$. For $|u|\le\frac12$ the alternating series of $\arctan u$ through degree $39$ has error at most $|u|^{41}/41$; for $\frac12<u\le1$ one uses $\arctan u=\frac\pi4+\arctan\frac{u-1}{u+1}$, for $u>1$ one uses $\arctan u=\frac\pi2-\arctan\frac1u$, and oddness for $u<0$. The number $\pi$ is enclosed by Machin's formula $\pi=16\arctan\frac15-4\arctan\frac1{239}$. For a nonzero rational point $w$ of the closed upper half-plane, $\real\log w=\frac12\log|w|^2$ and $\imag\log w=\arg w$ is obtained from the arctangent by the quadrant rule. Interval arithmetic with rational endpoints then encloses every quantity below.
+
+\subsection{The profile integrals}\label{sec:cert-profile}
+Let $\mathfrak P$ be the partition of $[\delta,\kappa]$ by $\delta$, $\kappa$ and the points $s/j\in(\delta,\kappa)$ with $s\in\{a,\kappa,1,\kappa-a\}$ and $j\ge1$; for $\lambda=2/11$, in the scale $y=4x$, by the points $s/j$ with $s\in\{1,6,4,5\}$ in $(\frac1{40},6)$. The numbers of subintervals are $479$, $999$, $1749$ and $1799$ for $\lambda=2/11$, $2/9$, $-2/9$ and $-2/7$. By \cref{lem:profile-regular}, on each subinterval $\mathcal I$ the weights of all slots are constant and their capacities are affine in $x$.
+
+\begin{lemma}\label{lem:profile-convex}
+On each subinterval $\mathcal I$ of $\mathfrak P$ the function $\mathsf B$ is convex. Consequently $\int_{\mathcal I}\mathsf B\ge|\mathcal I|\,\mathsf B(x_{\mathcal I})$, where $x_{\mathcal I}$ is the midpoint of $\mathcal I$.
+\end{lemma}
+
+\begin{proof}
+The minimum of a linear program $\min\{w\cdot y:\ 0\le y\le c,\ \sum y=1\}$, or with $\sum y\le1$, is a convex function of the capacity vector $c$, since a convex combination of feasible points for $c$ and $c'$ is feasible for the convex combination of $c$ and $c'$. Composed with the affine map $x\mapsto c(x)$, this shows that $J$ and $R$ are convex on $\mathcal I$; so is their maximum, and $\mathsf N$ is affine on $\mathcal I$. The last assertion is Jensen's inequality.
+\end{proof}
+
+The certificate evaluates $\mathsf B(x_{\mathcal I})$ exactly for every subinterval, filling the cheapest slots first, with jet levels $j<q_1+3$ (which suffice, as noted after \cref{def:profile}), and sums $|\mathcal I|\mathsf B(x_{\mathcal I})$. As a second justification, a separate program computes on each subinterval an explicit affine minorant of $\max(J,R)$ from the weak-duality bound of \cref{lem:weak-duality}, with a price chosen at the midpoint and held fixed; it reproduces the midpoint values exactly on all $5026$ subintervals. The resulting rational lower bounds for $I_\delta$ are those of \cref{tab:profile}. Finally the exceptional contribution $\eps_{\mathrm{exc}}$ is enclosed with the logarithms of \cref{sec:cert-intervals}, and the inequality $I_\delta+\eps_{\mathrm{exc}}>\rar$ is checked.
+
+\subsection{The local determinants}\label{sec:cert-local}
+For $s<2H-1$ the function $u^sw_b$ is written as $\rho+\sum_k\varrho_k(u+k)^{-1}$ by division by the monic denominator and $\varrho_k=\mathrm{num}(-k)/\prod_{k'\ne k}(k'-k)$; then $\cV(u^sw_b)=\sum_{m\ge1}m[u^m]\rho\,M_{m-1}(\lambda)+\sum_k\varrho_k\lambda^{-k}\tau_k(\lambda)$, with $M_k$ from \eqref{eq:moments}. The determinants of the $H\times H$ Hankel matrices are computed exactly, and each is certified a second time by an explicit factorization $\mathsf H_b=\mathsf L\mathsf U$ with $\mathsf L$ unit lower triangular and $\mathsf U$ upper triangular, checked entrywise. A separate program, which computes the moments by the recursion $(\lambda-1)M_k=\sum_{j<k}\binom kj(-1)^{k-j}M_j$ instead of Stirling numbers, reproduces all eight values of \cref{tab:local-dets}.
+
+\subsection{The comparison measures}\label{sec:cert-measures}
+All comparison measures are piecewise constant in a parameter $y\ge0$ on a uniform grid. Put
+\[
+f(s)=s\log|s|-s,\qquad g(s)=\tfrac12s^2\log|s|-\tfrac34s^2\qquad(f(0)=g(0)=0),
+\]
+so that $g'=f$ and $f'=\log|\cdot|$. For the unit density on $[\alpha,\beta]\subset\R$, the potential at $y\in\R$ is $f(y-\alpha)-f(y-\beta)$, and the interaction with the unit density on $[\gamma,\gamma']$ is
+\[
+\int_\alpha^\beta\!\!\int_\gamma^{\gamma'}\log|s-s'|\dd s'\dd s=g(\beta-\gamma)+g(\alpha-\gamma')-g(\alpha-\gamma)-g(\beta-\gamma').
+\]
+For the negative arguments the measure lives on the two rays $\{cy\}$ and $\{\bar cy\}$ and is symmetric. With $\eta=c^2$ one has $|cy-\bar cs|=|\eta y-s|$. Put $F(z)=z(\log z-1)$ and $G(z)=z^2(\frac12\log z-\frac34)$ on the closed upper half-plane (principal branch, $F(0)=G(0)=0$), so that $\real F=f$ and $\real G=g$ on the real axis and $G''=\log$. Then the cross-ray potential at $cy$ of the unit density on $[\alpha,\beta]$ is $\real\bigl(F(\eta y-\alpha)-F(\eta y-\beta)\bigr)$, and the cross-ray interaction of the unit densities on $[\alpha,\beta]$ and $[\gamma,\gamma']$ is $\real\bigl[\eta^{-1}\bigl(G(\eta\beta-\gamma)+G(\eta\alpha-\gamma')-G(\eta\alpha-\gamma)-G(\eta\beta-\gamma')\bigr)\bigr]$. The energy is the sum of the same-ray and cross-ray interactions, each counted twice.
+
+The data are as follows; the integer vectors $(m_j)$ are listed in \cref{tab:mass-vectors}.
+\begin{itemize}
+\item $\lambda=2/11$ (scale $s=4y$, mass $4$): density $m_j/500$ on $[\frac j2,\frac{j+1}2]$, $0\le j\le16$, $\sum m_j=4000$; $\theta'=-431/50$.
+\item $\lambda=2/9$: density $m_j/2500$ on $[\frac j{40},\frac{j+1}{40}]$, $0\le j\le76$, $\sum m_j=10^5$; $\theta=-167/50$.
+\item $\lambda=-2/9$, $c=(4+3\mathrm i)/5$: on each ray, density $m_j/5000$ on $[\frac j{40},\frac{j+1}{40}]$, $0\le j\le38$, $\sum m_j=10^5$.
+\item $\lambda=-2/7$, $c=(21+20\mathrm i)/29$: on each ray, density $m_j/8000$ on $[\frac j{25},\frac{j+1}{25}]$, $0\le j\le23$, $\sum m_j=10^5$.
+\end{itemize}
+
+\begin{table}[ht]
+\centering
+\caption{The mass vectors $(m_j)$ of the comparison measures.}
+\label{tab:mass-vectors}
+\footnotesize
+\begin{tabular}{@{}lp{0.8\textwidth}@{}}
+\toprule
+$2/11$ & 1000, 557, 402, 325, 272, 233, 203, 178, 157, 139, 122, 107, 92, 78, 63, 48, 24\\
+$2/9$ & 5000 (seven times), 3819, 3235, 2875, 2603, 2389, 2213, 2065, 1937, 1826, 1728, 1641, 1562, 1490, 1425, 1365, 1310, 1259, 1211, 1167, 1125, 1086, 1049, 1014, 981, 950, 920, 891, 864, 837, 812, 788, 764, 742, 720, 699, 678, 659, 639, 620, 602, 584, 567, 549, 533, 516, 500, 484, 468, 452, 437, 421, 406, 391, 376, 361, 346, 330, 315, 300, 284, 268, 252, 235, 217, 199, 179, 158, 134, 107, 71\\
+$-2/9$ & 9424, 5610, 5336, 4824, 4487, 4204, 3966, 3757, 3571, 3403, 3248, 3106, 2972, 2847, 2729, 2616, 2508, 2405, 2305, 2208, 2114, 2023, 1933, 1844, 1757, 1671, 1585, 1499, 1413, 1326, 1238, 1148, 1055, 958, 856, 744, 618, 477, 215\\
+$-2/7$ & 13112, 8416, 7787, 6951, 6348, 5833, 5390, 4997, 4642, 4318, 4016, 3734, 3466, 3210, 2962, 2721, 2482, 2244, 2002, 1751, 1486, 1185, 869, 78\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{The penalty integral for $\lambda=2/11$.} Let $\mathsf W'=V'+2U_{\sigma'}$ as in \cref{rem:211-scale}. For $s\ge12$ the support $[0,\frac{17}2]$ of $\sigma'$ gives $U_{\sigma'}(s)\le4\log s$, and $\frac{\mathrm d}{\mathrm ds}(V'+8\log s)=3\log(1+\frac1s)-\log(1+\frac6s)+\frac8s-t\le\frac{11}s-t<-\frac12$ because $t=\log\frac{11}2>\frac{17}{12}$; the certificate checks $V'(12)+8\log12<\theta'$, so $(\mathsf W'-\theta')_+=0$ on $[12,\infty)$. On $[0,12]$ the total variation of $\mathsf W'$ is at most that of $V'$, bounded by $\int_0^{12}\bigl(3\log(1+\frac1s)+\log(1+\frac6s)+t\bigr)\dd s$, plus twice the sum over the cells of the density times the variation of the cell potential; the potential of a cell decreases up to the midpoint of the cell and increases afterwards, so its variation on $[0,12]$ is the sum of its endpoint values minus twice its midpoint value. The certificate finds a total variation below $101$. For a function of bounded variation the midpoint rule with step $s_0$ has error at most $\frac{s_0}2$ times the variation, and $(\cdot-\theta')_+$ does not increase variation. With $s_0=\frac1{200}$ and upper enclosures of the midpoint values, the midpoint sum is $0.35241$ and the integral itself is about $0.35243$; adding the error term, $\frac{s_0}2$ times the computed total-variation bound, gives the certified bound $\int_0^\infty(\mathsf W'-\theta')_+<0.602835$ used in the certificate.
+
+\emph{The penalty integral for $\lambda=2/9$.} For $y\ge4$, $U\le\log y$ and $V+2\log y$ has derivative $\log\frac y{y+\kappa}+\frac2y-t<0$; the certificate checks $V(4)+2\log4<\theta$. On $[0,4]$ let $\mathsf L$ be the piecewise linear interpolant of $\mathsf W$ on the mesh of width $s_0=\frac1{400}$; all breakpoints of $\sigma$ and the shift $-\kappa$ lie on the mesh. Since $(\cdot)_+$ is $1$-Lipschitz and the positive part of an affine function is convex, $\int_0^4(\mathsf W-\theta)_+\le\int_0^4(\mathsf L-\theta)_++\|\mathsf W-\mathsf L\|_{L^1}$, and the first integral is at most the trapezoidal sum of the positive parts of the (upper enclosures of the) nodal values. The function $\mathsf W$ is a combination of translates $f(\cdot-\alpha)$ with mesh-aligned $\alpha$, plus a linear function, with absolute coefficient sum $10$ (two from $V$, and $2\times4$ from $2U$, the density being nonincreasing with $\rho_0=2$). For one translate, the $L^1$ interpolation error on a cell adjacent to $\alpha$ is $s_0^2/4$ (by direct integration of $x\log x-x$), and on a cell at distance at least $js_0$ it is at most $s_0^3\max|f''|/12\le s_0^2/(12j)$. Summing over cells gives at most $s_0^2(\frac12+\frac16\sum_{j\le N}\frac1j)$ with $N=2050$, hence $\|\mathsf W-\mathsf L\|_{L^1}<1.17\cdot10^{-4}$.
+
+\emph{The supremum for the negative arguments.} On $[0,Y]$, with $Y=2$ for $\lambda=-2/9$ and $Y=3$ for $\lambda=-2/7$, the function $V_-+2U_-$ is a linear function plus a combination of the functions $f(y-\alpha)$, $\real F(\eta y-\alpha)$ and $\real\bigl((cy+\beta)\log(cy+\beta)\bigr)$ with mesh-aligned $\alpha,\beta\ge0$ (mesh $s_0=\frac1{400}$), with absolute coefficient sum $6+4\mathsf J$, where $\mathsf J$ is the total variation of the one-ray density including its jumps at the ends of the support. Each of these functions differs from its linear interpolant on the mesh by at most $s_0/2$ uniformly: for $f(y-\alpha)$ the error is at most $s_0/e$ on the two cells adjacent to $\alpha$ and $s_0/8$ elsewhere; for $\real F(\eta y-\alpha)$ the second derivative is bounded by $|\eta y-\alpha|^{-1}$, and $|\eta y-\alpha|\ge s_0\sin(\arg\eta)$ except on the first cell when $\alpha=0$, where the function is $\real(\eta)\,y\log y$ plus a linear function; the factors $(cy+\beta)\log(cy+\beta)$ are treated in the same way. Hence $\sup_{[0,Y]}(V_-+2U_-)$ is at most the largest nodal upper enclosure plus $(6+4\mathsf J)s_0/2$, which is $0.026348$ for $-2/9$ and $0.02389$ for $-2/7$. For $y\ge Y$ one has $|cy+s|\ge y$ and $|cy+s|\le y+s$, so $V_-(y)+2U_-(y)\le3a\log(y+a)-\kappa\log y-Ty+2\log(y+b_*)$, where $b_*$ is the end of the support; this majorant decreases for $y\ge Y$ because $(3a+2)/Y<T$, and the certificate checks that its value at $Y$ is below the bound obtained on $[0,Y]$.

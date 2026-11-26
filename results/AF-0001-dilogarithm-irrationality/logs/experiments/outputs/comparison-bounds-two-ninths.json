@@ -1,0 +1,49 @@
+{
+  "E": "[-1.3038986996068889684 +/- 2.53e-20]",
+  "C_u": "[0.50750591511343138636 +/- 3.86e-21]",
+  "pos_upper": "[0.092345689563245544675 +/- 3.78e-22]",
+  "rhs_upper": "[-1.3439040061531885559 +/- 1.84e-20]",
+  "t": "[1.5040773967762740734 +/- 2.68e-20]",
+  "manuscript_method": {
+    "coef_norm": "10",
+    "err": "[0.00011669848562128692706 +/- 7.96e-25]",
+    "trapezoid": "[0.092365155386172400606 +/- 4.25e-23]",
+    "penalty": "[0.092481853871793687533 +/- 1.04e-22]",
+    "rhs": "[-1.3436316775360922702 +/- 2.93e-21]"
+  },
+  "rhs_upper_rational": "-245514738176055613083260586466104195063291127121/182687704666362864775460604089535377456991567872",
+  "mesh": 2000,
+  "checks": [
+    {
+      "name": "2/9: comparison measure has mass m=1",
+      "ok": true,
+      "detail": "mass=1"
+    },
+    {
+      "name": "2/9: density nonnegative",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/9: support [0,77/40] inside [0,Y=]4",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/9: tail majorant V(Y)+2m log Y < theta at Y=4",
+      "ok": true,
+      "detail": "[-4.94846236114 +/- 3.83e-12] vs theta=-3.34"
+    },
+    {
+      "name": "2/9: tail majorant decreasing on [Y,inf): (3a+2m)/Y - t < 0",
+      "ok": true,
+      "detail": "[-1.004077397 +/- 2.24e-10]"
+    },
+    {
+      "name": "2/9: certified RHS < claimed -1.3400",
+      "ok": true,
+      "detail": "-1.34390400615319"
+    }
+  ],
+  "all_passed": true
+}

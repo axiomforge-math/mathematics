@@ -1,0 +1,101 @@
+\section{Nonvanishing at prime indices}\label{sec:nonvanishing}
+
+This section proves \cref{thm:nonvanishing}, the third hypothesis of the criterion \cref{lem:criterion}. In that criterion the determinant is evaluated at a fixed rational number, the hypothetical value of $\xi$, so it suffices to show that $\Qt_n(r)\ne0$ for each fixed $r\in\Q$ and infinitely many $n$. The reduction (\cref{thm:nonvanishing-general}) is a candidate and the local determinants (\cref{prop:local-dets}) are certified, in the sense of \cref{sec:intro-status}. We take $n=p$ prime and use the residue classes modulo the same prime $p$. Then $A=Bp$ and $K=Cp$, so that every class contains exactly $B$ zeros and $C$ poles of $W_p$, and the Gram matrix decomposes into $p$ nearly independent blocks. The reduction of nonvanishing to local Hankel determinants of a local functional, through residue classes modulo a prime and a basis adapted to them, is the method of \cite[Section~5]{Litsey2026Li2}, where the prime runs through a band depending on $n$ and the local determinants are called type constants; taking the index itself prime leaves only the two determinants $\det\mathsf H_0$, $\det\mathsf H_1$.
+
+\subsection{The local functional}\label{sec:local-functional}
+Let $\cV$ be the $\Q$-linear functional on rational functions in $u$ with at most simple poles in $\{0,-1,-2,\dots\}$ defined by
+\[
+\cV(u^k)=k\,M_{k-1}(\lambda)\quad(k\ge1),\qquad \cV(1)=0,\qquad \cV\Bigl(\frac1{u+k}\Bigr)=\lambda^{-k}\tau_k(\lambda)\quad(k\ge0).
+\]
+Equivalently, $\cV(\rho+\sum_kr_k(u+k)^{-1})=G(\rho')+\sum_kr_k\lambda^{-k}\tau_k(\lambda)$ for a polynomial $\rho$; note $\tau_0=0$. Define the local weights and the local Hankel matrices
+\[
+w_1(u)=\frac{\prod_{k=0}^{B-1}(u+k)^2}{\prod_{k=B}^{C-1}(u+k)},\qquad w_0(u)=\frac{u\prod_{k=1}^{B}(u+k)^2}{\prod_{k=B+1}^{C}(u+k)},
+\]
+\[
+\mathsf H_b=\bigl[\cV(u^{i+j}w_b)\bigr]_{0\le i,j<H}\qquad(b=0,1).
+\]
+For example, for $\lambda=2/11$ one has $w_1=u^2/\prod_{k=1}^5(u+k)$ and $w_0=u(u+1)^2/\prod_{k=2}^6(u+k)$, and for $\lambda=2/9$ one has $w_1=1/\prod_{k=0}^8(u+k)$ and $w_0=u/\prod_{k=1}^9(u+k)$.
+
+\begin{proposition}[local determinants]\label{prop:local-dets}
+The determinants $\det\mathsf H_1$ and $\det\mathsf H_0$ are the nonzero rational numbers listed in \cref{tab:local-dets}.
+\end{proposition}
+
+\begin{proof}
+This is a finite computation in exact rational arithmetic. The moments $M_k(\lambda)$ are rational by \eqref{eq:moments}, the partial fractions of $u^{i+j}w_b$ are obtained by polynomial division and residues, and the determinants by exact elimination; each determinant is confirmed by an explicit factorization $\mathsf H_b=\mathsf L\mathsf U$ checked entrywise, and all eight values were recomputed by a separate program (\cref{sec:cert-local}). The step is certified in the sense of \cref{sec:intro-status}.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{The local determinants.}
+\label{tab:local-dets}
+\small
+\begin{tabular}{@{}llc@{}}
+\toprule
+$\lambda$ & & value\\
+\midrule
+$2/11$ & $\det\mathsf H_1$ & $\dfrac{17828022563089333969}{1224440064}$\\[9pt]
+ & $\det\mathsf H_0$ & $\dfrac{12598972834814973210048467}{2295825120}$\\[9pt]
+$2/9$ & $\det\mathsf H_1$ & $\dfrac{3951366107675153857566158184061855291890957151}{50404062960731160576000000000000}$\\[9pt]
+ & $\det\mathsf H_0$ & $\dfrac{75748065809620696385810762379349631101207641762772048941}{23344937339644196864000000000000}$\\[9pt]
+$-2/9$ & $\det\mathsf H_1$ & $\dfrac{1677163510311484581}{15488000}$\\[9pt]
+ & $\det\mathsf H_0$ & $\dfrac{16417954848664067036722569}{524733440}$\\[9pt]
+$-2/7$ & $\det\mathsf H_1$ & $\dfrac{14067971871496713969085291850153}{1057916215296000000}$\\[9pt]
+ & $\det\mathsf H_0$ & $\dfrac{17800469908791563702231968746821382359}{495898225920000000}$\\[9pt]
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The reduction}\label{sec:reduction}
+
+\begin{theorem}\label{thm:nonvanishing-general}
+Let $r\in\Q$, and let $p$ be a prime with $p>C$, $p\notin\Ex$, $p$ not dividing the denominator of $r$, and $p$ not dividing the numerators of $\det\mathsf H_0$ and $\det\mathsf H_1$. Then $Q_p(r)\ne0$.
+\end{theorem}
+
+The hypotheses are used as follows. The condition $p>C$ gives $K=Cp<p^2$, the standing assumption of \cref{sec:ordinary}, and makes the local poles $k\le C$ of the two local weights distinct modulo $p$. The condition $p\notin\Ex$ makes $p$ odd and $\lambda$, $1-\lambda$ units. Under these two conditions the entries of $\mathsf H_0$ and $\mathsf H_1$ lie in $\Zp$: the polynomial part of $u^{i+j}w_b$ has integer coefficients, its residues are integers divided by products of differences of poles, and $\tau_k(\lambda)\in\Zp$ for $k\le C<p$. So $\det\mathsf H_b\in\Zp$, and no condition on its denominator is needed. The condition on $r$ allows the specialization $X=r$ in $\Zp$.
+
+\begin{proof}
+Let $n=p$, so $h=Hp$, $A=Bp$, $K=Cp<p^2$ because $p>C$, and for every class $a_\sigma=B$, $c_\sigma=C$, $w_\sigma=3B-C-1=:w$.
+
+\emph{Step 1: an adapted basis.} For $0\le\sigma<p$ and $0\le i<H$ put
+\[
+e_{\sigma,i}(x)=(x+\sigma)^i\prod_{\rho\ne\sigma}(x+\rho)^H,
+\]
+the product running over $0\le\rho<p$. These are $Hp=h$ polynomials of degree less than $h$ with integer coefficients. Modulo $p$, the ideals $((x+\rho)^H)$ are pairwise coprime and $\prod_\rho(x+\rho)^H\equiv(x^p-x)^H$ has degree $h$, so by the Chinese remainder theorem the reductions of polynomials of degree $<h$ correspond bijectively to $\prod_\rho\mathbb F_p[x]/((x+\rho)^H)$. Under this correspondence $e_{\sigma,i}$ has zero components except at $\sigma$, where it is $(x+\sigma)^i$ times a unit. Hence the $e_{\sigma,i}$ reduce to a basis, and the matrix $E\in\Z^{h\times h}$ expressing them in the monomial basis has $\det E\in\Zp^\times$. Consequently
+\[
+\mathsf G:=\bigl[\Lambda_r(W_p\,e_{\sigma,i}e_{\tau,j})\bigr]_{(\sigma,i),(\tau,j)}=E\,[\Lambda_r(W_px^{i+j})]\,E^{\mathsf T},\qquad \det\mathsf G=(\det E)^2Q_p(r).
+\]
+
+\emph{Step 2: class decomposition.} Fix $\mu$ large (as specified below). By \cref{prop:distribution} and specialization $X=r\in\Zp$, each entry of $\mathsf G$ is congruent modulo $p^{\mu-c}$ to $\sum_{\rho}\Theta_\rho\bigl(e_{\sigma,i}(pu-\rho)e_{\tau,j}(pu-\rho)\bigr)$, with $c$ independent of $\mu$. Now $e_{\sigma,i}(pu-\rho)$ has minimal coefficient valuation exactly $i$ if $\rho=\sigma$ (it is $p^iu^i$ times a polynomial with unit constant term), and at least $H$ if $\rho\ne\sigma$ (it contains the factor $(pu)^H$). By \cref{lem:local-integrality} the contribution of the class $\rho$ to the entry $((\sigma,i),(\tau,j))$ has valuation at least
+\[
+w+\ind_{\rho=0}+\bigl(i\ \text{if}\ \rho=\sigma,\ \text{else}\ H\bigr)+\bigl(j\ \text{if}\ \rho=\tau,\ \text{else}\ H\bigr).
+\]
+
+\emph{Step 3: scaling.} Let $\mathsf Z$ be obtained from $\mathsf G$ by multiplying the entry $((\sigma,i),(\tau,j))$ by $p^{-w-i-j}$ and then dividing the $H$ rows $(0,i)$ by $p$. Then $\det\mathsf Z=p^{-e_0}\det\mathsf G$ for an explicit integer $e_0$. By Step 2, the contribution of the class $\rho$ to $\mathsf Z_{(\sigma,i),(\tau,j)}$ has valuation at least $\ind_{\rho=0}-\ind_{\sigma=0}$ plus $0$, $H-j$, $H-i$ or $2H-i-j$ according as $\rho=\sigma=\tau$, $\rho=\sigma\ne\tau$, $\rho=\tau\ne\sigma$ or $\rho\notin\{\sigma,\tau\}$. Since $i,j\le H-1$, it follows that every entry of $\mathsf Z$ lies in $\Zp$ (modulo $p^{\mu-c-w'}$ with $w'=|w|+2H+1$, which is harmless for $\mu$ large), that the entries in rows $(\sigma,i)$ with $\sigma\ne0$ and columns $(\tau,j)$ with $\tau\ne\sigma$ are divisible by $p$, and that in a diagonal block $\sigma=\tau$ only the own class $\rho=\sigma$ contributes modulo $p$. Thus, modulo $p$, $\mathsf Z$ is block upper triangular when the zero class is listed first, and
+\[
+\det\mathsf Z\equiv\prod_{\sigma=0}^{p-1}\det\mathsf Z^{(\sigma)}\pmod p,\qquad \mathsf Z^{(\sigma)}_{ij}\equiv p^{-w-i-j-\ind_{\sigma=0}}\ \Theta_\sigma\bigl(e_{\sigma,i}(pu-\sigma)e_{\sigma,j}(pu-\sigma)\bigr).
+\]
+
+\emph{Step 4: the diagonal blocks.} Collect the factors as in the proof of \cref{lem:local-integrality}. For $\sigma\ne0$ the local zeros and poles are $p(u+k)$ with $0\le k<B$, respectively $0\le k<C$; for $\sigma=0$ they are $p(u+k)$ with $1\le k\le B$, respectively $1\le k\le C$, and the factor $x=pu$ contributes $pu$. All other factors, including those of $e_{\sigma,i}(pu-\sigma)e_{\sigma,j}(pu-\sigma)$ outside $(pu)^{i+j}$ and, for $\sigma\ne0$, the factor $pu-\sigma$, are polynomials in $u$ with unit constant term and all other coefficients divisible by $p$. Hence
+\[
+(pu-\sigma)W_p(pu-\sigma)\,e_{\sigma,i}(pu-\sigma)e_{\sigma,j}(pu-\sigma)=p^{\,w+1+\ind_{\sigma=0}+i+j}\,k_\sigma\,u^{i+j}w_{b}(u)\bigl(1+p\,g_{\sigma}(u)\bigr),
+\]
+with $b=\ind_{\sigma\ne0}$, a unit $k_\sigma\in\Zp^\times$, and $g_{\sigma}=g_1/D_1$ where $g_1,D_1\in\Zp[u]$ and $D_1\equiv D_1(0)\not\equiv0\pmod p$. The function $u^{i+j}w_bg_\sigma$ is of the form $\Phi_1/(BD)$ considered in the proof of \cref{lem:local-integrality}, with $\Phi_1\in\Zp[u]$; the argument given there shows that $T_{M,\lambda_p,Y_\mu}$ maps its derivative into $\Zp[X]$, so its contribution to $\mathsf Z^{(\sigma)}_{ij}$ is divisible by $p$. Therefore
+\[
+\mathsf Z^{(\sigma)}_{ij}\equiv\lambda^{-\sigma}k_\sigma\,T_{M,\lambda_p,Y_\mu}\Bigl(\frac{\mathrm d}{\mathrm du}\bigl[u^{i+j}w_b(u)\bigr]\Bigr)\pmod p .
+\]
+Write $u^{i+j}w_b=\rho+\sum_k\varrho_k(u+k)^{-1}$, where the $k$ are the local poles ($k\le C<p$) and $\rho\in\Zp[u]$, $\varrho_k\in\Zp$ because the differences of the poles are units. By \cref{lem:finite-moments,lem:pole-regularization},
+\[
+T_{M,\lambda_p,Y_\mu}\bigl(\rho'-\textstyle\sum_k\varrho_k(u+k)^{-2}\bigr)\equiv G_{\lambda_p}(\rho')-\sum_k\varrho_k\lambda_p^{-k}\bigl(Y_\mu-\tau_k(\lambda_p)\bigr)\pmod{p^\mu}.
+\]
+Since $Y_\mu\equiv0\pmod{p^2}$ at $X=r$, $\lambda_p\equiv\lambda\pmod p$, and $G_{\lambda_p}(\rho')$, $\tau_k(\lambda_p)$ are rational functions of $\lambda_p$ whose denominators are units, the right side is congruent modulo $p$ to $G(\rho')+\sum_k\varrho_k\lambda^{-k}\tau_k(\lambda)=\cV(u^{i+j}w_b)$. Hence $\det\mathsf Z^{(\sigma)}\equiv(\lambda^{-\sigma}k_\sigma)^H\det\mathsf H_b\pmod p$.
+
+\emph{Step 5: conclusion.} Choose $\mu$ so large that all congruences above hold modulo $p$ for the exact matrix (the scaling exponents are bounded by $|w|+2H+1$, independently of $\mu$). The numbers $\det\mathsf H_0$ and $\det\mathsf H_1$ lie in $\Zp$, as noted after the statement, and $p$ does not divide their numerators; so they are $p$-adic units. Therefore $\det\mathsf Z\not\equiv0\pmod p$, so $\det\mathsf G\ne0$ and $Q_p(r)\ne0$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:nonvanishing}]
+By \cref{prop:local-dets} the numbers $\det\mathsf H_0$ and $\det\mathsf H_1$ are nonzero rationals, so all but finitely many primes satisfy the hypotheses of \cref{thm:nonvanishing-general}. For those primes $Q_p(r)\ne0$, and $\Qt_p(r)=S_p^h F_p^{-1}Q_p(r)\ne0$.
+\end{proof}
+
+\begin{remark}
+Only nonvanishing at a fixed rational point is needed: the final argument evaluates $\Qt_p$ at the hypothetical rational value of $\xi$, not at the real number $\xi$ itself. Nonvanishing of $Q_p$ as a polynomial is a consequence. The proof gives more: under the hypotheses of \cref{thm:nonvanishing-general}, $v_p(Q_p(r))=e_0$ exactly, where $e_0=hw+pH(H-1)+H$ is the exponent of Step~3. On the exact polynomials this equality was observed at the primes satisfying the hypotheses that were tested ($p=7,13,19$ for $2/11$, $p=11$ for $2/9$, $p=13,17,19$ for $-2/9$, $p=13,17$ for $-2/7$, at $r=0,1,-3/5$), and it fails at $p=17$ for $2/11$ and at $p=11$ for $-2/7$, where the valuation is $e_0+1$ and $e_0+10$; these two primes divide the numerator of $\det\mathsf H_0$ and of $\det\mathsf H_1$ respectively, and are excluded by the hypothesis. These observations are numerical evidence and not part of the proof.
+\end{remark}

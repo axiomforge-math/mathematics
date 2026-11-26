@@ -1,0 +1,12 @@
+# case 2/9: kind=positive  mesh 1/6000  prec=160
+[PASS] 2/9: comparison measure has mass m=1 :: mass=1
+[PASS] 2/9: density nonnegative
+  E = [-1.3038986996068889684 +/- 2.53e-20]
+[PASS] 2/9: support [0,77/40] inside [0,Y=]4
+[PASS] 2/9: tail majorant V(Y)+2m log Y < theta at Y=4 :: [-4.94846236114 +/- 3.83e-12] vs theta=-3.34
+[PASS] 2/9: tail majorant decreasing on [Y,inf): (3a+2m)/Y - t < 0 :: [-1.004077397 +/- 2.24e-10]
+  [our bound] int_0^Y (W-theta)_+ <= 0.0923444323502374   (mesh 1/6000, 23.1s)
+  [our bound] RHS = C_u - E + m theta + 2 int(W-theta)_+ <= -1.34390652057920
+[PASS] 2/9: certified RHS < claimed -1.3400 :: -1.34390652057920
+  [manuscript method] coefficient norm = 10, L1 error <= 0.00011669849, trapezoid = 0.09236515539, RHS <= -1.343631677536092
+== energy certificate 2/9: 6 passed, 0 failed ==

@@ -1,0 +1,30 @@
+# case 2/11 (n-units): m=4 alpha=1 kappa=6 delta=1/40  [18.8s]
+  intervals=479 affine sub-pieces=479; 479 intervals re-integrated by the slot-sorting greedy (identical)
+  exact  int B - 2 m delta = 4.5059344662496163
+  midpoint sum - 2 m delta = 4.5059344662496163   (original program printed 4.505934466249617)
+[PASS] 2/11: midpoint sum reproduces the reported value to 1e-12 :: |diff| = 6.876e-16
+[PASS] 2/11: midpoint sum <= exact integral (convexity lower bound)
+[PASS] 2/11: two separately written evaluators agree on 479 intervals
+[PASS] 2/11: claimed inequality int B - cut > 9/2 :: exact 4.505934466249
+# case 2/9 (h-units): m=1 alpha=0 kappa=9/8 delta=1/500  [55.4s]
+  intervals=999 affine sub-pieces=999; 40 intervals re-integrated by the slot-sorting greedy (identical)
+  exact  int B - 2 m delta = -0.8850552343712680
+  midpoint sum - 2 m delta = -0.8850552343712680   (original program printed -0.885055234371268)
+[PASS] 2/9: midpoint sum reproduces the reported value to 1e-12 :: |diff| = 1.612e-17
+[PASS] 2/9: midpoint sum <= exact integral (convexity lower bound)
+[PASS] 2/9: two separately written evaluators agree on 40 intervals
+# case -2/9 (h-units): m=1 alpha=1/4 kappa=7/4 delta=1/500  [113.6s]
+  intervals=1749 affine sub-pieces=2249; 70 intervals re-integrated by the slot-sorting greedy (identical)
+  exact  int B - 2 m delta = 0.1685590216231804
+  midpoint sum - 2 m delta = 0.1673093809271055   (original program printed 0.16730938092710554)
+[PASS] -2/9: midpoint sum reproduces the reported value to 1e-12 :: |diff| = 2.087e-18
+[PASS] -2/9: midpoint sum <= exact integral (convexity lower bound)
+[PASS] -2/9: two separately written evaluators agree on 70 intervals
+# case -2/7 (h-units): m=1 alpha=1/5 kappa=8/5 delta=1/500  [96.6s]
+  intervals=1799 affine sub-pieces=2199; 72 intervals re-integrated by the slot-sorting greedy (identical)
+  exact  int B - 2 m delta = 0.0781087782461853
+  midpoint sum - 2 m delta = 0.0769450366834335   (original program printed 0.07694503668343355)
+[PASS] -2/7: midpoint sum reproduces the reported value to 1e-12 :: |diff| = 4.490e-18
+[PASS] -2/7: midpoint sum <= exact integral (convexity lower bound)
+[PASS] -2/7: two separately written evaluators agree on 72 intervals
+== profile certificate: 13 passed, 0 failed ==

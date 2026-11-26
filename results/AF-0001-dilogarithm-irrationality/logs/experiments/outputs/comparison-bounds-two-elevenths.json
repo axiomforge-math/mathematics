@@ -1,0 +1,58 @@
+{
+  "E": "[4.4615788048799434396 +/- 2.02e-20]",
+  "C_u": "[32.821517483555070118 +/- 1.49e-19]",
+  "pos_upper": "[0.35243181185440307016 +/- 8.79e-23]",
+  "rhs_upper": "[-5.4151976976160671811 +/- 1.17e-20]",
+  "t": "[1.7047480922384252346 +/- 4.48e-20]",
+  "manuscript_method": {
+    "TV": "[100.16973647713485349 +/- 2.34e-18]",
+    "midpoint_sum": "[0.35241040264676940789 +/- 2.32e-21]",
+    "penalty": "[0.60283474383960654161 +/- 3.15e-21]",
+    "rhs": "[-4.9143918336456602382 +/- 1.82e-20]"
+  },
+  "rhs_upper_rational": "-494645018846026118967980238094791192871925269221/91343852333181432387730302044767688728495783936",
+  "mesh": 2000,
+  "checks": [
+    {
+      "name": "2/11: comparison measure has mass m=4",
+      "ok": true,
+      "detail": "mass=4"
+    },
+    {
+      "name": "2/11: density nonnegative",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/11: C_u equals 24 log 6 - 16 log 4 + 12",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/11: E agrees with reported 4.4615788049 to 1e-9",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/11: support [0,17/2] inside [0,Y=]12",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2/11: tail majorant V(Y)+2m log Y < theta at Y=12",
+      "ok": true,
+      "detail": "[-9.20915020460 +/- 1.41e-13] vs theta=-8.62"
+    },
+    {
+      "name": "2/11: tail majorant decreasing on [Y,inf): (3a+2m)/Y - t < 0",
+      "ok": true,
+      "detail": "[-0.7880814256 +/- 2.83e-11]"
+    },
+    {
+      "name": "2/11: certified RHS < claimed -4.9000",
+      "ok": true,
+      "detail": "-5.41519769761607"
+    }
+  ],
+  "all_passed": true
+}

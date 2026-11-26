@@ -1,0 +1,97 @@
+# Manuscript-level statements and their Lean counterparts.
+# formal = "proved"      : unconditional Lean theorem (axioms: propext, Classical.choice, Quot.sound)
+#          "conditional" : Lean theorem taking the listed unproved hypotheses as arguments
+#          "missing"     : not formalized (the listed Lean object is where it enters as a hypothesis)
+
+[[statement]]
+manuscript = "Main theorem: Li2(2/11) is irrational"
+lean = "AxiomForge.Dilogarithm.irrational_dilog_two_elevenths_of_estimates"
+formal = "conditional"
+hypotheses = ["HankelEstimates (2/11) <4,6,1> (-4.338/16) (-4.9/16)"]
+
+[[statement]]
+manuscript = "Main theorem: Li2(2/9) is irrational"
+lean = "AxiomForge.Dilogarithm.irrational_dilog_two_ninths_of_estimates"
+formal = "conditional"
+hypotheses = ["HankelEstimates (2/9) <8,9,0> (-1.33) (-1.34)"]
+
+[[statement]]
+manuscript = "Main theorem: Li2(-2/9) is irrational"
+lean = "AxiomForge.Dilogarithm.irrational_dilog_neg_two_ninths_of_estimates"
+formal = "conditional"
+hypotheses = ["HankelEstimates (-2/9) <4,7,1> (-0.40) (-0.49)"]
+
+[[statement]]
+manuscript = "Main theorem: Li2(-2/7) is irrational"
+lean = "AxiomForge.Dilogarithm.irrational_dilog_neg_two_sevenths_of_estimates"
+formal = "conditional"
+hypotheses = ["HankelEstimates (-2/7) <5,8,1> (-0.521323) (-0.526078)"]
+
+[[statement]]
+manuscript = "Final contradiction: content + decay + prime-index nonvanishing imply irrationality"
+lean = "AxiomForge.Dilogarithm.irrational_dilog_of_hankelEstimates"
+formal = "proved"
+
+[[statement]]
+manuscript = "Abstract criterion: integer polynomials of degree <= h, nonzero at rational points, |P(x)| <= c exp(-eps h^2)"
+lean = "AxiomForge.Dilogarithm.irrational_of_log_content_decay"
+formal = "proved"
+
+[[statement]]
+manuscript = "deg Q~_n <= h"
+lean = "AxiomForge.Dilogarithm.natDegree_normalizedHankelDet_le"
+formal = "proved"
+
+[[statement]]
+manuscript = "Binomial normalization S_n^h/F_n * Q_n = Gram determinant in the binomial basis"
+lean = ""
+formal = "missing"
+
+[[statement]]
+manuscript = "Local determinants det H_1, det H_0 (prime-index nonvanishing argument, all four cases)"
+lean = "AxiomForge.Dilogarithm.LocalGram.{TwoElevenths,TwoNinths,MinusTwoNinths,MinusTwoSevenths}.{det_gramOne,det_gramZero,det_gramOne_ne_zero,det_gramZero_ne_zero}"
+formal = "proved"
+note = "values recomputed by an exact python-flint recomputation: all eight match the manuscripts"
+
+[[statement]]
+manuscript = "Arithmetic estimate, final comparison (2/11): 9/2 - 16 log 2 - (25/4) log 9 + (20/3) log 11 > -4.338"
+lean = "AxiomForge.Dilogarithm.content_rate_two_elevenths_gt"
+formal = "proved"
+note = "the lower bound 9/2 for the profile integral is an input (exact rational computation, not formalized)"
+
+[[statement]]
+manuscript = "Arithmetic estimate, final comparison (-2/7): 0.07694503668343355 - (kappa - 1/2) log 2 - ((2 - d)^2/2) log 3 + (a + 1/6) log 7 > -0.521323"
+lean = "AxiomForge.Dilogarithm.content_rate_neg_two_sevenths_gt"
+formal = "proved"
+note = "the lower bound 0.07694503668343355 for the profile integral is an input (exact rational computation, not formalized)"
+
+[[statement]]
+manuscript = "Prime-index nonvanishing: Q~_p(r) != 0 for fixed rational r and large primes p"
+lean = "AxiomForge.Dilogarithm.HankelEstimates.nonvanishing"
+formal = "missing"
+
+[[statement]]
+manuscript = "Arithmetic estimate: liminf log cont(Q~_n) / n^2 > -4.338 (2/11) and analogues"
+lean = "AxiomForge.Dilogarithm.HankelEstimates.content"
+formal = "missing"
+
+[[statement]]
+manuscript = "Archimedean estimate: limsup log|Q~_n(xi)| / n^2 < -4.900 (2/11) and analogues"
+lean = "AxiomForge.Dilogarithm.HankelEstimates.decay"
+formal = "missing"
+
+[[statement]]
+manuscript = "Series identity Lambda_xi(R) = sum_x lambda^x (x R(x))'"
+lean = ""
+formal = "missing"
+
+[[statement]]
+manuscript = "Definition: Li2(x) = sum_{k>=1} x^k/k^2"
+lean = "AxiomForge.Dilogarithm.hasSum_pow_div_sq"
+formal = "proved"
+
+[[statement]]
+manuscript = "Landen pairs: one of Li2(2/11), Li2(-2/9) and one of Li2(2/9), Li2(-2/7) is irrational"
+lean = ""
+formal = "missing"
+note = "Mathlib has no Hermite-Lindemann theorem (needed for log^2(9/11), log^2(7/9) not rational)"

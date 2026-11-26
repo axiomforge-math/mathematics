@@ -1,0 +1,30 @@
+\section{Numerical evidence for small \texorpdfstring{$n$}{n}}\label{app:numerics}
+
+The polynomials $Q_n$ were computed exactly, from the definitions of \cref{sec:functional}, with programs written separately from those that produced the certificates, for $1\le n\le19$ ($\lambda=2/11$), $n\le11$ ($2/9$), $n\le19$ ($-2/9$) and $n\le16$ ($-2/7$). The entries $\Lambda_X(W_nx^{i+j})$ are affine in $X$; the determinant is obtained exactly by interpolation in $X$. Values at $\xi$ were enclosed rigorously in ball arithmetic. These computations do not enter the proof; they test the finite statements of \cref{sec:exceptional,sec:ordinary} and indicate how far the finite-$n$ data are from the asymptotic rates. They support the general arguments as follows.
+
+\begin{enumerate}[(a)]
+\item On sample entries for all four values, $\Lambda_\xi(W_nx^s)$ computed from the exact affine entries agrees with the series $\sum_{x\ge1}\lambda^x(xW_n(x)x^s)'$ to $40$ digits (\cref{lem:series}).
+\item In every computed case $\deg Q_n=h$; moreover every computed $Q_n$ is irreducible over $\Q$, hence nonzero at every rational point. This is consistent with \cref{thm:nonvanishing} but is not used.
+\item For every computed $n$ and every prime $p$, the actual Gauss valuation $\vg p(\Qt_n)$ satisfies the exact bounds of \cref{prop:generic,prop:two,prop:P,prop:Q} and, for ordinary $p$ with $\sqrt K<p\le K$, the bound $v_p(S_n^h/F_n)+\max(\cJ_p,\cP_p)$ of \cref{prop:jet,prop:pole}; and no prime $p>K$ outside $\Ex$ divides a denominator. The version of the pole bound without the zero-class correction of \cref{rem:zero-class} fails by exactly one unit at many pairs $(p,n)$, for instance for $\lambda=2/11$, $n=6$, at $p=19,23,29,31$.
+\item The bounds at the exceptional primes are far from sharp in this range. For $\lambda=2/11$ the actual $\vg2(\Qt_n)$ exceeds the bound of \cref{prop:two} by $353$, $828$ and $2038$ for $n=5$, $10$ and $19$, that is, the bound underestimates the contribution of the prime $2$ to $\log\cont(\Qt_n)$ by about $0.61h^2$, $0.36h^2$ and $0.24h^2$. The relative slack decreases with $n$, and the data do not show whether the bound at $2$ is asymptotically sharp.
+\end{enumerate}
+
+\Cref{tab:numerics} lists the normalized content and value at the largest computed $n$, together with the thresholds for the asymptotic rates.
+
+\begin{table}[ht]
+\centering
+\caption{Exact data at the largest computed $n$, normalized by $h^2$, and the thresholds $\rar$ (a lower bound for the lower limit of the content) and $\ran$ (an upper bound for the upper limit of the value). For $2/9$ the value at $n=11$ is above both. $P_n=\Qt_n/\cont(\Qt_n)$.}
+\label{tab:numerics}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+$\lambda$ & $n$ & $h$ & $\frac{\log\cont\Qt_n}{h^2}$ & $\frac{\log|\Qt_n(\xi)|}{h^2}$ & $\frac{\log|P_n(\xi)|}{h^2}$ & $(\rar,\ \ran)$\\
+\midrule
+$2/11$ & $19$ & $76$ & $-0.1150$ & $-0.3481$ & $-0.2331$ & $(-0.2711,\ -0.3063)$\\
+$2/9$ & $11$ & $88$ & $-1.1284$ & $-1.2886$ & $-0.1602$ & $(-1.33,\ -1.34)$\\
+$-2/9$ & $19$ & $76$ & $-0.2393$ & $-0.6285$ & $-0.3891$ & $(-0.40,\ -0.49)$\\
+$-2/7$ & $16$ & $80$ & $-0.3664$ & $-0.6563$ & $-0.2899$ & $(-0.5213,\ -0.5261)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These numbers are far from the asymptotic regime and are not evidence for the exact values of the rates. The normalized content is still decreasing in all four cases, as expected: the per-prime lower bounds converge to their limit only at the speed of the prime number theorem, and the contribution of the small primes $p\le\sqrt K$, bounded crudely in \cref{prop:generic}, decays like $n^{-1/2}$. The normalized value $h^{-2}\log|\Qt_n(\xi)|$ has stabilized for $2/11$, $-2/9$ and $-2/7$ well below the certified bounds, which suggests that the energy and contour estimates have room to spare in these cases. For $\lambda=2/9$ it is still decreasing, and at $n=11$ it lies above the bound $\ran$, and even above $\rar$, by about $0.05$: least-squares fits of the form $c_0+c_1\frac{\log h}h+\frac{c_2}h$ to the data for $n\ge3$, $5$ or $7$ give limits between $-1.349$ and $-1.341$, close to the certified bound $-1.3436$, while fits with more parameters are unstable. Since the comparison measure for $2/9$ is nearly optimal (\cref{sec:margins}), this is what one expects if the bound is close to the true limit, but it is equally what one would see if the true limit were slightly above the bound. The data therefore give no numerical corroboration for the case $2/9$, in contrast with the other three cases (\cref{sec:margins}).

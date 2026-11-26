@@ -2,4 +2,14 @@
 
 # Results by MSC2020 class
 
-No contribution has been released yet.
+## 11J72
+
+- [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
+
+## 31A15
+
+- [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
+
+## 33B30
+
+- [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)

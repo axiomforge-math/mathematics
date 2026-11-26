@@ -1,0 +1,58 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[Enlarged Hankel determinants and four dilogarithm values]{Enlarged Hankel determinants and the irrationality of $\Li_2(2/11)$, $\Li_2(2/9)$, $\Li_2(-2/9)$ and $\Li_2(-2/7)$}
+\hypersetup{pdftitle={Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7)}}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary 11J72; Secondary 33B30, 31A15}
+\keywords{dilogarithm, irrationality, Hankel determinants, Heine's formula, logarithmic energy, prime number theorem, Landen's identity}
+\date{26 November 2026}
+
+\afidentifier{AF-0001}
+\afversion{0.1.0}
+\afdate{26 November 2026}
+\afstatus{Preprint --- complete written argument, not yet independently verified. The finite inequalities behind the numerical rates have been reproduced and recomputed by a separately written implementation (an AI-internal check, not an independent human or external verification); no human review has taken place. Lean formalization in preparation: the main theorems are proved in Lean only conditionally on the three estimates.}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0001-dilogarithm-irrationality}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afdisclosure{AI-assisted research. The original exploration, constructions, candidate proofs and certificate programs were produced with GPT-6.2 XHigh (web version); the reconstruction, the audit computations, the recomputation of the certificates, this manuscript and the Lean formalization with Claude Opus~5.5 (Anthropic); an adversarial review and the resulting revision with Claude Fable~5.2 (Anthropic); all under the direction of AxiomForge. No independent human review has taken place. A detailed AI-assisted research disclosure appears at the end.}
+
+\begin{document}
+
+\begin{abstract}
+We present a candidate proof that the four numbers $\Li_2(2/11)$, $\Li_2(2/9)$, $\Li_2(-2/9)$ and $\Li_2(-2/7)$ are irrational. These values lie below the ranges covered by the published and the recent preprint literature that we could locate. The two Landen pairs $\{\Li_2(2/11),\Li_2(-2/9)\}$ and $\{\Li_2(2/9),\Li_2(-2/7)\}$ each contain an irrational number for elementary reasons. The argument uses the normalized Hankel determinants of Tang, in the form written up by Litsey, with a larger family of weights $D_{Bn}(x)^3/D_{Cn}(x)$ and dimensions $Hn$, the parameters $(H,B,C)$ depending on the value. Three estimates are derived for the resulting integer polynomials, with written proofs that have not been independently verified: a lower bound for their content, obtained prime by prime through a distribution of the functional over residue classes and integrated with the prime number theorem; an upper bound for their value at the dilogarithm, from Heine's formula and a comparison of logarithmic energies (on the real axis for the positive arguments and on a pair of rays for the negative ones); and nonvanishing at every fixed rational point for all large prime indices, by reduction to two explicit local Hankel determinants. The finite inequalities on which the numerical rates rest are checked in exact rational arithmetic. For $\Li_2(2/9)$ the two rates differ by only $0.019$ per squared dimension, and the exact data available for small $n$ lie above the upper bound and do not corroborate it. The proof is not formalized; we state precisely which steps have been checked and how.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/01-introduction}
+\input{sections/02-hankel-family}
+\input{sections/03-exceptional-primes}
+\input{sections/04-ordinary-primes}
+\input{sections/05-arithmetic-profile}
+\input{sections/06-nonvanishing}
+\input{sections/07-energy-positive}
+\input{sections/08-contour-negative}
+\input{sections/09-proof-of-theorems}
+
+\appendix
+\input{sections/appendix-certificates}
+\input{sections/appendix-technical}
+\input{sections/appendix-numerics}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/acknowledgements}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

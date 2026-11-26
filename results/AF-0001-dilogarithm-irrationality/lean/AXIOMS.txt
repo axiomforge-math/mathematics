@@ -1,0 +1,73 @@
+# Output of `#print axioms` for every declaration listed in theorems.toml.
+# Toolchain: leanprover/lean4:v4.34.0-rc1; Mathlib rev: f385f9fd18abed332ebcd3df239cb357e264aceb.
+# Produced by `lake env lean` on a probe file importing the library roots.
+# Declarations: 37; lean exit status: 0.
+'AxiomForge.Dilogarithm.one_le_pow_mul_abs_aeval_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_of_int_poly_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_of_tendsto_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_of_scaled_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_of_log_content_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_of_rat_value_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.frequently_atTop_of_eventually_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.hasSum_pow_div_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.dilog_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.dilog_add_dilog_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.dilog_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.dilog_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.dilog_neg_of_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.natDegree_normalizedHankelDet_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramOne_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoElevenths.det_gramZero_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramOne_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.TwoNinths.det_gramZero_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramOne_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoNinths.det_gramZero_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramOne_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.LocalGram.MinusTwoSevenths.det_gramZero_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.content_rate_two_elevenths_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.content_rate_neg_two_sevenths_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_dilog_of_hankelEstimates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.Dilogarithm.irrational_dilog_two_elevenths_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.irrational_dilog_two_ninths_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.irrational_dilog_neg_two_ninths_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.Dilogarithm.irrational_dilog_neg_two_sevenths_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+# Summary: all declarations use only propext, Classical.choice, Quot.sound

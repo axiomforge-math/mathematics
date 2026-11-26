@@ -1,0 +1,48 @@
+\section{Proof of the theorems}\label{sec:proof}
+
+This section completes the proofs of \cref{thm:arch} and \cref{thm:main}, discusses how robust the numerical margins are, and lists the open points. \Cref{thm:arith,thm:nonvanishing} were proved in \cref{sec:profile-values,sec:reduction}.
+
+\subsection{The archimedean estimate}\label{sec:proof-arch}
+\begin{proof}[Proof of \cref{thm:arch}]
+For each $\lambda$, \cref{app:certificates} specifies a piecewise constant comparison measure $\sigma_\lambda$ and, for the positive arguments, a number $\theta_\lambda$. For $\lambda=2/9$, \cref{prop:positive-bound} applies directly; for $\lambda=2/11$ it applies in the form of \cref{rem:211-scale}; for $\lambda=-2/9,-2/7$, \cref{prop:negative-bound} applies. The certificates bound the right-hand sides from above by the values of \cref{tab:analytic}, which are below the thresholds $\ran(\lambda)$ of \cref{tab:rates}.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\caption{The computed upper bounds for the comparison-measure functionals, normalized by $h^2$. For $\lambda>0$, ``penalty'' is the computed upper bound for $\int_0^\infty(\mathsf W-\theta)_+$; for $\lambda<0$, $\theta$ is the computed upper bound for $\sup_{y\ge0}(V_-+2U_-)$. The last column is $\Cst-E+\theta+2\cdot\text{penalty}$, respectively $\Cst-E+\theta$, rounded up; the other entries are rounded to the nearest digit. For $\lambda=2/11$ the certificate works in the scale $n^2=h^2/16$, with $E'=4.4615788$, $\theta'=-431/50$, penalty bound $0.6028348$ and bound $-4.9143918$; the row shows these values converted by \cref{rem:211-scale}, $E=E'/16-\log4$, $\theta=(\theta'-5\log4)/4$ and penalty${}/16$. There $\int_0^\infty(\mathsf W'-\theta')_+\approx0.35243$, and the bound $0.6028348$ includes the bounded-variation error term of the midpoint rule. For $\lambda=2/9$ the certificate program does not print $E(\sigma)$ and the penalty bound separately; the table shows the value of $E(\sigma)$ from the recomputation described in the section on reproducibility and the penalty bound implied by the computed total.}
+\label{tab:analytic}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$\lambda$ & $\Cst$ & $E(\sigma)$ & $\theta$ & penalty & bound\\
+\midrule
+$2/11$ & $2.3979184$ & $-1.1074457$ & $-3.8878680$ & $0.0376772$ & $-0.3071494$\\
+$2/9$ & $0.5075059$ & $-1.3038987$ & $-167/50$ & $0.0924819$ & $-1.3436316$\\
+$-2/9$ & $2.5190484$ & $-1.3538434$ & $-4.3683007$ & --- & $-0.4954089$\\
+$-2/7$ & $2.2176686$ & $-1.3534233$ & $-4.0971701$ & --- & $-0.5260781$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Proof of the main theorem}\label{sec:proof-main}
+\begin{proof}[Proof of \cref{thm:main}]
+Fix $\lambda$ and let $p_k$ be the $k$th prime. Apply \cref{lem:criterion} with $x=\xi$, $F_k=\Qt_{p_k}$, $h_k=Hp_k$, $\rho=\rar(\lambda)$ and $\rho'=\ran(\lambda)$; then $\deg F_k\le h_k$ by \cref{sec:determinants}, and $\rho>\rho'$ by \cref{tab:rates}. The nonvanishing hypothesis is \cref{thm:nonvanishing}. The content hypothesis follows from \cref{thm:arith}, since $F_k\ne0$ for large $k$, and the value hypothesis from \cref{thm:arch}. Hence $\xi$ is irrational.
+\end{proof}
+
+\subsection{Margins and their robustness}\label{sec:margins}
+The margins of \cref{tab:rates} between the computed arithmetic and analytic bounds are $0.036084$ (that is, $0.577$ in the $n^2$-scale), $0.019104$, $0.112321$ and $0.0047556$; the margins between the thresholds $\rar$ and $\ran$, which are the numbers that enter \cref{lem:criterion}, are $0.035125$, $0.010$, $0.090$ and $0.004755$. They are smaller than what the same comparison measures and profiles actually give, because the certificates use simple error bounds. The AI-internal recomputation described in the section on reproducibility encloses the same quantities rigorously on finer meshes, and evaluates the profile integrals exactly.
+
+For the negative arguments the certificates bound a supremum on a mesh of width $1/400$ and add a uniform interpolation error, $0.026348$ for $-2/9$ and $0.02389$ for $-2/7$. With the same comparison measures the recomputed bounds for the right side of \cref{prop:negative-bound} are $-0.52162$ and $-0.54985$, instead of $-0.49541$ and $-0.52608$; in both cases the supremum of $V_-+2U_-$ is attained at the vertex $y=0$. The midpoint lower bounds for the profile integrals are also conservative there: the exact values of $I_\delta$ are $0.168559$ and $0.078109$, instead of $0.167309$ and $0.076945$. The rigorous margins for $-2/9$ and $-2/7$ are therefore at least $0.13978$ and $0.02969$; the thin certified margin for $-2/7$ reflects the error bounds, not the comparison measure. For $\lambda=2/11$ the bounded-variation estimate is similarly generous: the penalty integral is about $0.352$ in the $n^2$-scale, against the certified $0.603$, and the right side of \cref{rem:211-scale} is at most $-5.4152$ rather than $-4.9144$; the margin becomes $1.084$ in the $n^2$-scale, or $0.0678$ per $h^2$.
+
+For $\lambda=2/9$ the situation is different, and this case is the fragile one. The recomputed bound for the right side of \cref{prop:positive-bound} is $-1.34391$, within $3\cdot10^{-4}$ of the computed $-1.34363$, and the profile integral is evaluated exactly by the midpoint rule because $\mathsf B$ is affine on every subinterval; the recomputed margin is $0.019379$, against rates of size $1.3$. The analytic bound cannot be improved much with this comparison measure. The exact data do not support it: at the largest computed index, $n=11$, the value $h^{-2}\log|\Qt_n(\xi)|=-1.2886$ lies above the upper bound $-1.3436$ for the upper limit, and also above $\rar=-1.33$ (\cref{tab:numerics}); the sequence is still decreasing, and extrapolations of it give limits between $-1.349$ and $-1.341$, an interval that contains the bound. For the other three values the finite data lie below $\ran$. So for $2/9$ the theorem requires the upper bound of \cref{sec:energy} to be asymptotically sharp to within about $1.4\%$ and the lower bounds of \cref{sec:exceptional,sec:ordinary,sec:profile} to lose nothing beyond what is computed: any term of size $0.02\,h^2$ that is unaccounted for in these sections is fatal for this case, and nothing but the written proofs protects it. We have neither extended the exact computation far enough to see the sequence cross the bound (an attempt at $n=12,\dots,15$ was stopped for lack of time, without result), nor found a triple $(H,B,C)$ with a larger margin, nor solved the constrained equilibrium problem by a second method.
+
+\subsection{Open points}\label{sec:open}
+We list the points of the argument that we regard as open, or as deserving particular scrutiny by a reader.
+\begin{enumerate}[(1)]
+\item \emph{External check of the certificates.} The profile integrals of \cref{prop:profile-certificate} and the comparison-measure bounds of \cref{tab:analytic} have been reproduced by the original programs and recomputed, with confirmed results, by a separately written implementation; the eight local determinants have been recomputed by a third program. All these implementations were written with AI systems, and the recomputations are AI-internal checks. A check by an independent human or external party is outstanding.
+\item \emph{Error bounds inside the certificates.} The certificates rely on explicit error estimates: the weak-duality bound and the truncation of jet levels (\cref{sec:cert-profile}), the bounded-variation midpoint rule for $\lambda=2/11$, the $L^1$ interpolation bound for $\lambda=2/9$, the uniform interpolation bounds and the tail estimates for the negative arguments (\cref{sec:cert-measures}). Each is proved in \cref{app:certificates}, but these proofs have not been reviewed independently, and the small margin for $2/9$ makes them consequential.
+\item \emph{The distribution argument.} \Cref{prop:distribution,lem:local-integrality} replace $p$-adic integration by finite normalized sums and an affine change of variable. They are used in the jet and pole bounds and in \cref{thm:nonvanishing-general}. The exact computations of \cref{app:numerics} test their consequences, not the lemmas themselves.
+\item \emph{Constants.} The $O(h\log h)$ terms of \cref{sec:exceptional,sec:energy,sec:contour} and the rate of convergence in \cref{lem:pnt} are not made explicit. This is harmless for \cref{thm:main}, but a formal proof, or an effective irrationality measure, would need them.
+\item \emph{Review and formalization.} No independent human review of the general arguments has taken place, and \cref{thm:arith,thm:arch,thm:nonvanishing} are not formalized.
+\item \emph{Literature.} The method is that of Tang and Litsey with different parameters (\cref{sec:intro-sources}). We have compared our arguments with \cite{Litsey2026Li2} at the level of statements only, and we make no claim of novelty for the techniques. The sources of 2026 are unrefereed, and the threshold quoted for the refereed literature is taken second-hand (\cref{sec:intro-context}).
+\item \emph{The case $2/9$.} See \cref{sec:margins}: a longer exact computation, a second solution of the equilibrium problem, or a family with a larger margin would each strengthen this case.
+\end{enumerate}
