@@ -1,0 +1,95 @@
+# Manuscript-level statements and their Lean counterparts (namespace AxiomForge.LegendreChiGeneral).
+# formal = "proved"      : unconditional Lean theorem (axioms: propext, Classical.choice, Quot.sound)
+#          "conditional" : Lean theorem taking the listed unproved hypotheses as arguments
+#          "missing"     : not formalized (the listed Lean object is where it enters as a hypothesis)
+
+[[statement]]
+manuscript = "Main theorem: chi_2(a/q) is irrational for a in {3,4,5,8} and q >= q0(a, +1) (131, 995, 829, 12061)"
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates a 1 q"]
+[[statement]]
+manuscript = "Main theorem: Ti_2(a/q) is irrational for a in {3,4,5,8} and q >= q0(a, -1) (257, 995, 1609, 12061)"
+lean = "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates a (-1) q"]
+[[statement]]
+manuscript = "Main theorem: chi_2(-a/q) is irrational (same ranges)"
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates a 1 q"]
+[[statement]]
+manuscript = "Main theorem: Ti_2(-a/q) is irrational (same ranges)"
+lean = "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_div_of_estimates"
+formal = "conditional"
+hypotheses = ["FamilyEstimates a (-1) q"]
+[[statement]]
+manuscript = "Integer contradiction: content + decay + prime-index nonvanishing imply irrationality"
+lean = "AxiomForge.LegendreChiGeneral.irrational_targetValue_of_halfIntegerEstimates"
+formal = "proved"
+
+[[statement]]
+manuscript = "Negative arguments follow by oddness"
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_iff"
+formal = "proved"
+
+[[statement]]
+manuscript = "xi = sum_j sigma^j y^(-2j-1)/(2j+1)^2 equals chi_2(a/q) (sigma = 1) and Ti_2(a/q) (sigma = -1), y = q/a"
+lean = "AxiomForge.LegendreChiGeneral.targetValue_one"
+formal = "proved"
+
+[[statement]]
+manuscript = "deg T(X) <= h"
+lean = "AxiomForge.LegendreChiGeneral.natDegree_halfHankelDet_le"
+formal = "proved"
+
+[[statement]]
+manuscript = "Six strict margins (rounded rates): B(q0) < A(q0) for the six rows"
+lean = "AxiomForge.LegendreChiGeneral.rowData_margin"
+formal = "proved"
+note = "with the rounded rates of rowData; the exact certificates are those of the manuscript"
+[[statement]]
+manuscript = "Thresholds of the six rows"
+lean = "AxiomForge.LegendreChiGeneral.rowData_threshold"
+formal = "proved"
+
+[[statement]]
+manuscript = "Margin for every q >= q0 (propagation in q)"
+lean = "AxiomForge.LegendreChiGeneral.decayRate_lt_contentRate"
+formal = "proved"
+note = "slopes -7/54 and -1/24 of the content rate, -1/2 of the decay rate"
+[[statement]]
+manuscript = "Constants c2: 49/72, 25/32, 1/4 (a odd)"
+lean = "AxiomForge.LegendreChiGeneral.oddConst_plus_seven_sixths"
+formal = "proved"
+
+[[statement]]
+manuscript = "C_2(5/4) = -337/112 (a = 4)"
+lean = "AxiomForge.LegendreChiGeneral.evenConst_two_ge"
+formal = "proved"
+
+[[statement]]
+manuscript = "C_3(5/4) = -9/2 (a = 8)"
+lean = "AxiomForge.LegendreChiGeneral.evenConst_three_ge"
+formal = "proved"
+
+[[statement]]
+manuscript = "Arithmetic estimate: liminf h^-2 sum_p v_p^G(T) log p >= A_sigma(a, q)"
+lean = "AxiomForge.LegendreChiGeneral.HalfIntegerEstimates.content"
+formal = "missing"
+
+[[statement]]
+manuscript = "Archimedean estimate: limsup h^-2 log |T(xi)| <= B_q"
+lean = "AxiomForge.LegendreChiGeneral.HalfIntegerEstimates.decay"
+formal = "missing"
+
+[[statement]]
+manuscript = "Prime-index nonvanishing T_p(X_0) != 0 for fixed rational X_0 and large primes p"
+lean = "AxiomForge.LegendreChiGeneral.HalfIntegerEstimates.nonvanishing"
+formal = "missing"
+
+[[statement]]
+manuscript = "Series identity mu_xi(R) = sum_{m>=1} w^m R'(m)"
+lean = ""
+formal = "missing"
+

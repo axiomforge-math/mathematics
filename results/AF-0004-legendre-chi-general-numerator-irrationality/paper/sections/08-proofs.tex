@@ -1,0 +1,124 @@
+\section{Proof of the main theorem}\label{sec:proofs}
+
+This section combines the three estimates through the criterion of \cref{prop:criterion}: it
+collects the local bounds into the arithmetic constant (\cref{thm:arithmetic}), shows that the margin
+between the arithmetic and the size constants grows with $q$ (\cref{prop:propagation}), compares them
+at the six thresholds (\cref{thm:rows}), and records the status of every step of the proof
+(\cref{subsec:step-status}).
+
+\begin{theorem}[arithmetic]\label{thm:arithmetic}
+Let $a\ge1$, $q>a$ odd and prime to $a$, $\sigma=\pm1$ and $\kappa\in\{7/6,5/4\}$. Along the $n$
+with $T_n\ne0$, $\liminf h^{-2}\sum_p\vG p(T_n)\log p\ge\aconst_\sigma(a,q)$, with
+$\aconst_\sigma(a,q)$ as in \cref{thm:three-estimates}.
+\end{theorem}
+
+\begin{proof}
+Sum \cref{thm:two-odd} or \cref{thm:two-even} (prime $2$), \cref{prop:p-divides-a} over the odd
+primes dividing $a$, \cref{prop:p-divides-q} over the primes dividing $q$,
+\cref{prop:p-divides-Y} over the odd primes dividing $q^2-\sigma a^2$, and \cref{thm:ordinary}; these
+sets of primes are disjoint and the first four are finite. Note $\sum_{p\mid a_0}v_p(a)\log
+p=\log a_0$, $\sum_{p\mid q}v_p(q)\log p=\log q$, and, for odd $a$, the cancellation of
+\cref{rem:two-odd-cancellation} between the prime $2$ and the term $-\Dk\log(q^2-\sigma a^2)$.
+\end{proof}
+
+\begin{proposition}[propagation in $q$]\label{prop:propagation}
+Let $a$, $\sigma$, $\kappa$ be as above, let $q_0\ge2a$ and let $(\rho,\lambda)$ satisfy the
+conditions of \cref{lem:tail} for $W_0=a^2/q_0^2$. For every odd $q\ge q_0$ prime to $a$ there is
+$\lambda_q$ such that $(\rho,\lambda_q)$ satisfies them for $W=a^2/q^2$ and
+\[
+  \aconst_\sigma(a,q)-\bconst_q(\rho,\lambda_q)\ \ge\ \aconst_\sigma(a,q_0)-\bconst_{q_0}(\rho,\lambda)
+  +\frac{10}{27}\log\frac q{q_0}.
+\]
+For even $a$, $\aconst_\sigma$ stands for the lower bound $\aconst_-$ (with $q^2+a^2$).
+\end{proposition}
+
+\begin{proof}
+Take $\lambda_q=\lambda-\log(q/q_0)$; by \cref{prop:shift}, $\bconst_q(\rho,\lambda_q)\le
+\bconst_{q_0}(\rho,\lambda)-\frac12\log(q/q_0)$. On the arithmetic side only the terms
+$\frac13\log q-\Dk\log Y$ with $Y=q^2-\sigma a^2$ (or $q^2+a^2$) depend on $q$. The function
+$s\mapsto\log(e^{2s}\mp a^2)$ has derivative $2/(1\mp a^2e^{-2s})\le2/(1-\frac14)=\frac83$ for
+$e^s\ge2a$, so $\log Y(q)-\log Y(q_0)\le\frac83\log(q/q_0)$ and
+\[
+  \aconst_\sigma(a,q)-\aconst_\sigma(a,q_0)\ge\Bigl(\frac13-\frac83\Dk\Bigr)\log\frac q{q_0}.
+\]
+Since $\Dk\le\frac{25}{144}$, $\frac12+\frac13-\frac83\Dk\ge\frac56-\frac{25}{54}=\frac{10}{27}$.
+\end{proof}
+
+\begin{theorem}\label{thm:rows}
+For each row $(a,\sigma,q_0,\kappa)$ of \cref{tab:constants} there are a comparison density $\rho$
+and $\lambda$ satisfying the conditions of \cref{lem:tail} at $W_0=a^2/q_0^2$ with
+$\aconst_\sigma(a,q_0)-\bconst(\rho,\lambda)>m_0$, where $m_0=\frac{13}{1000},\frac1{200},
+\frac1{625},\frac3{2500},\frac7{10000},\frac7{10000}$ for the rows in the order of the table. For
+$a=4,8$ the arithmetic constant is $\aconst_-$ (the one with $q^2+a^2$ and $c_2=C_e(\kappa)$).
+\end{theorem}
+
+\begin{proof}
+This is the finite computation of Appendix~\ref{app:decay-certificates}, carried out with exact
+rational arithmetic by the archived programs and with Arb balls by the second implementation.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:main}]
+Let $(a,\sigma)$ and $q\ge q_0(a,\sigma)$ be as in the statement, and $\kappa$ the ratio of the
+corresponding row of \cref{tab:constants}; for $a=4,8$ take the row with $\sigma=-1$ for both signs,
+which is legitimate because the bound of \cref{thm:decay} depends on $\abs w$ only and
+$\aconst_+\ge\aconst_-$ for even $a$ (\cref{rem:worse-sign}). By \cref{thm:rows} and
+\cref{prop:propagation}, $\bconst_q(\rho,\lambda_q)<\aconst_\sigma(a,q)$. By \cref{thm:arithmetic,thm:decay}
+the first two hypotheses of \cref{prop:criterion} hold along $\mathcal N=\{n:T_n\ne0\}$. By
+\cref{thm:nonvanishing,prop:local-dets}, for every $r\in\Q$ we have $T_p(r)\ne0$ for all large
+primes $p$, since $q\ge14a$; in particular $T_n\ne0$ for infinitely many $n$. \Cref{prop:criterion}
+gives $\xi\notin\Q$. For $-a/q$ use that $\chi_2$ and $\Ti_2$ are odd.
+\end{proof}
+
+\subsection{Status of the individual steps}\label{subsec:step-status}
+
+We use three labels. \emph{Proved}: an elementary argument, given in full, of a kind we regard
+as routine. \emph{Candidate}: an argument given here in full that has not yet been checked by
+anyone independent of the AI systems involved. \emph{Certified (AI-internal)}: a finite
+computation whose result was reproduced by a second implementation written without reference to
+the first, both by AI systems; this is not an independent verification. \Cref{thm:main} as a
+whole is a candidate.
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.44\textwidth}p{0.48\textwidth}@{}}
+\toprule
+Step & Status\\
+\midrule
+Moment sums, pole series, change of basis, criterion
+(\cref{lem:moment-sums,lem:pole-series,lem:change-of-basis,prop:criterion}) & proved; the final
+deduction is formalised in Lean, conditionally on the three estimates\\
+Prime $2$, odd $a$ (\cref{thm:two-odd}) & candidate (new); entry bounds checked exactly on
+$24\,960$ entries, finite forms consistent with exact valuations\\
+Prime $2$, even $a$ (\cref{thm:two-even}) & candidate (new for $e\ge2$); consistent with exact
+valuations at small $h$\\
+Odd primes dividing $a$ (\cref{prop:p-divides-a}) & candidate (new); consistent with exact
+valuations\\
+Primes dividing $q(q^2-\sigma a^2)$ (\cref{sec:exceptional}) & candidate (adapted from Krisman and
+the numerator-$2$ preprint)\\
+Ordinary primes (\cref{thm:ordinary}) & candidate (adapted); finite bounds consistent with exact
+valuations\\
+Profile integrals $\Iprof_{7/6}$, $\Iprof_{5/4}$ & certified (AI-internal)\\
+Size bound (\cref{thm:decay}) & candidate (adapted from Krisman)\\
+Six strict margins (\cref{thm:rows}) & certified (AI-internal)\\
+Propagation in $q$ (\cref{prop:propagation}) & proved (one-line calculus), conditional on the
+candidate bounds it propagates; checked numerically\\
+Nonvanishing mechanism (\cref{thm:nonvanishing}) & candidate (adapted); predicted valuation
+confirmed at $p=13,17$\\
+Local determinants (\cref{prop:local-dets}) & certified (AI-internal)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[points for scrutiny]\label{rem:scrutiny}
+In our judgement the steps most in need of an independent check are: (i) the bookkeeping of
+derivative columns and of the middle factor in the proof of \cref{thm:two-even}, in particular the
+pole cost $e(2k+1)$ and the site cost $2em$ for $e\ge2$, on which the constants
+$C_2(5/4)=-337/112$ and $C_3(5/4)=-9/2$ rest; (ii) the forward-difference analysis of
+\cref{thm:two-odd}, in particular the cancellation of the term $\nu$ against the prime $2$ in
+$\log(q^2-\sigma a^2)$; (iii) the rank-one argument of \cref{prop:p-divides-a}; (iv) the comparison
+of the exact class data with the limiting profile in \cref{prop:profile}, on which the use of
+midpoint sums as lower bounds depends; (v) the reduction of the local functionals in Step~5 of the
+proof of \cref{thm:nonvanishing}; (vi) the implementations of the certificates in
+Appendix~\ref{app:certificates}, which were written by AI systems. The margins (between $0.0007$ and
+$0.0139$ per $h^2$) are small compared with the individual terms of \cref{tab:constants}, so an
+error of a few thousandths in any constant would invalidate the corresponding row.
+\end{remark}

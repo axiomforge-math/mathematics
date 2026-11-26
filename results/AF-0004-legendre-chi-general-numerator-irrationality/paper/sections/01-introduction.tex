@@ -1,0 +1,269 @@
+\section{Introduction}\label{sec:introduction}
+
+For $\abs{x}\le 1$ let
+\[
+  \chi_2(x)=\sum_{j\ge0}\frac{x^{2j+1}}{(2j+1)^2}=\tfrac12\bigl(\Li_2(x)-\Li_2(-x)\bigr),
+  \qquad
+  \Ti_2(x)=\sum_{j\ge0}\frac{(-1)^jx^{2j+1}}{(2j+1)^2}=\operatorname{Im}\Li_2(ix)
+\]
+be Legendre's chi function and the inverse tangent integral. This paper presents a proof of the
+following statement.
+
+\begin{theorem}\label{thm:main}
+Let $a\in\{3,4,5,8\}$ and let $q$ be an odd integer prime to $a$.
+\begin{enumerate}[(i)]
+\item The number $\chi_2(a/q)$ is irrational if $q\ge q_+(a)$, where
+$q_+(3)=131$, $q_+(4)=995$, $q_+(5)=829$ and $q_+(8)=12061$.
+\item The number $\Ti_2(a/q)$ is irrational if $q\ge q_-(a)$, where
+$q_-(3)=257$, $q_-(4)=995$, $q_-(5)=1609$ and $q_-(8)=12061$.
+\end{enumerate}
+Since $\chi_2$ and $\Ti_2$ are odd, the same holds for $\chi_2(-a/q)$ and $\Ti_2(-a/q)$.
+\end{theorem}
+
+The thresholds are inclusive, and they are sufficient for our estimates; we do not claim that
+they are optimal (\cref{sec:limitations}).
+
+\emph{Status.} The proof is a candidate. It was reconstructed and checked by AI systems from
+candidate arguments produced by another AI system (see the disclosure at the end); no
+independent human expert has reviewed it. In Lean only the final deduction is formalised, and
+only conditionally on the three estimates of \cref{thm:three-estimates}. All finite
+inequalities used in the proof have been recomputed by programs written separately from those
+that first produced them (Appendices~\ref{app:certificates} and~\ref{app:consistency}); this
+checks the numbers, not the asymptotic arguments. \Cref{subsec:step-status} gives the status of
+each step, and \cref{rem:scrutiny} lists the points that most need independent scrutiny.
+
+\subsection{Background}\label{subsec:background}
+
+If $q$ is even or not prime to $a$, the fraction $a/q$ reduces to one with a smaller numerator
+or an even numerator and odd denominator; we treat the four numerators $3,4,5,8$ with odd
+denominators prime to them. The irrationality of $\chi_2$ and $\Ti_2$ at rational points with
+large denominator follows from linear independence criteria for shifted polylogarithms. Hata's
+measures~\cite{Hata1990} are stated at reciprocals of integers. The criterion of David,
+Hirata-Kohno and Kawashima~\cite{DHK2022Acta} applies to the shifted dilogarithm
+$\sum_{n\ge1}x^n/(n-\frac12)^2$ at rational points; Krisman evaluates it at $x=4/q^2$ and
+obtains the irrationality of $\chi_2(2/q)$ for $q\ge11\,795$ \cite[\S1.2]{Krisman2026chi2}.
+The same evaluation at $x=\pm a^2/q^2$ gives the range $q>54e^4a^2$, that is, $q$ larger than
+about $2.7\cdot10^4$, $4.7\cdot10^4$, $7.4\cdot10^4$ and $1.9\cdot10^5$ for $a=3,4,5,8$. We have not re-derived this range from
+\cite{DHK2022Acta}; we quote it only to indicate the order of magnitude of what was known, and
+we have not found explicit smaller thresholds for these numerators in the literature.
+
+For small denominators the closest works are Krisman's preprint~\cite{Krisman2026chi2}, which
+proves that $\chi_2(1/q)\notin\Q$ for $q\ge3$, $q\ne4$, that $\Ti_2(1/q)\notin\Q$ for $q\ge5$,
+and that $\chi_2(2/q)\notin\Q$ for odd $q\ge175$, and the AxiomForge
+preprint~\cite{AxiomForge2026numeratorTwo}, a candidate proof that $\chi_2(2/q)$ and
+$\Ti_2(2/q)$ are irrational for odd $q\ge81$. Both are unrefereed and AI-assisted. We use none
+of their theorems as an input: every estimate needed here is proved in this paper, including
+those that are restatements, for general numerator, of estimates
+of~\cite{AxiomForge2026numeratorTwo}. The method is a Hankel-determinant construction in the
+spirit of Zudilin's determinantal approach~\cite{Zudilin2017}: Krisman takes the Hankel
+determinants of the functional $g\mapsto\sum_{t\ge1}w^t\,(g(u)\,u/D(u))'|_{u=t}$, where
+$D(u)=\prod_{k<h}(u+k+\frac12)$ has as many half-integer poles as the size $h$ of the
+determinant; in~\cite{AxiomForge2026numeratorTwo} the number of poles exceeds $h$ in the ratio
+$7/6$.
+
+\subsection{The construction}\label{subsec:constructions}
+
+Fix an integer $a\ge1$, an odd integer $q>a$ prime to $a$ and a sign $\sigma\in\{1,-1\}$, and
+put
+\begin{equation}\label{eq:basic-notation}
+  y=\frac qa,\qquad w=\frac{\sigma}{y^2}=\frac{\sigma a^2}{q^2},\qquad W=\abs w,\qquad
+  \xi=\sum_{j\ge0}\frac{\sigma^jy^{-2j-1}}{(2j+1)^2},
+\end{equation}
+so that $\xi=\chi_2(a/q)$ for $\sigma=1$ and $\xi=\Ti_2(a/q)$ for $\sigma=-1$. For integers
+$K\ge h\ge1$ let
+\[
+  x_k=-k-\tfrac12\ (0\le k<K),\qquad D_K(u)=\prod_{k<K}(u-x_k),\qquad
+  \varphi(u)=\frac{u}{D_K(u)}.
+\]
+In \cref{sec:pencils} we define an affine functional $\mu_X$ on the rational functions with
+simple poles at the $x_k$ such that $\mu_\xi(R)=\sum_{m\ge1}w^mR'(m)$, and the polynomial
+\[
+  T(X)=\nrm\cdot\det\bigl[\mu_X(\varphi(u)\,u^{i+j})\bigr]_{0\le i,j<h}\in\Q[X],
+  \qquad \nrm=\frac{K!^{\,h}}{\prod_{i<h}i!^2},
+\]
+of degree at most $h$. We use two families of sizes, indexed by $n\ge1$:
+\[
+  (h,K)=(6n,7n)\quad(\kappa=\tfrac76),\qquad (h,K)=(4n,5n)\quad(\kappa=\tfrac54),
+\]
+where $\kappa=K/h$. The first is used for $\chi_2(3/q)$ and the second for the seven other
+cases of \cref{thm:main}. Throughout,
+\[
+  \Dk=\frac{(2-\kappa)^2}{4},\qquad\text{so}\qquad D_{7/6}=\frac{25}{144},\quad
+  D_{5/4}=\frac9{64}.
+\]
+
+\subsection{The argument in one page}\label{subsec:one-page}
+
+For a prime $p$ and a nonzero $F\in\Q[X]$ let $\vG p(F)$ be the minimum of the $p$-adic
+valuations of the coefficients of $F$. Let $\ell=\prod_pp^{-\vG p(T)}$, so that $\ell T\in\Z[X]$.
+If $\xi=r/s$ were rational, then $s^h\ell T(r/s)$ would be an integer. The proof consists in
+showing that this integer is nonzero for infinitely many $n$, while its absolute value is at
+most $\exp\bigl(h^2(\bconst-\aconst+o(1))\bigr)$ with $\bconst<\aconst$
+(\cref{prop:criterion}). This needs three estimates.
+
+\begin{theorem}\label{thm:three-estimates}
+Let $a\ge1$, let $q>a$ be odd and prime to $a$, let $\sigma=\pm1$ and $\kappa\in\{7/6,5/4\}$,
+and let $T=T_n$ be the polynomial attached to the $n$-th size of ratio $\kappa$, with $h=h_n$.
+Write $a=2^ea_0$ with $a_0$ odd.
+\begin{enumerate}[(i)]
+\item \emph{Arithmetic.} Along the $n$ with $T_n\ne0$,
+\begin{multline*}
+  \liminf\frac{1}{h^2}\sum_p\vG p(T)\log p\ \ge\ \aconst_\sigma(a,q)\\
+  :=\Iprof_\kappa+c_2\log2-(2\kappa-1)\log a_0+\frac13\log q-\Dk\log(q^2-\sigma a^2),
+\end{multline*}
+where $\Iprof_{7/6}=-2.113164137$, $\Iprof_{5/4}=-2.355639833$, and
+\[
+  c_2=\begin{cases}2(\kappa-1)+2\Dk&\text{if $a$ is odd and }\sigma=1,\\
+  \kappa-1&\text{if $a$ is odd and }\sigma=-1,\\
+  C_e(\kappa)=\min_{0\le x\le1}f_e(x)&\text{if }e\ge1,\end{cases}
+\]
+with $f_e(x)=2(\kappa-1)-2(e+1)\kappa x+(e+2)x^2+(\frac e2+2)(1-x)^2$.
+\item \emph{Size.} For every comparison density $\rho$ and every $\lambda$ satisfying the tail
+condition of \cref{lem:tail}, $\limsup h^{-2}\log\abs{T(\xi)}\le\bconst(\rho,\lambda)$, an
+explicit number that depends on $(a,q)$ only through $W$.
+\item \emph{Nonvanishing.} Let $r\in\Q$. If $q\ge14a$, then $T_n(r)\ne0$ for every
+sufficiently large prime $n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(i) is \cref{thm:arithmetic}, part~(ii) is \cref{thm:decay}, and part~(iii) is
+\cref{thm:nonvanishing} together with \cref{prop:local-dets}, since $q\ge14a$ gives
+$\abs{\sigma q^2/a^2}\ge196>189$.
+\end{proof}
+
+\Cref{tab:constants} lists the constants at the six thresholds. For $a=4$ and $a=8$ the two
+signs are treated together, with the smaller arithmetic constant $\aconst_-$
+(\cref{rem:worse-sign}).
+
+\begin{table}[ht]
+\centering
+\caption{The six threshold comparisons, per $h^2$. The arithmetic constant is
+$\aconst_\sigma(a,q_0)$ of \cref{thm:three-estimates}, with the value of $c_2$ shown; $\bconst$ is
+the certified size exponent (Appendix~\ref{app:decay-certificates}). Decimals are rounded in the
+safe direction.}
+\label{tab:constants}
+\small
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+$a$ & $q_0$ & function & $\kappa$ & $c_2$ & $\aconst\ge$ & $\bconst\le$ & $\aconst-\bconst\ge$\\
+\midrule
+$3$ & $131$ & $\chi_2$ & $7/6$ & $49/72$ & $-3.173875358$ & $-3.187821144$ & $0.013945786$\\
+$3$ & $257$ & $\Ti_2$ & $5/4$ & $1/4$ & $-3.541276253$ & $-3.546389753$ & $0.005113500$\\
+$4$ & $995$ & both & $5/4$ & $-337/112$ & $-4.081754611$ & $-4.083454335$ & $0.001699724$\\
+$5$ & $829$ & $\chi_2$ & $5/4$ & $25/32$ & $-3.878258885$ & $-3.879559185$ & $0.001300300$\\
+$5$ & $1609$ & $\Ti_2$ & $5/4$ & $1/4$ & $-4.211960841$ & $-4.212674322$ & $0.000713481$\\
+$8$ & $12061$ & both & $5/4$ & $-9/2$ & $-4.985336979$ & $-4.986095509$ & $0.000758530$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The estimates are obtained as follows.
+\begin{itemize}
+\item \emph{Prime $2$, $a$ odd} (\cref{subsec:two-odd}). Here $y$ is a $2$-adic unit, and $2$
+divides both the denominators of the poles and $q^2-\sigma a^2$. In bases of polynomials that
+vanish at the first and at the last poles, each entry of the matrix is a forward difference of a
+sequence obeying a first-order recursion, and its valuation is bounded directly.
+\item \emph{Prime $2$, $a$ even} (\cref{subsec:two-even}). In the coordinate $z=2u$ the poles
+are odd and the summation points even, and a Vandermonde-type minor whose nodes share a parity
+is divisible by about $2^{t^2}$; the Cauchy--Binet formula reduces $\vG2(T)$ to the minimisation
+of $f_e$ in the proportion $x$ of pole terms.
+\item \emph{Odd primes dividing $a$} (\cref{subsec:p-divides-a}). The pole $x_k$ carries the
+factor $y^{2k+1}$, of valuation $-(2k+1)v_p(a)$, but it enters the matrix through a term of rank
+one, so a term of the determinant uses each pole at most once; the $h$ most expensive poles cost
+$(2\kappa-1)v_p(a)h^2$.
+\item \emph{Odd primes dividing $q(q^2-\sigma a^2)$} (\cref{sec:exceptional}). For $p\mid q$,
+reflecting $m\mapsto-m$ makes the series $p$-adically convergent, and each level offers at most
+three terms of valuation at least $2v_p(q)m$, which gives $\frac13v_p(q)h^2$; for
+$p\mid q^2-\sigma a^2$ the only loss comes from the denominators $(1-w)^{b+1}$, and a convexity
+argument gives $\Dk\,v_p(q^2-\sigma a^2)h^2$.
+\item \emph{Ordinary primes} (\cref{sec:ordinary}). For $p\asymp h$ two lower bounds, by Taylor
+jets in each residue class modulo $p$ and by global partial fractions with Vandermonde gains,
+are small minimisation problems over the residue classes; their maximum, integrated against
+$\log p$ by the prime number theorem, gives $\Iprof_\kappa$, and the integral is evaluated
+exactly (Appendix~\ref{app:profile-certificate}).
+\item \emph{Size} (\cref{sec:decay}). The determinant at $X=\xi$ is a sum over configurations
+of $h$ points on the summation sites; Vandermonde bounds and a discrete energy inequality
+compare it with an explicit step density, and the resulting number $\bconst$ is evaluated in
+ball arithmetic (Appendix~\ref{app:decay-certificates}).
+\item \emph{Nonvanishing} (\cref{sec:nonvanishing}). For $h=tp$ with $p$ prime, a basis adapted
+to the residue classes modulo $p$ makes the scaled determinant block triangular modulo $p$, with
+diagonal blocks equal, up to units, to three fixed local Hankel determinants, which are
+nonzero.
+\item \emph{Assembly} (\cref{sec:proofs}). The margins of \cref{tab:constants} are positive,
+and for $q\ge q_0\ge2a$ the margin grows by at least $\frac{10}{27}\log(q/q_0)$
+(\cref{prop:propagation}), which carries each threshold to all larger admissible $q$.
+\end{itemize}
+
+\subsection{What is new and what is inherited}\label{subsec:new}
+
+The functional, the criterion, the reflection at primes dividing $q$, the size bound with its
+shift to smaller $\abs w$, and the strategy of proving nonvanishing modulo a prime proportional
+to $h$ go back to Krisman~\cite{Krisman2026chi2}. The ratio $K/h>1$, the parity-minor bound at
+$2$ for $a=2$, the residue-class profile for the ordinary primes and the Taylor-jet form of the
+nonvanishing argument are those of~\cite{AxiomForge2026numeratorTwo}, where $\kappa=7/6$. We
+reprove all of them for general $a$ and both ratios; in
+\cref{sec:ordinary,sec:decay,sec:nonvanishing} the numerator enters only through $w$, and the
+proofs are those of~\cite{AxiomForge2026numeratorTwo} with a simpler weight. The following is
+new.
+\begin{enumerate}[(a)]
+\item \emph{Primes dividing the numerator} (\cref{prop:p-divides-a}), which do not occur for
+$a\le2$ apart from the prime $2$.
+\item \emph{The prime $2$ for odd $a$} (\cref{thm:two-odd}). Its cost depends on
+$\nu=v_2(q^2-\sigma a^2)$, but the dependence cancels against the contribution of $2$ to
+$\log(q^2-\sigma a^2)$, so that $\aconst_\sigma(a,q)$ contains the fixed multiples
+$\frac{49}{72}\log2$ or $\frac{25}{32}\log2$ ($\sigma=1$) and $\frac16\log2$ or $\frac14\log2$
+($\sigma=-1$).
+\item \emph{The prime $2$ for $a=2^ea_0$ with $e\ge2$} (\cref{thm:two-even}): the parity-minor
+argument of~\cite{AxiomForge2026numeratorTwo} with pole costs $e(2k+1)$ and site costs $2em$.
+For $e=3$ and $\kappa=5/4$ the minimum of $f_e$ is attained at $x=1$ and equals $-e(2\kappa-1)$,
+the value given by the rank-one argument of~(a).
+\item \emph{The ratio $5/4$}: a second profile integral, a second triple of local determinants
+(of size $4$), and five new comparison densities.
+\item \emph{Propagation in $q$ for general $a$} (\cref{prop:propagation}).
+\end{enumerate}
+
+\subsection{Organisation and notation}\label{subsec:notation}
+
+\Cref{sec:pencils} defines the functional, the determinants and the criterion.
+\Cref{sec:prime-two,sec:exceptional,sec:ordinary} bound the denominators, \cref{sec:decay} the
+size, and \cref{sec:nonvanishing} proves nonvanishing; \cref{sec:proofs} assembles the proof and
+records the status of each step, and \cref{sec:limitations} discusses what the thresholds do and
+do not say. Appendix~\ref{app:certificates} describes the finite computations and
+Appendix~\ref{app:consistency} compares the estimates with exact computations at small sizes.
+\Cref{tab:notation} lists the notation used throughout.
+
+\begin{table}[ht]
+\centering
+\caption{Notation.}\label{tab:notation}
+\small
+\begin{tabular}{@{}p{0.27\textwidth}p{0.66\textwidth}@{}}
+\toprule
+$a$, $q$, $\sigma$; $y$, $w$, $W$, $\xi$ & numerator, odd denominator prime to $a$, sign $\pm1$;
+see~\eqref{eq:basic-notation}\\
+$e$, $a_0$; $Q$, $\nu$ & $a=2^ea_0$ with $a_0$ odd; $Q=\sigma y^2=1/w$, $\nu=v_2(Q-1)$ for odd
+$a$\\
+$\tau_k$ & partial sum $\sum_{j\le k}\sigma^jy^{-2j-1}/(2j+1)^2$ of $\xi$, \eqref{eq:tau}\\
+$h$, $K$; $\kappa$, $\Dk$ & size, number of poles; $K/h\in\{\frac76,\frac54\}$,
+$(2-\kappa)^2/4$\\
+$x_k$, $D_K$, $\varphi$, $\Phi$ & $-k-\frac12$; $\prod_{k<K}(u-x_k)$; $u/D_K$; $K!\,\varphi$\\
+$\Omega_b$, $\mom$, $\mu_X$ & $w^{\max(b,1)}(1-w)^{-b-1}$; rational moment sum; the functional
+\eqref{eq:functional}\\
+$\Delta$, $\nrm$, $T$ & Hankel determinant, normaliser, $T=\nrm\Delta$, see~\eqref{eq:Delta-T}\\
+$\beta_i$, $\vvec(u)$, $\bvec(u)$ & $\binom ui$; the columns $(u^i)_{i<h}$ and
+$(\beta_i(u))_{i<h}$\\
+$\vG p$ & Gauss valuation of a polynomial in $X$ over $\Q_p$\\
+$\aconst_\sigma(a,q)$, $\bconst$, $\Iprof_\kappa$ & arithmetic constant, size exponent,
+ordinary-prime constant\\
+$\psi(t)$, $\pos x$, $s_2(n)$ & $t\log\abs t-t$ with $\psi(0)=0$; $\max(x,0)$; binary digit
+sum, so $v_2(n!)=n-s_2(n)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{Conventions.} $p$ is always a prime and $v_p$ the $p$-adic valuation on $\Q_p$. The Gauss
+valuation satisfies $\vG p(FG)=\vG p(F)+\vG p(G)$ and $\vG p(F+G)\ge\min(\vG p(F),\vG p(G))$, with
+$\vG p(0)=+\infty$, and is invariant under $X\mapsto X+c$ for $c\in\Z_p$; hence the determinant of
+a matrix over $\Q_p[X]$ has Gauss valuation at least the minimum over the terms of its Leibniz
+expansion. For $u$ in any $\Q$-algebra, $\binom uk=u(u-1)\cdots(u-k+1)/k!$. The implied constants
+in $O(\cdot)$ may depend on $a$, $q$ and $\kappa$, but not on $n$.

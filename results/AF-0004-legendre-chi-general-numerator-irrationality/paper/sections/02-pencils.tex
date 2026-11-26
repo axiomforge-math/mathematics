@@ -1,0 +1,178 @@
+\section{The half-integer pencils}\label{sec:pencils}
+
+This section defines the objects of the proof: the functional $\mu_X$, the polynomial $T$, its
+expansion over the summation points, a rank-one expansion used three times, and the
+irrationality criterion. All later sections are
+statements about $T$, and the expansion~\eqref{eq:real-sites} with its $p$-adic analogues is the
+starting point of \cref{sec:prime-two,sec:exceptional,sec:ordinary,sec:decay}.
+
+Throughout, $a\ge1$ is an integer, $q>a$ is odd and prime to $a$, $\sigma=\pm1$, and
+$y,w,W,\xi$ are as in~\eqref{eq:basic-notation}. We put
+\begin{equation}\label{eq:tau}
+  \tau_k=\sum_{j=0}^{k}\frac{\sigma^jy^{-2j-1}}{(2j+1)^2}\qquad(k\ge0),
+\end{equation}
+the partial sums of the series defining $\xi$.
+
+\subsection{Moment sums and the functional}\label{subsec:moment-sums}
+
+For $b\ge0$ let $\Omega_b(w)=w^{\max(b,1)}(1-w)^{-b-1}\in\Q(w)$. For a polynomial $g\in\Q[u]$,
+expanded in the Newton basis as $g(u)=\sum_b\Delta^bg(0)\binom ub$, put
+\[
+  \mom(g)=\sum_{b\ge0}\Delta^bg(0)\,\Omega_b(w).
+\]
+
+\begin{lemma}\label{lem:moment-sums}
+Let $g\in\Q[u]$ and $w\in\Q\setminus\{0,1\}$.
+\begin{enumerate}[(a)]
+\item The identity $\sum_{m\ge1}g(m)w^m=\mom(g)$ holds in $\Q[[w]]$. Consequently, for every
+absolute value $\abs\cdot_v$ on $\Q$ with $\abs w_v<1$, the series $\sum_{m\ge1}g(m)w^m$
+converges in the completion $\Q_v$ to $\mom(g)$.
+\item The identity $\mom(g)=-\sum_{m\ge0}g(-m)w^{-m}$ holds in $\Q[[w^{-1}]]$, and hence in
+$\Q_v$ whenever $\abs w_v>1$.
+\item Let $p$ be a prime such that $v_p(w)\ge0$ and $1-w$ is a $p$-adic unit. If
+$g(\Z)\subset\Z_p$, then $\mom(g)\in\Z_p$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) For $b\ge1$, $\sum_{m\ge1}\binom mbw^m=w^b(1-w)^{-b-1}$, and $\sum_{m\ge1}w^m=w(1-w)^{-1}$.
+(b) We have $\binom{-m}{b}=(-1)^b\binom{m+b-1}{b}$, so for $b\ge1$, with $v=w^{-1}$,
+\[
+ \sum_{m\ge0}\binom{-m}bv^m=(-1)^b\frac{v}{(1-v)^{b+1}}=(-1)^b\frac{w^{b}}{(w-1)^{b+1}}
+ =-\Omega_b(w),
+\]
+and $\sum_{m\ge0}v^m=w/(w-1)=-\Omega_0(w)$. (c) The Newton coefficients $\Delta^bg(0)$ are
+integral combinations of $g(0),\dots,g(b)$, and $\Omega_b(w)\in\Z_p$ because $w\in\Z_p$ and
+$1-w\in\Z_p^\times$.
+\end{proof}
+
+Let $K\ge1$, $x_k=-k-\frac12$ for $0\le k<K$, and $D_K(u)=\prod_{k<K}(u-x_k)$. Let $\Rsp$ be
+the $\Q$-vector space spanned by $\Q[u]$ and the fractions $1/(u-x_k)$, $0\le k<K$; every
+rational function whose only poles are simple poles at some of the $x_k$ lies in $\Rsp$, and
+its decomposition into a polynomial part and principal parts is unique. For an indeterminate
+$X$ define the $\Q$-linear map $\mu_X\colon\Rsp\to\Q[X]$ by
+\begin{equation}\label{eq:functional}
+  \mu_X(R)=\mom(R')\quad(R\in\Q[u]),\qquad
+  \mu_X\Bigl(\frac1{u-x_k}\Bigr)=-4\sigma^ky^{2k+1}\,(X-\tau_k).
+\end{equation}
+Each value is a polynomial of degree at most one in $X$.
+
+\begin{lemma}[pole series]\label{lem:pole-series}
+For every $R\in\Rsp$ the series $\sum_{m\ge1}w^mR'(m)$ converges absolutely and equals
+$\mu_\xi(R)$.
+\end{lemma}
+
+\begin{proof}
+For polynomials this is \cref{lem:moment-sums}(a) with the real absolute value. For
+$R=1/(u-x_k)$ we have $R'(m)=-4/(2m+2k+1)^2$. Writing $2m+2k+1=2j+1$ with $j=m+k\ge k+1$
+and $w^m=\sigma^{j-k}y^{-2(j-k)}$,
+\[
+  \sum_{m\ge1}w^mR'(m)=-4\sigma^ky^{2k+1}\sum_{j>k}\frac{\sigma^jy^{-2j-1}}{(2j+1)^2}
+  =-4\sigma^ky^{2k+1}(\xi-\tau_k).\qedhere
+\]
+\end{proof}
+
+The same computation will be used $2$-adically in \cref{sec:prime-two} and $p$-adically in
+\cref{sec:exceptional}. Lemma~\ref{lem:pole-series} is Krisman's pole series
+\cite[Lemma~2.1]{Krisman2026chi2}, with an arbitrary number $K$ of poles and an arbitrary
+numerator $a$.
+
+\subsection{The determinants}\label{subsec:determinants}
+
+Let $K\ge h\ge1$ be integers, and put
+\begin{equation}\label{eq:phi}
+  \varphi(u)=\frac{u}{D_K(u)}.
+\end{equation}
+For every polynomial $g$ the product $\varphi g$ lies in $\Rsp$. Define
+\begin{equation}\label{eq:Delta-T}
+  \Delta(X)=\det\bigl[\mu_X(\varphi(u)u^{i+j})\bigr]_{0\le i,j<h},\qquad
+  \nrm=\frac{K!^{\,h}}{\prod_{i<h}i!^2},\qquad T(X)=\nrm\,\Delta(X).
+\end{equation}
+These are polynomials in $X$ with rational coefficients and degree at most $h$, and
+$\Delta(\xi)$ is the determinant of the real matrix
+$\bigl[\sum_{m\ge1}w^m(\varphi u^{i+j})'(m)\bigr]$ by \cref{lem:pole-series}.
+
+\begin{lemma}[change of basis]\label{lem:change-of-basis}
+Let $f_0,\dots,f_{h-1}$ and $g_0,\dots,g_{h-1}$ be polynomials of degree less than $h$ with
+coefficient matrices $C_f$, $C_g$ in the monomial basis. Then
+$\det[\mu_X(\varphi f_ig_j)]=\det C_f\det C_g\,\Delta(X)$. In particular, with
+$\beta_i(u)=\binom ui$ and
+\begin{equation}\label{eq:Phi}
+  \Phi(u)=K!\,\varphi(u)=\frac{K!\,u}{D_K(u)},
+\end{equation}
+one has $T(X)=\det[\mu_X(\Phi\beta_i\beta_j)]_{0\le i,j<h}$.
+\end{lemma}
+
+\begin{proof}
+The matrix $[\mu_X(\varphi f_ig_j)]$ equals $C_f[\mu_X(\varphi u^{r+s})]_{r,s}C_g^{\mathsf T}$
+by bilinearity. For the second statement, the matrix of $(\beta_i)$ is lower triangular with
+diagonal $1/i!$.
+\end{proof}
+
+\emph{The expansion over summation points.} Let $\vvec(u)=(u^i)_{0\le i<h}$ be the column of monomials and $\vvec'(u)$ its derivative. For
+$X=\xi$, \cref{lem:pole-series} and $(u^{i+j})'=(u^i)'u^j+u^i(u^j)'$ give
+\begin{equation}\label{eq:real-sites}
+  \bigl[\mu_\xi(\varphi u^{i+j})\bigr]_{i,j}
+  =\sum_{m\ge1}w^m\,\bigl[\vvec(m)\ \vvec'(m)\bigr]
+  \begin{pmatrix}\varphi'(m)&\varphi(m)\\ \varphi(m)&0\end{pmatrix}
+  \bigl[\vvec(m)\ \vvec'(m)\bigr]^{\mathsf T},
+\end{equation}
+an absolutely convergent sum of matrices of rank at most two. We call the two columns
+$\vvec(m)$ and $\vvec'(m)$ the \emph{slots} of the site $m$. The same structure, with other
+sites and with additional rank-one terms at the poles, appears $2$-adically and $p$-adically in
+\cref{sec:prime-two,sec:exceptional}. All of these expansions are used through the
+Cauchy--Binet formula: if $M=EBE^{\mathsf T}$ with $E$ of size $h\times N$ and $B$ of size
+$N\times N$, then
+\begin{equation}\label{eq:cauchy-binet}
+  \det M=\sum_{S,S'}\det E_{[h],S}\,\det B_{S,S'}\,\det E_{[h],S'},
+\end{equation}
+the sum running over pairs of $h$-element subsets of the column indices of $E$. When $B$ is
+block diagonal, $\det B_{S,S'}=0$ unless $S$ and $S'$ meet every block in the same number of
+indices, and then it is the product of the corresponding minors of the blocks.
+
+\emph{Rank-one terms.} At a prime where the series over $m$ is not used, the pole part of the
+matrix is kept as a sum of rank-one matrices, and the determinant is expanded as follows.
+
+\begin{lemma}[rank-one expansion]\label{lem:rank-one}
+Let $\mathbf P$ be an $h\times h$ matrix, $\mathbf c_0,\dots,\mathbf c_{K-1}$ columns of
+length $h$ and $\gamma_0,\dots,\gamma_{K-1}$ scalars, all in a commutative ring. Then
+\[
+  \det\Bigl(\mathbf P+\sum_{k<K}\gamma_k\mathbf c_k\mathbf c_k^{\mathsf T}\Bigr)
+  =\sum_{\mathcal K}\Bigl(\prod_{k\in\mathcal K}\gamma_k\Bigr)\,\Theta_{\mathcal K},
+\]
+where $\mathcal K$ runs over the subsets of $\{0,\dots,K-1\}$ with at most $h$ elements and
+$\Theta_{\mathcal K}$ is a sum of products $\pm\det V_{I,\mathcal K}\det V_{J,\mathcal K}
+\det\mathbf P_{I^c,J^c}$ over sets $I,J$ of $\abs{\mathcal K}$ rows, $V=[\mathbf c_k]_{k<K}$.
+\end{lemma}
+
+\begin{proof}
+The matrix is $[I_h\mid V]\diag(\mathbf P,\Gamma)[I_h\mid V]^{\mathsf T}$ with
+$\Gamma=\diag(\gamma_k)$. In~\eqref{eq:cauchy-binet} the middle minor vanishes unless both
+index sets contain the same set $\mathcal K$ of columns of $V$, and then it is
+$\prod_{k\in\mathcal K}\gamma_k$ times a minor of $\mathbf P$; the outer minors are, up to sign,
+minors of $V$ with columns $\mathcal K$.
+\end{proof}
+
+\subsection{The criterion}\label{subsec:criterion}
+
+\begin{proposition}\label{prop:criterion}
+Let $\xi\in\R$ and let $(T_n)_{n\in\mathcal N}$, $\mathcal N\subset\N$ infinite, be nonzero
+polynomials in $\Q[X]$ with $\deg T_n\le h_n$, $h_n\to\infty$. Suppose that, along $\mathcal N$,
+\[
+  \liminf\frac1{h_n^2}\sum_p\vG p(T_n)\log p\ \ge\ \aconst,\qquad
+  \limsup\frac1{h_n^2}\log\abs{T_n(\xi)}\ \le\ \bconst,
+\]
+with $\bconst<\aconst$, and that for every $r\in\Q$ there are infinitely many $n\in\mathcal N$
+with $T_n(r)\ne0$. Then $\xi\notin\Q$.
+\end{proposition}
+
+\begin{proof}
+Let $\ell_n=\prod_pp^{-\vG p(T_n)}$; then $\ell_nT_n\in\Z[X]$. If $\xi=r/s$ with $s\ge1$, then
+$s^{h_n}\ell_nT_n(r/s)$ is an integer, nonzero for infinitely many $n$, while
+$\log\abs{s^{h_n}\ell_nT_n(\xi)}\le h_n\log s+(\bconst-\aconst+o(1))h_n^2\to-\infty$.
+\end{proof}
+
+This is Krisman's criterion \cite[Prop.~3.1, Thm.~3.2]{Krisman2026chi2} in the form we need;
+its elementary core is formalised in Lean (see the section on reproducibility). We apply it with
+$\mathcal N$ the set of all $n$ with $T_n\ne0$ for the arithmetic and analytic estimates, and with
+the prime values of $n$ for nonvanishing.

@@ -1,0 +1,76 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[Irrationality of chi and Ti at the numerators 3, 4, 5, 8]%
+{\texorpdfstring{Irrationality of \titlechi{} and \titleti{} for the numerators \titlea}%
+{Irrationality of chi2(a/q) and Ti2(a/q) for the numerators a = 3, 4, 5, 8}}
+\hypersetup{pdftitle={Irrationality of χ₂(a/q) and Ti₂(a/q) for the numerators a = 3, 4, 5, 8}}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary 11J72; Secondary 33B30}
+\keywords{Legendre chi function, inverse tangent integral, irrationality, Hankel determinants,
+Pad\'e-type approximation, $p$-adic valuations, logarithmic energy}
+\date{26 November 2026}
+
+\afidentifier{AF-0004}
+\afversion{0.1.0}
+\afdate{26 November 2026}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0004-legendre-chi-general-numerator-irrationality}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afstatus{Preprint --- complete written argument, not yet independently verified; not reviewed by an independent human expert. The finite computations are reproduced by separately written checkers (AI-internal). Lean formalization in preparation: the main theorems are proved in Lean only conditionally on the estimates.}
+\afdisclosure{AI-assisted research. The candidate arguments and the original certificate programs were produced with GPT-6.2 XHigh (web version); their reconstruction, the check computations, this manuscript and the Lean formalization with Claude Sonnet~5.5, Claude Fable~5.2 and Claude Opus~5.5 (Anthropic), under the direction of AxiomForge. No independent human review has taken place. See the AI-assisted research disclosure at the end.}
+
+\begin{document}
+
+\begin{abstract}
+Let $\chi_2(x)=\sum_{j\ge0}x^{2j+1}/(2j+1)^2$ be Legendre's chi function and
+$\Ti_2(x)=\sum_{j\ge0}(-1)^jx^{2j+1}/(2j+1)^2$ the inverse tangent integral. We present a
+candidate proof that, for odd $q$ prime to $a$, the number $\chi_2(a/q)$ is irrational when
+$(a,q)$ satisfies $a=3$, $q\ge131$; $a=4$, $q\ge995$; $a=5$, $q\ge829$; or $a=8$, $q\ge12061$;
+and that $\Ti_2(a/q)$ is irrational when $a=3$, $q\ge257$; $a=4$, $q\ge995$; $a=5$,
+$q\ge1609$; or $a=8$, $q\ge12061$. The same holds at $-a/q$. These ranges begin well below
+the range $q>54e^4a^2$ that we read off from a general criterion for shifted polylogarithms. The
+rational approximations are Hankel determinants of a moment functional with poles at the
+negative half-integers, with more poles than rows, in the ratio $7/6$ or $5/4$; this is the
+construction of an earlier AxiomForge preprint on the numerator $2$, which itself starts from
+work of Krisman. The numerators treated here need three arithmetic estimates that are absent
+for the numerator $2$: a bound at the primes dividing $a$, where each pole can be used only
+once; a bound at the prime $2$ when $a$ is odd, by forward differences in a basis adapted to
+the poles; and the parity-minor bound at $2$ for $a=4$ and $a=8$. A single inequality carries
+each case from its threshold to all larger denominators. The finite inequalities on which the
+argument rests have been recomputed by separately written programs. The argument has not been
+checked by an independent human expert and its main theorems are not formally verified, so the
+result should be read as a candidate.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/01-introduction}
+\input{sections/02-pencils}
+\input{sections/03-prime-two}
+\input{sections/04-exceptional-primes}
+\input{sections/05-ordinary-primes}
+\input{sections/06-archimedean-decay}
+\input{sections/07-nonvanishing}
+\input{sections/08-proofs}
+\input{sections/09-limitations}
+
+\appendix
+\input{sections/appendix-a-certificates}
+\input{sections/appendix-b-consistency}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/reproducibility}
+\input{sections/disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

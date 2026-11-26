@@ -1,0 +1,1 @@
+a=8 q=12061 sigma=-1 (t,c)=(4,5) p=13 h=52: Delta(0) != 0: True; v_p = -152; predicted -152; OK [4s]

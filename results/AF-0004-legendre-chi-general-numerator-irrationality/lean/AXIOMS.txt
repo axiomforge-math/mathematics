@@ -1,0 +1,66 @@
+# Output of `#print axioms` for every declaration listed in theorems.toml.
+# Toolchain: leanprover/lean4:v4.34.0-rc1; Mathlib rev: f385f9fd18abed332ebcd3df239cb357e264aceb.
+# Produced by `lake env lean` on a probe file importing the library roots.
+# Declarations: 36; lean exit status: 0.
+'AxiomForge.LegendreChiGeneral.one_le_pow_mul_abs_aeval_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_of_int_poly_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_of_tendsto_int_poly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_of_scaled_int_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_of_log_content_decay' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_of_rat_value_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.frequently_atTop_of_eventually_prime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.summable_legendreChi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.summable_inverseTangentIntegral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.legendreChi_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.inverseTangentIntegral_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.legendreChi_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.legendreChi_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.inverseTangentIntegral_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.targetValue_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.targetValue_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.natDegree_halfHankelDet_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.rowData_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.rowData_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.slope_nonneg_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.decayRate_lt_contentRate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.oddConst_plus_seven_sixths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.oddConst_plus_five_fourths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.oddConst_minus_five_fourths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.evenConst_two_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.evenConst_two_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.evenConst_three_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.evenConst_three_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_targetValue_of_halfIntegerEstimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_targetValue_of_familyEstimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_legendreChi_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_div_of_estimates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+# Summary: all declarations use only propext, Classical.choice, Quot.sound

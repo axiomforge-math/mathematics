@@ -1,0 +1,52 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue).
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "AF-0004"
+slug = "legendre-chi-general-numerator-irrationality"
+title = "Irrationality of χ₂(a/q) and Ti₂(a/q) for the numerators a = 3, 4, 5, 8"
+version = "0.1.0"
+date = "2026-11-26"
+# Preprint: complete written argument, certificates reproduced, Lean development in
+# preparation. The archive does not establish the main theorem until level V4.
+status = "preprint"
+summary = "A candidate proof, released as a preprint, that for odd q prime to a the number chi_2(a/q) is irrational when a = 3, q >= 131; a = 4, q >= 995; a = 5, q >= 829; or a = 8, q >= 12061, and Ti_2(a/q) is irrational when a = 3, q >= 257; a = 4, q >= 995; a = 5, q >= 1609; or a = 8, q >= 12061, and hence also at -a/q (chi_2 is Legendre's chi function, Ti_2 the inverse tangent integral). These ranges begin well below the range q > 54 e^4 a^2 read off from a general criterion for shifted polylogarithms. The approximations are Hankel determinants of a moment functional with poles at the negative half-integers, with more poles than rows (ratio 7/6 or 5/4), as in an earlier AxiomForge preprint on the numerator 2. The numerators treated here need three arithmetic estimates that are absent for the numerator 2: a bound at the primes dividing a, a bound at the prime 2 for odd a, and the parity-minor bound at 2 for a = 4 and a = 8; one inequality carries each threshold to all larger denominators. The six threshold margins (between 0.00071 and 0.0139 per h^2) have been reproduced by separately written checkers. The argument has not been independently verified; in Lean the main theorem is proved only conditionally on the estimates."
+template_version = "1.0.0"
+msc_primary = "11J72"
+msc_secondary = ["33B30"]
+keywords = ["Legendre chi function", "inverse tangent integral", "irrationality", "Hankel determinants", "Pade-type approximation", "p-adic valuations", "logarithmic energy"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0004-legendre-chi-general-numerator-irrationality"
+
+[disclosure]
+summary = "The original exploration, the candidate arguments and the original certificate programs were produced with GPT-6.2 XHigh (web version), as stated by the AxiomForge owners. The reconstruction of the argument, the corrections it contains, the check computations, the separately written implementations of the finite computations, the manuscript and the Lean development were produced with Claude Sonnet 5.5, Claude Fable 5.2 and Claude Opus 5.5 (Anthropic), used through Claude Code, under the direction of AxiomForge; a harsh AI-internal review of the material was carried out with an Anthropic model and its findings were handled in the manuscript. All checks were carried out with AI systems; no independent human review has taken place, and AI involvement is not independent certification. AxiomForge takes full responsibility for the content."
+ai_systems = ["GPT-6.2 XHigh (OpenAI), web version, as stated by the AxiomForge owners", "Claude Opus 5.5 (Anthropic), used through Claude Code", "Claude Fable 5.2 (Anthropic), used through Claude Code", "Claude Sonnet 5.5 (Anthropic), used through Claude Code"]
+
+[lean]
+package = "axiomforge-af0004"
+root = "AxiomForge.AF0004"
+toolchain = "leanprover/lean4:v4.34.0-rc1"
+mathlib = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[theorem]]
+key = "thm:main"
+statement = "Let a be in {3, 4, 5, 8} and q an odd integer prime to a. (i) chi_2(a/q) is irrational if q >= q_+(a), with q_+(3) = 131, q_+(4) = 995, q_+(5) = 829, q_+(8) = 12061. (ii) Ti_2(a/q) is irrational if q >= q_-(a), with q_-(3) = 257, q_-(4) = 995, q_-(5) = 1609, q_-(8) = 12061. Here chi_2(x) = sum_{j>=0} x^{2j+1}/(2j+1)^2 and Ti_2(x) = sum_{j>=0} (-1)^j x^{2j+1}/(2j+1)^2; both are odd, so the same holds at -a/q."
+lean = ""
+lean_conditional = [
+  "AxiomForge.LegendreChiGeneral.irrational_legendreChi_div_of_estimates",
+  "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_div_of_estimates",
+  "AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_div_of_estimates",
+  "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_div_of_estimates",
+]
+
+# Evidence for every value: logs/verification.md.
+[theorem.verification]
+proof = "candidate"
+certificates = "reproduced"
+formalization = "in-preparation"
+build = "passing"
+axioms = "standard"
+statement_review = "pending"
+independent_review = "ai-internal"
+literature_review = "checked"

@@ -1,0 +1,220 @@
+\section{Odd primes dividing \texorpdfstring{$aq(q^2-\sigma a^2)$}{aq(q²-σa²)}}\label{sec:exceptional}
+
+This section bounds $\vG p(T)$ for the finitely many odd primes dividing $aq(q^2-\sigma a^2)$,
+which give the terms $-(2\kappa-1)\log a_0$, $\frac13\log q$ and $-\Dk\log(q^2-\sigma a^2)$ of
+$\aconst_\sigma(a,q)$, and proves a crude uniform bound for the other odd primes, used for small
+primes in \cref{sec:ordinary}. All of them rest on one lemma on the partial fractions of the
+normalised weights (\cref{lem:newton-quotient}).
+
+Throughout, $p$ is an odd prime. Since $w=\sigma a^2/q^2$ and $1-w=(q^2-\sigma a^2)/q^2$, the
+odd primes fall into four classes: those dividing $a$ (where $\abs w_p<1$), those dividing $q$
+(where $\abs w_p>1$), those dividing $q^2-\sigma a^2$ (where $w$ is a unit but $1-w$ is not),
+and the others, called \emph{ordinary}, for which $w$ and $1-w$ are units. As $a$ and $q$ are
+coprime, the first three classes are disjoint. We work with the binomial form
+$T(X)=\det[\mu_X(\Phi\beta_i\beta_j)]$ of \cref{lem:change-of-basis}, with $\Phi$ as
+in~\eqref{eq:Phi}.
+
+\subsection{Newton quotients}\label{subsec:newton}
+
+\begin{lemma}\label{lem:newton-quotient}
+Let $p$ be odd and let $B\in\Q[u]$ have degree at most $D$ and satisfy $B(\Z)\subset\Z_p$. Then
+\[
+  \frac{K!\,B(u)}{D_K(u)}=Q(u)+\sum_{k<K}\frac{\rho_k}{u-x_k}
+\]
+with a polynomial $Q$ and
+\begin{enumerate}[(a)]
+\item $\rho_k=(-1)^kK\binom{K-1}{k}B(x_k)\in\Z_p$;
+\item $Q'=0$ if $D\le K$; otherwise $\deg Q'\le D-K-1$ and $p^{\lambda}Q'(\Z)\subset\Z_p$
+with $\lambda=\floor{\log_pD}+\floor{\log_p(D-K)}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+A polynomial with $p$-integral values on $\Z$ is a $\Z_p$-linear combination of the $\binom un$
+and therefore maps $\Z_p$ into $\Z_p$; as $p$ is odd, $\frac12\in\Z_p$. Hence the Newton
+coefficients $b_t$ in $B(u)=\sum_tb_t\binom{u+K-\frac12}{t}$, which are finite differences of
+$B$ at $\frac12-K$, lie in $\Z_p$, and $B(x_k)\in\Z_p$. Part~(a) follows from
+$D_K'(x_k)=\prod_{l\ne k}(l-k)=(-1)^kk!\,(K-1-k)!$. For $t\ge K$ the first $K$ factors of
+$t!\binom{u+K-1/2}{t}$ are those of $D_K(u)$, so
+\[
+  \frac{K!}{D_K(u)}\binom{u+K-\frac12}{t}=\binom{t}{K}^{-1}\binom{u-\frac12}{t-K},
+\]
+while for $t<K$ the quotient is a proper rational function. Thus
+\[
+  Q(u)=\sum_{t=K}^{D}b_t\binom tK^{-1}\binom{u-1/2}{t-K}.
+\]
+By Kummer's theorem
+$v_p\binom tK\le\floor{\log_pt}$, and
+$\frac{\mathrm d}{\mathrm du}\binom{u-1/2}{s}=\sum_{l=1}^{s}\frac{(-1)^{l-1}}{l}\binom{u-1/2}{s-l}$
+(the identity used in the proof of \cref{lem:parity-minors}); the values of $\binom{u-1/2}{r}$
+at integers lie in $\Z_p$. This gives~(b).
+\end{proof}
+
+We apply the lemma to $B_{ij}(u)=u\,\beta_i(u)\beta_j(u)$, of degree $D_{ij}=i+j+1$, for which
+$K!B_{ij}/D_K=\Phi\beta_i\beta_j$. Writing $Q_{ij}$ and $\rho_{ij,k}$ for the corresponding
+quotient and residues,
+\begin{equation}\label{eq:entry-decomposition}
+  \begin{gathered}
+  \mu_X(\Phi\beta_i\beta_j)=\mom(Q_{ij}')-4\sum_{k<K}\rho_{ij,k}\,\sigma^ky^{2k+1}(X-\tau_k),\\
+  \rho_{ij,k}=(-1)^kK\tbinom{K-1}{k}x_k\beta_i(x_k)\beta_j(x_k).\end{gathered}
+\end{equation}
+For both ratios $D_{ij}\le2h-1<3h$ and $2K-1<3h$; we put $L_p=\floor{\log_p(3h)}$, so that
+$p^{2L_p}Q_{ij}'(\Z)\subset\Z_p$.
+
+\begin{proposition}[ordinary odd primes, uniform bound]\label{prop:uniform}
+If $p\nmid 2aq(q^2-\sigma a^2)$, then $\vG p(T)\ge-2hL_p$.
+\end{proposition}
+
+\begin{proof}
+Here $w$ and $1-w$ are $p$-adic units. We bound the two parts of~\eqref{eq:entry-decomposition}.
+By \cref{lem:newton-quotient}(b) and \cref{lem:moment-sums}(c) applied to $p^{2L_p}Q_{ij}'$,
+$\mom(Q_{ij}')\in p^{-2L_p}\Z_p$. Since $y$ is a unit, the polynomial $y^{2k+1}(X-\tau_k)$ has
+coefficients $y^{2k+1}$ and $\sum_{j\le k}\sigma^jy^{2k-2j}/(2j+1)^2$, of valuation at least
+$-2\floor{\log_p(2K-1)}\ge-2L_p$. With \cref{lem:newton-quotient}(a), every entry has Gauss
+valuation at least $-2L_p$, and the Leibniz expansion gives the claim.
+\end{proof}
+
+\subsection{Primes dividing \texorpdfstring{$q^2-\sigma a^2$}{q²-σa²}}\label{subsec:p-divides-Y}
+
+\begin{proposition}\label{prop:p-divides-Y}
+Let $p$ be an odd prime dividing $q^2-\sigma a^2$ and $f=v_p(q^2-\sigma a^2)$. If $K=\kappa h$
+with $1\le\kappa\le2$, then
+\[
+  \vG p(T)\ \ge\ -f\sum_{i<h}\pos{2i+1-K}-2hL_p\ \ge\ -f\,\Dk\,h^2-2hL_p .
+\]
+\end{proposition}
+
+\begin{proof}
+Now $w$ is a unit and $v_p(1-w)=f$, so $v_p(\Omega_b(w))=-f(b+1)$. The Newton expansion of
+$Q_{ij}'$ involves only $b\le D_{ij}-K-1$, and its coefficients lie in $p^{-2L_p}\Z_p$, so
+$v_p(\mom(Q_{ij}'))\ge-2L_p-f\pos{i+j+1-K}$; the pole terms are as in \cref{prop:uniform},
+because $y$ is a unit. In the Leibniz expansion, for every permutation,
+\eqref{eq:convexity-sum} bounds the sum of the $\pos{i+\varpi(i)+1-K}$ by
+$\sum_{i<h}\pos{2i+1-K}\le\Dk h^2$.
+\end{proof}
+
+At $\kappa=1$ this is the bound $\frac14h^2\log(q^2-\sigma a^2)$ of
+\cite[Lemma~5.1, Thm.~5.3]{Krisman2026chi2}; the decrease of the factor to $\frac{25}{144}$
+or $\frac9{64}$ is the main gain of the ratios $\kappa>1$.
+
+\subsection{Primes dividing \texorpdfstring{$q$}{q}: reflection}\label{subsec:p-divides-q}
+
+Let $p\mid q$ and $f=v_p(q)\ge1$; then $v_p(y)=f$ and $v_p(w)=-2f$. The series
+\[
+  \xi'_p=\sum_{j\ge0}\frac{\sigma^jy^{2j+1}}{(2j+1)^2}
+\]
+converges in $\Z_p$: its $j$-th term has valuation $(2j+1)f-2v_p(2j+1)\ge(2j+1)-2\log_3(2j+1)>0$,
+which tends to infinity.
+
+\begin{lemma}[reflected functional]\label{lem:reflection}
+For every $R\in\Rsp$,
+\[
+  \mu_X(R)=-\sum_{m\ge0}w^{-m}R'(-m)\;-\;4\,(X+\sigma\xi'_p)\sum_{k<K}\sigma^ky^{2k+1}
+  \Res_{u=x_k}R,
+\]
+where the series converges in $\Q_p$.
+\end{lemma}
+
+\begin{proof}
+For polynomials this is \cref{lem:moment-sums}(b), since $\abs{w^{-1}}_p<1$. For
+$R=1/(u-x_k)$, $R'(-m)=-4/(2k+1-2m)^2$. The terms $0\le m\le k$ give, with $j=k-m$,
+$4\sum_{j\le k}\sigma^{k-j}y^{2k-2j}/(2j+1)^2=4\sigma^ky^{2k+1}\tau_k$, and the terms $m>k$
+give, with $j=m-k-1$, $4\sigma^{k+1}y^{2k+1}\xi'_p$. Hence
+$-\sum_mw^{-m}R'(-m)=4\sigma^ky^{2k+1}(\tau_k+\sigma\xi'_p)$, and adding
+$-4\sigma^ky^{2k+1}(X+\sigma\xi'_p)$ gives $-4\sigma^ky^{2k+1}(X-\tau_k)=\mu_X(R)$.
+\end{proof}
+
+\begin{proposition}\label{prop:p-divides-q}
+Let $p\mid q$ and $f=v_p(q)$. Then $\vG p(T)\ge\frac f3h^2-O(h\log h)$.
+\end{proposition}
+
+\begin{proof}
+Let $\bvec(u)=(\beta_i(u))_{i<h}$. By \cref{lem:reflection} applied to $\Phi\beta_i\beta_j$,
+\begin{multline*}
+  \bigl[\mu_X(\Phi\beta_i\beta_j)\bigr]=\sum_{m\ge0}w^{-m}\bigl[\bvec\ \bvec'\bigr](-m)
+  \begin{pmatrix}-\Phi'(-m)&-\Phi(-m)\\-\Phi(-m)&0\end{pmatrix}
+  \bigl[\bvec\ \bvec'\bigr](-m)^{\mathsf T}\\
+  +\sum_{k<K}\eta_k\,\bvec(x_k)\bvec(x_k)^{\mathsf T},
+\end{multline*}
+with $\eta_k=-4(X+\sigma\xi'_p)\sigma^ky^{2k+1}\rho_k$ and
+$\rho_k=\Res_{x_k}\Phi=(-1)^kK\binom{K-1}kx_k\in\Z_p$
+(\cref{lem:newton-quotient}(a)). We record the valuations.
+\begin{itemize}
+\item $\bvec(-m)$ and $\bvec(x_k)$ are integral, and $\beta_i'=\sum_{l=1}^{i}\frac{(-1)^{l-1}}{l}
+\beta_{i-l}$ shows that $\bvec'(-m)$ has valuation at least $-\floor{\log_ph}$.
+\item $\vG p(\eta_k)\ge(2k+1)f$, because $X+\sigma\xi'_p$ has Gauss valuation $0$.
+\item $v_p(w^{-m})=2fm$.
+\item $2^KD_K(-m)=\prod_{k<K}(2k+1-2m)$ is a product of $K$ consecutive odd integers, none zero.
+For each $e\ge1$ at most $\floor{K/p^e}+1$ of them are divisible by $p^e$, and none if
+$p^e>2(K+m)$. Hence $v_p(K!/D_K(-m))\ge-\floor{\log_p(2K+2m)}$. Differentiating
+$\Phi=K!\,u/D_K$ by the product rule, and using
+$D_K'/D_K(-m)=\sum_k2/(2k+1-2m)$, we get $v_p(\Phi(-m))$, $v_p(\Phi'(-m))\ge
+-C\log(h+m+2)$ for a constant $C$.
+\end{itemize}
+Truncate the sum at $m\le M$ and apply~\eqref{eq:cauchy-binet} with the slots $\bvec(-m)$,
+$\bvec'(-m)$ and $\bvec(x_k)$. A nonzero term selects at each site $-m$ the same number of slots
+on both sides and the same poles. Its outer factors have valuation at least $-2h\floor{\log_ph}$,
+and its middle factor at least the sum, over the $h$ selected slots, of $2fm-C\log(h+m+2)$ for a
+slot at $-m$ and of $(2k+1)f\ge2fk$ for the pole $x_k$. Every level $m\ge0$ thus offers at most
+three slots, each of cost at least
+\[
+  2fm-C\log(h+m+2)\ \ge\ \bigl(2f-C/(h+2)\bigr)m-C\log(h+2),
+\]
+and the sum of the $h$ smallest such costs is at least
+$(2f-C/(h+2))\sum_{i<h}\floor{i/3}-Ch\log(h+2)=\frac f3h^2-O(h\log h)$, uniformly in $M$. Since
+$w^{-m}\to0$ in $\Q_p$, the truncated determinants converge to $T$ in the Gauss norm.
+\end{proof}
+
+This is Krisman's reflection argument \cite[Lemma~5.2]{Krisman2026chi2}, with prices $2fm$ at
+the integer sites and $(2k+1)f$ at the poles; the numerator $a$, a $p$-adic unit, plays no role.
+
+\subsection{Odd primes dividing the numerator}\label{subsec:p-divides-a}
+
+Let $p$ be an odd prime dividing $a$ and $f=v_p(a)\ge1$; then $v_p(y)=-f$ and $v_p(w)=2f$.
+\emph{Heuristic.} The pole $x_k$ enters with the factor $y^{2k+1}$, of valuation $-(2k+1)f$,
+so a single entry of the matrix can have valuation about $-2Kf$. But the contribution of each
+pole to the matrix has rank one, so a term of the determinant contains the factor $y^{2k+1}$ of
+each pole at most once.
+
+\begin{proposition}\label{prop:p-divides-a}
+Let $p$ be an odd prime dividing $a$ and $f=v_p(a)$. Then
+\[
+  \vG p(T)\ \ge\ -f\,h(2K-h)-2hL_p=-f(2\kappa-1)h^2-2hL_p\qquad(K=\kappa h).
+\]
+\end{proposition}
+
+\begin{proof}
+By~\eqref{eq:entry-decomposition},
+\[
+  \bigl[\mu_X(\Phi\beta_i\beta_j)\bigr]=\mathbf P+\sum_{k<K}\gamma_k\,\bvec(x_k)\bvec(x_k)^{\mathsf T},
+  \qquad\gamma_k=-4(-1)^kK\tbinom{K-1}kx_k\,\sigma^ky^{2k+1}(X-\tau_k),
+\]
+with $\mathbf P=[\mom(Q_{ij}')]$. We record the valuations.
+\begin{itemize}
+\item $\mathbf P$ has entries in $p^{-2L_p}\Z_p$: here $w\in p\Z_p$ and $1-w$ is a unit, so
+\cref{lem:moment-sums}(c) applies to $p^{2L_p}Q_{ij}'$.
+\item $\bvec(x_k)\in\Z_p^h$, because $x_k\in\Z_p$.
+\item $\tau_k\in\Z_p$: its $j$-th term $\sigma^jy^{-2j-1}/(2j+1)^2$ has valuation
+$(2j+1)f-2v_p(2j+1)>0$. Hence $\vG p(X-\tau_k)=0$ and $\vG p(\gamma_k)\ge-(2k+1)f$.
+\end{itemize}
+By \cref{lem:rank-one}, $T$ is a sum of terms $\prod_{k\in\mathcal K}\gamma_k\cdot\Theta_{\mathcal K}$
+over sets $\mathcal K$ of at most $h$ poles, where $\Theta_{\mathcal K}$ is an integral
+combination of products of two minors of the integral matrix $[\bvec(x_k)]_k$ and a minor of
+size $h-\abs{\mathcal K}$ of $\mathbf P$. Hence
+\[
+  \vG p(T)\ \ge\ \min_{\mathcal K}\Bigl[-f\sum_{k\in\mathcal K}(2k+1)-2L_p(h-\abs{\mathcal K})\Bigr]
+  \ \ge\ -f\sum_{k=K-h}^{K-1}(2k+1)-2hL_p,
+\]
+and $\sum_{k=K-h}^{K-1}(2k+1)=K^2-(K-h)^2=h(2K-h)$.
+\end{proof}
+
+\begin{remark}\label{rem:worse-sign}
+Summing \cref{prop:p-divides-a} over the odd primes dividing $a$, \cref{prop:p-divides-q} over
+the primes dividing $q$ and \cref{prop:p-divides-Y} over the odd primes dividing
+$q^2-\sigma a^2$ gives the terms $-(2\kappa-1)\log a_0$, $\frac13\log q$ and, together with the
+prime $2$ when $a$ is odd (\cref{rem:two-odd-cancellation}), $-\Dk\log(q^2-\sigma a^2)$ of
+$\aconst_\sigma(a,q)$. When $a$ is even, $c_2$ does not depend on $\sigma$ and
+$q^2-a^2<q^2+a^2$, so $\aconst_+(a,q)\ge\aconst_-(a,q)$: it suffices to compare the size exponent
+with $\aconst_-(a,q)$. In exact computations the valuations at the primes dividing $a$ approach
+$-f(2\kappa-1)h^2$ from above (Appendix~\ref{app:consistency}).
+\end{remark}

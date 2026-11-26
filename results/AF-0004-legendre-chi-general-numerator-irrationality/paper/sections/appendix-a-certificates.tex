@@ -1,0 +1,95 @@
+\section{The finite computations}\label{app:certificates}
+
+Four kinds of finite computations enter the proof. Each was first carried out by the code that
+accompanies the candidate arguments, and then recomputed by a second implementation written
+from the definitions in this paper (the scripts in the directory \texttt{checks/} of the
+manuscript sources, see the section on reproducibility). Both implementations were written by AI
+systems; agreement between them is what we call \emph{certified (AI-internal)}.
+
+\subsection{The profile integrals}\label{app:profile-certificate}
+
+For each $\kappa\in\{7/6,5/4\}$ and $\delta=1/2000$, the breakpoints $\mathfrak B\cap[\delta,2\kappa]$
+of \cref{lem:convexity}, together with $\delta$ and $2\kappa$, cut $[\delta,2\kappa]$ into
+$5999$ intervals. At the midpoint $x$ of each interval the class types, their capacities and $N(x)$
+are rational, and $J(x)$, $R(x)$ are values of finite linear programmes with rational data. The
+archived implementation fills the cheapest slots greedily after pre-filling the jet levels below
+$\floor{1/x}-2$, which is legitimate because every slot of those levels is cheaper than every slot
+at level $\floor{1/x}-1$ or above, and the levels below $\floor{1/x}-1$ have total capacity less
+than one. The second implementation does not pre-fill: it finds by threshold search the least
+integer cost $c^*$ such that the slots of cost at most $c^*$ have capacity at least one, using
+closed forms, and fills up to $c^*$. All arithmetic is exact. Both give
+\[
+  \sum_{\text{intervals}}(b-a)\,B\bigl(\tfrac{a+b}2\bigr)-2\delta=
+  \begin{cases}-2.11316413653\ldots&\kappa=7/6,\\
+  -2.35563983202\ldots&\kappa=5/4,\end{cases}
+\]
+in agreement to all digits; the stated constants $\Iprof_{7/6}=-2113164137\cdot10^{-9}$ and
+$\Iprof_{5/4}=-2355639833\cdot10^{-9}$ are rational numbers below the exact sums (the integral
+is rounded down at the ninth decimal).
+
+\subsection{The comparison densities and the six margins}\label{app:decay-certificates}
+
+The six densities $\rho$ are step functions on the mesh $1/240$ with cell masses $m_i/24\,000\,000$,
+$m_i\in\Z_{\ge0}$ and $\sum m_i=24\,000\,000$, cap $m_i\le200\,000$ (that is, $\rho\le2$), stored in \texttt{data/comparison.json} together with a rational $\lambda$
+for each row. They were found by numerical optimisation; only their stored values matter.
+
+The quantities in $\bconst(\rho,\lambda)$ are evaluated as follows.
+\begin{itemize}
+\item $E(\rho)$ is a finite sum over pairs of cells of
+$\iint_{\text{cell}\times\text{cell}}\log\abs{x-y}=g(d+s)+g(d-s)-2g(d)$, with $s=1/240$, $d$ the
+difference of the left endpoints, and $g(t)=\frac12t^2\log\abs t-\frac34t^2$.
+\item $G$ is a finite sum of terms $c_j\psi(x-a_j)$ with rational $c_j$ and $a_j$ on the grid
+$\frac1{24000}\Z$, plus $x\log W$. On each grid cell of length $\ell=1/24000$, $G$ is at most the
+larger of its endpoint values plus $\sum_j\abs{c_j}\epsilon_j$, where $\epsilon_j$ bounds the
+deviation of $\psi(x-a_j)$ from its chord: $\ell^2/(8\,\mathrm{dist})$ if $a_j$ is at distance
+$\mathrm{dist}\ge\ell$ from the cell, and $\ell/e$ if $a_j$ is an endpoint (because
+$\abs{t\log(t/\ell)}\le\ell/e$ on $[0,\ell]$).
+\item The integral $2\int(G-\lambda)_+$ is bounded by $2\ell$ times the sum of the positive parts
+of these cell bounds minus $\lambda$, and the tail conditions of \cref{lem:tail}
+($1+\log W<0$, $\log W<\lambda$) are checked directly.
+\end{itemize}
+The archived implementation uses fixed-point logarithms with denominator $2^{100}$ and explicit
+error budgets (and the cruder constant $\ell/2$); the second uses ball arithmetic (Arb, $200$ bits)
+for every logarithm. They give, with decimals rounded in the safe direction (second implementation),
+\begin{center}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+row & $E(\rho)$ & $\bconst\le$ & $\aconst\ge$ & $\aconst-\bconst\ge$\\
+\midrule
+$3$, $131$, $\chi_2$ & $-2.124517762$ & $-3.187821144$ & $-3.173875358$ & $0.013945786$\\
+$3$, $257$, $\Ti_2$ & $-2.154911545$ & $-3.546389753$ & $-3.541276253$ & $0.005113500$\\
+$4$, $995$, both & $-2.177748279$ & $-4.083454335$ & $-4.081754611$ & $0.001699724$\\
+$5$, $829$, $\chi_2$ & $-2.171320186$ & $-3.879559185$ & $-3.878258885$ & $0.001300300$\\
+$5$, $1609$, $\Ti_2$ & $-2.180847665$ & $-4.212674322$ & $-4.211960841$ & $0.000713481$\\
+$8$, $12061$, both & $-2.189990835$ & $-4.986095509$ & $-4.985336979$ & $0.000758530$\\
+\bottomrule
+\end{tabular}
+\end{center}
+which exceed the margins $m_0$ of \cref{thm:rows}; the archived verifier asserts the same margins in
+exact rationals. The arithmetic constant uses the rational lower bounds $\Iprof_\kappa$ of
+Appendix~\ref{app:profile-certificate}. For the two power-of-two rows the constant $c_2=C_e(\kappa)$
+is the minimum of the quadratic $f_e$ of \cref{thm:two-even}, computed exactly ($-337/112$ at
+$x=27/28$ for $e=2$ and $-9/2$ at $x=1$ for $e=3$, both at $\kappa=5/4$), and the logarithms of $2$ are
+rounded in the direction of the sign of $c_2$. The second implementation also evaluated, for each row, the same density at
+larger denominators ($q+2$, $q+12$, $2q+1$, $10q+1$, $1000q+1$, $\lambda$ shifted as in
+\cref{prop:shift}) and found $B$ and the margin within the bounds of \cref{prop:shift,prop:propagation}.
+
+\subsection{The local determinants}\label{app:local-certificates}
+
+For both ratios the entries of $(Q-1)^4L_{s,e}(Q)$ are polynomials in $Q$ with rational
+coefficients. The archived implementation computes the six determinants symbolically (SymPy). The
+second evaluates $(Q-1)^{4t}\det L_{s,e}(Q)$ exactly at sufficiently many rational values of $Q$
+(python-flint), interpolates, removes the factors $Q$ and $Q-1$, and compares with the stored
+primitive integer polynomials: all six agree, with the exponents $(a_{s,e},b_{s,e})$ of
+\cref{prop:local-dets}. The leading-term domination
+$\sum_{i\ge1}\abs{\pi_{\deg-i}/\pi_{\deg}}R^{-i}<1$ at $R=83^2/4$, which also proves
+nonvanishing for $\abs Q\ge R$, holds with left-hand sides between $4\cdot10^{-4}$ and $5.5\cdot10^{-3}$.
+
+\subsection{Arithmetic entry bounds}\label{app:entry-certificates}
+
+The archived program checks the anchored forward-difference entry bounds of
+\cref{prop:two-odd-entries} exactly on $24\,960$ entries, for numerators $3,5,7,9$ and several
+denominators, both signs, $h\le24$; and the exact quadratic minimisers $C_e(7/6)=-140/99$, $-227/84$,
+$-614/153$ for $e=1,2,3$. The second implementation checks, entry by entry, the same bounds in
+the finite-size comparison of Appendix~\ref{app:consistency}.

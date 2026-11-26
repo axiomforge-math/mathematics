@@ -1,0 +1,58 @@
+\afbacksection{Reproducibility and formal verification}
+\sloppy
+
+\emph{Status of the result.} \Cref{thm:main} is a candidate. No human expert independent of the
+AI systems that produced it has reviewed the argument. Each step carries one of the labels of
+\cref{subsec:step-status}: \emph{proved} (routine elementary arguments), \emph{candidate}
+(argued in this paper, not yet independently verified) or \emph{certified (AI-internal)} (a finite
+computation reproduced by a second implementation, both written by AI systems). None of this is
+an independent verification.
+
+\emph{Computations.} Paths are relative to the directory of this contribution (AF-0004) in
+the AxiomForge archive (\url{https://github.com/axiomforge-math/mathematics}); every command, its
+output and its outcome are recorded in \path{logs/verification.md}. The scripts used for
+Appendices~\ref{app:certificates} and~\ref{app:consistency} (the directory \texttt{checks/}
+mentioned there) are in \path{logs/experiments/scripts/}, and the step densities and integer
+polynomials (the directory \texttt{data/}) are the following files of
+\path{logs/experiments/certificates/}:
+\begin{itemize}
+\item \path{comparison_densities.json} (the six densities and $\lambda$),
+\item \path{local_polynomials.json} (the six integer polynomials).
+\end{itemize}
+The scripts need Python~3.11 or later with \texttt{python-flint} and \texttt{mpmath}; none of them
+imports the code that produced the candidate certificates. They are:
+\begin{itemize}
+\item \path{pencil.py}: exact implementation of $\mu_X$, $\Delta$, $T$ (used by the three checks
+below);
+\item \path{profile.py}: the profile integrals of \cref{thm:ordinary} (exact rational arithmetic);
+\item \path{decay_ball.py}: the rigorous bounds for $\bconst$ and $\aconst$ and the six margins of
+Appendix~\ref{app:decay-certificates} (Arb ball arithmetic), with an option for larger $q$;
+\item \path{local_poly.py}: the local determinants of \cref{prop:local-dets};
+\item \path{series_identity.py}, \path{finite_bounds.py} and \path{global_prime_index.py}: the
+consistency checks of Appendix~\ref{app:consistency}.
+\end{itemize}
+The archived programs that first produced the certificates (exact rational verifiers for the
+profile integrals, the comparison densities and the entry bounds, and a symbolic computation of
+the local determinants) were also re-executed and reproduce their logs; they are not part of this
+package.
+
+\emph{Formal verification.} The Lean~4 package in \path{lean/} (Lake package
+\texttt{axiomforge-af0004}, root module \texttt{AxiomForge.AF0004}, namespace
+\texttt{AxiomForge.LegendreChiGeneral}) is adapted from the package of the numerator-$2$
+preprint. It contains: definitions of $\chi_2$ and $\Ti_2$ as series, with their oddness; an
+explicit definition of the polynomials $T_n$ of \cref{sec:pencils}; the irrationality
+criterion (\cref{prop:criterion}) in several forms, proved unconditionally; the exact evaluation of
+the constants $c_2$ of \cref{thm:three-estimates}; and the six strict margins of \cref{thm:rows}
+for the rational bounds of \cref{tab:constants}, proved by \texttt{norm\_num} (no
+\texttt{native\_decide}). The main theorems are \emph{not} formalised. The package proves only the
+final deduction, conditionally: the theorems whose names end in \texttt{\_of\_estimates} derive the
+irrationality of $\chi_2(\pm a/q)$ and $\Ti_2(\pm a/q)$ for the six rows from a hypothesis that
+packages the arithmetic estimate, the size estimate and the nonvanishing at prime indices for these
+polynomials, with rounded rates. These hypotheses are exactly the unproved content of
+\cref{sec:prime-two,sec:exceptional,sec:ordinary,sec:decay,sec:nonvanishing}; the Lean theorems are
+therefore not formalisations of \cref{thm:main}. The formalization of the three estimates is in
+preparation. The package builds with \texttt{lake exe cache get \&\& lake build};
+\texttt{\#print axioms} reports only \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound} for each audited declaration (\path{lean/AXIOMS.txt}), and the sources contain
+no \texttt{sorry}, \texttt{admit}, \texttt{axiom} declaration or \texttt{native\_decide}. No
+independent human review of this work has taken place.

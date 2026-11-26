@@ -1,0 +1,7 @@
+(t,c)=(6,7) (s,e)=(0,0): (Q-1)^24 det = const Q^9 (Q-1)^20 P(Q), deg P = 16, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00219083 < 1: True; Cauchy bound 23.183
+(t,c)=(6,7) (s,e)=(1,0): (Q-1)^24 det = const Q^11 (Q-1)^20 P(Q), deg P = 20, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00543242 < 1: True; Cauchy bound 136.72
+(t,c)=(6,7) (s,e)=(1,1): (Q-1)^24 det = const Q^13 (Q-1)^18 P(Q), deg P = 20, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00426695 < 1: True; Cauchy bound 188.09
+(t,c)=(4,5) (s,e)=(0,0): (Q-1)^16 det = const Q^5 (Q-1)^15 P(Q), deg P = 6, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00041129 < 1: True; Cauchy bound 1.7083
+(t,c)=(4,5) (s,e)=(1,0): (Q-1)^16 det = const Q^6 (Q-1)^15 P(Q), deg P = 9, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00264794 < 1: True; Cauchy bound 9.3746
+(t,c)=(4,5) (s,e)=(1,1): (Q-1)^16 det = const Q^7 (Q-1)^14 P(Q), deg P = 9, matches stored polynomial: True; domination ratio at 83^2/4 = 0.00167875 < 1: True; Cauchy bound 5.0715
+ALL PASS

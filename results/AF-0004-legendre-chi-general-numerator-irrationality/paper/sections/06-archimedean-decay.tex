@@ -1,0 +1,186 @@
+\section{The size of \texorpdfstring{$T(\xi)$}{T(ξ)}}\label{sec:decay}
+
+This section proves the upper bound $\limsup h^{-2}\log\abs{T(\xi)}\le\bconst$
+(\cref{thm:decay}), the second input of the criterion; it is combined with the arithmetic bound in
+\cref{sec:proofs}. \emph{Heuristic.} By~\eqref{eq:real-sites}, $T(\xi)$ is a sum over
+configurations of $h$ points on the summation sites, at most two per site, each configuration
+weighted by a product of Vandermonde factors and of the weights $w^m\varphi(m)$. This is a discrete
+logarithmic gas in an external field, and its size is controlled by comparing the configurations
+with a fixed step density $\rho$; the comparison costs only $O(h\log h)$ thanks to a discrete
+energy inequality. The method is Krisman's \cite[\S6--7]{Krisman2026chi2}, in the form of
+\cite{AxiomForge2026numeratorTwo} without zero band. The numerator $a$ enters only through
+$W=\abs w=a^2/q^2$, so the bound is the same for both signs and for all numerators with the same
+$W$.
+
+Throughout, $K=\kappa h$ with $\kappa\in\{7/6,5/4\}$.
+
+\subsection{Statement}\label{subsec:decay-statement}
+
+A \emph{comparison density} is a function $\rho\colon\R\to[0,2]$, constant on the cells of a
+finite partition of $[0,1]$ into intervals, vanishing outside $[0,1]$, with $\int\rho=1$. Put
+\begin{align*}
+  U(x)&=\int\rho(t)\log\abs{x-t}\diff t,\qquad E(\rho)=\int U(x)\rho(x)\diff x,\\
+  V(x)&=x\log W+\psi(x)-\psi(x+\kappa)\qquad(x\ge0),\\
+  G(x)&=2U(x)+V(x),\qquad C=\kappa\log\kappa+\tfrac32-\kappa,
+\end{align*}
+with $\psi(t)=t\log\abs t-t$, $\psi(0)=0$. Note that $\psi(x)-\psi(x+\kappa)=-\int_x^{x+\kappa}\log
+t\diff t$: it comes from the poles.
+
+\begin{theorem}\label{thm:decay}
+Let $\rho$ be a comparison density and $\lambda\in\R$, and suppose that there is $\eta>0$ with
+$G(x)-\lambda\le-\eta x$ for all $x\ge1$. Then
+\[
+  \limsup_{h\to\infty}\frac{1}{h^2}\log\abs{T(\xi)}\ \le\ \bconst(\rho,\lambda):=
+  C-E(\rho)+\lambda+2\int_0^1\pos{G(x)-\lambda}\diff x .
+\]
+\end{theorem}
+
+\begin{lemma}[tail condition]\label{lem:tail}
+For $x\ge1$, $G(x)\le x\log W+(2-\kappa)\log x$. Consequently the hypothesis of \cref{thm:decay}
+holds if
+\[
+  1+\log W<0\qquad\text{and}\qquad\log W<\lambda .
+\]
+\end{lemma}
+
+\begin{proof}
+For $x\ge1$ and $t\in[0,1]$, $\log\abs{x-t}\le\log x$, so $U(x)\le\log x$. Next,
+$\int_x^{x+\kappa}\log t\diff t\ge\kappa\log x$. This gives the first inequality. Since
+$0<2-\kappa\le1$ and $\log x\le x-1$, $G(x)\le x\log W+(x-1)$, so
+$G(x)-\lambda\le-(\lambda-\log W)-(x-1)(-1-\log W)\le-\eta x$ with
+$\eta=\min(\lambda-\log W,\,-1-\log W)>0$.
+\end{proof}
+
+\subsection{Three lemmas and the proof}\label{subsec:decay-lemmas}
+
+\begin{lemma}[minors with derivative columns]\label{lem:derivative-minors}
+Let $h\ge2$ and let $s_1,\dots,s_h$ be integers, each value occurring at most twice. Let
+$\mathcal E$ be the $h\times h$ matrix whose $i$-th column is $\vvec(s_i)$ or $\vvec'(s_i)$, where
+for a value occurring twice one column of each kind is taken. Then
+\[
+  \abs{\det\mathcal E}\le h^h\Bigl(1+\frac2h\Bigr)^{h^2}\prod_{i<j,\ s_i\ne s_j}\abs{s_i-s_j}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write each derivative column as $\vvec'(s)=\frac1{2\pi i}\oint_{\abs{\zeta-s}=1/h}
+\vvec(\zeta)(\zeta-s)^{-2}\diff\zeta$. By multilinearity $\det\mathcal E$ is an integral of
+Vandermonde determinants $\prod_{i<j}(\zeta_j-\zeta_i)$, with $\zeta_i=s_i$ for value columns
+and $\abs{\zeta_i-s_i}=1/h$ otherwise, against a kernel of total mass at most $h$ per derivative
+column. If $s_i\ne s_j$ then $\abs{\zeta_i-\zeta_j}\le\abs{s_i-s_j}+2/h\le(1+2/h)\abs{s_i-s_j}$;
+if $s_i=s_j$ then $\abs{\zeta_i-\zeta_j}=1/h\le1$.
+\end{proof}
+
+\begin{lemma}[a discrete energy inequality]\label{lem:polya}
+For every finitely supported real sequence $(\nu_s)_{s\in\Z}$ with $\sum_s\nu_s=0$,
+\[
+  \sum_{s\ne t}\nu_s\nu_t\log\abs{s-t}\ \le\ \log2\sum_s\nu_s^2 .
+\]
+\end{lemma}
+
+\begin{proof}
+We may assume the support lies in $\{0,\dots,M-1\}$ with $M\ge2$. Define $f$ on $\Z_{\ge0}$ by
+$f(0)=\log(2M)$, $f(d)=\log(M/d)$ for $1\le d\le M$ and $f(d)=0$ for $d\ge M$. Its second
+differences $f(d-1)-2f(d)+f(d+1)$ are $0$ at $d=1$, $\log\frac{d^2}{d^2-1}$ for $2\le d<M$,
+$\log\frac M{M-1}$ at $d=M$, and $0$ beyond, so $f$ is convex and decreases to $0$, whence
+$f(d)=\sum_{k\ge1}\bigl(f(k-1)-2f(k)+f(k+1)\bigr)\pos{k-d}$. The kernel
+$\pos{k-\abs{s-t}}$ counts the windows of $k$ consecutive integers containing $s$ and $t$, so it is
+positive semidefinite, and therefore $\sum_{s,t}\nu_s\nu_tf(\abs{s-t})\ge0$. Expanding,
+this sum equals $\log2\sum_s\nu_s^2+\log M\,(\sum_s\nu_s)^2-\sum_{s\ne t}\nu_s\nu_t\log\abs{s-t}$.
+\end{proof}
+
+This is the Pólya-type inequality of \cite[Lemma~6.4]{Krisman2026chi2}.
+
+\begin{lemma}[discretisation]\label{lem:discretisation}
+Let $\rho$ be a comparison density, $m_s=h\int_{(s-1)/h}^{s/h}\rho$ for $s\in\Z$, and
+\[
+  P_m(s)=\sum_{t\ne s}m_t\log\abs{s-t},\qquad E_m=\sum_{s\ne t}m_sm_t\log\abs{s-t}.
+\]
+Then $0\le m_s\le2$, $\sum_sm_s=h$, $m_s=0$ unless $1\le s\le h$, and for every integer $s$,
+\[
+  P_m(s)\le hU(s/h)+h\log h+6+2\log h,\qquad E_m\ge h^2E(\rho)+h^2\log h-4h(1+\log h).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\varrho(u)=\rho(u/h)$, which has mass $m_t$ on $I_t=[t-1,t]$, and note
+$hU(s/h)=\int\varrho(u)\log\abs{s-u}\diff u-h\log h$ and
+$h^2E(\rho)+h^2\log h=\iint\varrho(u)\varrho(u')\log\abs{u-u'}\diff u\diff u'$. For the first
+inequality compare, cell by cell, $m_t\log\abs{s-t}$ with $\int_{I_t}\varrho(u)\log\abs{s-u}\diff
+u$. For $t<s$ the discrete term is the smaller one. For $t=s$ the discrete term is absent and
+the integral is at least $-2\int_0^1\abs{\log v}\diff v=-2$. For $t=s+e$, $e\ge1$, the excess is at
+most $2\int_{e-1}^{e}(\log e-\log v)\diff v$, which is $2$ for $e=1$ and at most $2/(e-1)$ for
+$e\ge2$; summing over $e\le h$ gives at most $4+2\log h$. For the second inequality, cells with
+$t=t'$ contribute a nonpositive amount to the double integral, and for $\abs{t-t'}=e\ge1$ we
+have $\log\abs{u-u'}\le\log(e+1)\le\log e+1/e$, so the double integral is at most
+$E_m+\sum_tm_t\sum_{1\le e\le h}2\cdot2/e$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:decay}]
+By~\eqref{eq:real-sites}, $T(\xi)=\nrm\lim_{M\to\infty}\det H^{(M)}$, where $H^{(M)}$ is the sum
+over $1\le m\le M$. Apply~\eqref{eq:cauchy-binet}. A nonzero term selects, at each site $s$, the
+same number $n_s\in\{0,1,2\}$ of slots on both sides, with $\sum_sn_s=h$; each multiplicity
+vector $n=(n_s)$ arises from at most $4^h$ pairs of slot sets. For $s\ge1$,
+$\varphi'/\varphi(s)=1/s-\sum_k1/(s-x_k)$ has absolute value at most $1+K\le3h$, so every minor of
+the middle factor is bounded by $\prod_sb(s)^{n_s}$ with $b(s)=3hW^s\abs{\varphi(s)}$. With
+\cref{lem:derivative-minors},
+\begin{equation}\label{eq:decay-step1}
+  \abs{\det H^{(M)}}\le4^hh^{2h}e^{4h}\sum_n\prod_sb(s)^{n_s}\prod_{s<t}\abs{s-t}^{2n_sn_t}.
+\end{equation}
+
+\emph{Energy.} Let $m$ be as in \cref{lem:discretisation} and $\nu=n-m$. Then $\sum_s\nu_s=0$ and
+$\sum_s\nu_s^2\le2\sum_s(n_s^2+m_s^2)\le8h$. Expanding $n=m+\nu$ and using
+$\sum_{s\ne t}\nu_sm_t\log\abs{s-t}=\sum_sn_sP_m(s)-E_m$, \cref{lem:polya} and
+\cref{lem:discretisation} give
+\begin{align*}
+  \sum_{s\ne t}n_sn_t\log\abs{s-t}
+  &=-E_m+2\sum_sn_sP_m(s)+\sum_{s\ne t}\nu_s\nu_t\log\abs{s-t}\\
+  &\le h^2\log h-h^2E(\rho)+2h\sum_sn_sU(s/h)+O(h\log h).
+\end{align*}
+
+\emph{Weights.} For $s\ge1$, by concavity
+$\log D_K(s)=\sum_{k<K}\log(s+k+\frac12)\ge\int_0^K\log(s+t)\diff t=\psi(s+K)-\psi(s)$. Since
+$\psi(hx)=h\psi(x)+hx\log h$, with $x=s/h$,
+\[
+  \log b(s)\le hV(x)-K\log h+\log s+\log(3h).
+\]
+
+\emph{Summation.} Combining, the logarithm of the summand in~\eqref{eq:decay-step1} is at most
+\[
+  (1-\kappa)h^2\log h-h^2E(\rho)+h^2\lambda+\sum_sn_s\bigl(h(G(s/h)-\lambda)+\log s\bigr)+O(h\log h).
+\]
+For $s\le h$ we use $n_sh(G-\lambda)\le2h\pos{G-\lambda}$ and $\log s\le\log h$; for $s>h$ the
+tail hypothesis gives $h(G(s/h)-\lambda)\le-\eta s$. Since every multiplicity vector comes from at
+least one ordered $h$-tuple of sites,
+\[
+  \sum_n\prod_s\bigl(se^{h(G(s/h)-\lambda)}\bigr)^{n_s}\le
+  \exp\Bigl(2h\sum_{1\le s\le h}\pos{G(s/h)-\lambda}\Bigr)\Bigl(h^2+\sum_{s>h}se^{-\eta s}\Bigr)^h,
+\]
+uniformly in $M$. Finally Stirling's formula gives
+$\log\nrm=(\kappa-1)h^2\log h+Ch^2+O(h\log h)$, the terms $h^2\log h$ cancel, and since $G$ is
+continuous on $[0,1]$ the Riemann sums $h^{-1}\sum_{1\le s\le h}\pos{G(s/h)-\lambda}$ converge
+to $\int_0^1\pos{G-\lambda}$.
+\end{proof}
+
+\subsection{Larger denominators}\label{subsec:shift}
+
+The exponent depends on $q$ only through $\log W=2\log a-2\log q$, and only in the term $x\log W$
+of $V$.
+
+\begin{proposition}[shift]\label{prop:shift}
+Let $q_0\le q$ be odd, let $(\rho,\lambda)$ satisfy the conditions of \cref{lem:tail} for
+$W_0=a^2/q_0^2$, and put $\tau=2\log(q/q_0)$. Then $(\rho,\lambda-\tau/2)$ satisfies them for
+$W=a^2/q^2$, and $\bconst_q(\rho,\lambda-\tau/2)\le\bconst_{q_0}(\rho,\lambda)-\frac12\log(q/q_0)$.
+\end{proposition}
+
+\begin{proof}
+We have $G_q(x)=G_{q_0}(x)-\tau x$, so $G_q-(\lambda-\tau/2)=G_{q_0}-\lambda-\tau(x-\frac12)$ and
+$\pos{G_q-\lambda+\tau/2}\le\pos{G_{q_0}-\lambda}+\tau\pos{\frac12-x}$. Integrating over $[0,1]$
+costs at most $2\cdot\tau/8$, while $\lambda$ decreases by $\tau/2$. The quantities
+$\lambda-\log W$ and $-1-\log W$ of \cref{lem:tail} become $\lambda-\log W+\tau/2$ and $-1-\log W+\tau$, so they stay positive.
+\end{proof}
+
+This is Krisman's shift lemma \cite[Lemma~7.1]{Krisman2026chi2}. The bound of
+\cref{thm:decay} depends on $\abs w$ only, so it is the same for $\chi_2$ and $\Ti_2$; Krisman
+observes \cite[Remark~6.7]{Krisman2026chi2} that for $w<0$ the true determinants are smaller,
+which we do not use.

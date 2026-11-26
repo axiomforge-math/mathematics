@@ -1,0 +1,3 @@
+k76 kappa 7/6 intervals 5999 I = -2.1131641365333835  floor(10^9 I)/10^9 = -2113164137/1000000000  equals stated certificate: True
+k54 kappa 5/4 intervals 5999 I = -2.3556398320231233  floor(10^9 I)/10^9 = -2355639833/1000000000  equals stated certificate: True
+ALL PASS

@@ -1,0 +1,50 @@
+\section{Consistency checks at small sizes}\label{app:consistency}
+
+The checks below compare the statements of the paper with exact computations of $T$ for small
+$h$. They cannot confirm asymptotic statements, whose error terms are of the same size as the
+differences observed, but they would have exposed errors in the finite forms of the bounds. The
+polynomials $T$ were computed exactly by an implementation of the definitions in
+\cref{sec:pencils} (python-flint rationals, determinants interpolated at $h+1$ rational points;
+the script does not import the code that produced the candidate certificates). Each row of
+\cref{tab:constants}, with both signs for $a=4,8$, was run for $n=1,2,\dots$ up to $h=32$--$56$; in
+addition the numerators $9$ (with $q=35$, $\Ti_2$) and $12$ (with $q=1001$, $\chi_2$), which are
+not rows of the theorem, were run to exercise $3\mid a$ with $9\mid a$ and $e=2$ with $a_0=3$.
+No finite bound failed in any of the runs (\path{logs/experiments/runs/}).
+
+\subsection{The pole series}
+\Cref{lem:pole-series} was tested on five entries $\mu_\xi(\varphi u^s)$ with the series
+$\sum_mw^m(\varphi u^s)'(m)$ summed directly (exact rational derivatives, $\xi$ summed with $700$
+digits), for the six threshold rows and both signs of $a=4,8$ at $n=1$. The largest relative
+discrepancy is $2\cdot10^{-664}$.
+
+\subsection{The prime $2$}
+For odd $a$ every entry bound of \cref{prop:two-odd-entries} was checked in the anchored bases
+(for example $1936$ entries for $a=5$, $q=829$, $h=44$), with no failure, and the exact
+$\vG2(T)$ lies above the finite bound. For $a=4$, $q=995$ and $h=56$, $\vG2(T)=-9156$ against the
+finite bound $-9168$; for $a=8$, $q=12061$ the finite bound is attained exactly for every
+$h=4n\le48$ ($-63$ at $h=4$, $-10184$ at $h=48$). Since the leading terms are
+$C_e(\kappa)h^2-O(h\log h)$ with a logarithmic error of the same size as the differences observed,
+we do not tabulate ratios.
+
+\subsection{Odd primes}
+For each run and each $n$ the primes dividing $a$, $q$ and $q^2-\sigma a^2$ were tested against the
+finite form of the relevant bound: \cref{prop:p-divides-a} (for example for $a=3$, $q=131$, $h=48$,
+$\vG3(T)/h^2=-1.2812$ against $-(2\kappa-1)=-1.3333$), \cref{prop:p-divides-q} (the ratio
+$\vG p(T)/(fh^2)$ is $0.3332$ for $p=199\mid995$ at $h=56$, and below $1/3$ by amounts
+compatible with $O(h\log h)$ for $p=5\mid995$: $0.3084$) and \cref{prop:p-divides-Y}. No bound
+failed. The ordinary primes ($p>2K$ and $p^2>2K$ via the jet and pole bounds) were checked
+in the earlier numerator-$2$ audit; for the numerators of this paper only the exceptional primes
+were tested at each size.
+
+\subsection{Nonvanishing}
+\Cref{thm:nonvanishing} predicts $v_p(\Delta(0))=-pt(\gamma+2-t)+t$ at $h=tp$. Exact computation of
+$\Delta(0)$ gives $v_{13}=-152$ for $(a,q,\sigma)=(4,995,1)$, $(3,257,-1)$ and $(8,12061,-1)$ with
+$h=52$ and $v_{17}=-200$ for $(5,829,1)$ with $h=68$, and $v_{17}=-300$ for $(3,131,1)$ with
+$\kappa=7/6$ and $h=102$, in each case as predicted. These are checks of the whole mechanism of
+\cref{sec:nonvanishing}, including the reduction of the local functionals, at one prime per row.
+
+\subsection{Size}
+The size bound \cref{thm:decay} was not compared with exact determinants for these rows: the
+margins are tiny, and the finite sizes available are too small for $O(\log h/h)$ corrections to be
+negligible. The comparison of the six exponents with those obtained in the numerator-$2$ work, of
+the same order, is the only sanity check.

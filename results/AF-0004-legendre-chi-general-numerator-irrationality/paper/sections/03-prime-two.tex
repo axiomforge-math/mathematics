@@ -1,0 +1,319 @@
+\section{The prime 2}\label{sec:prime-two}
+
+This section proves the lower bounds for $\vG2(T)$ that give the term $c_2\log2$ of
+$\aconst_\sigma(a,q)$; they are used in \cref{thm:arithmetic}. The prime $2$ needs its own
+arguments because the poles $x_k=-k-\frac12$ are not $2$-adically integral. There are two
+cases. If $a$ is odd, $y$ is a $2$-adic unit and the difficulty is that $1-w$ is not a unit
+(\cref{subsec:two-odd}). If $a$ is even, $w$ is divisible by $4$ and the series over the
+summation points converges $2$-adically (\cref{subsec:two-even}). For a sequence $(c_l)_{l\ge0}$
+we write $(\Delta c)_l=c_{l+1}-c_l$, so that $\Delta^Nc_0=\sum_{l}(-1)^{N-l}\binom Nlc_l$.
+
+\subsection{Odd numerator: forward differences}\label{subsec:two-odd}
+
+In this subsection $a$ is odd. Then $y=q/a\in\Z_2^\times$, and we put
+\[
+  Q=\sigma y^2=\frac1w,\qquad \nu=v_2(Q-1)=v_2(q^2-\sigma a^2).
+\]
+Since odd squares are congruent to $1$ modulo $8$, we have $\nu\ge3$ if $\sigma=1$ and $\nu=1$
+if $\sigma=-1$; moreover $w$ is a unit and $v_2(1-w)=\nu$.
+
+\emph{Heuristic.} Take as row polynomials the products of the first pole factors and as column
+polynomials the products of the last ones. Then $\varphi f_ig_j$ has either few consecutive
+poles and no polynomial part, or no pole at all. In the first case the entry is a forward
+difference of pole values, which are linked by the recursion $T_{l+1}=QT_l-(2l+3)^{-2}$, and a
+forward difference of order $N$ of such a sequence is divisible by about $2^{N}N!$. In the
+second case the entry is a moment sum of a polynomial of small degree.
+
+\begin{lemma}\label{lem:fd-squares}
+Let $s$ be an odd integer and $g_l=(s+2l)^{-2}$ for $l\ge0$. Then
+$v_2(\Delta^kg_0)\ge k+v_2(k!)$ for every $k\ge0$.
+\end{lemma}
+
+\begin{proof}
+By induction on $k$, $\Delta^k\bigl[(s+2l)^{-1}\bigr]_{l=0}=(-2)^kk!\prod_{l=0}^k(s+2l)^{-1}$,
+an identity of rational functions of $s$. Differentiating with respect to $s$ gives
+\[
+  \Delta^kg_0=(-2)^kk!\,\prod_{l=0}^k\frac1{s+2l}\,\sum_{l=0}^k\frac1{s+2l},
+\]
+and all the numbers $s+2l$ are odd.
+\end{proof}
+
+\begin{lemma}\label{lem:fd-recursion}
+Let $s$ be odd, $g_l=(s+2l)^{-2}$, and let $(T_l)_{l\ge0}$ be polynomials in $\Z_2[X]$ with
+$T_{l+1}=QT_l-g_l$. Then for $m\ge1$
+\[
+  \vG2(\Delta^mT_0)\ \ge\
+  \begin{cases}m+v_2(m!)-2-\floor{\log_2m}&\text{if }\nu\ge2,\\ m-1&\text{if }\nu=1.\end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+From $\Delta T_l=(Q-1)T_l-g_l$ we get by induction
+\[
+  \Delta^mT_0=(Q-1)^mT_0-\sum_{k<m}(Q-1)^{m-1-k}\Delta^kg_0 .
+\]
+The first term has valuation at least $m\nu$, and by \cref{lem:fd-squares} the $k$-th term of
+the sum has valuation at least $(m-1-k)\nu+k+v_2(k!)$. If $\nu=1$ both are at least $m-1$. If
+$\nu\ge2$, then $m\nu\ge m+v_2(m!)$ and $(m-1-k)\nu+k+v_2(k!)\ge 2m-2-k+v_2(k!)$; since
+$v_2(n!)=n-s_2(n)$ and $1\le s_2(n)\le1+\floor{\log_2n}$,
+\[
+  v_2(m!)-v_2(k!)=m-k-s_2(m)+s_2(k)\le m-k+\floor{\log_2m}\qquad(0\le k<m),
+\]
+which gives the claim.
+\end{proof}
+
+Let $f_i(u)=\prod_{k<i}(u-x_k)$ and $g_j(u)=\prod_{K-j\le k<K}(u-x_k)$ for $0\le i,j<h$. They
+are monic of degrees $i$ and $j$, so $\Delta(X)=\det[\mu_X(\varphi f_ig_j)]$ by
+\cref{lem:change-of-basis}. For a pair $(i,j)$ put $\pi=i+j+1-K$.
+
+\begin{proposition}[entries]\label{prop:two-odd-entries}
+Let $a$ be odd and $0\le i,j<h\le K$.
+\begin{enumerate}[(a)]
+\item If $\pi\le0$, put $N=-\pi$. Then $\vG2\bigl(\mu_X(\varphi f_ig_j)\bigr)\ge0$, and if
+$\sigma=1$ and $N\ge2$ it is at least $N-1-\floor{\log_2N}$.
+\item If $\pi\ge1$, then $\vG2\bigl(\mu_X(\varphi f_ig_j)\bigr)$ is at least
+$-(\nu-1)\pi-2-\floor{\log_2\pi}$ if $\sigma=1$, and at least $-\pi$ if $\sigma=-1$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Since $i,j<h\le K$ and $i\le K-j-1$, the factors of $f_i$ and $g_j$ cancel the first $i$
+and the last $j$ factors of $D_K$, and $\varphi f_ig_j=u\prod_{l=0}^{N}(u-x_{i+l})^{-1}$. Its
+polynomial part is constant (zero if $N\ge1$), so it does not contribute to $\mu_X$. Its residue
+at $x_{i+l}$ is $x_{i+l}\prod_{l'\ne l}(l'-l)^{-1}=(-1)^lx_{i+l}/(l!\,(N-l)!)$. Put
+\[
+  T_l=\sigma^{i+l}y^{2(i+l)+1}(X-\tau_{i+l})\qquad(l\ge0).
+\]
+By~\eqref{eq:functional},
+\begin{equation}\label{eq:entry-fd}
+  \mu_X(\varphi f_ig_j)=-\frac4{N!}\sum_{l=0}^{N}(-1)^l\binom Nlx_{i+l}T_l
+  =\frac{4(-1)^{N+1}}{N!}\,\Delta^N\bigl[x_{i+l}T_l\bigr]_{l=0}.
+\end{equation}
+The coefficients of $T_l$ are $\pm y^{2(i+l)+1}$ and
+$\pm\sum_{j'\le i+l}\sigma^{j'}y^{2(i+l)-2j'}/(2j'+1)^2$, which lie in $\Z_2$, and
+by~\eqref{eq:tau} $T_{l+1}=QT_l-(2i+2l+3)^{-2}$. So \cref{lem:fd-recursion} applies to
+$(T_l)_{l\ge0}$ with $s=2i+3$ and to $(T_{l+1})_{l\ge0}$ with $s=2i+5$. Since $x_{i+l}$ is
+affine in $l$ with $\Delta x=-1$, the Leibniz rule for differences gives, for $N\ge1$,
+\[
+  \Delta^N\bigl[x_{i+l}T_l\bigr]_{l=0}=x_i\,\Delta^NT_0-N\,\Delta^{N-1}T_1,
+\]
+and $v_2(x_i)=-1$. For $N=0$ the entry is $-4x_iT_0$, and for $N=1$ it is $4(x_i\Delta T_0-T_1)$;
+both are integral. Let $N\ge2$. If $\nu\ge2$, \cref{lem:fd-recursion} and
+$v_2(N)+v_2((N-1)!)=v_2(N!)$ show that both $x_i\Delta^NT_0$ and $N\Delta^{N-1}T_1$ have
+valuation at least $N+v_2(N!)-3-\floor{\log_2N}$, and multiplying by $4/N!$ gives
+$N-1-\floor{\log_2N}$. If $\nu=1$ they have valuation at least $N-2$ and $v_2(N)+N-2$, so the
+entry has valuation at least $2-v_2(N!)+N-2=s_2(N)\ge0$.
+
+(b) Now $K-j\le i$ and $\varphi f_ig_j=R(u)=u\prod_{k=K-j}^{i-1}(u-x_k)$ (the product is empty
+if $\pi=1$), a polynomial of degree $\pi$, with $R(u)=2^{-\pi}H(2u)$ for a monic $H\in\Z[z]$. Hence
+$R'(u)=2^{1-\pi}\sum_{d<\pi}c_d\,2^du^d$ with $c_d\in\Z$. Since $\Delta^b(u^d)(0)$ is $b!$ times
+a Stirling number of the second kind and vanishes for $d<b$, we get
+$v_2(\Delta^bR'(0))\ge1-\pi+b+v_2(b!)$ for $0\le b<\pi$. As $w$ is a unit and $v_2(1-w)=\nu$, we
+have $v_2(\Omega_b(w))=-\nu(b+1)$, so
+\[
+  v_2\bigl(\mu_X(R)\bigr)=v_2\Bigl(\sum_{b<\pi}\Delta^bR'(0)\,\Omega_b(w)\Bigr)\ \ge\
+  \min_{0\le b<\pi}\bigl[1-\pi-\nu+v_2(b!)-(\nu-1)b\bigr].
+\]
+If $\nu=1$ this is at least $-\pi$. If $\nu\ge2$, use $v_2(b!)\ge b-1-\floor{\log_2\pi}$ for
+$1\le b<\pi$: the bracket is at least $-\pi-\nu-(\nu-2)b-\floor{\log_2\pi}$, which is smallest
+at $b=\pi-1$, where it equals $-(\nu-1)\pi-2-\floor{\log_2\pi}$; the term $b=0$ is $1-\pi-\nu$,
+which is not smaller.
+\end{proof}
+
+\begin{theorem}[prime $2$, odd numerator]\label{thm:two-odd}
+Let $a$ and $q$ be odd, $K=\kappa h$ with $1\le\kappa\le2$, and $\nu=v_2(q^2-\sigma a^2)$. Then
+\[
+  \vG2(T)\ \ge\
+  \begin{cases}\bigl[2(\kappa-1)-(\nu-2)\Dk\bigr]h^2-2h\bigl(1+\log_2(2h)\bigr)&\text{if }\sigma=1,\\[2pt]
+  \bigl[\kappa-1-\Dk\bigr]h^2-h\log_2(2h)&\text{if }\sigma=-1.\end{cases}
+\]
+\end{theorem}
+
+\begin{proof}
+For a permutation $\varpi$ of $\{0,\dots,h-1\}$ put $\pi_i=i+\varpi(i)+1-K$. Then
+$\sum_i\pi_i=h^2-hK$, and by convexity of $t\mapsto\pos t$,
+\begin{equation}\label{eq:convexity-sum}
+  \begin{aligned}
+  \sum_i\pos{\pi_i}&\le\sum_i\tfrac12\bigl(\pos{2i+1-K}+\pos{2\varpi(i)+1-K}\bigr)\\
+  &=\sum_{i<h}\pos{2i+1-K}\le\frac{(2h-K)^2}{4}=\Dk h^2 ;\end{aligned}
+\end{equation}
+the last sum is $\bigl(\frac{2h-K}2\bigr)^2$ if $K$ is even and $\frac{(2h-K)^2-1}4$ if $K$ is
+odd. Let $\sigma=1$. By \cref{prop:two-odd-entries}, and since $N\le K\le2h$ and $\pi\le2h$,
+every entry has Gauss valuation at least $-\pi-(\nu-2)\pos\pi-2-\log_2(2h)$. Summing over the
+entries of a term of the Leibniz expansion gives
+$\vG2(\Delta)\ge(\kappa-1)h^2-(\nu-2)\Dk h^2-h(2+\log_2(2h))$. Let $\sigma=-1$. Every entry has
+Gauss valuation at least $-\pos\pi$, so $\vG2(\Delta)\ge-\Dk h^2$. Finally, by
+$v_2(n!)=n-s_2(n)$ and $s_2(K)\le1+\log_2K$,
+\begin{align*}
+  v_2(\nrm)&=h\bigl(K-s_2(K)\bigr)-2\sum_{i<h}\bigl(i-s_2(i)\bigr)\\
+  &\ge hK-h(h-1)-h(1+\log_2K)\ \ge\ (\kappa-1)h^2-h\log_2(2h).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}\label{rem:two-odd-cancellation}
+For $\sigma=1$ the bound decreases with $\nu$, which is unbounded as $q$ varies. In
+$\aconst_\sigma(a,q)$ this is compensated exactly: the odd primes dividing $q^2-\sigma a^2$ cost
+$\Dk\log\bigl((q^2-\sigma a^2)/2^\nu\bigr)$ per $h^2$ (\cref{prop:p-divides-Y}), so the total
+contribution of $2$ and of these primes is
+\[
+  \bigl[2(\kappa-1)-(\nu-2)\Dk\bigr]\log2-\Dk\log\frac{q^2-a^2}{2^\nu}
+  =\bigl[2(\kappa-1)+2\Dk\bigr]\log2-\Dk\log(q^2-a^2)
+\]
+for $\sigma=1$, and $[\kappa-1-\Dk]\log2-\Dk\log\frac{q^2+a^2}{2}=(\kappa-1)\log2-\Dk\log(q^2+a^2)$
+for $\sigma=-1$. The error terms of \cref{thm:two-odd} do not depend on $\nu$. In exact
+computations for $h\le36$ the bound for $\sigma=-1$ is far from the true valuation
+(Appendix~\ref{app:consistency}); we have not tried to improve it.
+\end{remark}
+
+\subsection{Even numerator: parity minors}\label{subsec:two-even}
+
+In this subsection $a=2^ea_0$ with $e\ge1$ and $a_0$ odd, so $v_2(y)=-e$ and $v_2(w)=2e$. In
+the coordinate $z=2u$ the poles become the odd integers $z_k=-2k-1$, while the summation points
+become the even integers $2m$, and the gain comes from treating the two parities separately.
+For $e=1$ this is the argument of~\cite[\S3]{AxiomForge2026numeratorTwo}.
+
+Put $P_K(z)=\prod_{k<K}(z-z_k)$ and $F(z)=z/P_K(z)$. Since $D_K(u)=2^{-K}P_K(2u)$,
+\begin{equation}\label{eq:phi-F}
+  \varphi(u)=2^{K-1}F(2u).
+\end{equation}
+On the space spanned by $\Q[z]$ and the fractions $1/(z-z_k)$ define the affine functional
+\[
+  \tilde\mu_X(G)=\mom\bigl(m\mapsto G'(2m)\bigr)\ (G\in\Q[z]),\qquad
+  \tilde\mu_X\Bigl(\frac1{z-z_k}\Bigr)=-\sigma^ky^{2k+1}(X-\tau_k).
+\]
+If $R(u)=G(2u)$ then $R'(m)=2G'(2m)$, and $1/(u-x_k)=2/(2u-z_k)$; comparing
+with~\eqref{eq:functional} gives $\mu_X(R)=2\tilde\mu_X(G)$ on both kinds of generators. With
+$H(X)=[\tilde\mu_X(Fz^{i+j})]_{0\le i,j<h}$ and~\eqref{eq:phi-F}, the $(i,j)$ entry of the matrix
+defining $\Delta$ is $2^{K-i-j}H_{ij}$, hence
+\begin{equation}\label{eq:Delta-H}
+  \Delta(X)=2^{Kh-h(h-1)}\det H(X).
+\end{equation}
+
+The series $\xi_2=\sum_{j\ge0}\sigma^jy^{-2j-1}/(2j+1)^2$ converges in $\Z_2$, because its
+$j$-th term has valuation $e(2j+1)$. Repeating the computation in the proof of
+\cref{lem:pole-series} in $\Q_2$, where $\sum_mw^m(\cdots)$ converges because $v_2(w)=2e>0$,
+gives
+\[
+  \sum_{m\ge1}w^m\frac{\mathrm d}{\mathrm dz}\Bigl(\frac1{z-z_k}\Bigr)\Big|_{z=2m}
+  =-\sigma^ky^{2k+1}(\xi_2-\tau_k).
+\]
+Hence $\tilde\mu_X(1/(z-z_k))=\sum_mw^m(\cdots)-\sigma^ky^{2k+1}(X-\xi_2)$. Writing
+$Fz^s=Q_s+\sum_kr_kz_k^s/(z-z_k)$ with $Q_s$ a polynomial and $r_k=\Res_{z=z_k}F$, and using
+\cref{lem:moment-sums}(a) $2$-adically for $Q_s$, we obtain the identity in $\Q_2[X]$
+\begin{multline}\label{eq:H-two-adic}
+  H(X)=\sum_{m\ge1}w^m\bigl[\vvec(2m)\ \vvec'(2m)\bigr]
+  \begin{pmatrix}F'(2m)&F(2m)\\F(2m)&0\end{pmatrix}
+  \bigl[\vvec(2m)\ \vvec'(2m)\bigr]^{\mathsf T}\\
+  +(X-\xi_2)\sum_{k<K}\gamma_k\,\vvec(z_k)\vvec(z_k)^{\mathsf T},
+\end{multline}
+with $\gamma_k=-\sigma^ky^{2k+1}r_k$ and the series converging entrywise in $\Q_2[X]$ for the
+Gauss norm. The weights have the following valuations. Since $z_k-z_l=2(l-k)$ and $z_k$ is odd,
+\begin{equation}\label{eq:gamma-two}
+  v_2(\gamma_k)=-e(2k+1)-(K-1)-v_2(k!)-v_2((K-1-k)!)\ \ge\ -e(2k+1)-2(K-1) .
+\end{equation}
+For $m\ge1$ the integer $P_K(2m)$ is odd, so $F(2m)\in\Z_2$, and
+$F'(2m)=P_K(2m)^{-1}-F(2m)\sum_k(2m-z_k)^{-1}\in\Z_2$.
+
+For $t\ge0$ put
+\[
+  \Pa(t)=\sum_{j<t}\bigl(j+v_2(j!)\bigr)=t(t-1)-\sum_{j<t}s_2(j)=t^2+O(t\log(t+2)).
+\]
+
+\begin{lemma}[parity minors]\label{lem:parity-minors}
+Let $h\ge2$, $L=\floor{\log_2(h-1)}$, $\varepsilon\in\{0,1\}$, and let $J\subset\{0,\dots,h-1\}$
+have $t$ elements. Consider a $t\times t$ matrix whose rows are indexed by $J$ and whose columns
+are of the form $(\zeta^i)_{i\in J}$ or $(i\zeta^{i-1})_{i\in J}$ with
+$\zeta\in\varepsilon+2\Z$, and let $d$ be the number of columns of the second kind. Then its
+determinant has $2$-adic valuation at least $\Pa(t)-d(1+L)$.
+\end{lemma}
+
+\begin{proof}
+Let $B_j(z)=\prod_{i<j}(z-\varepsilon-2i)$, a monic polynomial in $\Z[z]$ of degree $j$. Then
+$z^i=\sum_{j\le i}c_{ij}B_j(z)$ with $c_{ij}\in\Z$ and $c_{ii}=1$. For $\zeta=2s+\varepsilon$,
+$s\in\Z$, we have $B_j(\zeta)=2^jj!\binom sj$, which is divisible by $2^{j+v_2(j!)}$. For the
+derivative, the identity
+\begin{equation}\label{eq:binomial-derivative}
+  \frac{\mathrm d}{\mathrm ds}\binom sj=\sum_{l=1}^{j}\frac{(-1)^{l-1}}{l}\binom s{j-l}
+\end{equation}
+(compare coefficients of $T^j$ in $\partial_s(1+T)^s=\log(1+T)(1+T)^s$) gives
+$B_j'(\zeta)=2^{j-1}j!\,\partial_s\binom sj$, of valuation at least
+$j+v_2(j!)-1-\floor{\log_2j}$. By the Cauchy--Binet formula for the product of the $t\times h$
+matrix $(c_{ij})_{i\in J,\,j<h}$ and the $h\times t$ matrix of the values $B_j(\zeta)$ or
+$B'_j(\zeta)$, the determinant is an integral combination of minors with rows
+$j_1<\dots<j_t$ of the latter matrix. Since $j\mapsto j+v_2(j!)$ is increasing and
+$j_r\ge r-1$, each such minor has valuation at least $\sum_{r<t}(r+v_2(r!))-d(1+L)$.
+\end{proof}
+
+\begin{corollary}\label{cor:parity-laplace}
+Let $E$ be an $h\times h$ matrix whose columns are $P$ columns $\vvec(\zeta)$ with $\zeta$ odd
+and $h-P$ columns $\vvec(\zeta)$ or $\vvec'(\zeta)$ with $\zeta$ even, $d$ of them derivatives.
+Then $v_2(\det E)\ge\Pa(P)+\Pa(h-P)-d(1+L)$.
+\end{corollary}
+
+\begin{proof}
+Laplace expansion along the odd columns writes $\det E$ as a signed sum, over $P$-element sets
+$J$ of rows, of products of a $P\times P$ minor with odd nodes and rows $J$ and an
+$(h-P)\times(h-P)$ minor with even nodes and the complementary rows. Apply
+\cref{lem:parity-minors} to both.
+\end{proof}
+
+\begin{theorem}[prime $2$, even numerator]\label{thm:two-even}
+Let $a=2^ea_0$ with $e\ge1$ and $a_0$ odd, $q$ odd, $\sigma=\pm1$, and $K\ge h\ge2$. Let
+$\lambda_0\le\lambda_1\le\cdots$ be the numbers~\eqref{eq:gamma-two} in increasing order. Then
+\begin{multline*}
+  \vG2(T)\ \ge\ v_2(\nrm)+Kh-h(h-1)\\
+  +\min_{0\le P\le h}\Bigl[2\Pa(P)+2\Pa(h-P)-(h-P)(1+L)+\sum_{i<P}\lambda_i
+  +\sum_{i=1}^{h-P}2e\lceil i/2\rceil\Bigr].
+\end{multline*}
+If $K=\kappa h$ with $\kappa\ge1$ fixed, then
+\begin{gather}
+  \vG2(T)\ \ge\ C_e(\kappa)\,h^2-O(h\log h),\qquad C_e(\kappa)=\min_{0\le x\le1}f_e(x),
+  \label{eq:two-asymptotic}\\
+  f_e(x)=2(\kappa-1)-2(e+1)\kappa x+(e+2)x^2+\bigl(\tfrac e2+2\bigr)(1-x)^2.\notag
+\end{gather}
+The minimum is attained at $x_e=\min\bigl(1,\frac{2(e+1)\kappa+e+4}{3e+8}\bigr)$. For
+$\kappa=5/4$: $C_2=-337/112$ at $x_2=27/28$, and $C_3=-9/2$ at $x_3=1$.
+\end{theorem}
+
+\begin{proof}
+By~\eqref{eq:Delta-H}, $\vG2(T)=v_2(\nrm)+Kh-h(h-1)+\vG2(\det H)$. Truncate the sum over $m$
+in~\eqref{eq:H-two-adic} at $m\le M$; the truncated matrices converge to $H$ in the Gauss norm,
+so it suffices to bound the determinant of each truncation uniformly in $M$. Write the
+truncation as $EBE^{\mathsf T}$, where the columns of $E$ are the slots $\vvec(2m)$,
+$\vvec'(2m)$ ($1\le m\le M$) and $\vvec(z_k)$ ($k<K$), and $B$ is block diagonal with the
+$2\times2$ blocks $w^m\bigl(\begin{smallmatrix}F'&F\\F&0\end{smallmatrix}\bigr)(2m)$ and the
+$1\times1$ blocks $(X-\xi_2)\gamma_k$. By~\eqref{eq:cauchy-binet}, $\det H$ is a sum of terms
+indexed by pairs $(S,S')$ of sets of $h$ slots that select the same poles and the same number
+$n_m\in\{1,2\}$ of slots at each selected site $2m$.
+
+Fix such a term with $P$ poles and $h-P$ even slots. The middle factor has Gauss valuation at
+least $\sum_{k\in S}v_2(\gamma_k)+\sum_m2em\,n_m$, since a $1\times1$ minor of the block at $2m$
+is $w^mF'(2m)$ or $w^mF(2m)$ and the $2\times2$ minor is $-w^{2m}F(2m)^2$, and
+$\vG2(X-\xi_2)=0$. This is at least $\sum_{i<P}\lambda_i+\sum_{i\le h-P}2e\lceil i/2\rceil$,
+because each site offers at most two slots. The derivative--derivative entry of each block
+vanishes, so a site carrying one slot on each side contributes at most one derivative column to
+the two outer factors together, and a site carrying two slots contributes two; the total number
+of derivative columns on both sides is therefore at most $h-P$. By \cref{cor:parity-laplace} the
+two outer factors together have valuation at least $2\Pa(P)+2\Pa(h-P)-(h-P)(1+L)$. This proves
+the first inequality.
+
+For the asymptotic form, $v_2(n!)=n-s_2(n)$ gives $v_2(\nrm)=Kh-h^2+O(h\log h)$ and
+$\Pa(t)=t^2+O(h\log h)$ for $t\le h$. The $P$ smallest of the lower
+bounds~\eqref{eq:gamma-two} are those with $k=K-1,\dots,K-P$, whose sum is
+$-e(2KP-P^2)-2(K-1)P=-2(e+1)KP+eP^2+2P$, and $\sum_{i\le E}2e\lceil i/2\rceil\ge eE^2/2$.
+Collecting terms with $P=xh$, $E=(1-x)h$ gives~\eqref{eq:two-asymptotic}. Finally
+$f_e'(x)=(3e+8)x-2(e+1)\kappa-e-4$ is increasing, which gives $x_e$; for $\kappa=5/4$,
+$x_2=\frac{27}{28}$ and $x_3=1$, and substituting gives $f_2(\frac{27}{28})=-\frac{337}{112}$
+and $f_3(1)=-\frac92$.
+\end{proof}
+
+\begin{remark}\label{rem:two-even-comparison}
+For $e=1$ and $\kappa=7/6$ one finds $C_1=-140/99$, the constant
+of~\cite{AxiomForge2026numeratorTwo}. In general $f_e(1)=-e(2\kappa-1)$, and
+$x_e=1$ if and only if $e\ge(2-\kappa)/(\kappa-1)$, that is, for $\kappa=5/4$, as soon as
+$e\ge3$: then only the terms with $h$ poles matter and the bound is the one that the rank-one
+argument of \cref{prop:p-divides-a} would give. For $a=8$, $q=12061$ the finite bound of
+\cref{thm:two-even} equals the exact value of $\vG2(T)$ for every $h=4n\le48$, and for $a=4$,
+$q=995$ it lies below the exact value by at most $12$ for $h\le56$
+(Appendix~\ref{app:consistency}). This is consistency evidence only.
+\end{remark}

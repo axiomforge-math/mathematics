@@ -1,0 +1,116 @@
+# Declarations audited by `#print axioms` (every one must use only propext, Classical.choice,
+# Quot.sound). `status`: "proved" = unconditional theorem; "conditional" = the statement takes
+# the unproved candidate estimates as an explicit hypothesis (name ends in `_of_estimates` or
+# `_of_<hypothesis>`); such a theorem is never the formalization of a main theorem.
+
+# --- Irrationality criterion (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.one_le_pow_mul_abs_aeval_div"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_of_int_poly_approx"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_of_tendsto_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_of_scaled_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_of_log_content_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_of_rat_value_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.frequently_atTop_of_eventually_prime"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.summable_legendreChi"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.summable_inverseTangentIntegral"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.legendreChi_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.inverseTangentIntegral_neg"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_iff"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.legendreChi_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.legendreChi_pos"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.inverseTangentIntegral_term"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.targetValue_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.targetValue_neg_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.natDegree_halfHankelDet_le"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.rowData_margin"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.rowData_threshold"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.slope_nonneg_margin"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.decayRate_lt_contentRate"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.oddConst_plus_seven_sixths"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.oddConst_plus_five_fourths"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.oddConst_minus_five_fourths"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.evenConst_two_ge"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.evenConst_two_min"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.evenConst_three_ge"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.evenConst_three_min"
+status = "proved"
+
+# --- Final deduction and the target statements (conditional) ---
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_targetValue_of_halfIntegerEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_targetValue_of_familyEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_legendreChi_neg_div_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.LegendreChiGeneral.irrational_inverseTangentIntegral_neg_div_of_estimates"
+status = "conditional"

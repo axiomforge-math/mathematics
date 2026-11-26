@@ -1,0 +1,30 @@
+\section{Limitations}\label{sec:limitations}
+
+This section lists what the thresholds of \cref{thm:main} do and do not say; nothing in it is used in
+the proof. The statements concern the specific estimates of this paper, not the determinants
+themselves, nor the (ir)rationality of any number below a threshold.
+
+\emph{The thresholds are not optimal.} They are the values at which the certified margin
+$\aconst-\bconst$ of \cref{tab:constants} becomes positive with the comparison densities we
+stored, for a mesh of $1/240$ and the two ratios $7/6$ and $5/4$. For $\chi_2(3/q)$ with
+$\kappa=7/6$ the archived exact verifier finds the unfavourable gap $+0.0015$ per $h^2$ at $q=127$
+with its stored density; we have not proved that no density does better there, nor examined other
+pole ratios systematically. The rows $a=4$ and $a=8$ treat both signs together with the smaller
+arithmetic constant; a size bound that sees the sign of $w$ \cite[Remark~6.7]{Krisman2026chi2}
+could lower these thresholds for $\chi_2$.
+
+\emph{Small margins.} The smallest margins ($7\cdot10^{-4}$ per $h^2$ for $\Ti_2(5/1609)$ and
+for $a=8$) are of the order of $10^{-3}$ of the constants involved. The finite computations are
+exact or enclosed in ball arithmetic, but the asymptotic estimates that feed them are candidates
+(\cref{subsec:step-status}); a flaw of relative size $10^{-3}$ in any of them would remove a row.
+
+\emph{Other numerators and the cases $a=1,2$.} The method applies to any numerator $a$ for
+which the margin is positive; we did not search for further numerators. The numerators $1$ and $2$
+are treated in~\cite{Krisman2026chi2,AxiomForge2026numeratorTwo}. Fractions $a/q$ with $q$ even are not
+covered: the construction uses that $y=q/a$ and $w$ are $2$-adic units or have a known $2$-adic
+valuation.
+
+\emph{Comparison with the literature.} The range $q>54e^4a^2$ attributed to the criterion
+of~\cite{DHK2022Acta} comes from a second-hand reading of its constants, not re-derived here
+(\cref{subsec:background}); we make no claim of priority beyond the explicit thresholds of
+\cref{thm:main}.

@@ -1,0 +1,26 @@
+# Template version 1.0.0. Keep version and date in step with result.toml.
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below. It is a preprint: the main theorem is not established by the archive until level V4."
+title: "Irrationality of χ₂(a/q) and Ti₂(a/q) for the numerators a = 3, 4, 5, 8"
+abstract: "A candidate proof, released as a preprint, that for odd q prime to a the number chi_2(a/q) is irrational when a = 3, q >= 131; a = 4, q >= 995; a = 5, q >= 829; or a = 8, q >= 12061, and Ti_2(a/q) is irrational when a = 3, q >= 257; a = 4, q >= 995; a = 5, q >= 1609; or a = 8, q >= 12061, and hence also at -a/q (chi_2 is Legendre's chi function, Ti_2 the inverse tangent integral). These ranges begin well below the range q > 54 e^4 a^2 read off from a general criterion for shifted polylogarithms. The approximations are Hankel determinants of a moment functional with poles at the negative half-integers, with more poles than rows (ratio 7/6 or 5/4), as in an earlier AxiomForge preprint on the numerator 2. The numerators treated here need three arithmetic estimates that are absent for the numerator 2: a bound at the primes dividing a, a bound at the prime 2 for odd a, and the parity-minor bound at 2 for a = 4 and a = 8; one inequality carries each threshold to all larger denominators. The six threshold margins (between 0.00071 and 0.0139 per h^2) have been reproduced by separately written checkers. The argument has not been independently verified; in Lean the main theorem is proved only conditionally on the estimates. AI-assisted research: GPT-6.2 XHigh (web version), Claude Opus 5.5, Claude Fable 5.2 and Claude Sonnet 5.5 (Anthropic); see logs/ai-contributions.md."
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+version: "0.1.0"
+date-released: "2026-11-26"
+identifiers:
+  - type: other
+    value: "AF-0004"
+    description: "AxiomForge result identifier"
+url: "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0004-legendre-chi-general-numerator-irrationality"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - "Legendre chi function"
+  - "inverse tangent integral"
+  - "irrationality"
+  - "Hankel determinants"
+  - "Pade-type approximation"
+  - "p-adic valuations"
+  - "logarithmic energy"
+  - "preprint"
