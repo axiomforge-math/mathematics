@@ -1,0 +1,9 @@
+Test A: 240 partitions of 40 multisets; ratio invariant in every multiset; nonzero for 39 multisets
+   [0s]
+Test B: 240 pencils (k = 1..4, 12 multisets x 5 partitions); normalised pencil invariant in every multiset; raw pencil not invariant in 44 of 48 multisets (control)
+   [1s]
+Test C1: 60 cases (h = 16, 32, 48; k = 1..4; 5 deletions each): P_sep,I = 2^(-m(m-1)) P_alt,I exactly, P_alt,I != 0
+   [781s]
+Test C2: 52 border splits (h = 32, 48; k = 1, 4; I = {3}): P = P_alt Delta(B_R) Delta(B_Q) / (Delta(E) Delta(O)) exactly
+   [632s]
+== failures: 0

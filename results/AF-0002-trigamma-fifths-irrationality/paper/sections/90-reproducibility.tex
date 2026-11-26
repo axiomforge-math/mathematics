@@ -1,0 +1,134 @@
+\afbacksection{Reproducibility and formal verification}
+\sloppy
+
+\subsubsection*{Status}
+\Cref{thm:main} is a candidate; \cref{tab:status} gives the status of each step. The separation
+identity is proved (\cref{sec:lowner}), was examined in an adversarial AI-internal review and was
+confirmed by exact computation for $h\le64$. The two certificates are certified by computation and
+were recomputed, by implementations written separately from the original programs, in an
+AI-internal audit; all values agree. The certified margin is $0.00075448$ per $h^2$; the original
+programs state the rounded $0.000476$. No AI review is independent, and no human has reviewed the
+argument. The main theorem is not formalized: the Lean package proves only the final deduction,
+conditionally on the estimates.
+
+\subsubsection*{Where things are}
+This manuscript is the file \file{paper/main.pdf} of the contribution AF-0002 of the AxiomForge
+archive, in the directory
+\begin{quote}\small
+\url{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0002-trigamma-fifths-irrationality}
+\end{quote}
+All paths below are relative to that directory.
+\begin{itemize}
+  \item \file{paper/}: the sources of this manuscript.
+  \item \file{lean/}: the Lean package (see below).
+  \item \file{logs/verification.md}: the record of the commands that were run and of their
+  outcomes.
+  \item \file{logs/experiments/scripts/}: the programs; \file{logs/experiments/README.md} describes
+  each of them.
+  \item \file{logs/experiments/certificates/decay-trial-measure.json}: the polygon and the trial
+  measure of \cref{sec:contour-and-measure} (the file \file{trial.json} of the original programs),
+  with the SHA-256 digest given there.
+  \item \file{logs/experiments/outputs/}: the recorded output of every command, and
+  \file{run-summary.txt} with exit statuses and times.
+\end{itemize}
+The programs need Python~3.11 or later with python-flint~0.9.0, mpmath~1.3.0 and SymPy~1.14.0
+(\file{logs/experiments/requirements.txt}). In \file{logs/experiments/scripts/}, the command
+\texttt{python3 run\_checks.py all} runs all of them and rewrites the outputs.
+
+\subsubsection*{Programs}
+\begin{itemize}
+  \item \emph{Original programs}, which produced the certificates:
+  \file{certify_arithmetic_constant.py} (with \file{integrate_polar_profile.py},
+  \file{integrate_separated_profile.py} and \file{compute_polar_geometry.py}) and
+  \file{certify_decay_constant.py}.
+  \item \emph{Separately written checkers}: \file{verify_arithmetic_constant.py} and
+  \file{verify_decay_constant.py}.
+  \item \emph{Exact tests of the separation identity and of the pencils}:
+  \file{define_lowner_family.py}, \file{compute_separated_pencils.py},
+  \file{check_separation_identity.py}, \file{check_separation_case.py},
+  \file{check_separation_signs.py} and \file{find_rational_roots.py}.
+  \item \emph{Tests of the local bound and further checks}: \file{check_polar_bounds.py},
+  \file{check_local_bound.py}, \file{check_profile_affinity.py}, \file{compute_constants.py} and
+  \file{estimate_finite_rates.py}.
+\end{itemize}
+All these programs were written by AI systems (see the disclosure below); agreement between them
+is not independent verification.
+
+\subsubsection*{What was run, and with what result}
+The outputs quoted here are the files of \file{logs/experiments/outputs/}.
+\begin{enumerate}[(1)]
+  \item \emph{Separation identity} (\cref{rem:separation-checks}). The exact identity in $\Q[X]$,
+  equality of odd-prime Gauss valuations and the $2$-adic shift $m(m-1)$ hold in all $48$ cases
+  $h\in\{16,32,48,64\}$, $k\in\{1,2,3,4\}$, $I\in\{\varnothing,\{0\},\{h-1\}\}$
+  (\file{check_separation_identity.py 64}). The tests of the review described in
+  \cref{rem:separation-checks}(a) are reproduced by \file{check_separation_signs.py}, except its
+  ball-arithmetic check of the cofactor signs at $X=\xi_k$, which is not part of the package.
+  \item \emph{Rational roots.} \file{find_rational_roots.py 48}: $P^{\sep}_\varnothing$ has no
+  rational root for $h\in\{16,32,48\}$ and all $k$.
+  \item \emph{Original certificates.} \file{certify_arithmetic_constant.py} reports $312{,}120$
+  congruences, $72$ identities, the rational $\cA$ and \texttt{PASS: Lambda < 3.512131} (Lambda is
+  that program's name for $\cA$); \file{certify_decay_constant.py} reports $1103$ contour cells,
+  $182$ atom cells, the lower bound $3.5101522752$ for the alternating decay and \texttt{PASS}.
+  They check their inequalities with assertions and refuse to run when assertions are disabled.
+  \item \emph{Certified recomputation.} With \texttt{T} the path
+  \file{../certificates/decay-trial-measure.json},
+  \begin{quote}\small\ttfamily
+  python3 verify\_decay\_constant.py T 1/1000000 1/1000000\\
+  python3 verify\_arithmetic\_constant.py both\\
+  python3 check\_polar\_bounds.py 16 32 48 64 80 96 128\\
+  python3 check\_polar\_bounds.py -{}-deletions 32 48
+  \end{quote}
+  certify $\cD^{*}_{\alt}\ge3.5101772515$ and $\cD^{*}_{\alt}+(\log2)/256\ge3.5128848577$ in ball
+  arithmetic, recompute exactly the same rational $\cA$ (margin $\ge0.00075448$), and find no
+  violation of the bound computed modulo $p$ at primes that are not bad
+  (\cref{subsec:finite-checks}(b)). The four bad primes of \cref{tab:bad-primes} are the entries
+  marked with an asterisk, or counted as bad, in \file{check-polar-bounds.txt}; the program does
+  not count a bad prime as a failure, including the two at which the exponent exceeds the number
+  computed modulo $p$. These recomputations do not cover \cref{prop:nonvanishing}, the separation
+  identity or the prime-number-theorem bookkeeping of \cref{thm:arithmetic}.
+  \item \emph{Further checks} (\cref{subsec:arith-checks,subsec:finite-checks}):
+  \file{check_profile_affinity.py} (no non-affine candidate on the $489$ cells);
+  \file{check_local_bound.py 32,48,64,96} (the test of \cref{subsec:finite-checks}(a) for these
+  four sizes: no violation); \file{compute_constants.py} (closed form of $I(\nu)$, margins,
+  accuracy of the fixed-point constants); \file{estimate_finite_rates.py} (the exploratory
+  quantities of \cref{subsec:margin}(iii) for $h\le96$, which prove nothing).
+  \item \emph{Computations made for this revision that are not in the package.} The extension of
+  the test of \cref{subsec:finite-checks}(a) to $h\in\{16,80,128\}$, the column ``$2R_0+q$ over
+  $\Q$'' of \cref{tab:bad-primes}, the count of the primes at which $e_p>h\,e_\kappa(p/h)$, and the
+  values for $h\in\{144,160\}$ quoted in \cref{subsec:margin}(iii) were computed with programs that
+  are not among those listed above. For $h=32$ and $h=128$ the other columns of
+  \cref{tab:bad-primes} can be read in \file{check-polar-bounds.txt}; for $h=16$ that file records
+  only that one bad prime occurs for $k=2$ and one for $k=3$.
+\end{enumerate}
+
+\subsubsection*{Formal verification}
+The Lean~4 package is in \file{lean/} (Lake package \texttt{axiomforge-af0002}, root module
+\file{AxiomForge.AF0002}, toolchain \file{leanprover/lean4:v4.34.0-rc1}, Mathlib at commit
+\texttt{f385f9fd18abed332ebcd3df239cb357e264aceb}); \file{lean/README.md} maps the statements of
+this paper to declarations. The package defines $\trig$ as a series, the numbers $\xi_k$ and the
+separated pencils $P^{\sep}_I$ explicitly. All names below are in the namespace
+\texttt{AxiomForge.Trigamma}.
+\begin{itemize}
+  \item \emph{Proved unconditionally:} at least one of $\xi_1,\xi_2,\xi_3,\xi_4$ is irrational
+  (\file{irrational_xi_one_or_xi_two_or_xi_three_or_xi_four}), from
+  $\xi_1+\xi_2+\xi_3+\xi_4=2\pi^2$ (\file{xi_one_add}) and the irrationality of $\pi^2$
+  (\file{irrational_pi_sq}); and the rational inequalities $\cA<3.512131<3.512607$
+  (\file{arithmeticRate_lt}, \file{arithmetic_lt_decay}).
+  \item \emph{Stated and proved only conditionally:} the main theorem. A structure,
+  \file{LownerEstimates}, records as unproved hypotheses the nonvanishing statement with one
+  deletion, the bound $\log\den\le3.512131\,h^2$ and the bound
+  $\abs{P^{\sep}_I(\xi_k)}\le\e^{-3.512607h^2}$ (eventually, for all admissible deletions). The
+  theorems \file{irrational_xi_one_of_estimates}, \file{irrational_xi_two_of_estimates},
+  \file{irrational_xi_three_of_estimates} and \file{irrational_xi_four_of_estimates} derive
+  $\xi_k\notin\Q$ from these hypotheses; this is the final deduction of \cref{subsec:main-proof}.
+\end{itemize}
+The hypotheses are implied by \cref{prop:nonvanishing}, \cref{thm:arithmetic} and
+\cref{cor:decay-separated}, none of which is formalized. The conditional theorems are therefore
+not formalizations of \cref{thm:main}, whose formalization is in preparation, and whether the Lean
+statements match those of this paper has not yet been reviewed. The package builds with
+\texttt{lake exe cache get \&\& lake build}; \texttt{\#print axioms} reports only
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} for each of the $25$
+declarations listed in \file{lean/theorems.toml} (output in \file{lean/AXIOMS.txt}), and the
+sources contain no \texttt{sorry}, \texttt{admit}, \texttt{axiom} declaration or
+\texttt{native\_decide}. The Lean hypotheses use the rounded constants $3.512131$ and $3.512607$
+of the original programs, which our certified bounds imply.

@@ -1,0 +1,23 @@
+# Template version 1.0.0. Keep version and date in step with result.toml.
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below. It is a preprint: the main theorem is not established by the archive until level V4."
+title: "The irrationality of ψ₁(k/5) − π²/2: a candidate proof with separated Löwner determinants"
+abstract: "A candidate proof, released as a preprint, that xi_k = psi_1(k/5) - pi^2/2 is irrational for k = 1, 2, 3, 4 (psi_1 the trigamma function; psi_1(1/2) = pi^2/2). The proof uses Loewner (divided-difference) determinants of psi(z + k/5) - psi(z + 1/2) on h common nodes and h/8 border nodes, in the framework of S. Litsey, with the border rows separated from the border columns: an Andreief-Cauchy factorization divides every determinant by exactly 2^{m(m-1)}, m = h/16, without changing odd-prime valuations, a net gain of (log 2)/256 per h^2. A two-layer p-adic bound for the denominators and a logarithmic-energy bound on a contour, both completed by computer-assisted certificates that have been reproduced, give the comparison with a certified margin of 0.00075448 per h^2. Several steps have not been independently verified; in Lean the main theorem is proved only conditionally on the estimates. AI-assisted research: GPT-6.2 XHigh (web version) and Claude Opus 5.5 (Anthropic); see logs/ai-contributions.md."
+authors:
+  - name: "AxiomForge"
+    email: "axiomforge.math@gmail.com"
+    website: "https://github.com/axiomforge-math"
+version: "0.1.0"
+date-released: "2026-11-26"
+identifiers:
+  - type: other
+    value: "AF-0002"
+    description: "AxiomForge result identifier"
+url: "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0002-trigamma-fifths-irrationality"
+repository-code: "https://github.com/axiomforge-math/mathematics"
+keywords:
+  - "irrationality"
+  - "trigamma function"
+  - "Loewner determinants"
+  - "divided differences"
+  - "preprint"

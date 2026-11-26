@@ -1,0 +1,514 @@
+\section{Arithmetic: the denominators}\label{sec:arithmetic}
+
+This section proves the denominator estimate~(A) of \cref{tab:constants}
+(\cref{thm:arithmetic}), which enters the final deduction in \cref{subsec:main-proof}. The
+entries of the pencil have denominators dividing products of the numbers $5j+k$ and $2j+1$,
+$j<N$, so only primes $p\le5N$ occur, and the trivial bound $e_p\le2n$ would give a constant
+near $12$. The saving happens at the primes of size comparable to $h$: modulo $p^2$ the matrix
+$p^2M^{\alt}_I(X)$ splits into small rational blocks, one for each residue class of nodes modulo
+$p$, up to a term of order $p$ that vanishes inside the blocks, and the $p$-adic valuation of
+the determinant is then controlled by ranks of these blocks.
+
+\begin{theorem}\label{thm:arithmetic}
+Let $k\in\{1,2,3,4\}$ and $X\in\Q$. Then
+\[
+  \limsup_{h\to\infty}\ \frac1{h^2}\max_{I\subseteq\Com,\ \abs I\le1}\log\den P^{\sep}_I(X)\le\cA,
+\]
+where $\cA$ is the constant~\eqref{eq:A-def} below. Its value is
+\[
+  \cA=\frac{304227995343501721142691896310988016794079029050925423}
+           {86622067750624596685118168422516024981216422248448000},
+\]
+so that $\cA=3.51213037559136373\ldots<3.5121304$.
+\end{theorem}
+
+The constant $\cA$ is defined by an explicit integral (\cref{def:profile,eq:A-def}); its
+evaluation is the computer-assisted \cref{prop:A-value}. Throughout this section $k$ and $X$ are
+fixed. For a nonzero rational $r$, $v_p(r)$ is its $p$-adic valuation and
+$e_p(r)=\max(0,-v_p(r))$, so that $\log\den r=\sum_pe_p(r)\log p$; we put $\den0=1$, and $\Zp$
+denotes the rationals with denominator prime to $p$.
+
+The primes fall into four ranges: $p\le\sqrt{5N}$ (and the finitely many primes dividing
+$10\den X$), where an entrywise bound costs $o(h^2)$; $\sqrt{5N}<p\le h/20$, where the
+entrywise bound $e_p\le2n$ is used as it stands; $h/20<p\le5N$, the range that matters, where
+a two-layer analysis of the reduction modulo $p^2$ is needed; and $p>5N$, which does not occur in
+denominators. The cut at $h/20$ is a choice: below it the profile computed in
+\cref{subsec:profile} is close to the trivial value $2+c$ anyway.
+
+\subsection{Entrywise bounds; small primes and the prime two}\label{subsec:entry-bounds}
+
+\begin{lemma}\label{lem:entry-bound}
+Let $p$ be a prime, $\ell_p=\lfloor\log_p(5N)\rfloor$ and $\eta_p=e_p(X)$. Every entry of
+$M^\star_I(X)$ has $p$-adic valuation at least $-2\ell_p-\eta_p$. Consequently
+$e_p\bigl(P^\star_I(X)\bigr)\le n_I(2\ell_p+\eta_p)$. Moreover every coefficient of the
+polynomial $P^\star_I$ has $p$-adic valuation at least $-2n_I\ell_p$.
+\end{lemma}
+
+\begin{proof}
+For $x<y$ we have $f_y-f_x=\sum_{x\le j<y}\bigl(\frac5{5j+k}-\frac2{2j+1}\bigr)$, and
+$d_x=\sum_{j<x}\bigl(-\frac{25}{(5j+k)^2}+\frac4{(2j+1)^2}\bigr)$. The denominators $5j+k$ and
+$2j+1$ with $0\le j<N$ are positive integers less than $5N$, so each has $p$-adic valuation at
+most $\ell_p$; by the ultrametric inequality $v_p(f_y-f_x)\ge-\ell_p$ and $v_p(d_x)\ge-2\ell_p$.
+For distinct nodes, $1\le\abs{y-x}<N$, so $v_p(y-x)\le\ell_p$, and every off-diagonal entry has
+valuation at least $-2\ell_p$. A diagonal entry $X+d_x$ has valuation at least
+$\min(-\eta_p,-2\ell_p)$ at a rational $X$, and, as a polynomial in $X$, coefficients of valuation
+at least $-2\ell_p$. The bounds for the determinant follow from the Leibniz expansion.
+\end{proof}
+
+\begin{corollary}\label{cor:small-primes}
+Uniformly in $\abs I\le1$ and $\star\in\{\alt,\sep\}$:
+\begin{enumerate}[(a)]
+  \item $e_p(P^\star_I(X))=0$ for $p>5N$ with $p\nmid\den X$;
+  \item $e_p(P^\star_I(X))\le2n_I$ for $\sqrt{5N}<p\le5N$ with $p\nmid\den X$;
+  \item $\sum_{p\le\sqrt{5N}\text{ or }p\mid\den X}e_p(P^\star_I(X))\log p
+         \le2n\log(5N)\,\pi(\sqrt{5N})+3n\log\den X=O(h^{3/2})$.
+\end{enumerate}
+In particular, $e_2(P^{\sep}_I(X))\log2=O(h\log h)$.
+\end{corollary}
+
+\begin{proof}
+Parts (a) and (b) are the cases $\ell_p=0$ and $\ell_p=1$ of \cref{lem:entry-bound}; for (c)
+use $\ell_p\log p\le\log(5N)$ for $p\le\sqrt{5N}$ and $\sum_p\eta_p\log p=\log\den X$; a prime
+$p\mid\den X$ with $p>\sqrt{5N}$ has $\ell_p\le1$, so it contributes at most
+$n(2+\eta_p)\log p\le3n\eta_p\log p$.
+\end{proof}
+
+The last assertion is applied to the \emph{separated} determinant. By \cref{cor:separation} the
+alternating determinant has $v_2(P^{\alt}_I(X))=v_2(P^{\sep}_I(X))+m(m-1)\ge m(m-1)-O(h\log h)$;
+this divisibility is exactly what the separated geometry turns into a smaller absolute value in
+\cref{sec:decay}. At odd primes the two determinants have the same valuations, and from now on
+we work with the alternating one.
+
+\subsection{Polar congruences at primes of size comparable to \texorpdfstring{$h$}{h}}\label{subsec:polar}
+
+In this subsection $p$ is a prime with $p\nmid10\den X$ and $p^2>5N$; nothing else is assumed,
+and in particular $p$ may be small compared with $h$. Write a node as $x=\iota+lp$ with
+$0\le\iota<p$ (the \emph{fibre} of $x$) and $l\ge0$ (its \emph{digit}); digits are less than $p$,
+since $lp<N<p^2$.
+
+From \cref{subsec:nullspace} on we need more. Call $p$ \emph{ordinary} if in addition
+$h/20<p\le5N$ and $p>p_0$, where $p_0$ is the absolute constant fixed in \cref{def:block-types}
+below. For $h$ large every prime in $(h/20,5N]$ not dividing $10\den X$ is ordinary. For an
+ordinary prime every digit satisfies $l\le\lfloor(N-1)/p\rfloor\le22$, because $p>h/20$.
+
+Let $r_p\in\{1,2,3,4\}$ with $r_p\equiv kp^{-1}\pmod5$ and put $\kappa=r_p/5$. Then
+$j_0=(r_pp-k)/5=p\kappa-s$ is the unique $j\in[0,p)$ with $p\mid5j+k$, and $j_1=(p-1)/2$ is the
+unique $j\in[0,p)$ with $p\mid2j+1$. For a fibre $\iota$ put
+$\varepsilon(\iota)=(\varepsilon_1,\varepsilon_2)=(\mathbf1[\iota>j_0],\mathbf1[\iota>j_1])$,
+and for $l\ge0$ and $\varepsilon\in\{0,1\}^2$
+\begin{equation}\label{eq:VW-def}
+  V^\varepsilon_l=\sum_{a=0}^{l+\varepsilon_1-1}\frac1{\kappa+a}
+                 -\sum_{a=0}^{l+\varepsilon_2-1}\frac1{\frac12+a},\qquad
+  W^\varepsilon_l=-\sum_{a=0}^{l+\varepsilon_1-1}\frac1{(\kappa+a)^2}
+                 +\sum_{a=0}^{l+\varepsilon_2-1}\frac1{(\frac12+a)^2}
+\end{equation}
+(empty sums are zero). These are rational numbers that depend on $p$ only through $\kappa$. For
+a node $\iota+lp\in\Nod$ the numbers $V^{\varepsilon(\iota)}_l$ and $W^{\varepsilon(\iota)}_l$ lie
+in $\Zp$: their denominators are composed of the integers $r_p+5a$ and $2a+1$ with
+$p(r_p+5a)=5j+k$ and $p(2a+1)=2j+1$ for an index $j<N$ (see the proof of \cref{lem:polar-parts}),
+and these integers are less than $5N/p<p$.
+
+\begin{lemma}[Polar parts]\label{lem:polar-parts}
+For $x=\iota+lp\in\Nod$,
+\[
+  pf_x=V^{\varepsilon(\iota)}_l+p\,g_x,\qquad p^2d_x=W^{\varepsilon(\iota)}_l+p^2g^*_x,
+\]
+with $g_x,g^*_x\in\Zp$, and $g_{\iota+lp}\equiv g_\iota\pmod p$.
+\end{lemma}
+
+\begin{proof}
+The indices $j<x$ with $p\mid5j+k$ are $j_0+ap$, and $j_0+ap\le\iota+lp-1$ holds exactly for
+$0\le a<l+\varepsilon_1(\iota)$. For them $5j+k=p(r_p+5a)$, so $1/(j+s)=1/(p(\kappa+a))$. In the
+same way the indices $j<x$ with $p\mid2j+1$ are $j_1+ap$ with $0\le a<l+\varepsilon_2(\iota)$, and
+$1/(j+\frac12)=1/(p(\frac12+a))$. (Here $p(r_p+5a)=5j+k<5N<p^2$, so these are all the
+summands with $p$ in the denominator, each with $v_p=-1$ exactly.) The remaining summands
+$5/(5j+k)$ and $2/(2j+1)$ of $f_x$ have denominators prime to $p$; their sum is $g_x\in\Zp$. The
+same reasoning applies to $d_x$. Finally, $g_{\iota+lp}-g_\iota$ is the sum of the nonsingular summands with
+$\iota\le j<\iota+lp$. For each of the two shifts these $j$ run through $l$ complete residue
+systems modulo $p$ with the singular class removed, on which $5j+k$ (respectively $2j+1$) runs
+through $\Fp^\times$; since $\sum_{a\in\Fp^\times}a^{-1}=0$ for $p\ge3$, the sum is $\equiv0$.
+\end{proof}
+
+\begin{lemma}[Two-layer structure]\label{lem:two-layer}
+Let $M_p=p^2M^{\alt}_I(X)$, and let $x=\iota+lp$ be a row and $y=\iota'+l'p$ a column. Then,
+modulo $p^2$,
+\begin{enumerate}[(a)]
+  \item if $x=y$: $M_p[x,x]\equiv W^{\varepsilon(\iota)}_l$;
+  \item if $\iota=\iota'$ and $l\ne l'$:
+  $M_p[x,y]\equiv\dfrac{V^{\varepsilon(\iota)}_{l'}-V^{\varepsilon(\iota)}_l}{l'-l}$;
+  \item if $\iota\ne\iota'$:
+  $M_p[x,y]\equiv p\,\dfrac{V^{\varepsilon(\iota')}_{l'}-V^{\varepsilon(\iota)}_l}{\iota'-\iota}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $p^2(X+d_x)=W_l+p^2(X+g^*_x)$ and $p\nmid\den X$. (b) Here $y-x=p(l'-l)$ with
+$0<\abs{l'-l}<N/p<p$, and by \cref{lem:polar-parts}
+$p^2(f_y-f_x)/(y-x)=\bigl(V_{l'}-V_l+p(g_y-g_x)\bigr)/(l'-l)$ with $g_y\equiv g_x\pmod p$. (c)
+Here $y-x\equiv\iota'-\iota\not\equiv0\pmod p$, so $p/(y-x)\equiv p/(\iota'-\iota)\pmod{p^2}$, and
+$p(f_y-f_x)=V_{l'}^{\varepsilon(\iota')}-V^{\varepsilon(\iota)}_l+p(g_y-g_x)$.
+\end{proof}
+
+The point of (b) is that within a fibre there is no term of order $p$: the reduction of $M_p$
+modulo $p^2$ is block diagonal up to a term of order $p$ that vanishes on the diagonal blocks.
+The congruences (a)--(c) were also checked entry by entry, in exact arithmetic, on $312{,}120$
+entries: $h\in\{16,32,48,64\}$, all $k$, $X=1/7$, and those primes of the list
+$19,23,29,31,37,41,43,47,53$ fixed in the original program that satisfy $p^2>5N$. (The program
+uses the entries of the separated matrices; an entry depends only on its two nodes, so this makes
+no difference. The range of primes is a choice of that program and is not exhaustive: for $h=64$,
+where $5N=360$, the congruences apply to every prime $p\ge19$ other than those dividing $10\den X$,
+up to $5N$.) These primes are not ordinary, being smaller than $p_0$; the lemma does not require
+it.
+
+\subsection{A simultaneous nullspace bound}\label{subsec:nullspace}
+
+For a fibre $\iota$ let $\mathcal L^\Row_\iota=\{l:\iota+lp\in\Row^{\alt}_I\}$ and
+$\mathcal L^\Col_\iota=\{l:\iota+lp\in\Col^{\alt}_I\}$ be its row and column digits, and define the
+rational \emph{fibre block}
+\[
+  A_\iota[l,l']=\begin{cases}W^{\varepsilon(\iota)}_l,&l=l',\\[1mm]
+  \dfrac{V^{\varepsilon(\iota)}_{l'}-V^{\varepsilon(\iota)}_l}{l'-l},&l\ne l',\end{cases}
+  \qquad l\in\mathcal L^\Row_\iota,\ l'\in\mathcal L^\Col_\iota .
+\]
+(A diagonal position $l=l'$ occurs exactly for common nodes.) The \emph{moment} of a vector
+$\zeta$ indexed by the row digits, or by the column digits, of the fibre $\iota$ is
+\[
+  \operatorname{mom}(\zeta)=\Bigl(\sum_l\zeta_l,\ \sum_l\zeta_lV^{\varepsilon(\iota)}_l\Bigr)\in\Q^2 .
+\]
+The \emph{type} of the fibre is the datum
+$\tau(\iota)=(\kappa,\mathcal L^\Row_\iota,\mathcal L^\Col_\iota,\varepsilon(\iota))$, which
+determines $A_\iota$ and the moment map.
+
+Only types of a special form occur. Let $p$ be an ordinary prime. The digits of a fibre $\iota$
+are $0,\dots,T-1$ with $T\le23$; the first $\gamma$ of them, those with $\iota+lp<h$, are common
+digits, and the others are border digits, which are alternately row digits and column digits
+because $p$ is odd and the border rows of the alternating geometry are the nodes $h+2j$. We call
+a type of this form, with $\kappa\in\{\frac15,\frac25,\frac35,\frac45\}$, $0\le\gamma\le T\le23$,
+either parity for the first border digit and $\varepsilon\in\{0,1\}^2$, an \emph{alternating
+type}, and a type obtained from it by removing one common digit from the row digits and from the
+column digits a \emph{deleted type}. The type of every fibre is alternating, except that the fibre
+of the deleted node, if $\abs I=1$, has a deleted type. There are finitely many alternating and
+deleted types, independently of $h$ and $p$.
+
+\begin{definition}[Type data]\label{def:block-types}
+For each alternating or deleted type $\tau$ fix the following.
+\begin{enumerate}[(i)]
+  \item The rank $r_\tau$ of $A_\tau$ over $\Q$.
+  \item A basis of the left null space $\{\zeta:\zeta^{\mathsf T}A_\tau=0\}$ adapted to the moment
+  map: $z^\Row_\tau$ vectors of moment $0$, together with $a_\tau\in\{0,1,2\}$ vectors whose
+  moments are a nonzero spanning vector of the image if $a_\tau=1$, and $(1,0)$ and $(0,1)$ if
+  $a_\tau=2$. Let $\Lambda^\Row_\tau$ be the set of lines of $\Q^2$ spanned by these moments
+  ($\varnothing$, one line, or the two coordinate lines).
+  \item The same on the right: $z^\Col_\tau$, $b_\tau$ and $\Lambda^\Col_\tau$.
+  \item Matrices $U_\tau,U'_\tau\in GL(\Q)$ with $U_\tau A_\tau U'_\tau=\operatorname{diag}(1_{r_\tau},0)$
+  whose last rows, respectively last columns, are the chosen left, respectively right, null
+  vectors.
+\end{enumerate}
+Let $p_0$ exceed $5\cdot24$ and every prime dividing a denominator of an entry of $A_\tau$,
+$U_\tau^{\pm1}$ or $U_\tau'^{\pm1}$, for all alternating and deleted types $\tau$. It is an
+absolute constant, which depends on the choices made in (ii)--(iv) and could be computed from
+them; we have not computed it (\cref{rem:bad-primes}).
+\end{definition}
+
+\begin{lemma}\label{lem:schur-valuation}
+Let $M\in\mathrm{Mat}_n(\Zp)$, and suppose that there are $U,U'\in GL_n(\Zp)$, $D\in GL_r(\Zp)$
+and $B_{ij}$ with entries in $\Zp$ such that
+\[
+  UMU'\equiv\begin{pmatrix}D+pB_{11}&pB_{12}\\pB_{21}&pB_{22}\end{pmatrix}\pmod{p^2}.
+\]
+Then $v_p(\det M)\ge2(n-r)-\rank_{\Fp}(B_{22}\bmod p)$.
+\end{lemma}
+
+\begin{proof}
+Write $UMU'=\begin{pmatrix}D'&pB'_{12}\\pB'_{21}&pB'_{22}\end{pmatrix}$ exactly; then $D'\equiv D$
+is invertible over $\Zp$ and $B'_{22}\equiv B_{22}\pmod p$. Taking the Schur complement,
+$\det M=\text{unit}\cdot\det D'\cdot p^{\,n-r}\det(B'_{22}-pB'_{21}D'^{-1}B'_{12})$, and a square
+matrix $Y$ over $\Zp$ of size $d$ has $v_p(\det Y)\ge d-\rank_{\Fp}(Y\bmod p)$ (Smith normal form).
+\end{proof}
+
+\begin{proposition}[Simultaneous nullspace bound]\label{prop:nullspace}
+Let $p$ be ordinary and $\abs I\le1$. Put
+\begin{gather*}
+  R_0=\sum_\iota r_{\tau(\iota)},\qquad a=\sum_\iota a_{\tau(\iota)},\qquad
+  b=\sum_\iota b_{\tau(\iota)},\\
+  a_\Lambda=\#\{\iota:\Lambda\in\Lambda^\Row_{\tau(\iota)}\},\qquad
+  b_\Lambda=\#\{\iota:\Lambda\in\Lambda^\Col_{\tau(\iota)}\}
+\end{gather*}
+for lines $\Lambda\subset\Q^2$, the sums running over the fibres $0\le\iota<p$. Then
+\[
+  e_p\bigl(P^{\alt}_I(X)\bigr)\le2R_0+q,\qquad
+  q=\min\Bigl\{a,\ b,\ \min_\Lambda\,(a+b-a_\Lambda-b_\Lambda)\Bigr\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Order rows and columns of $M_p$ by fibres. By \cref{lem:two-layer},
+$M_p\equiv A+pB\pmod{p^2}$, where $A=\bigoplus_\iota A_\iota$ and $B[x,y]$ equals
+$(V^{\varepsilon(\iota')}_{l'}-V^{\varepsilon(\iota)}_l)/(\iota'-\iota)$ when the fibres
+$\iota\ne\iota'$ of $x$ and $y$ differ, and $0$ otherwise. Since $p>p_0$, the block-diagonal
+matrices $U=\bigoplus U_{\tau(\iota)}$ and $U'=\bigoplus U'_{\tau(\iota)}$, followed by a
+permutation, lie in $GL(\Zp)$ and bring $A$ to $\operatorname{diag}(1_{R_0},0_d)$ with
+$d=n_I-R_0$. \Cref{lem:schur-valuation} applies with $D=1$, and $B_{22}=K$ is the matrix of the
+bilinear form $B$ restricted to the chosen left and right null vectors. For a left null vector
+$\zeta$ in fibre $\iota$ and a right null vector $\eta$ in fibre $\iota'$,
+\[
+  K[\zeta,\eta]=\sum_{l,l'}\zeta_l\eta_{l'}\frac{V_{l'}-V_l}{\iota'-\iota}
+  =\frac{\det\bigl(\operatorname{mom}(\zeta),\operatorname{mom}(\eta)\bigr)}{\iota'-\iota}\quad(\iota\ne\iota'),\qquad
+  K[\zeta,\eta]=0\quad(\iota=\iota').
+\]
+Rows with zero moment and columns with zero moment vanish, so $\rank K\le\min(a,b)$. For a line
+$\Lambda$, the entries between rows with moment in $\Lambda$ and columns with moment in
+$\Lambda$ vanish, since the determinant of two proportional vectors is $0$; a matrix with a zero
+block of size $a_\Lambda\times b_\Lambda$ inside its nonzero $a\times b$ part has rank at most
+$(a-a_\Lambda)+(b-b_\Lambda)$. Hence $\rank_{\Fp}(K\bmod p)\le q$ and
+$v_p(\det M_p)\ge2d-q$. As $P^{\alt}_I(X)=p^{-2n_I}\det M_p$, we get
+$e_p(P^{\alt}_I(X))\le\max(0,2n_I-2d+q)=2R_0+q$.
+\end{proof}
+
+The bound is simultaneous in the sense that $q$ is computed from the moment lines of all fibres
+at once rather than from separate windows. Its strength comes from the vanishing of $K$ on
+same-fibre pairs and on pairs of proportional moments, both consequences of
+\cref{lem:two-layer}(b).
+
+\begin{remark}[The excluded primes]\label{rem:bad-primes}
+The hypothesis $p>p_0$ is used in the proof of \cref{prop:nullspace} at one place only: it puts
+$U$ and $U'$ in $GL(\Zp)$, so that $UAU'$ equals $\operatorname{diag}(1_{R_0},0)$ exactly and the
+lower right block of $UM_pU'$ is $p$ times the pairing $K$, modulo $p^2$. This forces every fibre
+block to have the same rank modulo $p$ as over $\Q$. Let us call a prime $p\in(h/20,5N]$ with
+$p\nmid10\den X$ and $p^2>5N$ \emph{bad}, for given $h$, $k$ and $I$, if some fibre block
+$A_\iota$ has smaller rank modulo $p$ than over $\Q$. A bad prime is at most $p_0$, hence is never
+ordinary, and \cref{prop:nullspace} says nothing about it. At a bad prime the argument does break
+down: if $A$ is reduced modulo $p$ to $\operatorname{diag}(1_{R'},0)$ with $R'<R_0$, the lower
+right block receives, besides $pK$, a term of order $p$ coming from $A$ itself, and the number
+$2R'+\rank_{\Fp}K$ computed modulo $p$ is not a bound for $e_p$. This is observed
+(\cref{subsec:finite-checks}): four bad primes occur for $h\le128$, the largest being $p=31$ at
+$h=128$, and at two of them $e_p$ exceeds the number computed modulo $p$. In all four cases
+$e_p\le2R_0+q$ still holds with the rational data of \cref{prop:nullspace}, although the
+proposition does not cover them. The excluded primes are harmless for \cref{thm:arithmetic}: there
+are at most $\pi(p_0)$ of them, independently of $h$, and by \cref{lem:entry-bound} each contributes
+$O(h\log h)$ to $\log\den P^{\sep}_I(X)$.
+\end{remark}
+
+\begin{remark}[Gauss valuations]\label{rem:gauss}
+\Cref{prop:nullspace} also holds for the polynomial: for an ordinary prime $p$, every coefficient
+of $P^{\alt}_I\in\Q[X]$ has $p$-adic valuation at least $-(2R_0+q)$. Indeed, let $\mathcal O$ be
+the localization of $\Zp[X]$ at the prime ideal generated by $p$. It is a discrete valuation ring
+with uniformizer $p$ and residue field $\Fp(X)$, and its valuation restricted to $\Q[X]$ is the
+Gauss valuation (the minimum of the valuations of the coefficients). The congruences of
+\cref{lem:two-layer} hold modulo $p^2\mathcal O$ for the matrix $p^2M^{\alt}_I(X)$ with $X$ an
+indeterminate, since $p^2(X+d_x)\equiv W_l$; the proof of \cref{lem:schur-valuation} uses only that
+$\Zp$ is a discrete valuation ring; and $K$ has entries in $\Zp$, so its rank over $\Fp(X)$ is its
+rank over $\Fp$. Some of the finite tests of \cref{subsec:finite-checks} use this form.
+\end{remark}
+
+\subsection{The profile}\label{subsec:profile}
+
+The quantities $R_0,a,b,a_\Lambda,b_\Lambda$ are sums over fibres of bounded type data, and the
+type of the fibre $\iota$ depends, up to $O(1)$ exceptions, only on $\iota/h$ and on the ratio
+$u=p/h$. We now make this precise. Recall that $c=\frac18$ is the border ratio.
+
+\begin{definition}[Profile]\label{def:profile}
+Let $\kappa\in\{\frac15,\frac25,\frac35,\frac45\}$, $u>0$ and $t\in[0,u)$. Put
+\begin{gather*}
+  \gamma(t)=\#\{l\ge0:t+lu<1\},\qquad T(t)=\#\{l\ge0:t+lu<1+c\},\\
+  \varepsilon(t)=(\mathbf1[t>\kappa u],\mathbf1[t>u/2]).
+\end{gather*}
+For a parity $\varpi\in\{0,1\}$ let $\tau_\varpi(t)$ be the alternating type with digits
+$\{0,\dots,T(t)-1\}$, row digits
+$\{l<\gamma(t)\}\cup\{\gamma(t)\le l<T(t):l-\gamma(t)\equiv\varpi\}$, column digits
+$\{l<\gamma(t)\}\cup\{\gamma(t)\le l<T(t):l-\gamma(t)\not\equiv\varpi\}$ (congruences modulo $2$),
+and signs $\varepsilon(t)$. Define
+\begin{gather*}
+  \rho_\kappa(u)=\int_0^u\tfrac12\sum_{\varpi}r_{\tau_\varpi(t)}\,\dd t,\qquad
+  \alpha_\kappa(u)=\int_0^u\tfrac12\sum_{\varpi}a_{\tau_\varpi(t)}\,\dd t,\\
+  \alpha_{\kappa,\Lambda}(u)=\int_0^u\tfrac12\sum_{\varpi}\mathbf1[\Lambda\in\Lambda^\Row_{\tau_\varpi(t)}]\,\dd t,
+\end{gather*}
+and $\beta_\kappa,\beta_{\kappa,\Lambda}$ in the same way with $b_\tau$ and $\Lambda^\Col_\tau$.
+The \emph{profile} is
+\[
+  e_\kappa(u)=2\rho_\kappa(u)+\min\Bigl\{\alpha_\kappa(u),\ \beta_\kappa(u),\
+  \min_\Lambda\bigl(\alpha_\kappa+\beta_\kappa-\alpha_{\kappa,\Lambda}-\beta_{\kappa,\Lambda}\bigr)(u)\Bigr\}.
+\]
+\end{definition}
+
+The integrands are step functions of $t$. To see this, put $t_b(u)=b-\lfloor b/u\rfloor u\in[0,u)$
+for $b>0$. Then, for $t\in[0,u)$,
+\begin{equation}\label{eq:digit-count}
+  \#\{l\ge0:t+lu<b\}=\lfloor b/u\rfloor+\mathbf1[t<t_b(u)] .
+\end{equation}
+Indeed, with $j=\lfloor b/u\rfloor$ we have $t+lu<ju\le b$ for $l<j$; $t+ju<b$ exactly when
+$t<t_b(u)$; and $t+lu\ge(j+1)u>b$ for $l>j$. Hence
+$\gamma(t)=\lfloor1/u\rfloor+\mathbf1[t<t_1(u)]$ and
+$T(t)=\lfloor(1+c)/u\rfloor+\mathbf1[t<t_{1+c}(u)]$, and the jumps of $(\gamma,T,\varepsilon)$ lie
+among the four \emph{cut points} $\kappa u$, $u/2$, $t_1(u)$ and $t_{1+c}(u)$. For $u$ in a compact
+subset of $(0,\infty)$ the digits are bounded, so only finitely many types and finitely many lines
+$\Lambda$ occur.
+
+\begin{lemma}\label{lem:profile-bound}
+There is an absolute constant $C_0$ such that for every ordinary prime $p$, every $\abs I\le1$
+and $\kappa=r_p/5$,
+\[
+  e_p\bigl(P^{\sep}_I(X)\bigr)=e_p\bigl(P^{\alt}_I(X)\bigr)\le h\,e_\kappa(p/h)+C_0 .
+\]
+\end{lemma}
+
+\begin{proof}
+The equality is \cref{cor:separation}. Put $u=p/h$ and, for a fibre $\iota$, $t=\iota/h\in[0,u)$.
+
+\emph{The type of a fibre.} We claim that the type of every fibre $\iota$, except the fibre of
+the deleted node, is exactly $\tau_{\varpi(\iota)}(\iota/h)$ for a parity $\varpi(\iota)$. The
+number of common digits of $\iota$ is $\#\{l:\iota+lp<h\}=\gamma(t)$ and the number of all digits is
+$\#\{l:\iota+lp<N\}=T(t)$, with the same strict inequalities as in \cref{def:profile}. Next,
+$\iota$ is an integer, whereas $p\kappa=j_0+s$ with $0<s<1$, and $p/2$, are not integers. Hence
+$\varepsilon_1(\iota)=\mathbf1[\iota>j_0]=\mathbf1[\iota>p\kappa]=\mathbf1[t>\kappa u]$ and
+$\varepsilon_2(\iota)=\mathbf1[\iota>(p-1)/2]=\mathbf1[\iota>p/2]=\mathbf1[t>u/2]$; no fibre lies on
+the cut points $\kappa u$ and $u/2$, so the strict inequalities in $\varepsilon(t)$ cause no
+ambiguity. Finally, in the alternating geometry a border digit $l\in[\gamma(t),T(t))$ is a row
+digit if and only if $\iota+lp-h$ is even; since $p$ is odd, this holds if and only if
+$l-\gamma(t)\equiv\varpi(\iota)\pmod2$, where $\varpi(\iota)$ is the parity of $\iota+\gamma(t)p-h$.
+This proves the claim.
+
+\emph{Counting.} The four cut points divide $[0,u)$ into at most five intervals on each of which
+$(\gamma,T,\varepsilon)$ is constant. The fibres $\iota$ with $\iota/h$ in such an interval
+$[\alpha,\beta)$ form a run of consecutive integers with $h(\beta-\alpha)+O(1)$ elements, and on
+it $\varpi(\iota)$ alternates with $\iota$, because $\gamma$ is constant; so each parity occurs
+$\frac12h(\beta-\alpha)+O(1)$ times. Type data are bounded (blocks have at most $23$ rows), and the
+fibre of the deleted node changes each sum by $O(1)$. Summing over the at most five runs,
+$R_0=h\rho_\kappa(u)+O(1)$, and likewise $a=h\alpha_\kappa(u)+O(1)$, $b=h\beta_\kappa(u)+O(1)$,
+$a_\Lambda=h\alpha_{\kappa,\Lambda}(u)+O(1)$ and $b_\Lambda=h\beta_{\kappa,\Lambda}(u)+O(1)$, with
+absolute implied constants, uniformly in $\Lambda$. A minimum of quantities each of which changes
+by $O(1)$ changes by $O(1)$, so $2R_0+q=h\,e_\kappa(u)+O(1)$, and \cref{prop:nullspace} gives the
+claim.
+\end{proof}
+
+\begin{lemma}\label{lem:profile-structure}
+For each $\kappa$, the functions $\rho_\kappa,\alpha_\kappa,\beta_\kappa,\alpha_{\kappa,\Lambda},
+\beta_{\kappa,\Lambda}$ are continuous on $(0,\infty)$ and affine on each interval between
+consecutive points of the set
+\begin{equation}\label{eq:breakpoints}
+  \Bigl\{\frac b{j+z}:b\in\{1,1+c\},\ z\in\{0,\kappa,\tfrac12\},\ j\in\Z_{\ge0},\ j+z>0\Bigr\}
+  \cup\Bigl\{\frac cj:j\in\Z_{\ge1}\Bigr\},
+\end{equation}
+which is discrete in $(0,\infty)$. On each such interval the sequence of types met as $t$ runs
+through $[0,u)$ does not depend on $u$. Consequently $e_\kappa$ is continuous, and on each such
+interval it is the minimum of finitely many affine functions.
+\end{lemma}
+
+\begin{proof}
+Each of the five functions has the form $\Phi(u)=\int_0^u\phi\bigl(\gamma(t),T(t),\varepsilon(t)\bigr)\dd t$
+for a function $\phi$ of the triple, where $\gamma$, $T$ and $\varepsilon$ depend on $u$.
+
+\emph{Affinity.} Let $J$ be an open interval containing no point of~\eqref{eq:breakpoints}. The
+points $1/j$ and $(1+c)/j$, $j\ge1$, belong to~\eqref{eq:breakpoints} (take $z=0$), so
+$j_1=\lfloor1/u\rfloor$ and $j_2=\lfloor(1+c)/u\rfloor$ are constant on $J$, and $1/u$ and
+$(1+c)/u$ are not integers there. Hence the four cut points
+\[
+  a_1(u)=\kappa u,\qquad a_2(u)=\frac u2,\qquad a_3(u)=t_1(u)=1-j_1u,\qquad a_4(u)=t_{1+c}(u)=1+c-j_2u
+\]
+are affine functions of $u\in J$ with values in the open interval $(0,u)$. No two of them
+coincide at a point of $J$: $a_1\ne a_2$ because $\kappa\ne\frac12$; $a_3=a_1$ or $a_3=a_2$ would
+give $u=1/(j_1+\kappa)$ or $u=1/(j_1+\frac12)$; $a_4=a_1$ or $a_4=a_2$ would give
+$u=(1+c)/(j_2+\kappa)$ or $u=(1+c)/(j_2+\frac12)$; and $a_3=a_4$ would give $(j_2-j_1)u=c$, hence
+$j_2>j_1$ and $u=c/(j_2-j_1)$. All these values belong to~\eqref{eq:breakpoints}. Affine functions
+that nowhere coincide on an interval keep their order, so there is a permutation $\sigma$ of
+$\{1,2,3,4\}$, independent of $u\in J$, with $0<a_{\sigma(1)}<a_{\sigma(2)}<a_{\sigma(3)}<a_{\sigma(4)}<u$
+on $J$. Put $a_{\sigma(0)}=0$ and $a_{\sigma(5)}=u$. By~\eqref{eq:digit-count}, for $t$ in the
+$i$-th open interval $(a_{\sigma(i-1)},a_{\sigma(i)})$, $1\le i\le5$,
+\[
+  \varepsilon(t)=\bigl(\mathbf1[a_1<t],\mathbf1[a_2<t]\bigr),\qquad
+  \gamma(t)=j_1+\mathbf1[t<a_3],\qquad T(t)=j_2+\mathbf1[t<a_4],
+\]
+and each indicator is determined by $i$ and $\sigma$. So the triple, the two types
+$\tau_0(t),\tau_1(t)$ and the value $\phi_i$ of the integrand on the $i$-th interval do not depend
+on $u\in J$, and
+\[
+  \Phi(u)=\sum_{i=1}^5\phi_i\,\bigl(a_{\sigma(i)}(u)-a_{\sigma(i-1)}(u)\bigr)
+\]
+is affine on $J$. The set~\eqref{eq:breakpoints} has finitely many points in every compact subset
+of $(0,\infty)$, so this applies to each interval between consecutive points.
+
+\emph{Continuity.} Fix $u_0>0$. Let $E$ be the finite set consisting of $\kappa u_0$, $u_0/2$ and
+the points $t\in[0,u_0)$ with $t+lu_0\in\{1,1+c\}$ for some $l\ge0$. For $t\in[0,u_0)\setminus E$
+each of the inequalities $t>\kappa u$, $t>u/2$, $t+lu<1$ and $t+lu<1+c$ ($l\ge0$) is strict or
+strictly false at $u=u_0$; only finitely many $l$ matter, since $t+lu>1+c$ for
+$l>2(1+c)/u_0$ and $u>u_0/2$. So $(\gamma(t),T(t),\varepsilon(t))$ is the same for all $u$ close
+to $u_0$. The integrands are bounded for $u$ near $u_0$, since digits are at most $2(1+c)/u_0+1$.
+By dominated convergence the integral over $[0,\min(u,u_0)]$ tends to $\Phi(u_0)$ as $u\to u_0$,
+and the rest of the integral, over an interval of length $\abs{u-u_0}$, tends to $0$.
+
+\emph{The profile.} On a compact interval only finitely many lines $\Lambda$ occur, so $e_\kappa$
+is there a minimum of finitely many continuous functions, each affine between consecutive points
+of~\eqref{eq:breakpoints}.
+\end{proof}
+
+\subsection{Integration over primes}\label{subsec:integration}
+
+\begin{definition}\label{def:A}
+With $c=1/8$,
+\begin{equation}\label{eq:A-def}
+  \cA=\frac{2+c}{20}+\frac14\sum_{\kappa\in\{\frac15,\frac25,\frac35,\frac45\}}
+      \int_{1/20}^{5(1+c)}e_\kappa(u)\,\dd u .
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Computer-assisted]\label{prop:A-value}
+$\cA$ is the rational number displayed in \cref{thm:arithmetic}. The four terms
+$\frac{2+c}{20}+\int_{1/20}^{45/8}e_\kappa$ equal $5.7782160022\ldots$, $3.0943367593\ldots$,
+$2.5875064068\ldots$ and $2.5884623339\ldots$ for $\kappa=\frac15,\frac25,\frac35,\frac45$.
+\end{proposition}
+
+\begin{proof}
+This is a finite computation in exact rational arithmetic, described in
+\cref{sec:arith-certificate}. The type data of \cref{def:block-types} are computed exactly; the
+interval $[1/20,45/8]$ is cut at the points~\eqref{eq:breakpoints} ($122$ or $123$ cells for each
+$\kappa$); on each cell the functions $2\rho_\kappa+\alpha_\kappa$, $2\rho_\kappa+\beta_\kappa$ and
+$2\rho_\kappa+\alpha_\kappa+\beta_\kappa-\alpha_{\kappa,\Lambda}-\beta_{\kappa,\Lambda}$ are affine
+and the set of lines $\Lambda$ that occur is fixed (\cref{lem:profile-structure}), so they are
+recovered from their values at two interior points; their minimum is integrated exactly, and the
+results are summed in $\Q$.
+\end{proof}
+
+\emph{Status.} Certified (AI-internal), given \cref{lem:profile-structure}: the original program
+and a separate implementation, written from the mathematical description during the AI-internal
+audit, give the same rational number; the inequality $\cA<3.512131$ is also checked in Lean
+(\file{arithmeticRate_lt}). The computation is exact, but that it computes the integral
+in~\eqref{eq:A-def} depends on \cref{lem:profile-structure}: values at two points of a cell do not
+detect a breakpoint missing from~\eqref{eq:breakpoints}. That lemma is proved above and has had no
+review; as a partial check, affinity was tested at five points of every cell
+(\cref{subsec:arith-checks}).
+
+\begin{proof}[Proof of \cref{thm:arithmetic}]
+Let $\abs I\le1$ and split $\log\den P^{\sep}_I(X)=\sum_pe_p\log p$ according to the size of $p$.
+The primes $p\le\sqrt{5N}$, the primes dividing $10\den X$ and the primes $p\le p_0$ contribute
+$O(h^{3/2})$ by \cref{cor:small-primes}(c) and \cref{lem:entry-bound} (the finitely many primes
+$p\le p_0$ contribute $O(h\log h)$ each). By \cref{cor:small-primes}(b) and the prime number
+theorem, the primes in $(\sqrt{5N},h/20]$ not dividing $10\den X$
+contribute at most $2n\,\vartheta(h/20)=(2+c)h^2/20+o(h^2)$, where $\vartheta(y)=\sum_{p\le y}\log p$.
+Primes $p>5N$ contribute nothing. For large $h$ the remaining primes are ordinary, and by
+\cref{lem:profile-bound} they contribute at most
+\[
+  \sum_{a\in(\Z/5\Z)^\times}\ \sum_{\substack{h/20<p\le5N\\p\equiv a\ (5)}}
+  \bigl(h\,e_{\kappa_a}(p/h)+C_0\bigr)\log p ,
+\]
+where $\kappa_a=r/5$ with $r\equiv ka^{-1}\pmod5$; as $a$ runs over $(\Z/5\Z)^\times$, $\kappa_a$
+runs over $\{\frac15,\frac25,\frac35,\frac45\}$. By the prime number theorem in arithmetic
+progressions \cite[Chapter~11]{MontgomeryVaughan2007},
+$\vartheta(y;5,a)=\sum_{p\le y,\,p\equiv a}\log p=y/4+o(y)$. Since $e_\kappa$ is continuous on
+$[1/20,45/8]$ (\cref{lem:profile-structure}), partial summation gives
+\[
+  \sum_{\substack{h/20<p\le5N\\p\equiv a\ (5)}}e_{\kappa_a}(p/h)\log p
+  =\int_{h/20}^{5N}e_{\kappa_a}(y/h)\,\dd\vartheta(y;5,a)
+  =\frac h4\int_{1/20}^{45/8}e_{\kappa_a}(u)\,\dd u+o(h),
+\]
+using $5N/h=5(1+c)=45/8$; the term $C_0\sum_p\log p$ is $O(h)$. Adding up,
+$\log\den P^{\sep}_I(X)\le\cA h^2+o(h^2)$, uniformly in $\abs I\le1$. With
+\cref{prop:A-value} this proves the theorem.
+\end{proof}
+
+\begin{remark}\label{rem:A-k-independent}
+The constant $\cA$ does not depend on $k$: as $p$ runs through the classes prime to $5$, the
+parameter $\kappa=r_p/5$ takes each value in $\{\frac15,\dots,\frac45\}$ on exactly one class, for
+every $k$. The individual integrals differ considerably (\cref{prop:A-value}), but only their
+average enters. For orientation, the entrywise bound alone would give the profile $2+c$ on the
+whole range, hence the constant $(2+c)\cdot\frac{45}{8}\approx11.95$ instead of $3.51$.
+\end{remark}

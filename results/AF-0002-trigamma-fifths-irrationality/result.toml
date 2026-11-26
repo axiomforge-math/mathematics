@@ -1,0 +1,52 @@
+# Authoritative metadata of an AxiomForge contribution (template version 1.0.0).
+# Read by scripts/afm.py (check, lean, verify, catalogue).
+# Field rules: AGENTS.md section 4 and docs/verification-policy.md.
+
+id = "AF-0002"
+slug = "trigamma-fifths-irrationality"
+title = "The irrationality of $\\psi_1(k/5)-\\pi^2/2$: a candidate proof with separated L\\\"owner determinants"
+version = "0.1.0"
+date = "2026-11-26"
+# Preprint: complete written argument, certificates reproduced, Lean development in
+# preparation. The archive does not establish the main theorem until level V4.
+status = "preprint"
+summary = "A candidate proof, released as a preprint, that xi_k = psi_1(k/5) - pi^2/2 is irrational for k = 1, 2, 3, 4 (psi_1 the trigamma function; psi_1(1/2) = pi^2/2). The proof uses Loewner (divided-difference) determinants of psi(z + k/5) - psi(z + 1/2) on h common nodes and h/8 border nodes, in the framework of S. Litsey, with the border rows separated from the border columns: an Andreief-Cauchy factorization divides every determinant by exactly 2^{m(m-1)}, m = h/16, without changing odd-prime valuations, a net gain of (log 2)/256 per h^2. A two-layer p-adic bound for the denominators and a logarithmic-energy bound on a contour, both completed by computer-assisted certificates that have been reproduced, give the comparison with a certified margin of 0.00075448 per h^2. Several steps have not been independently verified; in Lean the main theorem is proved only conditionally on the estimates."
+template_version = "1.0.0"
+msc_primary = "11J72"
+msc_secondary = ["33B15", "31A15"]
+keywords = ["irrationality", "trigamma function", "Loewner determinants", "divided differences", "logarithmic potential theory", "computer-assisted proof"]
+authors = ["AxiomForge"]
+correspondence = "axiomforge.math@gmail.com"
+repository = "https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0002-trigamma-fifths-irrationality"
+
+[disclosure]
+summary = "The original exploration, the candidate proof and the original certificate programs were produced with GPT-6.2 XHigh (web version), as stated by the AxiomForge owners. The reconstruction of the argument, the corrections it contains, the audit computations, the separately written checkers, the manuscript, the Lean development and the first packaging of this contribution were produced with Claude Opus 5.5 (Anthropic), used through Claude Code, under the direction of AxiomForge. A harsh AI-internal adversarial review (Claude Fable 5.2) found no critical error; all major findings were fixed, in a revision made with Claude Fable 5.2, and the final checks and packaging were done with Claude Sonnet 5.5. All checks were carried out with AI systems; no independent human review has taken place, and AI involvement is not independent certification. AxiomForge takes full responsibility for the content."
+ai_systems = ["GPT-6.2 XHigh (OpenAI), web version, as stated by the AxiomForge owners", "Claude Opus 5.5 (Anthropic), used through Claude Code", "Claude Fable 5.2 (Anthropic), used through Claude Code", "Claude Sonnet 5.5 (Anthropic), used through Claude Code"]
+
+[lean]
+package = "axiomforge-af0002"
+root = "AxiomForge.AF0002"
+toolchain = "leanprover/lean4:v4.34.0-rc1"
+mathlib = "f385f9fd18abed332ebcd3df239cb357e264aceb"
+
+[[theorem]]
+key = "thm:main"
+statement = "For each k in {1, 2, 3, 4} the number xi_k = psi_1(k/5) - pi^2/2 is irrational, where psi_1(s) = sum_{j>=0} 1/(j+s)^2 is the trigamma function."
+lean = ""
+lean_conditional = [
+  "AxiomForge.Trigamma.irrational_xi_one_of_estimates",
+  "AxiomForge.Trigamma.irrational_xi_two_of_estimates",
+  "AxiomForge.Trigamma.irrational_xi_three_of_estimates",
+  "AxiomForge.Trigamma.irrational_xi_four_of_estimates",
+]
+
+# Evidence for every value: logs/verification.md.
+[theorem.verification]
+proof = "candidate"
+certificates = "reproduced"
+formalization = "in-preparation"
+build = "passing"
+axioms = "standard"
+statement_review = "pending"
+independent_review = "ai-internal"
+literature_review = "checked"

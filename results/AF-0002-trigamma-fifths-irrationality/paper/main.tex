@@ -1,0 +1,81 @@
+% AxiomForge manuscript — template version 1.0.0.
+% Build: latexmk -pdf main.tex   (see README.md)
+\documentclass[11pt]{amsart}
+\makeatletter
+\input{preamble}
+\makeatother
+\input{macros}
+
+\title[Trigamma differences at fifths and one half: a candidate proof]{The irrationality of
+  $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants}
+\author{AxiomForge}
+\urladdr{https://github.com/axiomforge-math}
+\subjclass[2020]{Primary 11J72; Secondary 33B15, 31A15}
+\keywords{Irrationality, trigamma function, L\"owner determinants, divided differences,
+  logarithmic potential theory, computer-assisted proof}
+\date{26 November 2026}
+
+\afidentifier{AF-0002}
+\afversion{0.1.0}
+\afdate{26 November 2026}
+\afstatus{Preprint. Candidate proof: complete on paper, not yet independently verified; no human
+  review. It rests on two computer-assisted certificates, recomputed in an AI-internal audit,
+  whose comparison leaves a certified margin of only $0.000754$ per $h^2$ (\cref{tab:status}).}
+\afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/AF-0002-trigamma-fifths-irrationality}
+\afcorrespondence{\href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com}}
+\afdisclosure{AI-assisted research. The original exploration and candidate proof were
+  produced by GPT-6.2 XHigh (web version); the reconstruction, audits, this manuscript and the Lean
+  formalization by Claude Opus~5.5 (Anthropic), and an adversarial review and the resulting revision
+  by Claude Fable~5.2 (Anthropic), under the direction of AxiomForge. No AI review is independent, and
+  no human review has taken place. Details in the AI-assisted research disclosure at the end.}
+
+\begin{document}
+
+\begin{abstract}
+For $k=1,2,3,4$ we give a candidate proof that $\xi_k=\trig(k/5)-\pi^2/2$ is irrational,
+where $\trig$ is the trigamma function; since $\trig(1/2)=\pi^2/2$, the number $\xi_k$ is the
+difference $\trig(k/5)-\trig(1/2)$. The statement concerns neither $\trig(k/5)$ itself nor
+$\trig(k/5)-\pi^2/6$. The proof studies determinants of L\"owner (divided-difference)
+matrices of $\psi(z+k/5)-\psi(z+1/2)$ on $h$ common nodes and $h/8$ border nodes, in the
+framework of S.~Litsey, who lists these numbers among those that his interleaved (alternating)
+border does not reach. The new ingredient is to separate the border rows from the border
+columns. An Andr\'eief--Cauchy factorization shows that this divides every determinant by
+exactly $2^{m(m-1)}$, $m=h/16$, without changing any odd-prime valuation, while an entrywise bound
+controls the prime $2$ at cost $O(h\log h)$; the net gain is $(\log 2)/256$ per $h^2$. With a
+two-layer $p$-adic bound for the denominators, integrated over primes in progressions
+modulo~$5$, and a logarithmic-energy bound for the size, we obtain
+$\log\den\le(3.5121304+o(1))h^2$ and $\log\abs{\det}\le-(3.5128848+o(1))h^2$. The
+margin, $0.000754$ per $h^2$, is thin and rests on two computer-assisted certificates, in exact
+rational and in ball arithmetic. Both were recomputed, by implementations written separately
+from the original programs, in an internal audit performed by an AI system; the separation
+identity was examined in a second AI-internal review. No numerical experiment at accessible sizes
+can test the final inequality, no AI review is independent, and no human has reviewed the
+argument: the result is a candidate.
+\end{abstract}
+
+\affrontmatter
+
+\input{sections/01-introduction}
+\input{sections/02-lowner-pencils}
+\input{sections/03-nonvanishing}
+\input{sections/04-arithmetic}
+\input{sections/05-decay}
+\input{sections/06-proof}
+
+\appendix
+\input{sections/07-appendix-arithmetic-certificate}
+\input{sections/08-appendix-contour-and-trial-measure}
+\input{sections/09-appendix-exact-formulas}
+\input{sections/10-appendix-error-analysis}
+
+% back matter starts on a new page
+\clearpage
+\input{sections/90-reproducibility}
+\input{sections/91-acknowledgements}
+\input{sections/92-disclosure}
+
+\clearpage
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}

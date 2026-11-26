@@ -1,0 +1,280 @@
+\section{L\"owner pencils, the partition identity and separated borders}\label{sec:lowner}
+
+This section defines the L\"owner pencils $P^\star_I(X)$ and proves the separation identity
+$P^{\sep}_I=2^{-m(m-1)}P^{\alt}_I$ (\cref{cor:separation}). The identity is what makes the
+argument work: it gives the factor $2^{-m(m-1)}$ in the size estimate of \cref{sec:decay} and
+makes the odd-prime valuations of the two geometries equal, which is used throughout
+\cref{sec:arithmetic}. Its proof rests on one observation (\cref{prop:partition}): a L\"owner
+determinant depends on the split of its nodes into rows and columns only through the product of
+the two Vandermonde products.
+
+\subsection{The function and its rational data}\label{subsec:function}
+
+Put
+\[
+  F(z)=\psi(z+s)-\psi\!\left(z+\tfrac12\right),\qquad s=\tfrac k5 .
+\]
+It is meromorphic in $\C$, with simple poles at $-s-a$ (residue $-1$) and at $-\tfrac12-a$
+(residue $+1$), $a\in\Z_{\ge0}$, and $\xi_k=F'(0)$ by~\eqref{eq:xi-def}. Let
+\[
+  \delta(z)=\frac1{z+s}-\frac1{z+\frac12}.
+\]
+The recurrence $\psi(z+1)=\psi(z)+1/z$ \cite[5.5.2]{DLMF} gives $F(z+1)-F(z)=\delta(z)$ and
+$F'(z+1)-F'(z)=\delta'(z)$; hence, for $x\in\Z_{\ge0}$,
+\[
+  f_x:=F(x)-F(0)=\sum_{j=0}^{x-1}\delta(j),\qquad
+  d_x:=F'(x)-F'(0)=\sum_{j=0}^{x-1}\delta'(j)
+\]
+are rational numbers, explicitly
+$f_x=\sum_{j<x}\bigl(\frac5{5j+k}-\frac2{2j+1}\bigr)$ and
+$d_x=\sum_{j<x}\bigl(-\frac{25}{(5j+k)^2}+\frac4{(2j+1)^2}\bigr)$. In particular
+\begin{equation}\label{eq:fd-increments}
+  f_{x+1}-f_x=\delta(x),\qquad d_{x+1}-d_x=\delta'(x)\qquad(x\in\Z_{\ge0}).
+\end{equation}
+
+\subsection{Node sets and pencils}\label{subsec:pencils}
+
+\begin{definition}[Geometries]\label{def:geometries}
+Let $h\in16\N$ and put
+\[
+  m=\tfrac h{16},\qquad n=h+m,\qquad N=h+2m,\qquad c=\tfrac{2m}h=\tfrac18,\qquad
+  \lambda=\tfrac nh=\tfrac{17}{16}.
+\]
+The nodes are $\Nod=\{0,1,\dots,N-1\}$, the common nodes
+$\Com=\{0,\dots,h-1\}$ and the border $\Bor=\Nod\setminus\Com$. The alternating and separated
+geometries are the pairs $(\Row^\star,\Col^\star)$ of row and column node sets
+\begin{align*}
+  \Row^{\alt}&=\Com\cup\{h+2r:0\le r<m\}, & \Col^{\alt}&=\Com\cup\{h+2r+1:0\le r<m\},\\
+  \Row^{\sep}&=\Com\cup\{h+r:0\le r<m\}, & \Col^{\sep}&=\Com\cup\{h+m+r:0\le r<m\}.
+\end{align*}
+In both cases $\abs{\Row^\star}=\abs{\Col^\star}=n$, $\Row^\star\cap\Col^\star=\Com$ and
+$\Row^\star\cup\Col^\star=\Nod$. For a deletion $I\subseteq\Com$ we write
+$\Row^\star_I=\Row^\star\setminus I$, $\Col^\star_I=\Col^\star\setminus I$,
+$\Com_I=\Com\setminus I$ and $n_I=n-\abs I$.
+\end{definition}
+
+\begin{definition}[L\"owner pencil]\label{def:pencil}
+For $\star\in\{\alt,\sep\}$ and $I\subseteq\Com$, let $M^\star_I(X)$ be the $n_I\times n_I$
+matrix over $\Q[X]$ whose rows are indexed by $\Row^\star_I$ and whose columns are indexed by
+$\Col^\star_I$, both in increasing order, with entries
+\[
+  M^\star_I(X)_{x,y}=\begin{cases}\dfrac{f_y-f_x}{y-x}, & x\ne y,\\[2mm]
+  X+d_x, & x=y\in\Com_I,\end{cases}
+\]
+and let $P^\star_I(X)=\det M^\star_I(X)\in\Q[X]$, a polynomial of degree at most $h-\abs I$.
+\end{definition}
+
+For $x\ne y$ we have $(f_y-f_x)/(y-x)=(F(y)-F(x))/(y-x)$, and $\xi_k+d_x=F'(x)$. Thus
+$M^\star_I(\xi_k)$ is the L\"owner matrix
+$\bigl(F[x,y]\bigr)_{x\in\Row^\star_I,\,y\in\Col^\star_I}$ of $F$, where
+\begin{equation}\label{eq:divided-difference}
+  F[x,y]=\frac{F(y)-F(x)}{y-x}\ (x\ne y),\qquad F[x,x]=F'(x).
+\end{equation}
+The pencil is the device that lets us speak of the determinant ``at $X=\xi_k$'' while keeping
+every entry rational at rational $X$. Since $\Com$ is an initial segment of both $\Row^\star$ and
+$\Col^\star$, a common node occupies the same position among the rows and among the columns.
+Hence $P^\star_{I\cup\{x\}}(X)$, for $x\in\Com_I$, is the principal minor of $M^\star_I(X)$
+obtained by deleting the row and the column of $x$. This is used in \cref{sec:nonvanishing}.
+
+\subsection{Andr\'eief's identity and Cauchy's double alternant}\label{subsec:andreief}
+
+We use two classical identities in the following form.
+
+\begin{lemma}[Andr\'eief]\label{lem:andreief}
+Let $\Omega$ be a complex measure of finite total variation on a measurable space $S$ and
+$\varphi_1,\dots,\varphi_n,\chi_1,\dots,\chi_n$ bounded measurable functions on $S$. Then
+\[
+  \det\Bigl[\int_S\varphi_a\chi_b\,\dd\Omega\Bigr]_{a,b=1}^n
+  =\frac1{n!}\int_{S^n}\det[\varphi_a(z_c)]_{a,c=1}^n\,\det[\chi_b(z_c)]_{b,c=1}^n\,
+   \dd\Omega(z_1)\cdots\dd\Omega(z_n).
+\]
+\end{lemma}
+
+\begin{proof}
+All integrands are bounded and $\Omega$ has finite total variation, so Fubini's theorem applies.
+Expanding the second determinant, the right-hand side is
+\[
+  \frac1{n!}\sum_\pi\operatorname{sgn}\pi\int\det[\varphi_a(z_c)]_{a,c}
+  \prod_c\chi_{\pi(c)}(z_c)\,\dd\Omega^{\otimes n}(z).
+\]
+In the term of $\pi$ rename the variables
+by $z_c=w_{\pi(c)}$; the product measure is invariant, the product becomes
+$\prod_b\chi_b(w_b)$, and permuting the columns of the first determinant produces another factor
+$\operatorname{sgn}\pi$. Hence all $n!$ terms equal
+$\int\det[\varphi_a(w_b)]_{a,b}\prod_b\chi_b(w_b)\,\dd\Omega^{\otimes n}(w)$. Expanding this
+determinant as $\sum_\sigma\operatorname{sgn}\sigma\prod_b\varphi_{\sigma(b)}(w_b)$, the integral
+factorizes into $\sum_\sigma\operatorname{sgn}\sigma\prod_b\int\varphi_{\sigma(b)}\chi_b\,\dd\Omega$,
+which is the left-hand side.
+\end{proof}
+
+\begin{lemma}[Cauchy]\label{lem:cauchy}
+Let $x_1<\dots<x_n$ be real and $z_1,\dots,z_n\in\C$ with $z_c\ne x_a$ for all $a,c$. Then
+\[
+  \det\Bigl[\frac1{z_c-x_a}\Bigr]_{a,c=1}^n
+  =(-1)^{n(n-1)/2}\,\frac{\Delta(x)\,\Delta(z)}{\prod_{a,c}(z_c-x_a)}.
+\]
+\end{lemma}
+
+\begin{proof}
+This is Cauchy's evaluation $\det[1/(u_a+v_c)]=\prod_{a<b}(u_b-u_a)(v_b-v_a)/\prod_{a,c}(u_a+v_c)$
+with $u_a=-x_a$ and $v_c=z_c$; the sign comes from $\prod_{a<b}(x_a-x_b)=(-1)^{n(n-1)/2}\Delta(x)$.
+\end{proof}
+
+\begin{proposition}[Determinant formula]\label{prop:det-formula}
+Let $\Row=\{x_1<\dots<x_n\}$ and $\Col=\{y_1<\dots<y_n\}$ be sets of real numbers, $S\subset\C$
+a measurable set at positive distance from $\Row\cup\Col$, and $\Omega$ a complex measure of
+finite total variation on $S$. Then
+\[
+  \det\Bigl[\int_S\frac{\dd\Omega(z)}{(z-x_a)(z-y_b)}\Bigr]_{a,b=1}^n
+  =\frac{\Delta(\Row)\Delta(\Col)}{n!}\int_{S^n}\Delta(z)^2
+   \prod_{c=1}^n\frac{1}{\omega_\Row(z_c)\,\omega_\Col(z_c)}\,\dd\Omega^{\otimes n}(z).
+\]
+\end{proposition}
+
+\begin{proof}
+Apply \cref{lem:andreief} with $\varphi_a(z)=1/(z-x_a)$ and $\chi_b(z)=1/(z-y_b)$, which are
+bounded on $S$, and evaluate both determinants by \cref{lem:cauchy}. The two signs
+$(-1)^{n(n-1)/2}$ cancel and $\Delta(z)\cdot\Delta(z)=\Delta(z)^2$.
+\end{proof}
+
+The integrand depends on $\Row$ and $\Col$ only through $\omega_\Row\omega_\Col$, that is,
+through the multiset $\Row\uplus\Col$. All the dependence on how this multiset is split into
+rows and columns sits in the prefactor $\Delta(\Row)\Delta(\Col)$.
+
+\subsection{The partition identity}\label{subsec:partition}
+
+For a function $g$ holomorphic near a finite set of real points we write
+$g[x,y]=(g(y)-g(x))/(y-x)$ for $x\ne y$ and $g[x,x]=g'(x)$, and $L_g(\Row,\Col)$ for the matrix
+$(g[x,y])_{x\in\Row,\,y\in\Col}$, rows and columns in increasing order. Thus
+$M^\star_I(\xi_k)=L_F(\Row^\star_I,\Col^\star_I)$.
+
+\begin{proposition}[Partition invariance]\label{prop:partition}
+Let $U\subseteq\C$ be open, $g$ holomorphic on $U$, and $\Row=\{x_1<\dots<x_n\}$,
+$\Col=\{y_1<\dots<y_n\}$ subsets of $U\cap\R$. Let $\gamma$ be a cycle in
+$U\setminus(\Row\cup\Col)$ with winding number $1$ about every point of $\Row\cup\Col$ and $0$
+about every point of $\C\setminus U$; for instance the sum of small positively oriented circles
+about the distinct points of $\Row\cup\Col$. Then
+\[
+  \det L_g(\Row,\Col)=\Delta(\Row)\Delta(\Col)\,\Phi_g(\Row\uplus\Col),
+\]
+where, for a multiset $\mathcal M$ of $2n$ points,
+\[
+  \Phi_g(\mathcal M)=\frac1{n!}\int_{\gamma^n}\Delta(z)^2\prod_{c=1}^n
+  \frac{g(z_c)}{\prod_{\nu\in\mathcal M}(z_c-\nu)}\,\frac{\dd z_1\cdots\dd z_n}{(2\pi i)^n},
+\]
+the inner product running over the multiset $\mathcal M$ with multiplicities. The number
+$\Phi_g(\mathcal M)$ does not depend on the choice of $\gamma$. Consequently, if $(\Row',\Col')$ is
+another pair of subsets of $U\cap\R$ with $\abs{\Row'}=\abs{\Col'}=n$ and
+$\Row'\uplus\Col'=\Row\uplus\Col$, then
+\[
+  \det L_g(\Row,\Col)\cdot\Delta(\Row')\Delta(\Col')=\det L_g(\Row',\Col')\cdot\Delta(\Row)\Delta(\Col).
+\]
+\end{proposition}
+
+\begin{proof}
+For nodes $x,y\in\Row\cup\Col$ the residue theorem for cycles gives
+$\frac1{2\pi i}\int_\gamma g(z)\,\dd z/((z-x)(z-y))=g[x,y]$: the integrand is holomorphic on
+$U$ except at $x$ and $y$, where its residues are $g(x)/(x-y)$ and $g(y)/(y-x)$ if $x\ne y$, and
+$g'(x)$ if $x=y$. Hence $L_g(\Row,\Col)$ is the matrix of \cref{prop:det-formula} for the measure
+$\Omega=g(z)\,\dd z/(2\pi i)$ on the compact set $\gamma$, which has finite total variation and
+lies at positive distance from the nodes; since
+$\omega_\Row(z)\omega_\Col(z)=\prod_{\nu\in\Row\uplus\Col}(z-\nu)$, \cref{prop:det-formula} gives the
+formula. As $\Delta(\Row)\Delta(\Col)>0$, $\Phi_g(\Row\uplus\Col)$ equals
+$\det L_g(\Row,\Col)/(\Delta(\Row)\Delta(\Col))$, which does not involve $\gamma$. For the last
+assertion note that $\Row\cup\Col=\Row'\cup\Col'$ as sets, so one cycle $\gamma$ serves both pairs,
+and multiply the two instances of the formula crosswise.
+\end{proof}
+
+No division by a determinant occurs: the identity is multiplicative and holds whether or not
+the determinants vanish.
+
+\subsection{The separation identity}\label{subsec:separation}
+
+For a set $\Com'\subseteq\Com$ of common nodes put $\Row^\star[\Com']=\Com'\cup(\Row^\star\cap\Bor)$
+and $\Col^\star[\Com']=\Com'\cup(\Col^\star\cap\Bor)$; thus $\Row^\star_I=\Row^\star[\Com\setminus I]$.
+
+\begin{corollary}[Separated versus alternating borders]\label{cor:separation-lowner}
+Let $g$ be holomorphic on an open set containing $\Nod$ and let $\Com'\subseteq\Com$ be arbitrary.
+Then
+\[
+  \det L_g(\Row^{\sep}[\Com'],\Col^{\sep}[\Com'])
+  =2^{-m(m-1)}\det L_g(\Row^{\alt}[\Com'],\Col^{\alt}[\Com']).
+\]
+\end{corollary}
+
+\begin{proof}
+Both pairs consist of two sets of $n-\abs{\Com\setminus\Com'}$ elements, and both multisets
+$\Row\uplus\Col$ equal $2\cdot\Com'+\Bor$. By \cref{prop:partition} it suffices to show
+$\Delta(\Row^{\alt}[\Com'])\Delta(\Col^{\alt}[\Com'])
+=2^{m(m-1)}\Delta(\Row^{\sep}[\Com'])\Delta(\Col^{\sep}[\Com'])$. Write
+$\Bor^\star_\Row=\Row^\star\cap\Bor$ and $\Bor^\star_\Col=\Col^\star\cap\Bor$. Every border node
+exceeds every common node, so for $\Bor'\subseteq\Bor$
+\[
+  \Delta(\Com'\cup\Bor')=\Delta(\Com')\,\Delta(\Bor')\prod_{x\in\Com',\ b\in\Bor'}(b-x).
+\]
+The cross products for rows and columns multiply to $\prod_{x\in\Com',\,b\in\Bor}(b-x)$ in both
+geometries, because $\Bor^\star_\Row\sqcup\Bor^\star_\Col=\Bor$, and $\Delta(\Com')^2$ is common.
+Finally $\Bor^{\alt}_\Row$ and $\Bor^{\alt}_\Col$ are arithmetic progressions of length $m$ and step
+$2$, so $\Delta(\Bor^{\alt}_\Row)=\Delta(\Bor^{\alt}_\Col)=\prod_{0\le r<r'<m}2(r'-r)$, while
+$\Bor^{\sep}_\Row$ and $\Bor^{\sep}_\Col$ have step $1$ and $\Delta=\prod_{0\le r<r'<m}(r'-r)$. The
+ratio is $2^{m(m-1)/2}$ for rows and for columns.
+\end{proof}
+
+\begin{corollary}[Separation identity]\label{cor:separation}
+For every $h\in16\N$, every $k$ and every $I\subseteq\Com$,
+\[
+  P^{\sep}_I(X)=2^{-m(m-1)}\,P^{\alt}_I(X)\qquad\text{in }\Q[X],
+\]
+with sign $+1$ for the increasing orderings of \cref{def:pencil}. Consequently, for every
+$X_0\in\Q$: $P^{\sep}_I(X_0)=0$ if and only if $P^{\alt}_I(X_0)=0$; and if they are nonzero,
+$v_p(P^{\sep}_I(X_0))=v_p(P^{\alt}_I(X_0))$ for every odd prime $p$ and
+$v_2(P^{\sep}_I(X_0))=v_2(P^{\alt}_I(X_0))-m(m-1)$.
+\end{corollary}
+
+\begin{proof}
+The poles of $F$ are real and at most $-\frac15$, so $F$ is holomorphic on
+$U=\{\operatorname{Re}z>-\frac15\}$; an admissible cycle in \cref{prop:partition} is, for
+instance, the positively oriented circle with diameter $[-\frac1{10},N-\frac9{10}]$, which lies in
+$\operatorname{Re}z\ge-\frac1{10}$ and encloses $0,\dots,N-1$. By Hermite interpolation there is a
+polynomial $G_I$ with $G_I(x)=0$ for $x\in\Nod\setminus I$ and $G_I'(x)=1$ for $x\in\Com_I$. For
+$X\in\C$ the function $g_X=F+(X-\xi_k)G_I$ is holomorphic on $U$; for distinct nodes $x,y$ we have
+$g_X[x,y]=F[x,y]=(f_y-f_x)/(y-x)$, and for $x\in\Com_I$ we have
+$g_X'(x)=F'(x)+X-\xi_k=X+d_x$. Hence $M^\star_I(X)=L_{g_X}(\Row^\star_I,\Col^\star_I)$ for both
+geometries, and \cref{cor:separation-lowner} with $\Com'=\Com\setminus I$ gives
+$P^{\sep}_I(X)=2^{-m(m-1)}P^{\alt}_I(X)$ for every complex $X$, hence in $\Q[X]$. The statements
+about zeros and valuations follow.
+\end{proof}
+
+\begin{remark}[The multilinear route]\label{rem:multilinear}
+Alternatively, $M^\star_I(X)=L_F(\Row^\star_I,\Col^\star_I)+(X-\xi_k)D$, where $D$ has entries $1$
+at the positions of the common nodes and $0$ elsewhere. Since $\Com_I$ is an initial segment of
+both orderings, expanding by multilinearity gives
+$P^\star_I(X)=\sum_{S\subseteq\Com_I}(X-\xi_k)^{\abs S}\det L_F(\Row^\star[\Com_I\setminus S],
+\Col^\star[\Com_I\setminus S])$ with all cofactor signs equal to $+1$, and each term is covered
+by \cref{cor:separation-lowner} with $\Com'=\Com_I\setminus S$. This is the argument of the
+reviewed written proof; it is the reason for allowing arbitrary $\Com'$.
+\end{remark}
+
+\begin{remark}[Review and exact confirmation]\label{rem:separation-checks}
+The written proof of the separation identity was examined in an adversarial AI-internal review,
+which found it correct. Three sets of exact computations confirm the identity.
+\begin{enumerate}[(a)]
+  \item The review checked the sign $+1$ for $h\in\{16,32,48\}$, all $k$ and $60$ deletions with
+  $\abs I\le4$; the general lemma for random multisets, partitions and orderings; the factor
+  $\Delta(\Bor_\Row)\Delta(\Bor_\Col)/(\Delta(\Bor^{\alt}_\Row)\Delta(\Bor^{\alt}_\Col))$ for every
+  split of the border into two $m$-sets; and, in ball arithmetic, the cofactor signs of
+  \cref{rem:multilinear} at the true value $\xi_k$.
+  \item Both polynomials were computed exactly in $\Q[X]$ for $h\in\{16,32,48,64\}$, all $k$ and
+  $I\in\{\varnothing,\{0\},\{h-1\}\}$ ($48$ cases). The ratio is exactly $2^{-m(m-1)}$, the Gauss
+  valuations at all odd primes $p\le5N+10$ agree, and the $2$-adic Gauss valuations differ by
+  exactly $m(m-1)$.
+  \item The original programs check the evaluated identity at $X\in\{1/7,2/3\}$ for the
+  non-standard sizes $(h,m)\in\{(4,2),(6,3),(8,4)\}$ ($72$ cases); \cref{prop:partition} does not
+  use $h=16m$.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}\label{rem:separation-meaning}
+The gain $m(m-1)\log2=\frac{c^2}4(\log2)h^2+O(h)$ grows quadratically with the border ratio
+$c=2m/h$. We work only with $c=\frac18$, the ratio for which the certificates were computed.
+\end{remark}

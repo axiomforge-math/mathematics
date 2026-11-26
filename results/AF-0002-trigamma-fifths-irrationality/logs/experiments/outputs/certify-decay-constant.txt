@@ -1,0 +1,6 @@
+contour cells 1103
+theta certified lower 2.100132730635077
+atom cells 182 J lower -0.05985735879820058
+energy mu upper 2.3239023213730645 node energy lower 1.610701979226508
+D_alternating lower 3.5101522752601806 D_separated lower 3.5128598814342427
+PASS: D_alternating >= 3.5099, separation gain >= 0.002707, D_separated >= 3.512607

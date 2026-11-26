@@ -1,0 +1,62 @@
+\afbacksection{AI-assisted research disclosure}
+
+\subsubsection*{Original exploration and candidate proof}
+According to its owners, the original exploration, the idea of separating the border nodes, the
+candidate proof and the programs of the archive described under \emph{Reproducibility and
+formal verification} were produced by
+GPT-6.2 XHigh (OpenAI, web version). We have no further information about that process. The
+archive's own text states that it was not independently reviewed or formalized.
+
+\subsubsection*{Reconstruction, audits, formalization and manuscript}
+Claude Opus~5.5 (Anthropic), working under the direction of AxiomForge, carried out the following:
+an exact audit of the separation identity; the recomputation of both certificates and a
+review of the energy criterion; the written proof of the separation identity and its
+adversarial review, done in a separate session; the Lean package; and the first version of this
+manuscript. These reviews are AI-internal and are not independent. The audit and the recomputation
+of the certificates concern the original proof and programs, which were written by a model of
+another vendor; the review of the separation identity concerns a proof written by the same model
+that reviewed it. For the manuscript the arguments were
+reconstructed and rewritten rather than copied. This includes the Hermite-interpolation form of
+the pencil identity (\cref{cor:separation}), complete proofs of the nonvanishing statement and of
+the entrywise bounds, the cell-measure and parallelogram argument for the node energies, the
+proof of conditional positivity, and the closed form of $I(\nu)$. The checks of
+\cref{subsec:arith-checks} and the tests of \cref{subsec:finite-checks}(a) for
+$h\in\{32,48,64,96\}$ were also made in this phase.
+
+\subsubsection*{Adversarial review of the manuscript and revision}
+Claude Fable~5.2 (Anthropic) reviewed the first version of this manuscript adversarially, in a
+separate session, and Claude Fable~5.2 then revised the manuscript in response, under the
+direction of AxiomForge. The review found no step of the chain of estimates that fails, but
+several false or unsupported statements in the reporting, which are corrected here: the
+description of earlier results, the claim that the alternating method fails, the number and
+nature of the bad primes in the finite tests, and the claim that the profile dominates prime by
+prime. The revision also added the proofs of \cref{lem:profile-structure} and
+\cref{lem:uniform-continuity}, \cref{rem:bad-primes,rem:gauss}, the quantitative form of the bound
+in \cref{lem:contour}, and the computations listed as made for this revision under
+\emph{Reproducibility and formal verification}. Reviewer and reviser are the same model, from the
+same vendor as the model that wrote the first version; this review is AI-internal, is not
+independent, and its added proofs have themselves had no review.
+
+\subsubsection*{Human role and responsibility}
+AxiomForge chose the problem, directed the work and decided on publication. No human mathematician has reviewed the argument or the
+certificates. Agreement between AI-written implementations, and the AI-internal reviews described
+above, are not independent mathematical certification. This manuscript should be
+read as a candidate proof submitted for checking.
+
+\subsubsection*{Literature}
+The works~\cite{Litsey2026Lowner,OpenAICatalan2026}, on which the method is modelled, are
+themselves unrefereed and described by their authors as largely AI-generated; we use them only for
+orientation and attribution, and the present arguments do not depend on them. Statements about
+their content (the theorem and section numbers of~\cite{Litsey2026Lowner} and the figures quoted
+from its Section~12.1) are taken from a reading of version~3 of that preprint made by an AI system
+on 25~November 2026 and have not been checked by a human. The search for earlier results on the
+numbers $\xi_k$ was made by an AI system on the same day in arXiv, Crossref, zbMATH Open, Zenodo,
+GitHub and the Hexagon catalogue; MathSciNet and Google Scholar were not searched. It found no
+proof of the irrationality of an individual $\xi_k$, which is not a proof that none exists.
+
+\emph{Responsibility.} AI systems are not authors of this work and cannot take responsibility
+for it. AxiomForge takes full responsibility for the entire content of this manuscript,
+including every part produced with AI assistance, and for any errors it may contain. Reports
+of errors are welcome at \href{mailto:axiomforge.math@gmail.com}{axiomforge.math@gmail.com};
+confirmed errors are corrected openly in a new version, recorded in the changelog of this
+contribution, with credit to whoever reported them.

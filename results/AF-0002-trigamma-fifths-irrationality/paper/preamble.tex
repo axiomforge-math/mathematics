@@ -1,0 +1,106 @@
+% AxiomForge manuscript preamble — template version 1.0.0.
+% This file is copied into every contribution and is owned by it afterwards.
+% It fixes the typographic identity of the series; it defines no mathematical notation
+% (each paper keeps its own notation in macros.tex).
+
+% ---------------------------------------------------------------- page and fonts
+\usepackage[a4paper,hmargin=31mm,top=34mm,bottom=36mm,headsep=10mm,footskip=12mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[final,protrusion=true,expansion=true]{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[shortlabels]{enumitem}
+\setlist{itemsep=0.2em,topsep=0.4em}
+\usepackage{xcolor}
+\linespread{1.04}
+\setlength{\emergencystretch}{1.5em}
+\allowdisplaybreaks[1]
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{2}
+% Table of contents: sections (and their page numbers) in bold with a little space above
+% them, subsections indented in normal weight; after \appendix only the (bold) section
+% titles are listed, so the appendices never crowd the contents.
+\def\l@section{\@tocline{1}{2.5pt plus 1pt minus 2pt}{0pt}{}{\bfseries\let\@tocpagenum\af@tocpagenumbf}}
+\def\af@tocpagenumbf#1{\hss{\bfseries #1}}
+\def\l@subsection{\@tocline{2}{0pt}{1.5em}{2.3em}{}}
+\g@addto@macro\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}}
+% Every appendix starts on a new page; the unnumbered back matter (\afbacksection) keeps the
+% original \section and flows normally after the last appendix.
+% (Local implementation through a hook, so that \section itself is not redefined.)
+\newif\ifaf@appendixpage
+\AddToHook{cmd/section/before}{\ifaf@appendixpage\clearpage\fi}
+\g@addto@macro\appendix{\global\af@appendixpagetrue}
+
+% ---------------------------------------------------------------- links
+\definecolor{afblue}{rgb}{0.08,0.18,0.42}
+\usepackage[pdfusetitle,bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,
+  colorlinks=true,linkcolor=afblue,citecolor=afblue,urlcolor=afblue,
+  pdfpagelabels=true,pdfdisplaydoctitle=true]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+% Local addition: unique PDF anchors for theorem-like environments numbered within sections.
+\hypersetup{hypertexnames=false}
+
+% ---------------------------------------------------------------- theorem environments
+% thmtools keeps cleveref names correct for environments sharing one counter.
+\usepackage{thmtools}
+\declaretheorem[style=plain,numberwithin=section,name=Theorem]{theorem}
+\declaretheorem[style=plain,sibling=theorem,name=Proposition]{proposition}
+\declaretheorem[style=plain,sibling=theorem,name=Lemma]{lemma}
+\declaretheorem[style=plain,sibling=theorem,name=Corollary]{corollary}
+\declaretheorem[style=plain,numbered=no,name=Theorem]{theorem*}
+\declaretheorem[style=definition,sibling=theorem,name=Definition]{definition}
+\declaretheorem[style=definition,sibling=theorem,name=Example]{example}
+\declaretheorem[style=remark,sibling=theorem,name=Remark]{remark}
+\crefname{equation}{}{}
+\Crefname{equation}{Equation}{Equations}
+
+% ---------------------------------------------------------------- series metadata
+% \afidentifier{AF-0001}, \afversion{1.0.0}, \afdate{25 November 2026},
+% \afrepository{https://github.com/axiomforge-math/mathematics/tree/main/results/...},
+% \afdisclosure{short AI-assisted research disclosure},
+% \afstatus{verification status} (local addition; optional)
+\newcommand{\afidentifier}[1]{\gdef\af@identifier{#1}}
+\newcommand{\afversion}[1]{\gdef\af@version{#1}}
+\newcommand{\afdate}[1]{\gdef\af@date{#1}}
+\newcommand{\afrepository}[1]{\gdef\af@repository{#1}}
+\newcommand{\afdisclosure}[1]{\gdef\af@disclosure{#1}}
+\newcommand{\afcorrespondence}[1]{\gdef\af@correspondence{#1}}
+\gdef\af@correspondence{}
+% Local addition: verification status of the contribution, printed as a 'Status' row.
+\newcommand{\afstatus}[1]{\gdef\af@status{#1}}
+\gdef\af@status{}
+
+% The publication block printed under the abstract on the title page.
+\newcommand{\afpublicationblock}{%
+  \begingroup\footnotesize\noindent
+  \begin{tabular}{@{}l@{\quad}p{0.72\textwidth}@{}}
+    \textit{Identifier} & \af@identifier\quad(version \af@version, \af@date)\\[1pt]
+    \ifx\af@status\@empty\else\textit{Status} & \af@status\\[1pt]\fi
+    \textit{Repository} & \url{\af@repository}\\[1pt]
+    \ifx\af@correspondence\@empty\else\textit{Correspondence} & \af@correspondence\\[1pt]\fi
+    \textit{Disclosure} & \af@disclosure
+  \end{tabular}\par
+  \endgroup}
+
+% Front matter: title page, then contents, then the body on a fresh page.
+\newcommand{\affrontmatter}{%
+  \maketitle
+  \vspace*{\fill}
+  \afpublicationblock
+  \thispagestyle{plain}%
+  \clearpage
+  {\hypersetup{linkcolor=black}\fontsize{9}{10.6}\selectfont\tableofcontents}
+  \clearpage}
+
+% Unnumbered back-matter sections (amsart lists starred sections in the contents).
+\newcommand{\afbacksection}[1]{\global\af@appendixpagefalse\section*{#1}}
+
+% ---------------------------------------------------------------- local to this paper
+% (contour figure and line breaks in long URLs)
+\hbadness=10000 % no underfull-box reports: the log of the bibliography contains a T1 accented letter, which the archive tool cannot decode
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\g@addto@macro\UrlBreaks{\do\-}

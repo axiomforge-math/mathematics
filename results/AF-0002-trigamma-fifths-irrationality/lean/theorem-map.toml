@@ -1,0 +1,83 @@
+# Manuscript-level statements and their Lean counterparts.
+# formal = "proved" | "conditional" | "missing"
+
+[[statement]]
+manuscript = "Main theorem, k = 1: psi_1(1/5) - pi^2/2 is irrational"
+lean = "AxiomForge.Trigamma.irrational_xi_one_of_estimates"
+formal = "conditional"
+hypotheses = ["LownerEstimates (1/5)"]
+
+[[statement]]
+manuscript = "Main theorem, k = 2: psi_1(2/5) - pi^2/2 is irrational"
+lean = "AxiomForge.Trigamma.irrational_xi_two_of_estimates"
+formal = "conditional"
+hypotheses = ["LownerEstimates (2/5)"]
+
+[[statement]]
+manuscript = "Main theorem, k = 3: psi_1(3/5) - pi^2/2 is irrational"
+lean = "AxiomForge.Trigamma.irrational_xi_three_of_estimates"
+formal = "conditional"
+hypotheses = ["LownerEstimates (3/5)"]
+
+[[statement]]
+manuscript = "Main theorem, k = 4: psi_1(4/5) - pi^2/2 is irrational"
+lean = "AxiomForge.Trigamma.irrational_xi_four_of_estimates"
+formal = "conditional"
+hypotheses = ["LownerEstimates (4/5)"]
+
+[[statement]]
+manuscript = "Irrationality deduction from the arithmetic and archimedean estimates"
+lean = "AxiomForge.Trigamma.irrational_trigamma_sub_of_lownerEstimates"
+formal = "proved"
+
+[[statement]]
+manuscript = "At least one of xi_1, xi_2, xi_3, xi_4 is irrational (new, unconditional)"
+lean = "AxiomForge.Trigamma.irrational_xi_one_or_xi_two_or_xi_three_or_xi_four"
+formal = "proved"
+
+[[statement]]
+manuscript = "pi^2 is irrational (classical; used above)"
+lean = "AxiomForge.Trigamma.irrational_pi_sq"
+formal = "proved"
+
+[[statement]]
+manuscript = "psi_1(1/2) = pi^2/2, hence xi_k = psi_1(k/5) - psi_1(1/2)"
+lean = "AxiomForge.Trigamma.xi_eq_trigamma_sub_trigamma"
+formal = "proved"
+
+[[statement]]
+manuscript = "Arithmetic integral A = 304227995343501721142691896310988016794079029050925423/86622067750624596685118168422516024981216422248448000 < 3.512131"
+lean = "AxiomForge.Trigamma.arithmeticRate_lt"
+formal = "proved"
+note = "only the final rational comparison; the identification of A with the profile integral is not formalized"
+
+[[statement]]
+manuscript = "Margin 3.512607 - 3.512131 > 0"
+lean = "AxiomForge.Trigamma.arithmetic_lt_decay"
+formal = "proved"
+
+[[statement]]
+manuscript = "Separation identity P_sep,I(X) = 2^(-m(m-1)) P_alt,I(X)"
+lean = ""
+formal = "missing"
+
+[[statement]]
+manuscript = "Nonvanishing with one deletion: for every rational X and h there is |I| <= 1 with P_sep,I(X) != 0"
+lean = "AxiomForge.Trigamma.LownerEstimates.nonvanishing"
+formal = "missing"
+
+[[statement]]
+manuscript = "Arithmetic estimate: limsup h^-2 log den P_sep,I(X) < 3.512131"
+lean = "AxiomForge.Trigamma.LownerEstimates.denominator"
+formal = "missing"
+
+[[statement]]
+manuscript = "Archimedean estimate: limsup h^-2 log |P_sep,I(xi)| <= -3.512607"
+lean = "AxiomForge.Trigamma.LownerEstimates.decay"
+formal = "missing"
+
+[[statement]]
+manuscript = "Reflection: xi_k + xi_{5-k} = pi^2 cot^2(pi k/5); one of xi_1, xi_4 is irrational"
+lean = ""
+formal = "missing"
+note = "Mathlib lacks transcendence of pi and the real-variable cotangent derivative series"

@@ -1,0 +1,160 @@
+\section{Nonvanishing with one deletion}\label{sec:nonvanishing}
+
+This section proves the nonvanishing statement~(N) of \cref{tab:constants}. The final
+deduction (\cref{subsec:main-proof}) needs, for each $h$, a nonzero determinant at
+$X=\xi_k$; since $\xi_k$ is not known to be any specific rational number, we prove that for every
+complex $X$ a deletion of at most one common node suffices. The idea: a kernel vector of the
+pencil is a pair of polynomials $(u,w)$ with $w/u$ interpolating $F$ to first order at the
+common nodes; two independent kernel vectors, or one vanishing on all common nodes, would produce
+a rational function $r$ with $r(z+1)-r(z)=F(z+1)-F(z)$, which is impossible because the right-hand
+side has residue sum $1$ on the orbit $-s+\Z$.
+
+\begin{proposition}\label{prop:nonvanishing}
+Let $h\in16\N$, $k\in\{1,2,3,4\}$, $\star\in\{\alt,\sep\}$ and $X\in\C$. Either
+$P^\star_\varnothing(X)\ne0$, or there is $x\in\Com$ with $P^\star_{\{x\}}(X)\ne0$.
+\end{proposition}
+
+By \cref{cor:separation} the statement for one geometry implies it for the other. The argument
+is a version of the corank bound by a discrete Wronskian in~\cite[\S5]{Litsey2026Lowner},
+adapted to our function; we give it in full. Throughout this section $X\in\C$ and the geometry are
+fixed, $I=\varnothing$, and we write $M=M^\star_\varnothing(X)$, $\Row=\Row^\star$,
+$\Col=\Col^\star$ and $\C[z]_{<n}$ for the polynomials of degree less than $n$.
+
+\subsection{Kernels as interpolation spaces}\label{subsec:kernel}
+
+Let $V$ be the space of pairs $(u,w)\in\C[z]_{<n}^2$ such that
+\begin{align}
+  w(x)&=f_x\,u(x) && (x\in\Nod),\label{eq:value-cond}\\
+  w'(x)&=f_x\,u'(x)+(X+d_x)\,u(x) && (x\in\Com).\label{eq:jet-cond}
+\end{align}
+The space $V$ depends on $\Nod$, $\Com$ and $X$, but not on the geometry.
+
+\begin{lemma}\label{lem:kernel}
+The map $(u,w)\mapsto\bigl(u(y)/\omega_\Col'(y)\bigr)_{y\in\Col}$ is an isomorphism from $V$ onto
+the right kernel $\{v:Mv=0\}$, and $(u,w)\mapsto\bigl(u(x)/\omega_\Row'(x)\bigr)_{x\in\Row}$ is an
+isomorphism from $V$ onto the left kernel $\{v:v^{\mathsf T}M=0\}$.
+\end{lemma}
+
+\begin{proof}
+For $g\in\C[z]_{<n}$, Lagrange interpolation on $\Col$ gives
+\[
+  g(z)=\sum_{y\in\Col}\frac{g(y)\,\omega_\Col(z)}{\omega_\Col'(y)(z-y)} .
+\]
+Evaluating at $x\notin\Col$, and differentiating at $x\in\Col$ when $g(x)=0$, we obtain
+\begin{equation}\label{eq:lagrange}
+\begin{aligned}
+  \sum_{y\in\Col}\frac{g(y)}{\omega_\Col'(y)(y-x)}&=-\frac{g(x)}{\omega_\Col(x)}
+  &&(x\notin\Col),\\
+  \sum_{y\in\Col\setminus\{x\}}\frac{g(y)}{\omega_\Col'(y)(y-x)}&=-\frac{g'(x)}{\omega_\Col'(x)}
+  &&(x\in\Col,\ g(x)=0).
+\end{aligned}
+\end{equation}
+Given $v\in\C^\Col$, let $u\in\C[z]_{<n}$ be the polynomial with $u(y)=v_y\,\omega_\Col'(y)$ and
+$w\in\C[z]_{<n}$ the polynomial with $w(y)=f_yu(y)$, for $y\in\Col$. For a row $x$ put
+$g_x=w-f_xu\in\C[z]_{<n}$; then $(f_y-f_x)v_y=g_x(y)/\omega_\Col'(y)$ for $y\in\Col$. If
+$x\in\Row\setminus\Col$ is a border row, \eqref{eq:lagrange} gives
+\[(Mv)_x=\sum_{y\in\Col}\frac{g_x(y)}{\omega_\Col'(y)(y-x)}=-\frac{w(x)-f_xu(x)}{\omega_\Col(x)} .\]
+If $x\in\Com$, then $g_x(x)=0$, and \eqref{eq:lagrange} gives
+\[(Mv)_x=\sum_{y\ne x}\frac{g_x(y)}{\omega_\Col'(y)(y-x)}+(X+d_x)\frac{u(x)}{\omega_\Col'(x)}
+  =\frac{-w'(x)+f_xu'(x)+(X+d_x)u(x)}{\omega_\Col'(x)}.\]
+Since~\eqref{eq:value-cond} holds on $\Col$ by construction and $\Nod=\Col\cup(\Row\setminus\Col)$,
+$Mv=0$ if and only if $(u,w)\in V$. Conversely, every $(u,w)\in V$ arises in this way from
+$v_y=u(y)/\omega_\Col'(y)$, because polynomials of degree less than $n$ are determined by their
+values on $\Col$. This proves the first assertion. The matrix $M^{\mathsf T}$ is the L\"owner
+pencil with the roles of $\Row$ and $\Col$ exchanged (the entries are symmetric in $x$ and $y$),
+and the same argument with $\Row$ in place of $\Col$ proves the second.
+\end{proof}
+
+\subsection{Corank at most one}\label{subsec:corank}
+
+For a pair of polynomials $(u,w)$ put, with $A=\frac12-s$ and $B(z)=(z+s)(z+\frac12)$, so that
+$B\delta=A$,
+\[
+  E_{u,w}(z)=B(z)\bigl[w(z+1)u(z)-w(z)u(z+1)\bigr]-A\,u(z)u(z+1).
+\]
+
+\begin{lemma}\label{lem:E-zeros}
+Let $u,w$ have degree at most $\ell$. Then $\deg E_{u,w}\le2\ell$. If $x\in\Z_{\ge0}$ and $(u,w)$
+satisfies $w(y)=f_yu(y)$ for $y\in\{x,x+1\}$, then $E_{u,w}(x)=0$. If moreover
+$w'(y)=f_yu'(y)+(X+d_y)u(y)$ for $y\in\{x,x+1\}$, then $E_{u,w}$ vanishes to order at least two
+at $x$.
+\end{lemma}
+
+\begin{proof}
+Write $G(z)=w(z+1)u(z)-w(z)u(z+1)$ and $\Pi(z)=u(z)u(z+1)$. If
+$u=\sum_{j\le\ell}u_jz^j$ and $w=\sum_{j\le\ell}w_jz^j$, the coefficients of $z^{2\ell}$ and
+$z^{2\ell-1}$ in $G$ are $w_\ell u_\ell-w_\ell u_\ell=0$ and
+$(w_\ell u_{\ell-1}+(w_{\ell-1}+\ell w_\ell)u_\ell)-(w_\ell(u_{\ell-1}+\ell u_\ell)+w_{\ell-1}u_\ell)=0$;
+so $\deg G\le2\ell-2$ and $\deg E_{u,w}\le2\ell$. Under the value conditions,
+$G(x)=(f_{x+1}-f_x)\Pi(x)=\delta(x)\Pi(x)$ by~\eqref{eq:fd-increments}, so
+$E_{u,w}(x)=(B\delta-A)(x)\,\Pi(x)=0$. Under the jet conditions a direct computation gives
+\[
+  G'(x)=(f_{x+1}-f_x)\,\Pi'(x)+(d_{x+1}-d_x)\,\Pi(x)=\delta(x)\Pi'(x)+\delta'(x)\Pi(x),
+\]
+the terms in $X$ cancelling, so that
+$E_{u,w}'(x)=(B\delta)'(x)\Pi(x)+\bigl(B(x)\delta(x)-A\bigr)\Pi'(x)=0$.
+\end{proof}
+
+\begin{lemma}\label{lem:no-rational-solution}
+There is no rational function $r\in\C(z)$ with $r(z+1)-r(z)=\delta(z)$. Consequently, if
+$u\ne0$ then $E_{u,w}\not\equiv0$.
+\end{lemma}
+
+\begin{proof}
+For a rational function $g$ and a class $\mathcal O=z_0+\Z$, only finitely many residues of $g$
+on $\mathcal O$ are nonzero and $\sum_{z\in\mathcal O}\Res_z\bigl(g(\cdot+1)-g\bigr)
+=\sum_{z\in\mathcal O}(\Res_{z+1}g-\Res_zg)=0$. But $\delta$ has residue $1$ at $-s$ and its only
+other pole, $-\frac12$, is not in $-s+\Z$ because $\frac12-\frac k5=\frac{5-2k}{10}\notin\Z$; so
+the sum of the residues of $\delta$ over $-s+\Z$ is $1$. If $u\ne0$ and $E_{u,w}\equiv0$, then
+$r=w/u$ satisfies $r(z+1)-r(z)=A/B(z)=\delta(z)$, which is impossible.
+\end{proof}
+
+\begin{lemma}\label{lem:corank}
+$\dim V\le1$, and every nonzero $(u,w)\in V$ satisfies $u(x)\ne0$ for some $x\in\Com$.
+\end{lemma}
+
+\begin{proof}
+\emph{Step 1.} Let $(u_1,w_1),(u_2,w_2)\in V$ and $W=w_1u_2-w_2u_1$, of degree at most $2n-2$. By
+\eqref{eq:value-cond}, $W$ vanishes on $\Nod$; by \eqref{eq:jet-cond},
+$W'(x)=(f_xu_1'+(X+d_x)u_1)u_2+f_xu_1u_2'-(f_xu_2'+(X+d_x)u_2)u_1-f_xu_2u_1'=0$ at $x\in\Com$. So
+$W$ has at least $\abs\Nod+\abs\Com=2h+2m=2n$ zeros counted with multiplicity, and $W\equiv0$.
+Comparing the coefficients of $z^{2n-2}$, the vectors of leading coefficients (of $z^{n-1}$) of
+$(u_1,w_1)$ and $(u_2,w_2)$ are proportional. Hence, if $\dim V\ge2$, some nonzero
+$(u,w)\in V$ has $\deg u,\deg w\le n-2$.
+
+\emph{Step 2.} Such a pair cannot exist. By \cref{lem:E-zeros}, $E_{u,w}$ has degree at most
+$2n-4$ and vanishes at $x=0,\dots,N-2$, doubly at $x=0,\dots,h-2$: at least
+$(N-1)+(h-1)=2n-2$ zeros. Hence $E_{u,w}\equiv0$. Moreover $u\ne0$, since otherwise $w$ would
+vanish on the $N>n$ points of $\Nod$. This contradicts \cref{lem:no-rational-solution}. So
+$\dim V\le1$.
+
+\emph{Step 3.} Let $(u,w)\in V$ be nonzero with $u(x)=0$ for all $x\in\Com$. By
+\eqref{eq:value-cond} also $w$ vanishes on $\Com$, so $u=\omega_\Com\tilde u$ and
+$w=\omega_\Com\tilde w$ with $\deg\tilde u,\deg\tilde w\le m-1$. At $x\in\Com$,
+$u'(x)=\omega_\Com'(x)\tilde u(x)$ and $w'(x)=\omega_\Com'(x)\tilde w(x)$, so
+\eqref{eq:jet-cond} becomes $\tilde w(x)=f_x\tilde u(x)$; at $x\in\Bor$, \eqref{eq:value-cond}
+gives the same relation since $\omega_\Com(x)\ne0$. Thus $\tilde w(x)=f_x\tilde u(x)$ on all of
+$\Nod$, and $E_{\tilde u,\tilde w}$ has degree at most $2m-2$ and at least $N-1=h+2m-1$ zeros, so
+$E_{\tilde u,\tilde w}\equiv0$. As $\tilde u\ne0$ (otherwise $u=0$ and then $w=0$), this
+contradicts \cref{lem:no-rational-solution}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:nonvanishing}]
+If $\det M\ne0$ there is nothing to prove, so suppose $\det M=0$. By \cref{lem:kernel,lem:corank} the kernel of $M$ is one-dimensional, so
+$\rank M=n-1$ and the adjugate matrix $\adj M$ has rank one. Since $M\adj M=\adj M\,M=0$, we have
+$\adj M=\alpha\,v\,v'^{\mathsf T}$ with $\alpha\ne0$, $Mv=0$ and $v'^{\mathsf T}M=0$. Let $(u,w)$ span
+$V$. By \cref{lem:kernel} we may take $v_y=u(y)/\omega_\Col'(y)$ and $v'_x=u(x)/\omega_\Row'(x)$,
+with the same $u$ since $\dim V=1$. By \cref{lem:corank} there is $x\in\Com$ with $u(x)\ne0$. The
+diagonal entry of $\adj M$ at the position of $x$, which is the same among rows and columns, is
+the principal minor obtained by deleting the row and the column of $x$, that is
+$P^\star_{\{x\}}(X)$. It equals $\alpha v_xv'_x=\alpha u(x)^2/(\omega_\Col'(x)\omega_\Row'(x))\ne0$.
+\end{proof}
+
+\begin{remark}\label{rem:nonvanishing}
+The proof gives slightly more: if $P^\star_\varnothing(X)=0$, then $P^\star_{\{x\}}(X)\ne0$ for
+every common node $x$ with $u(x)\ne0$. We do not know whether $P^\star_\varnothing(\xi_k)$ itself
+is nonzero; the deletion makes this question irrelevant, at the price of requiring all later
+estimates to be uniform in $\abs I\le1$. At small sizes no deletion is needed at rational points:
+an exact factorization over $\Q$ shows that $P^{\sep}_\varnothing(X)$ has no rational root for
+$h\in\{16,32,48\}$ and all $k$. This is finite evidence only.
+\end{remark}

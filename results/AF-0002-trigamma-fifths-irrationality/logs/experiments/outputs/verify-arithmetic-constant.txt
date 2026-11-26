@@ -1,0 +1,15 @@
+mode fixed kappa 1/5: (2+c)/20 + integral = 5.7782160022127105  [122 intervals, 1s]
+mode fixed kappa 2/5: (2+c)/20 + integral = 3.0943367593249911  [123 intervals, 1s]
+mode fixed kappa 3/5: (2+c)/20 + integral = 2.5875064068950246  [122 intervals, 3s]
+mode fixed kappa 4/5: (2+c)/20 + integral = 2.5884623339327288  [122 intervals, 4s]
+mode fixed: A = 304227995343501721142691896310988016794079029050925423/86622067750624596685118168422516024981216422248448000
+mode fixed: A = 3.5121303755913638
+PASS fixed-labelling A equals the claimed rational (5)
+PASS A < 3.512131 (mode fixed)
+mode optimal kappa 1/5: (2+c)/20 + integral = 5.7782160022127105  [122 intervals, 0s]
+mode optimal kappa 2/5: (2+c)/20 + integral = 3.0943367593249911  [123 intervals, 1s]
+mode optimal kappa 3/5: (2+c)/20 + integral = 2.5875064068950246  [122 intervals, 1s]
+mode optimal kappa 4/5: (2+c)/20 + integral = 2.5884623339327288  [122 intervals, 2s]
+mode optimal: A = 304227995343501721142691896310988016794079029050925423/86622067750624596685118168422516024981216422248448000
+mode optimal: A = 3.5121303755913638
+PASS A < 3.512131 (mode optimal)

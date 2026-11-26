@@ -1,0 +1,153 @@
+\section{Proof of the theorem, the margin, and open points}\label{sec:proof}
+
+This section combines the three estimates into the proof of \cref{thm:main}, explains why one
+pair of certificates serves all four values of $k$, discusses how thin the margin is, and lists
+what must still be verified before the theorem can be regarded as established.
+
+\subsection{Proof of \texorpdfstring{\cref{thm:main}}{Theorem 1.1}}\label{subsec:main-proof}
+
+Fix $k\in\{1,2,3,4\}$ and suppose that $\xi_k=X\in\Q$. For each $h\in16\N$,
+\cref{prop:nonvanishing} (applied with this $X$) gives a set $I_h\subseteq\Com$ with
+$\abs{I_h}\le1$ and $P^{\sep}_{I_h}(\xi_k)\ne0$. The number
+$\den\bigl(P^{\sep}_{I_h}(\xi_k)\bigr)\cdot\abs{P^{\sep}_{I_h}(\xi_k)}$ is a positive integer, so
+its logarithm is nonnegative. Both \cref{thm:arithmetic} and \cref{cor:decay-separated} are
+uniform in the deletion, so they apply to $I_h$ and give
+\begin{align*}
+  0\le\log\den P^{\sep}_{I_h}(\xi_k)+\log\abs{P^{\sep}_{I_h}(\xi_k)}
+   &\le\bigl(\cA-\cD_{\sep}+o(1)\bigr)h^2\\
+   &\le\bigl(-0.000754+o(1)\bigr)h^2,
+\end{align*}
+since $\cA<3.5121304$ (\cref{thm:arithmetic}) and $\cD_{\sep}\ge3.5128848$
+(\cref{cor:decay-separated}), and $3.5128848-3.5121304=0.0007544$. The right-hand side is negative
+for large $h$, a contradiction. Hence $\xi_k\notin\Q$. \qed
+
+\subsection{Uniformity in \texorpdfstring{$k$}{k} and the size of the margin}\label{subsec:margin}
+
+The four values of $k$ are covered by the same two certificates. The arithmetic constant $\cA$
+does not depend on $k$ (\cref{rem:A-k-independent}). In the analytic part, $k$ enters only
+through the constant $C_1(k)$ of \cref{lem:contour} and through the positions of the atoms, which
+form two progressions of step $1$ for every $k$; the node measure $\nu$, the contour, the trial
+measure and the certified constants are the same for all $k$.
+
+The proof uses the constants $\cD_{\alt}=3.5101772$ and $\cD_{\sep}=\cD_{\alt}+(\log2)/256$ of
+\cref{thm:decay,cor:decay-separated}. With more digits of the certified bounds, the comparison
+reads
+\[
+  \cD^{*}_{\alt}+\frac{\log2}{256}-\cA\ \ge\ 3.5101772515+0.0027076061-3.5121303756
+  \ge0.00075448 ,
+\]
+where $\cD^{*}_{\alt}=3.5101772515\ldots$ is the certified rational lower bound of
+\cref{prop:energy-certificate}; here the two lower bounds are truncated and the value of $\cA$ is
+rounded up. The original archive, with its coarser energy certificate (lower bound
+$3.5101522752$) and the rounded constants $3.5099$, $0.002707$ and $3.512131$, states the margin
+$0.000476$; the certified value used here is $0.000754$.
+
+With these certificates alone the comparison for the alternating geometry does not close:
+$\cD^{*}_{\alt}-\cA=-0.0019531\ldots$\,. Since $\cD^{*}_{\alt}$ is a lower bound for the decay rate,
+obtained from one contour and one trial measure, and $\cA$ is an upper bound for the denominator
+rate, this negative difference does not prove that the alternating border fails for the numbers
+$\xi_k$; it shows only that our two bounds do not suffice without the separation. For comparison,
+\cite[\S12.1]{Litsey2026Lowner} reports an estimated deficit of about $0.0014$ for the alternating
+border (\cref{subsec:context}); we have not reproduced that estimate.
+
+The margin is about $0.02\%$ of the compared quantities. Every source of error in the
+certificates is either exact rational arithmetic or enclosed rigorously
+(Appendices~\ref{sec:arith-certificate} and~\ref{sec:error-analysis}), and the rigorous error
+terms are many orders of magnitude below the margin; the danger is not rounding but a mistake in
+the reduction of the asymptotic statements to the finite computations, or in their
+implementation.
+
+\emph{What the finite computations do and do not show.} No numerical experiment at accessible
+sizes supports or contradicts the inequality $\cA<\cD_{\sep}$; the following facts, all taken from
+the computations described in \cref{subsec:finite-checks} and in \emph{Reproducibility and formal
+verification}, show how far the tested sizes are from the asymptotic regime.
+\begin{enumerate}[(i)]
+  \item \emph{Local bound.} For $h\le128$ the bound $2R_0+q$ of \cref{prop:nullspace} is attained
+  at all but a few of the primes with $p^2>5N$ (at $118$ to $119$ of the $119$ primes for $h=128$).
+  This says that the local bound is sharp at most primes of these sizes. It does not say that the
+  constant $\cA$ is sharp: the theorem bounds the sum of the local bounds by the profile, and the
+  primes below $\sqrt{5N}$ by $o(h^2)$.
+  \item \emph{Distance to the limit on the arithmetic side.} For $h=128$ the primes with
+  $p^2>5N$ contribute between $2.86$ and $2.92$ per $h^2$ to $\log\den$, depending on $k$, and
+  the sums $\sum_p h\,e_\kappa(p/h)\log p$ of the profile over the same primes are larger by
+  $0.011$ to $0.024$ per $h^2$, that is, by $15$ to $32$ times the margin. Both are far from
+  $\cA=3.512\ldots$, because the primes $p\le\sqrt{5N}$, to which the proof allots $o(h^2)$, still
+  contribute between $0.54$ and $0.59$ per $h^2$ at this size.
+  \item \emph{The product itself.} Let $\operatorname{cont}P^{\sep}_\varnothing\in\Q$ be the
+  content of the polynomial $P^{\sep}_\varnothing$. The quantity
+  \[
+    g(h,k)=h^{-2}\bigl(\log\den(\operatorname{cont}P^{\sep}_\varnothing)
+    +\log\abs{P^{\sep}_\varnothing(\xi_k)}\bigr),
+  \]
+  computed for $h\le96$ and all $k$, lies between $-0.176$ and $+0.010$; it is positive for $k=3$
+  at $h=80$ ($+0.0030$) and $h=96$ ($+0.0091$). \TRENDEXTRA{} These values are $0.01$ to $0.2$ per $h^2$ away from the
+  limiting bound $\cA-\cD_{\sep}\le-0.000754$, they are not monotone in $h$, and they neither
+  confirm nor contradict it. (The content of the polynomial bounds the denominator at every
+  rational point with denominator prime to the primes concerned; it is not the denominator at one
+  point.)
+  \item \emph{The separation is invisible at these sizes.} For rational $X$, the numerators of
+  $P^{\sep}_I(X)$ and $P^{\alt}_I(X)=2^{m(m-1)}P^{\sep}_I(X)$ coincide as long as
+  $m(m-1)\le-v_2(P^{\sep}_I(X))$. The latter is $O(h\log h)$ but large: for $k=1$ and $h=64$ the
+  $2$-adic Gauss valuation of the polynomial $P^{\sep}_\varnothing$ is $-752$, against
+  $m(m-1)=12$. The entrywise bound $-v_2\le2n\lfloor\log_2(5N)\rfloor$ (for $X$ with odd
+  denominator) is smaller than $m(m-1)$ only for $h\ge8192$; this is an upper estimate for the
+  size at which the separation must change $\den\cdot\abs P$, and the true threshold, which we
+  do not know, is lower.
+\end{enumerate}
+The contradiction is therefore asymptotic in a strong sense, and the evidence for it is the
+written reduction of the two asymptotic statements (\cref{thm:arithmetic,thm:decay}) to the two
+finite certificates, not any experiment. On the analytic side, $V$ is nearly constant on the part
+of the contour that carries $\mu$ (\cref{subsec:trial-measure}); this suggests, heuristically and
+without proof, that the certified decay is close to the best value obtainable from this contour
+by the criterion of \cref{prop:energy-criterion}.
+
+\begin{remark}[Pairwise irrationality]\label{rem:pairwise}
+Independently of the rest of the paper, \eqref{eq:pair-sum} shows that $\xi_1+\xi_4$ and
+$\xi_2+\xi_3$ are nonzero algebraic multiples of $\pi^2$, hence transcendental by Lindemann's
+theorem. So at least one number in each pair is irrational. This weaker statement is all that
+that we found in the literature (\cref{subsec:context}). The Lean package proves formally the still weaker
+statement that at least one of $\xi_1,\dots,\xi_4$ is irrational, from
+$\xi_1+\xi_2+\xi_3+\xi_4=2\pi^2$.
+\end{remark}
+
+\begin{remark}[Irrationality measures]\label{rem:no-measure}
+An irrationality measure would require the decay bound on a neighbourhood of $\xi_k$ of size
+$\exp(-\rho h^2)$, uniformly in $X$, as in~\cite[\S\S6, 11]{Litsey2026Lowner}. With a margin of
+$0.00075$ per $h^2$ any resulting exponent would be enormous, and we have not pursued this.
+\end{remark}
+
+\subsection{Open points}\label{subsec:open-points}
+
+\Cref{tab:status} records the status of each step. We list the points that, in our judgement,
+must be settled before \cref{thm:main} can be regarded as established. None of them is known to
+fail.
+\begin{enumerate}[(O1)]
+  \item \emph{Human review.} No human mathematician has checked the argument or the certificates.
+  All reviews and recomputations so far were performed by an AI
+  system and are not independent certification.
+  \item \emph{Steps without any review.} \Cref{prop:nonvanishing} and the prime-number-theorem
+  bookkeeping in the proof of \cref{thm:arithmetic} have been checked only in the course of
+  writing this paper; the nonvanishing statement is supported at small sizes by the absence of
+  rational roots (\cref{rem:nonvanishing}).
+  \item \emph{Candidate steps reviewed only internally.} The polar congruences
+  (\cref{lem:two-layer}), the simultaneous nullspace bound (\cref{prop:nullspace}), the contour
+  representation (\cref{lem:contour}) and the energy criterion (\cref{prop:energy-criterion})
+  were checked in the AI-internal audit, partly against exact valuations at finite $h$;
+  the proofs written here should be read by a referee, in particular the uniformity of Step~4 of
+  \cref{prop:energy-criterion} near the atoms closest to the origin and on the vertical rays.
+  \item \emph{The constant $p_0$ and the excluded primes.} \Cref{def:block-types} excludes the
+  finitely many primes $p\le p_0$, where $p_0>120$ depends on the chosen bases; only its
+  finiteness is used, and it has not been computed. The exclusion is not a formality: primes at
+  which a fibre block has smaller rank modulo $p$ than over $\Q$ do occur in the finite tests
+  (four cases, the largest $p=31$ at $h=128$, \cref{subsec:finite-checks}); all of them are below
+  $120$ and none contradicts \cref{prop:nullspace}, but the set of such primes over all the types
+  that occur has not been determined.
+  \item \emph{Profile lemmas.} \Cref{lem:profile-bound,lem:profile-structure}, on which the exact
+  integration of $\cA$ rests, are proved here and have had no review; a breakpoint missing
+  from~\eqref{eq:breakpoints} would change the computed value of $\cA$ without any program
+  noticing, except through the affinity checks of \cref{subsec:arith-checks}.
+  \item \emph{Implementations.} Each certificate has two implementations (\cref{sec:arith-certificate,sec:error-analysis}),
+  all written by AI systems; none has been read line by line by a second party.
+  \item \emph{Formal verification.} The Lean development proves only the final deduction,
+  conditionally on the estimates (see \emph{Reproducibility and formal verification}).
+\end{enumerate}

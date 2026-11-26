@@ -1,0 +1,31 @@
+vertices 8 segments 238 tol contour 1/1000000 tol real 1/1000000
+PASS mass(mu) = 17/16 exactly
+PASS mu has positive masses on nondegenerate segments
+PASS mu is conjugation symmetric
+PASS Gamma crosses the real axis at -r0 < 0
+PASS upper polygon in Re z < 0, Im z >= 0
+PASS Im strictly increasing along upper polygon
+PASS every mu segment lies on an edge of Gamma or on [-r0,0]
+r0 = 0.1329814  R_mu <= 0.46179567882729133
+contour cells 3639 [42s]
+theta (strict lower bound of V on finite contour) = 2.1001432662425703 attained near (-0.2659499567307692, 0.3736778846153846)
+V on contour cell endpoints: min 2.100143651  median 2.100285594  max 4.119860921
+PASS tail: V >= (1-eps0) pi y - lam R_mu / y >= 3.534461 > theta on y >= 1.25
+real cells 760 [92s]
+J lower = -0.05985671176088135  (measure of {chord-lower < theta} ~ 0.13292 of r0 = 0.13298)
+PASS I(nu) closed form agrees with segment-pair formula
+I(nu) = [1.610701979226507986079936163677347476854217281880595567883779220651410032846 +/- 2.12e-76]
+I(mu) = [2.32390232137306459015318699887874087344955633554437718914071060412058325 +/- 3.24e-72] [102s]
+theta lower  = 2.1001432662425703
+J lower      = -0.05985671176088135
+I(mu) upper  = 2.3239023213730645
+I(nu) lower  = 1.610701979226508
+D_alt lower  = 3.5101772515753797  exact rational: 487045163663376607147617805746046674506622821877016777371446404291136645320683293059677003749182796190643478719828542310928916701480797108535255689529580076071766718133503/138752299031277994194846567001412893575810099863840927637319647692043163101127047386844534332162863538750249823210895493857811039442459486862229593320163354083328000000000
+PASS D_alt >= 3.5099
+PASS log(2)/256 >= 0.002707
+D_sep lower  = 3.512884857749442
+PASS D_sep >= 3.512607
+margin D_sep - A >= 0.0007544821580782345
+PASS D_sep > A (claimed arithmetic integral)
+total time 102s
+ALL DECAY CHECKS PASSED

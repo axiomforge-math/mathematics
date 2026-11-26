@@ -1,0 +1,105 @@
+\section{The energy certificate}\label{sec:error-analysis}
+
+This appendix explains why the numbers in \cref{prop:energy-certificate} are rigorous bounds.
+There are two implementations: the ball-arithmetic computation made during the AI-internal
+audit, which gives the certified values used in the proof, and the original fixed-point verifier, which
+uses a coarser cover and gives slightly weaker bounds. Both rest on the formulas of
+\cref{sec:exact-formulas} and on the following interpolation lemma.
+
+\begin{lemma}\label{lem:chord}
+Let $f$ be continuous on $[0,1]$ and $C^2$ on $(0,1)$ with
+$\abs{f''(t)}\le K_0+K_1/t+K_2/(1-t)$ for constants $K_0,K_1,K_2\ge0$. Then
+$\abs{f(t)-((1-t)f(0)+tf(1))}\le K_0/8+(K_1+K_2)/\e$ for $t\in[0,1]$.
+\end{lemma}
+
+\begin{proof}
+Let $g$ be $f$ minus its chord and
+$\phi(t)=\frac{K_0}2t(1-t)-K_1t\log t-K_2(1-t)\log(1-t)\ge0$. Then $\phi''=-K_0-K_1/t-K_2/(1-t)$,
+so $\phi\pm g$ is concave on $(0,1)$, continuous on $[0,1]$ and zero at the endpoints, hence
+nonnegative. Finally $\max\phi\le K_0/8+(K_1+K_2)\max(-t\log t)=K_0/8+(K_1+K_2)/\e$.
+\end{proof}
+
+On a straight cell from $z_0$ to $z_1$ that contains no segment endpoint in its interior,
+\eqref{eq:second-derivative} gives
+$\abs{\frac{\dd^2}{\dd t^2}V}\le\abs{z_1-z_0}^2\sum_e\abs{\gamma_e}/\abs{z(t)-e}$. An endpoint $e$ of
+the cell contributes $K_1/t$ or $K_2/(1-t)$ with $K_{1,2}=\abs{\gamma_e}\abs{z_1-z_0}$; any other
+segment endpoint contributes to $K_0$ through a lower bound for its distance to the cell.
+
+\subsection{The certified computation}\label{subsec:energy-recomputation}
+
+The AI-internal audit rebuilt the certificate from the definitions, with Arb ball arithmetic at
+$256$ bits and exact rational geometry; every asserted inequality is checked on ball endpoints or
+in exact rational arithmetic, and the program stops if one fails.
+\begin{itemize}
+  \item \emph{Data.} The hypotheses on $\Gamma$ and $\mu$ listed in \cref{sec:contour-and-measure}
+  are checked exactly; moreover $\operatorname{supp}\mu\subset\{\abs w\le R_\mu\}$ with
+  $R_\mu\le0.4618$.
+  \item \emph{Contour.} The values of $V$ are enclosed with \cref{lem:segment-potential}. Each
+  edge of $\Gamma^+$ is split at the segment endpoints lying on it and bisected until the bound of
+  \cref{lem:chord} is at most $10^{-6}$ ($3639$ cells). The minimum over cells of
+  $\min(V(z_0),V(z_1))$ minus this bound, minus a strictness buffer $10^{-9}$, gives
+  $\theta=2.1001432662\ldots$; the smallest endpoint value of $V$ is $2.1001436\ldots$, the median
+  over the cell endpoints is $2.1002856\ldots$ and the largest is $4.1198\ldots$\,. The endpoints
+  are concentrated on the part of $\Gamma$ carrying $\mu$ (height at most $0.377$), where $V$ is
+  therefore nearly constant; it is not nearly constant on the whole contour.
+  \item \emph{Vertical rays.} For $\operatorname{Re}z<0$ and $w\ge0$ one has $\abs{z-w}\ge\abs z$,
+  so $\pot\nu(z)\le-\lambda\log\abs z$; and $\pot\mu(z)\ge-\lambda\log(\abs z+R_\mu)$. Hence, on the
+  upward ray from $v_7$, with $\upsilon=\operatorname{Im}z$,
+  \[
+    V(z)\ge(1-\varepsilon_0)\pi\upsilon-\lambda\log\Bigl(1+\frac{R_\mu}{\abs z}\Bigr)
+    \ge(1-\varepsilon_0)\pi\upsilon-\frac{\lambda R_\mu}\upsilon ,
+  \]
+  which increases with $\upsilon$ and is at least $3.5344>\theta$ at $\upsilon=\frac54$. The lower ray follows
+  by symmetry.
+  \item \emph{Atom term.} The interval $[v_0,0]$ is covered by $760$ cells with the same
+  tolerance. On each cell the linear function taking the values
+  $V(z_j)-\theta-\text{bound}$ at the endpoints lies below $V-\theta$ by \cref{lem:chord}; the
+  integral of its negative part is computed exactly (a trapezoid if both endpoint values are
+  negative, a triangle if one is), giving $J\ge-0.0598567117\ldots$. The lower chord is below
+  $0$ on all but about $6\cdot10^{-5}$ of the interval.
+  \item \emph{Energies.} $I(\mu)$ is the sum over pairs of segments of the products of the masses
+  and of the pair energies of \cref{lem:segment-energies}, with the branch condition checked
+  exactly for each pair; the resulting ball is $2.32390232137306459\ldots$ with radius below
+  $10^{-71}$. $I(\nu)$ is enclosed from \cref{lem:Inu}, and agrees with the pair-energy formula.
+  \item \emph{Conclusion.} The rational lower bound for $2\lambda\theta+4J-I(\mu)+I(\nu)$ is
+  $\cD^{*}_{\alt}=3.5101772515\ldots$; adding $(\log2)/256$ gives $3.5128848577\ldots$, which exceeds
+  $\cA$ by $0.0007544821\ldots$. The constants $\cD_{\alt}=3.5101772$ and
+  $\cD_{\sep}\ge3.5128848$ used in the proof are truncations of these numbers.
+\end{itemize}
+
+\subsection{The original fixed-point verifier}\label{subsec:fixed-point}
+
+The original verifier represents approximate values as integers in units of $\mathsf S^{-1}$,
+$\mathsf S=2^{100}$, and computes $\log$ of positive rationals, $\arg$ of nonzero Gaussian
+rationals and $\pi$ with error at most $\mathsf E/\mathsf S$, $\mathsf E=10^6$
+($\approx7.9\cdot10^{-25}$).
+\begin{itemize}
+  \item $\log(x/y)$: write $x/y=2^jv$ with $1\le v<2$ and $\abs j<1000$ (asserted), and use
+  $\log v=2\sum_{i\ge0}u^{2i+1}/(2i+1)$, $u=(v-1)/(v+1)\le\frac13$, truncated after $64$ terms with
+  every product floored. The rounding errors add up to at most $384$ units and the tail is below
+  one unit since $3^{-129}<2^{-100}$; with $\log2$ computed in the same way, the error is at most
+  $385(1+\abs j)<\mathsf E$ units.
+  \item $\arctan u$ for $0\le u\le\frac12$: the alternating series truncated after $64$ terms,
+  error at most $257$ units; $\pi=16\arctan\frac15-4\arctan\frac1{239}$ has error below $5140$ units.
+  Larger arguments are reduced by $\arctan u=\frac\pi4-\arctan\frac{1-u}{1+u}$, inversion and
+  quadrant symmetries.
+  \item Segment potentials are evaluated by \cref{lem:segment-potential} with exact rational $u$,
+  $\abs{\operatorname{Re}u}+\abs{\operatorname{Im}u}\le10^6$ being asserted; the error of each is
+  below $2\cdot10^{-18}$, and the computed value of $V$ at any evaluated point is within
+  $10^{-15}$ of the true value.
+  \item Cells are bisected until the bound of \cref{lem:chord}, with the weaker constant
+  $\frac12$ in place of $1/\e$, is at most $2\cdot10^{-5}$: $1103$ contour cells and $182$ atom
+  cells. A strictness buffer $10^{-8}$ is used. On the vertical rays the verifier uses
+  $\abs{z-w}\ge\operatorname{Im}z$ for real $w$ and $\abs w\le1$ on $\operatorname{supp}\mu$, which
+  gives $V\ge(1-\varepsilon_0)\pi\upsilon-\lambda(\abs{\operatorname{Re}z}+1)/\upsilon$, about
+  $2.845>\theta$ at $\upsilon=\frac54$.
+  \item Pair energies are evaluated in fixed point with an explicit error bound for each pair, and
+  the weighted sums of upper and lower bounds give an upper bound $U_+$ for $I(\mu)$ and a lower
+  bound $L_-$ for $I(\nu)$ (the verifier does not use the closed form of \cref{lem:Inu}).
+\end{itemize}
+As a check, the computed $\log2$ and $\pi$ differ from the true values by $26$ and $8$ units. The
+verifier obtains $\theta=2.1001327306\ldots$, $J\ge-0.0598573587\ldots$ and
+$2\lambda\theta+4J-U_++L_-\ge3.5101522752\ldots$, and asserts in rational arithmetic the rounded
+inequalities $\cD_{\alt}\ge3.5099$, $(\log2)/256\ge0.002707$ and $3.5099+0.002707\ge3.512607$,
+whence the archive's margin $3.512607-3.512131=0.000476$. Its hand-written error budget has not
+been re-derived line by line by a second party; the proof uses the ball-arithmetic values.

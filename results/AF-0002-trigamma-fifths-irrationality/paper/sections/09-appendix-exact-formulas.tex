@@ -1,0 +1,104 @@
+\section{Exact formulas for potentials and energies}\label{sec:exact-formulas}
+
+This appendix collects the closed forms used by the energy certificate
+(\cref{sec:error-analysis}): the potential of a uniform segment and its second derivative along a
+line, the mutual energy of two segments, and the energy of the node measure $\nu$. Throughout, $\operatorname{Log}$ is the principal branch, and for a segment $[a,b]\subset\C$ we
+write $\mathrm u_{[a,b]}$ for the uniform probability measure on it.
+
+\subsection{Potential of a segment}\label{subsec:segment-potential}
+
+\begin{lemma}\label{lem:segment-potential}
+Let $a\ne b$, $v=b-a$ and $u=(z-a)/v$. Then
+\[
+  \pot{\mathrm u_{[a,b]}}(z)=1-\log\abs v-\operatorname{Re}\bigl[u\operatorname{Log}u-(u-1)\operatorname{Log}(u-1)\bigr],
+\]
+with $0\operatorname{Log}0=0$. In particular the potential of a segment-regular measure is continuous,
+with modulus of continuity $O(\delta\log(1/\delta))$ on compact sets.
+\end{lemma}
+
+\begin{proof}
+$\pot{\mathrm u_{[a,b]}}(z)=-\log\abs v-\int_0^1\log\abs{u-\tau}\,\dd\tau$. If
+$\operatorname{Im}u\ne0$, then $u-\tau$ stays in one open half-plane, $\operatorname{Log}(u-\tau)$ is
+continuous in $\tau$, and
+$\int_0^1\operatorname{Log}(u-\tau)\,\dd\tau=u\operatorname{Log}u-(u-1)\operatorname{Log}(u-1)-1$; take real
+parts. For real $u$ the formula follows by continuity, since
+$\operatorname{Re}(u\operatorname{Log}u)=u\log\abs u$ for $u\in\R$. The modulus of continuity
+follows from that of $t\log\abs t$.
+\end{proof}
+
+\begin{lemma}[Uniform continuity on the plane]\label{lem:uniform-continuity}
+Let $\mu_1$ be a segment-regular measure. There is a constant $C(\mu_1)$ such that
+$\abs{\pot{\mu_1}(z)-\pot{\mu_1}(z')}\le C(\mu_1)\,\delta\log(1/\delta)$ for all $z,z'\in\C$ with
+$\abs{z-z'}\le\delta\le\frac12$.
+\end{lemma}
+
+\begin{proof}
+Let $K$ be the compact set of points at distance at most $2$ from $\operatorname{supp}\mu_1$. If
+$z,z'\in K$, the estimate is the one of \cref{lem:segment-potential} on $K$. Otherwise one of the
+two points is at distance more than $2$ from the support, and then the whole segment $[z,z']$, of
+length at most $\frac12$, is at distance at least $1$ from it. On the set of points at distance
+at least $1$ from the support, $\pot{\mu_1}$ is smooth with
+$\abs{\nabla\pot{\mu_1}(z)}\le\int\abs{z-w}^{-1}\,\dd\abs{\mu_1}(w)\le\abs{\mu_1}(\C)$, so
+$\abs{\pot{\mu_1}(z)-\pot{\mu_1}(z')}\le\abs{\mu_1}(\C)\,\delta\le\abs{\mu_1}(\C)\,\delta\log(1/\delta)/\log2$.
+\end{proof}
+
+Along a straight cell $z(t)=z_0+t(z_1-z_0)$ not meeting the endpoints of the segments, the second
+derivative of the potential of a signed combination $\eta=\sum_j\mathfrak m_j\mathrm u_{[a_j,b_j]}$ is
+\begin{equation}\label{eq:second-derivative}
+  \frac{\dd^2}{\dd t^2}\pot\eta(z(t))=-\operatorname{Re}\Bigl[(z_1-z_0)^2\sum_{e}\frac{\gamma_e}{z(t)-e}\Bigr],
+  \qquad\gamma_e=\sum_{j:\,a_j=e}\frac{\mathfrak m_j}{b_j-a_j}-\sum_{j:\,b_j=e}\frac{\mathfrak m_j}{b_j-a_j},
+\end{equation}
+the sum running over all segment endpoints $e$. Indeed the complex potential
+$\Theta(z)=\int\operatorname{Log}(z-w)\,\dd\eta(w)$ satisfies
+$\Theta''(z)=\sum_j\mathfrak m_j\bigl(\frac1{z-a_j}-\frac1{z-b_j}\bigr)/(b_j-a_j)$, and
+$\pot\eta=-\operatorname{Re}\Theta$. The field $(1-\varepsilon_0)\pi\abs{\operatorname{Im}z}$ is affine
+along cells contained in a closed half-plane, so~\eqref{eq:second-derivative} is also the second
+derivative of $V$ along the cells of $\Gamma^+$ and of $[-r_0,0]$, with $\eta=\mu-\nu$.
+
+\subsection{Energies}\label{subsec:energy-formulas}
+
+Let $\mathcal G(z)=\frac12z^2\operatorname{Log}z-\frac34z^2$, so that $\mathcal G''=\operatorname{Log}$.
+
+\begin{lemma}\label{lem:segment-energies}
+(a) $I(\mathrm u_{[a,b]})=\frac32-\log\abs{b-a}$.
+
+(b) Let $[a,b]$ and $[c',d]$ be segments with $v=b-a$ and $w=d-c'$, and suppose that the four
+differences $b-c'$, $a-d$, $a-c'$, $b-d$, after multiplication by a common $\epsilon\in\{\pm1,\pm i\}$,
+lie in the closed right half-plane. Then
+\[
+  I\bigl(\mathrm u_{[a,b]},\mathrm u_{[c',d]}\bigr)
+  =-\operatorname{Re}\frac{\mathcal G(\epsilon(b-c'))+\mathcal G(\epsilon(a-d))-\mathcal G(\epsilon(a-c'))-\mathcal G(\epsilon(b-d))}{\epsilon^2vw}.
+\]
+\end{lemma}
+
+\begin{proof}
+(a) is the case $a=0$, $b=\ell$ of $\int_0^1\int_0^1-\log(\ell\abs{\tau-\tau'})\,\dd\tau\dd\tau'=\frac32-\log\ell$.
+(b) The differences $\epsilon(a+\tau v-c'-\tau'w)$, $\tau,\tau'\in[0,1]$, fill the parallelogram
+spanned by the four rotated corner differences, which lies in the closed right half-plane, where
+$\operatorname{Log}$ is continuous away from $0$. Since
+$\partial_\tau\partial_{\tau'}\mathcal G(\epsilon(a+\tau v-c'-\tau'w))=-\epsilon^2vw\operatorname{Log}(\epsilon(\cdots))$,
+integrating over the unit square gives
+$\iint\operatorname{Log}(\epsilon(\cdots))=[\cdots]/(\epsilon^2vw)$, and
+$\operatorname{Re}\operatorname{Log}(\epsilon y)=\log\abs y$. If the parallelogram contains $0$ the
+formula follows by continuity.
+\end{proof}
+
+\begin{lemma}\label{lem:Inu}
+For $a>0$, $I\bigl(\mathrm{Leb}|_{[0,a]}-\mathrm{Leb}|_{[a,2a]}\bigr)=4a^2\log2$. For the node
+measure~\eqref{eq:nu-def} with $c=\frac18$,
+\begin{align*}
+  I(\nu)&=\frac32+\frac{3c}2+\frac{3c^2}8+\frac{c^2}4\log c-\frac{(1+c)^2}2\log(1+c)\\
+  &=\frac{867}{512}+\frac{483}{256}\log2-\frac{81}{64}\log3=1.6107019792\ldots .
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:segment-energies}(a) an interval of length $\ell$ with density $1$ has energy
+$\ell^2(\frac32-\log\ell)$, and for real intervals
+$\int_\alpha^\beta\int_\gamma^\delta-\log(y-x)\,\dd y\,\dd x=-\bigl[\mathcal G(\delta-\alpha)-\mathcal G(\delta-\beta)
+-\mathcal G(\gamma-\alpha)+\mathcal G(\gamma-\beta)\bigr]$ when $\beta\le\gamma$, with $\mathcal G(0)=0$. For the first claim,
+the mutual energy of $[0,a]$ and $[a,2a]$ is $-(\mathcal G(2a)-2\mathcal G(a))=a^2(\frac32-\log a-2\log2)$, and
+$2a^2(\frac32-\log a)-2a^2(\frac32-\log a-2\log2)=4a^2\log2$. For the second,
+$I(\nu)=\frac32+\frac{c^2}4(\frac32-\log c)-\bigl(\mathcal G(1+c)-\mathcal G(1)-\mathcal G(c)\bigr)$, which simplifies as
+displayed.
+\end{proof}

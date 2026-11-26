@@ -1,0 +1,64 @@
+\section{The contour and the trial measure}\label{sec:contour-and-measure}
+
+This appendix specifies the polygon $\Gamma$ and the trial measure $\mu$ to which the energy
+criterion (\cref{prop:energy-criterion}) is applied in \cref{prop:energy-certificate}, and records
+the properties of $\mu$ that the criterion requires. The data are stored in the file \file{trial.json} of the original archive (SHA-256
+\texttt{a4da00b3a51e1d41\ldots c499c}); all coordinates are rational with common denominator
+$7\,054\,320\,000\,000$ and all masses are integers divided by $10^{12}$.
+
+\subsection{The polygon}\label{subsec:polygon}
+
+The upper half $\Gamma^+$ of $\Gamma$ is the polygonal path through the vertices of
+\cref{tab:vertices}, followed by the vertical ray $v_7+i[0,\infty)$; $\Gamma=\Gamma^+\cup\overline{\Gamma^+}$.
+The verifier checks that all vertices have negative real part, that $v_0$ is real and that the
+ordinates increase strictly, so $\Gamma$ is a simple curve in $\{\operatorname{Re}z<0\}$ meeting
+$\R$ only at $v_0=-r_0$.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}cll@{}}
+\toprule
+vertex & real part & imaginary part\\
+\midrule
+$v_0$ & $-664907/5000000=-0.1329814$ & $0$\\
+$v_1$ & $-61937/400000=-0.1548425$ & $1/25$\\
+$v_2$ & $-11119/62500=-0.177904$ & $9/100$\\
+$v_3$ & $-2046703/10000000=-0.2046703$ & $4/25$\\
+$v_4$ & $-583527/2500000=-0.2334108$ & $1/4$\\
+$v_5$ & $-170547/625000=-0.2728752$ & $2/5$\\
+$v_6$ & $-170547/625000$ & $3/4$\\
+$v_7$ & $-170547/625000$ & $5/4$\\
+\bottomrule
+\end{tabular}
+\caption{Vertices of the upper half of the scaled contour $\Gamma$.}
+\label{tab:vertices}
+\end{table}
+
+\subsection{The trial measure}\label{subsec:trial-measure}
+
+The trial measure $\mu$ is a sum of $238$ uniform measures on segments:
+\begin{itemize}
+  \item $34$ consecutive segments of equal length partitioning $[-r_0,0]$, carrying total mass
+  $0.2659627999\ldots$, with density between $2-6\cdot10^{-10}$ and $2-3\cdot10^{-11}$;
+  \item $102$ segments of length between $0.0038$ and $0.0040$ on the edges of $\Gamma^+$ up to
+  height $0.377$, with densities between $0.028$ and $1.92$ and total mass
+  $0.3982686000\ldots$;
+  \item the $102$ complex conjugate segments, with the same masses.
+\end{itemize}
+The verifier checks exactly: every mass is positive, the total mass is $17/16=\lambda$, the
+measure is invariant under conjugation, every segment lies on an edge of $\Gamma$ or on
+$[v_0,0]$, and every endpoint $w$ satisfies $\abs{\operatorname{Re}w}+\abs{\operatorname{Im}w}\le1$,
+so $\operatorname{supp}\mu\subset\{\abs w\le1\}$. Thus $\mu$ satisfies the hypotheses of
+\cref{prop:energy-criterion}.
+
+The trial measure was produced by a floating-point optimizer (a discretized quadratic program for
+the constrained equilibrium of \cref{rem:energy-meaning}) and then rounded to rationals; the
+certificate does not depend on how it was found. In the AI-internal audit, half of the $3639$
+cell endpoints of the certificate have a value of $V$ within about $1.5\cdot10^{-4}$ of the
+minimum. These endpoints are concentrated on the part of $\Gamma$ that carries $\mu$, of height at
+most $0.377$; above it $V$ increases, up to about $4.12$ on the finite part of the contour. So $V$
+is nearly constant on the support of $\mu$ in $\Gamma$, as it would be for an equilibrium measure;
+this suggests that $\mu$ is close to optimal for this contour, but we have not proved it and do
+not use it. The audit also finds $V<\theta$ on all but about $6\cdot10^{-5}$ of the interval
+$[-r_0,0]$, so the term $4J\approx-0.239$ matters.

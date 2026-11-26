@@ -1,0 +1,167 @@
+\section{The arithmetic certificate}\label{sec:arith-certificate}
+
+This appendix documents the computation behind \cref{prop:A-value}, the exact value of the
+arithmetic constant $\cA$ used in \cref{thm:arithmetic}, and the checks it has passed. It
+describes how the type data are computed, how the profile is integrated exactly, and how the local
+bound of \cref{prop:nullspace} was tested against exact valuations at finite $h$.
+
+\subsection{Type data}\label{subsec:type-data}
+
+For each $\kappa\in\{\frac15,\dots,\frac45\}$ and each type
+$(\kappa,\mathcal L^\Row,\mathcal L^\Col,\varepsilon)$ of the alternating form of
+\cref{def:profile} (common digits $\{0,\dots,\gamma-1\}$, border digits $\{\gamma,\dots,T-1\}$ alternating
+between rows and columns, $T\le23$), the program computes the rational numbers $V_l,W_l$ of
+\eqref{eq:VW-def}, the block $A_\tau$, its rank over $\Q$, bases of its left and right null spaces
+by exact row reduction, the images of these null spaces under the moment map, and the lines they
+span. Over the whole range $1/20\le u\le45/8$ about a thousand types occur ($1042$
+according to the AI-internal audit), and no null space has a two-dimensional moment image, so the
+convention of \cref{def:block-types}(ii) for two-dimensional images is never used.
+
+\begin{example}\label{ex:profile-x4}
+Let $\kappa=\frac15$ and $u=4$. For $t\in[0,1)$ a fibre has one common digit; for
+$t\in[1,\frac98)$ one border digit; for larger $t$ none. Here $\varepsilon(t)=(\mathbf1[t>\frac45],0)$.
+A common singleton has $A=[W_0]$ with $W_0=-\varepsilon_1/\kappa^2$: rank $0$ for $t<\frac45$, with
+left and right null vector $(1)$ of moment $(1,V_0)=(1,0)$, and rank $1$ for $\frac45<t<1$. A border
+singleton is a $1\times0$ or $0\times1$ block of rank $0$ whose null vector has moment
+$(1,1/\kappa)=(1,5)$; half of these fibres are rows and half columns. Hence $\rho=0.2$,
+$\alpha=\beta=0.8+0.0625$, the line $\Q(1,0)$ has $\alpha_\Lambda=\beta_\Lambda=0.8$ and the line
+$\Q(1,5)$ has $\alpha_\Lambda=\beta_\Lambda=0.0625$. Thus $q=\min(0.8625,\,0.8625,\,0.125,\,1.6)=0.125$
+and $e_{1/5}(4)=0.4+0.125=0.525$. Without the line bound one would get $0.4+0.8625$.
+\end{example}
+
+\Cref{tab:profile} shows the profile at a few points. It falls from about $2.1$, close to
+the trivial value $2+c$, to $0$, but not monotonically (for $\kappa=\frac25$ it is $2.000$ near
+$u=0.5$ and $2.050$ near $u=0.75$); for $\kappa\ge\frac25$ it vanishes for $u\ge3$, while for
+$\kappa=\frac15$ it stays positive up to $u=45/8$, which explains the larger integral in that
+class.
+
+\begin{table}[ht]
+\centering
+\small
+\setlength{\tabcolsep}{4.6pt}
+\begin{tabular}{@{}lcccccccccccc@{}}
+\toprule
+$u$ & $0.05$ & $0.1$ & $0.25$ & $0.5$ & $0.75$ & $1$ & $1.5$ & $2$ & $3$ & $4$ & $5$ & $5.5$\\
+\midrule
+$\kappa=\frac15$ & 2.110 & 2.075 & 2.050 & 2.025 & 2.000 & 1.850 & 1.525 & 1.325 & 0.925 & 0.525 & 0.125 & 0.025\\
+$\kappa=\frac25$ & 2.105 & 2.075 & 2.025 & 2.000 & 2.050 & 1.450 & 0.925 & 0.525 & 0 & 0 & 0 & 0\\
+$\kappa=\frac35$ & 2.100 & 2.085 & 2.000 & 2.000 & 2.000 & 1.250 & 0.625 & 0.125 & 0 & 0 & 0 & 0\\
+$\kappa=\frac45$ & 2.100 & 2.0875 & 2.000 & 2.000 & 2.000 & 1.250 & 0.625 & 0.125 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\caption{The profile $e_\kappa$ at the points $u+10^{-6}$ for the displayed $u$, rounded to three
+decimals (the entry $2.0875$ is given with four). The trivial
+entrywise bound corresponds to the constant $2+c=2.125$.}
+\label{tab:profile}
+\end{table}
+
+\subsection{Exact integration}\label{subsec:exact-integration}
+
+For each $\kappa$ the interval $[1/20,45/8]$ is cut at the points~\eqref{eq:breakpoints} lying
+inside it, giving $122$, $123$, $122$ and $122$ cells for $\kappa=\frac15,\dots,\frac45$. On a cell
+$(l,r)$ the original program evaluates all candidate functions
+$2\rho+\alpha$, $2\rho+\beta$ and $2\rho+\alpha+\beta-\alpha_\Lambda-\beta_\Lambda$ at the interior
+points $(2l+r)/3$ and $(l+2r)/3$, reconstructs each as an affine function, adds the pairwise
+intersection points inside the cell as further cuts, and integrates the minimum exactly by
+evaluating it at the midpoint of each sub-cell. Adding $\frac{2+c}{20}=\frac{17}{160}$ for the
+range below $u=1/20$ and averaging over $\kappa$ gives
+\[
+  \cA=\frac{304227995343501721142691896310988016794079029050925423}
+           {86622067750624596685118168422516024981216422248448000}.
+\]
+The inequality $\cA<3512131/10^6$ is checked in rational arithmetic. No quadrature or floating
+point enters.
+
+\subsection{Checks of the arithmetic computation}\label{subsec:arith-checks}
+
+\begin{enumerate}[(a)]
+  \item \emph{Separated geometry.} The original program integrates the analogous profile for the
+  separated geometry (border rows on $[1,1+c/2)$, columns on $[1+c/2,1+c)$, no parity averaging)
+  and obtains exactly the same rational number. This is consistent with \cref{cor:separation},
+  which makes the odd-prime denominators of the two geometries equal.
+  \item \emph{Recomputation from the description.} In the AI-internal audit the profile was
+  reimplemented from the mathematical description, with the piece lengths carried symbolically
+  as affine functions of $u$, the breakpoints generated independently as the intersections of
+  the lines $0,u,\kappa u,u/2,1-ju,1+c-ju$, and the constancy of the combinatorial type and of the
+  affine candidates asserted at two points of every interval. It reproduces the four integrals
+  and $\cA$ exactly. Using the best labelling of two-dimensional moment images instead of the
+  coordinate lines gives the same value, since such images do not occur.
+  \item \emph{Affinity.} We evaluated, for each of the $489$ cells of the original program, the
+  candidate functions at the three further points $l+\frac1{11}(r-l)$, $\frac{l+r}2$,
+  $l+\frac9{10}(r-l)$ and compared them with the affine reconstruction: all agree exactly.
+  Together with the two points of the reconstruction this makes five points per cell. Such a test
+  supports \cref{lem:profile-structure} but cannot replace it: finitely many points do not
+  exclude a breakpoint inside a cell.
+  \item \emph{Polar congruences.} The congruences of \cref{lem:two-layer} were checked on
+  $312{,}120$ matrix entries (\cref{subsec:polar}).
+\end{enumerate}
+
+\subsection{Finite tests of the local bound}\label{subsec:finite-checks}
+
+\Cref{prop:nullspace} can be tested at finite $h$ by computing the exact polynomial
+$P^{\alt}_I(X)$, or its value at a rational point, and comparing the exponent $e_p$ with the
+prediction $2R_0+q$ computed from the actual fibres. Since $p_0$ has not been computed, we cannot
+say which of the primes tested are ordinary; those below $120$, where the exponents are largest,
+are not. The tests therefore check the formula of the proposition, and the mechanism of its proof,
+partly at primes that the proof excludes. Recall from
+\cref{rem:bad-primes} that a prime is \emph{bad} if some fibre block has smaller rank modulo $p$
+than over $\Q$.
+\begin{enumerate}[(a)]
+  \item \emph{Rational data, value at a point.} We compared $e_p(P^{\alt}_\varnothing(1/7))$ with
+  $2R_0+q$, computed over $\Q$ exactly as in \cref{prop:nullspace}, at every prime
+  $p\notin\{5,7\}$ with $\sqrt{5N}<p\le5N$, for $h\in\{16,32,48,64,80,96,128\}$ and all $k$
+  ($1836$ comparisons): no violation, at bad primes or elsewhere; equality at $1810$ primes, and
+  at $117$ to $119$ of the $119$ primes when $h=128$. (The sizes $h\in\{32,48,64,96\}$ are run by
+  a program of the package; the others were added for this revision.)
+  \item \emph{Data modulo $p$, Gauss valuations.} The AI-internal audit compared the Gauss
+  valuations of the exact polynomials $P^{\alt}_I(X)$ (\cref{rem:gauss}) with the number
+  $2R'_0+\rank_{\Fp}K$ in which every rank is computed modulo $p$: $R'_0$ is the sum of the ranks
+  over $\Fp$ of the fibre blocks, and $K$ is the pairing between their null spaces over $\Fp$.
+  At a prime that is not bad, $R'_0=R_0$ and this is the intermediate bound in the proof of
+  \cref{prop:nullspace}. The comparison was made at every odd prime $p\ne5$ with $p^2>5N$, for
+  $h\in\{16,32,48,64,80,96,128\}$ and all $k$, and with the deletions $\{0\}$ and $\{h-1\}$ for
+  $h\in\{32,48\}$: no violation at any prime that is not bad.
+  \item \emph{Bad primes.} Four bad primes occur in the tests of (b) without deletion
+  (\cref{tab:bad-primes}); the prime $17$ at $h=32$, $k=1$ is also bad for the two deletions. At
+  two of the four, $e_p$ exceeds the number computed modulo $p$: by $3$ at $h=16$, $k=3$, $p=11$,
+  and by $4$ at $h=128$, $k=3$, $p=31$, the largest size tested. As explained in
+  \cref{rem:bad-primes}, this contradicts no statement of this paper: the number computed modulo
+  $p$ is not the bound of \cref{prop:nullspace}, which is stated with ranks over $\Q$ and for
+  $p>p_0$ only. With the rational data the inequality $e_p\le2R_0+q$ holds at all four bad primes,
+  for the Gauss valuation and at the points $X\in\{0,1,\frac17,\frac23,\frac3{11}\}$. The rank
+  drops are explicit: for $p=31$ the block of the type with four common digits, $\kappa=\frac35$ and
+  $\varepsilon=(1,1)$ is a $4\times4$ matrix of rank $4$ whose determinant has numerator divisible
+  by $31$, and this type occurs in the eleven fibres $20\le\iota\le30$; for $p=11$ and $p=13$ it
+  is the $1\times1$ block $W_0=4-\kappa^{-2}$, equal to $\frac{11}9$ and $\frac{39}{16}$; for
+  $p=17$ a $2\times2$ block of determinant $\frac{17}3$.
+  \item \emph{Comparison with the profile.} In the tests of (a) the prediction $2R_0+q$ exceeds
+  $h\,e_\kappa(p/h)$ by at most $0.8$, and the exponent $e_p$ itself exceeds $h\,e_\kappa(p/h)$ at
+  $56$ of the $1836$ primes (for instance $98>97.2$ at $h=48$, $k=1$, $p=41$). So the profile does
+  not dominate prime by prime; this is consistent with \cref{lem:profile-bound}, whose constant
+  $C_0$ cannot be taken to be $0$. What holds in all $28$ cases is the inequality between the
+  sums: $\sum_p(2R_0+q)\log p<\sum_ph\,e_\kappa(p/h)\log p$ over the primes tested, the difference
+  being between $0.0099$ and $0.1754$ per $h^2$ and decreasing with $h$ for each $k$.
+\end{enumerate}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$h$ & $k$ & $p$ & $e_p$ & computed modulo $p$ & $2R_0+q$ over $\Q$ & $h\,e_\kappa(p/h)$\\
+\midrule
+$16$ & $2$ & $13$ & $28$ & $28$ & $28$ & $29.0$\\
+$16$ & $3$ & $11$ & $29$ & $26$ & $33$ & $32.9$\\
+$32$ & $1$ & $17$ & $64$ & $64$ & $66$ & $66.0$\\
+$128$ & $3$ & $31$ & $253$ & $249$ & $260$ & $260.5$\\
+\bottomrule
+\end{tabular}
+\caption{The four bad primes met in the finite tests (no deletion). Here $e_p$ is the exponent of
+$p$ in the denominator of the content of $P^{\alt}_\varnothing$, and the fifth column is the
+number $2R'_0+\rank_{\Fp}K$ of test~(b).}
+\label{tab:bad-primes}
+\end{table}
+
+These tests concern the inequality of \cref{prop:nullspace}, not the asymptotic constant: at
+these sizes the contribution of the small primes is still of the same order as that of the
+others (\cref{subsec:margin}).

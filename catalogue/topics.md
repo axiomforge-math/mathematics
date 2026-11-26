@@ -5,10 +5,16 @@
 ## 11J72
 
 - [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
+- [AF-0002](../results/AF-0002-trigamma-fifths-irrationality/README.md) The irrationality of $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants (preprint)
 
 ## 31A15
 
 - [AF-0001](../results/AF-0001-dilogarithm-irrationality/README.md) Enlarged Hankel determinants and the irrationality of Li₂(2/11), Li₂(2/9), Li₂(−2/9) and Li₂(−2/7) (preprint)
+- [AF-0002](../results/AF-0002-trigamma-fifths-irrationality/README.md) The irrationality of $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants (preprint)
+
+## 33B15
+
+- [AF-0002](../results/AF-0002-trigamma-fifths-irrationality/README.md) The irrationality of $\psi_1(k/5)-\pi^2/2$: a candidate proof with separated L\"owner determinants (preprint)
 
 ## 33B30
 

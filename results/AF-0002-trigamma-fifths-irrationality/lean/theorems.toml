@@ -1,0 +1,85 @@
+# Declarations audited by `#print axioms` (every one must use only propext, Classical.choice,
+# Quot.sound). `status`: "proved" = unconditional theorem; "conditional" = the statement takes
+# the unproved candidate estimates as an explicit hypothesis (name ends in `_of_estimates` or
+# `_of_<hypothesis>`); such a theorem is never the formalization of a main theorem.
+
+# --- Irrationality criterion (unconditional) ---
+[[theorem]]
+lean = "AxiomForge.Trigamma.one_le_pow_mul_abs_aeval_div"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_of_int_poly_approx"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_of_tendsto_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_of_scaled_int_poly"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_of_log_content_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_of_rat_value_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.frequently_atTop_of_eventually_prime"
+status = "proved"
+
+# --- Definitions, statement fidelity and unconditional results ---
+[[theorem]]
+lean = "AxiomForge.Trigamma.summable_trigamma"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.trigamma_eq_hurwitzZeta"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.trigamma_add_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.trigamma_one"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.trigamma_one_half"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.hasSum_xi"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.trigamma_one_fifth_add"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.xi_one_add"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_pi_sq"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_xi_one_or_xi_two_or_xi_three_or_xi_four"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.arithmeticRate_lt"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.arithmetic_lt_decay"
+status = "proved"
+[[theorem]]
+lean = "AxiomForge.Trigamma.natDegree_separatedLownerDet_le"
+status = "proved"
+
+# --- Final deduction and the four target statements (conditional) ---
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_trigamma_sub_of_lownerEstimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_xi_one_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_xi_two_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_xi_three_of_estimates"
+status = "conditional"
+[[theorem]]
+lean = "AxiomForge.Trigamma.irrational_xi_four_of_estimates"
+status = "conditional"
